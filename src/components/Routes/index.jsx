@@ -7,19 +7,21 @@ const routes = [
   {
     name: 'Login',
     path: '/login',
-    component: Login
+    component: Login,
   },
   {
     name: 'Singup',
     path: '/signup',
-    component: Signup
-  }
+    component: Signup,
+  },
 ];
 
 export default function() {
   return (
     <Switch>
-      {routes.map((route) => <Route key={route.name} path={route.path} component={route.component}/>)}
+      {routes.map(route => (
+        <Route key={route.name} path={route.path} component={route.component} />
+      ))}
     </Switch>
   );
-};
+}
