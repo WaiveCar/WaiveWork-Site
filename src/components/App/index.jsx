@@ -1,8 +1,8 @@
-import React from 'react';
-import Menu from '../Menu';
-import Routes from '../Routes';
+import React from "react";
+import Menu from "../Menu";
+import Routes from "../Routes";
 
-export default function() {
+function App() {
   return (
     <div>
       <Menu />
@@ -10,3 +10,5 @@ export default function() {
     </div>
   );
 }
+
+export default App;

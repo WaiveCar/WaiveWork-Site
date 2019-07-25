@@ -1,19 +1,19 @@
 const initialState = {
-  form: {
+  authForm: {
     email: "",
     password: ""
   },
   loggedIn: false
 };
 
-function authReducer(state = initialState, action) {
+function userReducer(state = initialState, action) {
   const { payload } = action;
   switch (action.type) {
     case "UPDATE_FORM":
       const { form } = state;
       return {
         ...state,
-        form: {
+        [payload.formName]: {
           ...form,
           [payload.field]: payload.value
         }
@@ -23,4 +23,4 @@ function authReducer(state = initialState, action) {
   }
 }
 
-export default authReducer;
+export default userReducer;

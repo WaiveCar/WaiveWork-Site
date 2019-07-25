@@ -1,20 +1,23 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import React from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { updateForm } from "../../store/actions/userActions";
 
-function Login() {
+function Login(props) {
   return <div>Login</div>;
 }
 
-function mapDispatchToProps(props) {
-  return {};
+function mapStateToProps({ userReducer }) {
+  return {
+    ...userReducer
+  };
 }
 
-function mapStateToProps(props) {
+function mapDispatchToProps() {
   return {};
 }
 
 export default connect(
-  mapDispatchToProps,
   mapStateToProps,
+  mapDispatchToProps
 )(Login);
