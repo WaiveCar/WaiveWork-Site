@@ -16,7 +16,7 @@ const routes = [
   },
 ];
 
-export default function() {
+function Routes() {
   return (
     <Switch>
       {routes.map(route => (
@@ -25,3 +25,5 @@ export default function() {
     </Switch>
   );
 }
+
+export default Routes;

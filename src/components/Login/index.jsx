@@ -1,5 +1,20 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
-export default function() {
-  return <div>Login</div>
+function Login() {
+  return <div>Login</div>;
 }
+
+function mapDispatchToProps(props) {
+  return {};
+}
+
+function mapStateToProps(props) {
+  return {};
+}
+
+export default connect(
+  mapDispatchToProps,
+  mapStateToProps,
+)(Login);
