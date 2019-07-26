@@ -52,7 +52,7 @@ module.exports = {
       template: './src/index.html',
       filename: './index.html',
     }),
-    new BundleAnalyzerPlugin(),
+    /*new BundleAnalyzerPlugin(),*/
     new CompressionPlugin({
       filename: '[path].gz[query]',
       algorithm: 'gzip',
