@@ -1,6 +1,14 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin;
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
+  entry: __dirname + '/src/index.js',
+  output: {
+    path: __dirname + '/static',
+    filename: 'bundle.js',
+  },
   module: {
     rules: [
       {
@@ -43,6 +51,12 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: './src/index.html',
       filename: './index.html',
+    }),
+    new BundleAnalyzerPlugin(),
+    new CompressionPlugin({
+      filename: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: /\.(js|css|scss|jsx)$/,
     }),
   ],
   devServer: {
