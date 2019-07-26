@@ -1,22 +1,22 @@
 const initialState = {
   authForm: {
-    email: "",
-    password: ""
+    email: '',
+    password: '',
   },
-  loggedIn: false
+  loggedIn: false,
 };
 
 function userReducer(state = initialState, action) {
   const { payload } = action;
   switch (action.type) {
-    case "UPDATE_FORM":
+    case 'UPDATE_FORM':
       const { form } = state;
       return {
         ...state,
         [payload.formName]: {
-          ...form,
-          [payload.field]: payload.value
-        }
+          ...state[payload.formName],
+          [payload.field]: payload.value,
+        },
       };
     default:
       return state;

@@ -19,7 +19,11 @@ let fields = [
 function Login(props) {
   return (
     <div>
-      <Form fields={fields} formName={'authForm'} />
+      <Form
+        fields={fields}
+        formName={'authForm'}
+        onSubmit={(form) => console.log('submit', form)}
+      />
     </div>
   );
 }

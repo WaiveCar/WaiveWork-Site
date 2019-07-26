@@ -1,38 +1,47 @@
-import React from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { updateForm } from "../../store/actions/userActions";
+import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { updateForm } from '../../store/actions/userActions';
 
 function Form(props) {
-  const { fields, formName, updateForm } = props;
+  const { fields, formName, updateForm, onSubmit } = props;
   const currentForm = props[formName];
   return (
-    <div>
+    <form>
       {fields.map((field, i) => (
         <input
           key={i}
           value={currentForm[field.name]}
           type={field.type}
-          onChange={e => updateForm(formName, field.name, e.target.value)}
+          onChange={(e) => updateForm(formName, field.name, e.target.value)}
         />
       ))}
-    </div>
+      {onSubmit && (
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={() => onSubmit && onSubmit(currentForm)}
+        >
+          Submit
+        </button>
+      )}
+    </form>
   );
 }
 
 function mapStateToProps({ userReducer }) {
   return {
-    ...userReducer
+    ...userReducer,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    updateForm: bindActionCreators(updateForm, dispatch)
+    updateForm: bindActionCreators(updateForm, dispatch),
   };
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Form);
