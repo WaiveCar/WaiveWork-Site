@@ -7,11 +7,13 @@ import Form from "../Form";
 let fields = [
   {
     name: "email",
-    type: "text"
+    type: "text",
+    width: 3
   },
   {
     name: "password",
-    type: "password"
+    type: "password",
+    width: 3
   }
 ];
 

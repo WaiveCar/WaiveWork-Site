@@ -1,9 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {BrowserRouter} from 'react-router-dom';
-import {Provider} from 'react-redux';
-import App from './components/App';
-import store from './store';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import App from "./components/App";
+import store from "./store";
+import "./scss/custom.scss";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -11,5 +12,5 @@ ReactDOM.render(
       <App />
     </Provider>
   </BrowserRouter>,
-  document.getElementById('app'),
+  document.getElementById("app")
 );

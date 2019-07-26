@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { updateForm } from "../../store/actions/userActions";
 
-function Login(props) {
+function Form(props) {
   const { fields, formName, updateForm } = props;
   const currentForm = props[formName];
   return (
@@ -35,4 +35,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Login);
+)(Form);
