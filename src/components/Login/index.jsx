@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import Form from '../Form';
 import './login.scss';
 import Envelope from '../../svg/envelope.svg';
+import Key from '../../svg/key.svg';
 
 let fields = [
   {
@@ -16,7 +17,7 @@ let fields = [
     name: 'password',
     type: 'password',
     width: 12,
-    svg: Envelope,
+    svg: Key,
   },
 ];
 

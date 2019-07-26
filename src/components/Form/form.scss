@@ -1,11 +1,3 @@
-.field {
-  text-align: center;
-}
-
-.input-holder {
-  margin: 0.75rem 0;
-}
-
 .inner-form {
   width: 80%;
 }
@@ -14,4 +6,26 @@
   .inner-form {
     width: 40%;
   }
+}
+
+.field {
+  text-align: center;
+}
+
+.input-row {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.input-icon {
+  z-index: 1000;
+  width: 20px;
+  position: absolute;
+  fill: green;
+}
+
+.input-holder {
+  margin: 0.75rem 0;
 }

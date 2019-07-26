@@ -17,17 +17,25 @@ function Form(props) {
   return (
     <form className="align-center">
       <div className="inner-form">
-        {fields.map((field, i) => (
-          <div className={'row input-holder align-center'} key={i}>
-            <input
-              className={`col-${field.width ? field.width : 12} field`}
-              value={currentForm[field.name]}
-              placeholder={field.name}
-              type={field.type}
-              onChange={(e) => updateForm(formName, field.name, e.target.value)}
-            />
-          </div>
-        ))}
+        {fields.map((field, i) => {
+          let Svg = field.svg;
+          return (
+            <div className="input-row">
+              <Svg className="input-icon" />
+              <div className={'row input-holder align-center'} key={i}>
+                <input
+                  className={`col-${field.width ? field.width : 12} field`}
+                  value={currentForm[field.name]}
+                  placeholder={field.name}
+                  type={field.type}
+                  onChange={(e) =>
+                    updateForm(formName, field.name, e.target.value)
+                  }
+                />
+              </div>
+            </div>
+          );
+        })}
         {onSubmit && (
           <div className="align-center">
             <button
