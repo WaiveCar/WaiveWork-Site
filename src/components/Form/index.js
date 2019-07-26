@@ -22,7 +22,7 @@ function Form(props) {
           return (
             <div className="input-row">
               <Svg className="input-icon" />
-              <div className={'row input-holder align-center'} key={i}>
+              <div className={'row align-center'} key={i}>
                 <input
                   className={`col-${field.width ? field.width : 12} field`}
                   value={currentForm[field.name]}
