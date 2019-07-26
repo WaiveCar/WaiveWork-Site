@@ -5,13 +5,20 @@ import { updateForm } from '../../store/actions/userActions';
 import './form.scss';
 
 function Form(props) {
-  const { fields, formName, updateForm, onSubmit } = props;
+  const {
+    fields,
+    formName,
+    updateForm,
+    onSubmit,
+    submitName,
+    formWidth,
+  } = props;
   const currentForm = props[formName];
   return (
-    <form>
-      <div className="container">
+    <form className="align-center">
+      <div className="inner-form">
         {fields.map((field, i) => (
-          <div className={'input-holder row'} key={i}>
+          <div className={'row input-holder align-center'} key={i}>
             <input
               className={`col-${field.width ? field.width : 12} field`}
               value={currentForm[field.name]}
@@ -22,13 +29,15 @@ function Form(props) {
           </div>
         ))}
         {onSubmit && (
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={() => onSubmit && onSubmit(currentForm)}
-          >
-            Submit
-          </button>
+          <div className="align-center">
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => onSubmit && onSubmit(currentForm)}
+            >
+              {submitName}
+            </button>
+          </div>
         )}
       </div>
     </form>
