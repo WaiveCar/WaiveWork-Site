@@ -7,12 +7,12 @@ let fields = [
   {
     name: 'email',
     type: 'text',
-    width: 3,
+    width: 6,
   },
   {
     name: 'password',
     type: 'password',
-    width: 3,
+    width: 6,
   },
 ];
 
