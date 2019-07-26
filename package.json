@@ -42,6 +42,7 @@
     "husky": "^3.0.1",
     "lint-staged": "^9.2.1",
     "prettier": "^1.18.2",
+    "react-svg-loader": "^3.0.3",
     "redux-logger": "^3.0.6",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",

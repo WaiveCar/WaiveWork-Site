@@ -3,17 +3,20 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Form from '../Form';
 import './login.scss';
+import Envelope from '../../svg/envelope.svg';
 
 let fields = [
   {
     name: 'email',
     type: 'text',
     width: 12,
+    svg: Envelope,
   },
   {
     name: 'password',
     type: 'password',
     width: 12,
+    svg: Envelope,
   },
 ];
 
