@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { login } from '../../store/actions/userActions';
 import { bindActionCreators } from 'redux';
 import Form from '../Form';
 import './login.scss';
@@ -22,12 +23,13 @@ let fields = [
 ];
 
 function Login(props) {
+  const { login } = props;
   return (
     <div className="container">
       <Form
         fields={fields}
         formName={'authForm'}
-        onSubmit={(form) => console.log('submit', form)}
+        onSubmit={(form) => login(form.email, form.password)}
         submitName={'login'}
         formWidth={'60%'}
       />
@@ -41,8 +43,10 @@ function mapStateToProps({ userReducer }) {
   };
 }
 
-function mapDispatchToProps() {
-  return {};
+function mapDispatchToProps(dispatch) {
+  return {
+    login: bindActionCreators(login, dispatch),
+  };
 }
 
 export default connect(

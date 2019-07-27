@@ -1,4 +1,4 @@
-export default (function() {
+export default (() => {
   return process.env.NODE_ENV !== 'production'
     ? {
         apiUrl: 'http://staging.waivecar.com:3080',
