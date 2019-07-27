@@ -53,11 +53,7 @@ module.exports = {
       filename: './index.html',
     }),
     /*new BundleAnalyzerPlugin(),*/
-    new CompressionPlugin({
-      filename: '[path].gz[query]',
-      algorithm: 'gzip',
-      test: /\.(js|css|scss|jsx)$/,
-    }),
+    new CompressionPlugin(),
   ],
   devServer: {
     inline: true,
