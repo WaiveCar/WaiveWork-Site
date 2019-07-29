@@ -24,7 +24,6 @@ export const verifyAuth = (history) => (dispatch) => {
     axios
       .get(axios.defaults.baseUrl + '/auth/validate')
       .then((response) => {
-        console.log('history', history);
         dispatch({ type: 'TOGGLE_LOGIN', payload: { loggedIn: true } });
         history.push('/dashboard');
       })

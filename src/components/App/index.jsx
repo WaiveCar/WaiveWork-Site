@@ -13,7 +13,6 @@ class App extends Component {
 
   componentDidMount() {
     const { verifyAuth, history } = this.props;
-    console.log('props', this.props);
     verifyAuth(history);
   }
 
