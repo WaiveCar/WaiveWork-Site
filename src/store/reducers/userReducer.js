@@ -18,6 +18,11 @@ function userReducer(state = initialState, action) {
           [payload.field]: payload.value,
         },
       };
+    case 'TOGGLE_LOGIN':
+      return {
+        ...state,
+        loggedIn: payload.loggedIn,
+      };
     default:
       return state;
   }

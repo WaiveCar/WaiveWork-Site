@@ -1,5 +1,6 @@
 import React from 'react';
-import {Switch, Route} from 'react-router-dom';
+import { Redirect } from 'react-router';
+import { Switch, Route } from 'react-router-dom';
 import Login from '../Login';
 import Signup from '../Signup';
 
@@ -16,10 +17,17 @@ const routes = [
   },
 ];
 
-function Routes() {
+function Routes({ loggedIn }) {
   return (
     <Switch>
-      {routes.map(route => (
+      <Route
+        exact
+        path={'/'}
+        render={() =>
+          loggedIn ? <Redirect to={'/dashboard'} /> : <Redirect to={'/login'} />
+        }
+      />
+      {routes.map((route) => (
         <Route key={route.name} path={route.path} component={route.component} />
       ))}
     </Switch>

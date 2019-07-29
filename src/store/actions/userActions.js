@@ -9,6 +9,13 @@ export const login = (email, password) => (dispatch) => {
       identifier: email,
       password,
     })
-    .then((response) => localStorage.setItem('token', response.data.token))
+    .then((response) => {
+      localStorage.setItem('token', response.data.token);
+      return dispatch({ type: 'TOGGLE_LOGIN', payload: true });
+    })
     .catch((e) => console.log('error logging in', e.response.data.message));
+};
+
+export const verifyAuth = () => (dispatch) => {
+  let token = localStorage.getItem('token');
 };
