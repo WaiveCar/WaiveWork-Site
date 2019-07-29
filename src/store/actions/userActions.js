@@ -5,7 +5,10 @@ export const updateForm = (formName, field, value) => (dispatch) =>
 
 export const login = (email, password) => (dispatch) => {
   axios
-    .post(axios.defaults.baseUrl + '/auth/login', { email, password })
-    .then((response) => console.log('response'))
-    .catch((e) => console.log('error logging in', e));
+    .post(axios.defaults.baseUrl + '/auth/login', {
+      identifier: email,
+      password,
+    })
+    .then((response) => localStorage.setItem('token', response.data.token))
+    .catch((e) => console.log('error logging in', e.response.data.message));
 };
