@@ -24,6 +24,11 @@ function userReducer(state = initialState, action) {
         ...state,
         loggedIn: payload.loggedIn,
       };
+    case 'TOGGLE_AUTH_CHECKED':
+      return {
+        ...state,
+        authChecked: payload.authChecked,
+      };
     default:
       return state;
   }

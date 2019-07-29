@@ -17,10 +17,11 @@ class App extends Component {
   }
 
   render() {
+    const { authChecked } = this.props;
     return (
       <div>
         <Menu />
-        <Routes />
+        {authChecked ? <Routes /> : <div>Loading...</div>}
       </div>
     );
   }
