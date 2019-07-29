@@ -4,6 +4,7 @@ const initialState = {
     password: '',
   },
   loggedIn: false,
+  authChecked: false,
 };
 
 function userReducer(state = initialState, action) {

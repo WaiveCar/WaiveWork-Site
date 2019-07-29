@@ -29,4 +29,5 @@ export const verifyAuth = (history) => (dispatch) => {
       })
       .catch((e) => console.log('e', e.response.data));
   }
+  dispatch({ type: 'TOGGLE_AUTH_CHECKED', payload: { authChecked: true } });
 };
