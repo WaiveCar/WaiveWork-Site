@@ -12,7 +12,11 @@ export const login = (email, password) => (dispatch) => {
     })
     .then((response) => {
       localStorage.setItem('token', response.data.token);
-      axios.defaults.headers.common['Authorization'] = token;
+      try {
+        axios.defaults.headers.common['Authorization'] = token;
+      } catch (e) {
+        console.log('e setting head', e);
+      }
       return dispatch({ type: 'TOGGLE_LOGIN', payload: { loggedIn: true } });
     })
     .catch((e) => console.log('error logging in', e.response.data.message));
@@ -21,25 +25,32 @@ export const login = (email, password) => (dispatch) => {
 export const verifyAuth = (history, pathName) => (dispatch) => {
   let token = localStorage.getItem('token');
   if (token) {
-    axios.defaults.headers.common['Authorization'] = token;
     axios
-      .get('/auth/validate')
+      .get('/auth/validate', { headers: { Authorization: token } })
       .then((response) => {
         dispatch({ type: 'TOGGLE_LOGIN', payload: { loggedIn: true } });
         history.push(pathName);
         axios.defaults.headers.common['Authorization'] = token;
-        dispatch({
+        return dispatch({
           type: 'TOGGLE_AUTH_CHECKED',
           payload: { authChecked: true },
         });
       })
       .catch((e) => {
-        dispatch({
+        return dispatch({
           type: 'TOGGLE_AUTH_CHECKED',
           payload: { authChecked: true },
         });
       });
   } else {
-    dispatch({ type: 'TOGGLE_AUTH_CHECKED', payload: { authChecked: true } });
+    return dispatch({
+      type: 'TOGGLE_AUTH_CHECKED',
+      payload: { authChecked: true },
+    });
   }
+};
+
+export const logout = () => (dispatch) => {
+  localStorage.removeItem('token');
+  dispatch({ type: 'TOGGLE_LOGIN', payload: { loggedIn: false } });
 };
