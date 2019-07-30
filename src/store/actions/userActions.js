@@ -6,7 +6,7 @@ export const updateForm = (formName, field, value) => (dispatch) =>
 
 export const login = (email, password) => (dispatch) => {
   axios
-    .post(axios.defaults.baseUrl + '/auth/login', {
+    .post('/auth/login', {
       identifier: email,
       password,
     })
@@ -22,7 +22,7 @@ export const verifyAuth = (history, pathName) => (dispatch) => {
   if (token) {
     axios.defaults.headers.common['Authorization'] = token;
     axios
-      .get(axios.defaults.baseUrl + '/auth/validate')
+      .get('/auth/validate')
       .then((response) => {
         dispatch({ type: 'TOGGLE_LOGIN', payload: { loggedIn: true } });
         history.push(pathName);

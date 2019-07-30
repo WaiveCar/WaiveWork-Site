@@ -8,7 +8,7 @@ import './bootstrap/custom.scss';
 import config from './config';
 // This sets the base url for axios
 import axios from 'axios';
-axios.defaults.baseUrl = config.apiUrl;
+axios.defaults.baseURL = config.apiUrl;
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
 ReactDOM.render(
