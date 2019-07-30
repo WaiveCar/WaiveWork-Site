@@ -1,9 +1,10 @@
 import React from 'react';
-import connect from 'react-redux';
-import bindActionCreators from 'redux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { hideSnackbar } from '../../store/actions/snackbarActions';
 
-function Snackbar() {
-  return <div>Snackbar</div>;
+function Snackbar({ showSnackbar, message, color }) {
+  return showSnackbar && <div>Snackbar</div>;
 }
 
 function mapStateToProps({ snackbarReducer }) {
@@ -13,7 +14,9 @@ function mapStateToProps({ snackbarReducer }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    hideSnackbar: bindActionCreators(hideSnackbar, dispatch),
+  };
 }
 
 export default connect(
