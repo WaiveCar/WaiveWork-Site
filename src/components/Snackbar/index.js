@@ -1,10 +1,30 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { hideSnackbar } from '../../store/actions/snackbarActions';
 
-function Snackbar({ showSnackbar, message, color }) {
-  return showSnackbar && <div>Snackbar</div>;
+class Snackbar extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { hideSnackbar, showSnackbar, message } = this.props;
+    if (showSnackbar) {
+      this.interval = setTimeout(() => hideSnackbar(), 3000);
+    }
+  }
+
+  render() {
+    const { showSnackbar, message, color, hideSnackbar } = this.props;
+    return (
+      showSnackbar && (
+        <div className="outer">
+          <div className="inner">{message}</div>
+        </div>
+      )
+    );
+  }
 }
 
 function mapStateToProps({ snackbarReducer }) {

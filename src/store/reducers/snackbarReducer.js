@@ -10,8 +10,8 @@ function snackbarReducer(state = initialState, action) {
     case 'SHOW_SNACKBAR':
       return {
         showSnackbar: true,
-        message: action.message,
-        color: action.color,
+        message: payload.message,
+        color: payload.color,
       };
     case 'HIDE_SNACKBAR':
       return {
