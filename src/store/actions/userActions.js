@@ -12,6 +12,7 @@ export const login = (email, password) => (dispatch) => {
     })
     .then((response) => {
       localStorage.setItem('token', response.data.token);
+      axios.defaults.headers.common['Authorization'] = token;
       return dispatch({ type: 'TOGGLE_LOGIN', payload: { loggedIn: true } });
     })
     .catch((e) => console.log('error logging in', e.response.data.message));
@@ -26,6 +27,7 @@ export const verifyAuth = (history, pathName) => (dispatch) => {
       .then((response) => {
         dispatch({ type: 'TOGGLE_LOGIN', payload: { loggedIn: true } });
         history.push(pathName);
+        axios.defaults.headers.common['Authorization'] = token;
         dispatch({
           type: 'TOGGLE_AUTH_CHECKED',
           payload: { authChecked: true },
