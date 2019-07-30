@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router';
 import { login } from '../../store/actions/userActions';
 import { bindActionCreators } from 'redux';
 import Form from '../Form';
@@ -23,16 +24,22 @@ let fields = [
 ];
 
 function Login(props) {
-  const { login } = props;
+  const { login, loggedIn } = props;
   return (
-    <div className="container">
-      <Form
-        fields={fields}
-        formName={'authForm'}
-        onSubmit={(form) => login(form.email, form.password)}
-        submitName={'login'}
-        formWidth={'60%'}
-      />
+    <div>
+      {!loggedIn ? (
+        <div className="container">
+          <Form
+            fields={fields}
+            formName={'authForm'}
+            onSubmit={(form) => login(form.email, form.password)}
+            submitName={'login'}
+            formWidth={'60%'}
+          />
+        </div>
+      ) : (
+        <Redirect to={'/dashboard'} />
+      )}
     </div>
   );
 }

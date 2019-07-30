@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -26,26 +26,30 @@ const routes = [
     component: () => <div>dashboard</div>,
     requireAuth: true,
   },
+  {
+    name: '1',
+    path: '/1',
+    component: () => <div>1</div>,
+    requireAuth: true,
+  },
 ];
 
-function Routes({ loggedIn }) {
+function Routes({ loggedIn, authChecked }) {
   return (
     <Switch>
-      {routes.map((route) => {
-        if (!loggedIn && route.requireAuth) {
-          return <Redirect key={route.name} to={'/login'} />;
-        }
-        if (loggedIn && !route.requireAuth) {
-          return <Redirect key={route.name} to={'/dashboard'} />;
-        }
-        return (
-          <Route
-            key={route.name}
-            path={route.path}
-            component={route.component}
-          />
-        );
-      })}
+      {authChecked &&
+        routes.map((route) => {
+          if (!loggedIn && route.requireAuth) {
+            return <Redirect key={route.name} to={'/login'} />;
+          }
+          return (
+            <Route
+              key={route.name}
+              path={route.path}
+              component={route.component}
+            />
+          );
+        })}
     </Switch>
   );
 }

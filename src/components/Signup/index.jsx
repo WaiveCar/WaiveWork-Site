@@ -1,13 +1,18 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import { Redirect } from 'react-router';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-function Signup() {
-  return <div>Signup</div>;
+function Signup({ loggedIn }) {
+  return (
+    <div>{!loggedIn ? <div>Signup</div> : <Redirect to={'/dashboard'} />}</div>
+  );
 }
 
-function mapDispatchToProps(props) {
-  return {};
+function mapDispatchToProps({ userReducer }) {
+  return {
+    ...userReducer,
+  };
 }
 
 function mapStateToProps(props) {

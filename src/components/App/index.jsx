@@ -12,8 +12,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const { verifyAuth, history } = this.props;
-    verifyAuth(history);
+    const { verifyAuth, history, location } = this.props;
+    verifyAuth(history, location.pathname);
   }
 
   render() {
