@@ -29,7 +29,7 @@ function Form(props) {
                   placeholder={field.name}
                   type={field.type}
                   onChange={(e) =>
-                    updateForm(formName, field.fieldName, e.target.value)
+                    updateForm(formName, field.formField, e.target.value)
                   }
                 />
               </div>

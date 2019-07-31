@@ -66,3 +66,7 @@ export const changeSignupPage = (newPage) => (dispatch) => {
     payload: { selectedSignupPage: newPage },
   });
 };
+
+export const signup = (form) => (dispatch) => {
+  console.log(form);
+};

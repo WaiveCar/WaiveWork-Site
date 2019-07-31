@@ -62,15 +62,19 @@ const initialState = {
     },
     {
       fields: [],
+      submitName: 'next',
     },
     {
       fields: [],
+      submitName: 'next',
     },
     {
       fields: [],
+      submitName: 'next',
     },
     {
       fields: [],
+      submitName: 'signup',
     },
   ],
   selectedSignupPage: 0,

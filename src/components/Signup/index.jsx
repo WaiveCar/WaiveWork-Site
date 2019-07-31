@@ -3,18 +3,20 @@ import Form from '../Form';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { changeSignupPage } from '../../store/actions/userActions';
+import { changeSignupPage, signup } from '../../store/actions/userActions';
 
 function Signup({
   loggedIn,
   signupFormPages,
   selectedSignupPage,
   changeSignupPage,
+  signup,
+  authForm,
 }) {
   const onSubmit =
     selectedSignupPage !== signupFormPages.length - 1
       ? changeSignupPage.bind(null, selectedSignupPage + 1)
-      : null;
+      : signup;
   return (
     <div>
       {!loggedIn ? (
@@ -22,7 +24,7 @@ function Signup({
           <Form
             fields={signupFormPages[selectedSignupPage].fields}
             formName={'authForm'}
-            onSubmit={(form) => onSubmit(form)}
+            onSubmit={() => onSubmit(authForm)}
             submitName={signupFormPages[selectedSignupPage].submitName}
             formWidth={'60%'}
           />
@@ -43,6 +45,7 @@ function mapStateToProps({ userReducer }) {
 function mapDispatchToProps(dispatch) {
   return {
     changeSignupPage: bindActionCreators(changeSignupPage, dispatch),
+    signup: bindActionCreators(signup, dispatch),
   };
 }
 
