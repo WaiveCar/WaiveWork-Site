@@ -59,3 +59,10 @@ export const logout = () => (dispatch) => {
   localStorage.removeItem('token');
   dispatch({ type: 'TOGGLE_LOGIN', payload: { loggedIn: false } });
 };
+
+export const changeSignupPage = (newPage) => {
+  return dispatch({
+    type: 'CHANGE_SIGNUP_PAGE',
+    payload: { selectedSignupPage: newPage },
+  });
+};

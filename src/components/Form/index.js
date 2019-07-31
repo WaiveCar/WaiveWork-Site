@@ -25,11 +25,11 @@ function Form(props) {
               <div className={'row align-center'}>
                 <input
                   className={`col-${field.width ? field.width : 12} field`}
-                  value={currentForm[field.name]}
+                  value={currentForm[field.formField]}
                   placeholder={field.name}
                   type={field.type}
                   onChange={(e) =>
-                    updateForm(formName, field.name, e.target.value)
+                    updateForm(formName, field.fieldName, e.target.value)
                   }
                 />
               </div>
@@ -41,7 +41,7 @@ function Form(props) {
             <button
               type="button"
               className="btn btn-primary"
-              onClick={() => onSubmit && onSubmit(currentForm)}
+              onClick={() => onSubmit(currentForm)}
             >
               {submitName}
             </button>

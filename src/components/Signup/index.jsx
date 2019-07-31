@@ -1,13 +1,26 @@
 import React from 'react';
+import Form from '../Form';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-const formPages = [{}, {}, {}, {}, {}];
-
-function Signup({ loggedIn }) {
+function Signup({ loggedIn, signupFormPages, selectedSignupPage }) {
   return (
-    <div>{!loggedIn ? <div>Signup</div> : <Redirect to={'/dashboard'} />}</div>
+    <div>
+      {!loggedIn ? (
+        <div className="container">
+          <Form
+            fields={signupFormPages[selectedSignupPage].fields}
+            formName={'authForm'}
+            onSubmit={(form) => console.log('click')}
+            submitName={signupFormPages[selectedSignupPage].submitName}
+            formWidth={'60%'}
+          />
+        </div>
+      ) : (
+        <Redirect to={'/dashboard'} />
+      )}
+    </div>
   );
 }
 
