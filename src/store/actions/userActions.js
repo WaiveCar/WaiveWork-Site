@@ -60,7 +60,7 @@ export const logout = () => (dispatch) => {
   dispatch({ type: 'TOGGLE_LOGIN', payload: { loggedIn: false } });
 };
 
-export const changeSignupPage = (newPage) => {
+export const changeSignupPage = (newPage) => (dispatch) => {
   return dispatch({
     type: 'CHANGE_SIGNUP_PAGE',
     payload: { selectedSignupPage: newPage },

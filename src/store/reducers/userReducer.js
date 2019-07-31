@@ -105,7 +105,7 @@ function userReducer(state = initialState, action) {
         ...state,
         [payload.formName]: { ...initialState[payload.formName] },
       };
-    case 'CHANGE_SELECTED_PAGE':
+    case 'CHANGE_SIGNUP_PAGE':
       return {
         ...state,
         selectedSignupPage: payload.selectedSignupPage,
