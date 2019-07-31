@@ -17,7 +17,12 @@ class Snackbar extends Component {
     const { showSnackbar, message, color, hideSnackbar } = this.props;
     return (
       showSnackbar && (
-        <div className="outer" onClick={() => hideSnackbar()}>
+        <div
+          className="outer"
+          onClick={() => {
+            hideSnackbar();
+          }}
+        >
           <div className="fixed-bottom">
             <div className="align-center">
               <div className="inner" style={{ backgroundColor: color }}>

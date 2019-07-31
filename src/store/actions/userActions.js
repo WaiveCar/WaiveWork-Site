@@ -41,12 +41,16 @@ export const login = (email, password) => (dispatch) => {
     .then((response) => {
       localStorage.setItem('token', response.data.token);
       axios.defaults.headers.common['Authorization'] = response.data.token;
+      dispatch({ type: 'CLEAR_FORM', payload: { formName: 'authForm' } });
       return dispatch({ type: 'TOGGLE_LOGIN', payload: { loggedIn: true } });
     })
     .catch((e) =>
       dispatch({
         type: 'SHOW_SNACKBAR',
-        payload: { message: e.response.data.message, type: 'danger' },
+        payload: {
+          message: e.response ? e.response.data.message : e,
+          type: 'error',
+        },
       }),
     );
 };

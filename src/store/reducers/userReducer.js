@@ -29,6 +29,11 @@ function userReducer(state = initialState, action) {
         ...state,
         authChecked: payload.authChecked,
       };
+    case 'CLEAR_FORM':
+      return {
+        ...state,
+        [payload.formName]: { ...initialState[payload.formName] },
+      };
     default:
       return state;
   }
