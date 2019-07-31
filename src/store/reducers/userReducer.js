@@ -2,9 +2,10 @@ import Envelope from '../../svg/envelope.svg';
 import Key from '../../svg/key.svg';
 import signupForm from '../../components/Form/signupForm';
 import loginForm from '../../components/Form/loginForm';
+import authFormFields from '../../components/Form/authFormFields';
 
 const initialState = {
-  authForm: {},
+  authForm: { ...authFormFields },
   loginFormFields: loginForm,
   signupFormPages: signupForm,
   selectedSignupPage: 0,

@@ -15,7 +15,7 @@ function Form(props) {
   } = props;
   const currentForm = props[formName];
   return (
-    <form className="align-center">
+    <div className="align-center">
       <div className="inner-form">
         {fields.map((field, i) => {
           let Svg = field.svg;
@@ -48,7 +48,7 @@ function Form(props) {
           </div>
         )}
       </div>
-    </form>
+    </div>
   );
 }
 

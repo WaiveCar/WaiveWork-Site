@@ -24,7 +24,7 @@ function Signup({
           <Form
             fields={signupFormPages[selectedSignupPage].fields}
             formName={'authForm'}
-            onSubmit={() => onSubmit(authForm)}
+            onSubmit={(form) => onSubmit(authForm)}
             submitName={signupFormPages[selectedSignupPage].submitName}
             formWidth={'60%'}
           />

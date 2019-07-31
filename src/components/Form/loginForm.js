@@ -1,6 +1,6 @@
 import Envelope from '../../svg/envelope.svg';
 import Key from '../../svg/key.svg';
-import signupForm from '../../components/Form/signupForm';
+
 export default [
   {
     name: 'email',
