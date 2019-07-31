@@ -8,10 +8,11 @@ function snackbarReducer(state = initialState, action) {
   const { payload } = action;
   switch (action.type) {
     case 'SHOW_SNACKBAR':
+      let color = payload.type === 'danger' ? 'red' : 'green';
       return {
         showSnackbar: true,
         message: payload.message,
-        color: payload.color,
+        color,
       };
     case 'HIDE_SNACKBAR':
       return {

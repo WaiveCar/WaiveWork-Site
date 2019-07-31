@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { hideSnackbar } from '../../store/actions/snackbarActions';
+import './snackbar.scss';
 
 class Snackbar extends Component {
   constructor(props) {
@@ -9,18 +10,21 @@ class Snackbar extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { hideSnackbar, showSnackbar, message } = this.props;
-    if (showSnackbar) {
-      this.interval = setTimeout(() => hideSnackbar(), 3000);
-    }
+    const { hideSnackbar, showSnackbar, message, color } = this.props;
   }
 
   render() {
     const { showSnackbar, message, color, hideSnackbar } = this.props;
     return (
       showSnackbar && (
-        <div className="outer">
-          <div className="inner">{message}</div>
+        <div className="outer" onClick={() => hideSnackbar()}>
+          <div className="fixed-bottom">
+            <div className="align-center">
+              <div className="inner" style={{ backgroundColor: color }}>
+                {message}
+              </div>
+            </div>
+          </div>
         </div>
       )
     );

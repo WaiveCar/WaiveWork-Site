@@ -40,13 +40,13 @@ export const login = (email, password) => (dispatch) => {
     })
     .then((response) => {
       localStorage.setItem('token', response.data.token);
-      axios.defaults.headers.common['Authorization'] = token;
+      axios.defaults.headers.common['Authorization'] = response.data.token;
       return dispatch({ type: 'TOGGLE_LOGIN', payload: { loggedIn: true } });
     })
     .catch((e) =>
       dispatch({
         type: 'SHOW_SNACKBAR',
-        payload: { message: e.response.data.message },
+        payload: { message: e.response.data.message, type: 'danger' },
       }),
     );
 };

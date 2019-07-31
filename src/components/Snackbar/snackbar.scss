@@ -1,7 +1,18 @@
 .outer {
+  position: fixed;
   width: 100%;
   height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.fixed-bottom {
+  bottom: 2rem;
+  position: fixed;
+  width: 100%;
 }
 
 .inner {
+  text-align: center;
+  color: white;
 }
