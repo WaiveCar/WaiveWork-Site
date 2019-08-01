@@ -22,6 +22,12 @@ function Form(props) {
         <div className="inner-form">
           {fields.map((field, i) => {
             let Svg = field.svg;
+            console.log(
+              'field.name',
+              field.name,
+              'val',
+              currentForm[field.formField],
+            );
             return (
               <div className="input-row" key={i}>
                 <Svg className="input-icon" />

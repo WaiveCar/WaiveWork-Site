@@ -118,4 +118,8 @@ export default [
     ],
     submitName: 'next',
   },
+  {
+    fields: [],
+    submitName: 'submit',
+  },
 ];
