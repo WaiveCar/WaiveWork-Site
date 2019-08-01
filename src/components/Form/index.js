@@ -12,41 +12,45 @@ function Form(props) {
     onSubmit,
     submitName,
     formWidth,
+    title,
   } = props;
   const currentForm = props[formName];
   return (
-    <div className="align-center">
-      <div className="inner-form">
-        {fields.map((field, i) => {
-          let Svg = field.svg;
-          return (
-            <div className="input-row" key={i}>
-              <Svg className="input-icon" />
-              <div className={'row align-center'}>
-                <input
-                  className={`col-${field.width ? field.width : 12} field`}
-                  value={currentForm[field.formField]}
-                  placeholder={field.name}
-                  type={field.type}
-                  onChange={(e) =>
-                    updateForm(formName, field.formField, e.target.value)
-                  }
-                />
+    <div>
+      <div className="align-center">{title && <div>{title}</div>}</div>
+      <div className="align-center">
+        <div className="inner-form">
+          {fields.map((field, i) => {
+            let Svg = field.svg;
+            return (
+              <div className="input-row" key={i}>
+                <Svg className="input-icon" />
+                <div className={'row align-center'}>
+                  <input
+                    className={`col-${field.width ? field.width : 12} field`}
+                    value={currentForm[field.formField]}
+                    placeholder={field.name}
+                    type={field.type}
+                    onChange={(e) =>
+                      updateForm(formName, field.formField, e.target.value)
+                    }
+                  />
+                </div>
               </div>
+            );
+          })}
+          {onSubmit && (
+            <div className="align-center">
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={() => onSubmit(currentForm)}
+              >
+                {submitName}
+              </button>
             </div>
-          );
-        })}
-        {onSubmit && (
-          <div className="align-center">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={() => onSubmit(currentForm)}
-            >
-              {submitName}
-            </button>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

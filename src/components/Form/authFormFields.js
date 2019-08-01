@@ -4,4 +4,13 @@ export default {
   firstName: '',
   phone: '',
   location: '',
+  addressLine1: '',
+  addressLine2: '',
+  city: '',
+  state: '',
+  zip: '',
+  licenseNumber: '',
+  licenseState: '',
+  birthday: '',
+  expiration: '',
 };

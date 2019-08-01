@@ -15,6 +15,7 @@ function Login(props) {
         <div className="container">
           <Form
             fields={loginFormFields}
+            title={'Login'}
             formName={'authForm'}
             onSubmit={(form) => login(form.email, form.password)}
             submitName={'login'}

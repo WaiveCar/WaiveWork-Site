@@ -23,6 +23,7 @@ function Signup({
         <div className="container">
           <Form
             fields={signupFormPages[selectedSignupPage].fields}
+            title={signupFormPages[selectedSignupPage].title}
             formName={'authForm'}
             onSubmit={(form) => onSubmit(authForm)}
             submitName={signupFormPages[selectedSignupPage].submitName}
