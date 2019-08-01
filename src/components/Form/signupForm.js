@@ -43,7 +43,43 @@ export default [
     submitName: 'next',
   },
   {
-    fields: [],
+    fields: [
+      {
+        name: 'address line 1',
+        formField: 'addressLine1',
+        type: 'text',
+        width: 12,
+        svg: Envelope,
+      },
+      {
+        name: 'address line 2',
+        formField: 'addressLine2',
+        type: 'text',
+        width: 12,
+        svg: Key,
+      },
+      {
+        name: 'city',
+        formField: 'city',
+        type: 'text',
+        width: 12,
+        svg: Key,
+      },
+      {
+        name: 'state',
+        formField: 'state',
+        type: 'text',
+        width: 12,
+        svg: Key,
+      },
+      {
+        name: 'zip code',
+        formField: 'zip',
+        type: 'tel',
+        width: 12,
+        svg: Key,
+      },
+    ],
     submitName: 'next',
   },
   {
