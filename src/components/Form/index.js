@@ -29,12 +29,19 @@ function Form(props) {
             return (
               <div className="input-row" key={i}>
                 <div className={'row align-center'}>
+                  {field.label && (
+                    <label
+                      className="col-sm-6 mt-1 col-form-label"
+                      htmlFor={field.formName}
+                    >
+                      {field.label}
+                    </label>
+                  )}
                   <input
+                    id={field.label && field.formName}
                     className={`col-${field.width ? field.width : 12} field`}
                     value={currentForm[field.formField]}
-                    placeholder={
-                      !field.width || field.width === 12 ? field.name : null
-                    }
+                    placeholder={!field.label && field.name}
                     type={field.type}
                     onChange={(e) =>
                       updateForm(formName, field.formField, e.target.value)
