@@ -28,7 +28,7 @@ export default [
       },
       {
         name: 'location',
-        formField: 'location',
+        formField: 'placeName',
         type: 'text',
         width: 8,
         svg: Key,
@@ -48,14 +48,14 @@ export default [
     fields: [
       {
         name: 'address line 1',
-        formField: 'addressLine1',
+        formField: 'street1',
         type: 'text',
         width: 8,
         svg: Envelope,
       },
       {
         name: 'address line 2',
-        formField: 'addressLine2',
+        formField: 'street2',
         type: 'text',
         width: 8,
         svg: Key,
@@ -89,7 +89,7 @@ export default [
     fields: [
       {
         name: 'license number',
-        formField: 'licenseNumber',
+        formField: 'number',
         type: 'text',
         width: 8,
         svg: Envelope,
@@ -103,7 +103,7 @@ export default [
       },
       {
         name: 'birthday',
-        formField: 'birthday',
+        formField: 'birthDate',
         type: 'text',
         width: 8,
         svg: Key,
@@ -129,15 +129,15 @@ export default [
         label: 'How many years of driving experience do you have?',
       },
       {
-        name: 'price per day',
-        formField: 'perDay',
+        name: 'price per week',
+        formField: 'offerPerWeek',
         type: 'number',
         width: 2,
-        label: 'How much would you be willing to pay per day?',
+        label: 'How much would you be willing to pay per week?',
       },
       {
         name: 'for rideshare',
-        formField: 'forRideshare',
+        formField: 'rideshare',
         type: 'radio',
         label: 'Will you be driving for rideshare services?',
         width: 8,
@@ -166,7 +166,7 @@ export default [
     fields: [
       {
         name: 'for rideshare',
-        formField: 'isElectric',
+        formField: 'wantsElectric',
         type: 'radio',
         label: 'Are you interested in using an electric car?',
         width: 8,

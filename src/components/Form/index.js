@@ -61,7 +61,7 @@ function Form(props) {
                   <label>
                     <input
                       type={'radio'}
-                      value={'yes'}
+                      value={'true'}
                       checked={currentForm[field.formField] === 'yes'}
                       onChange={(e) =>
                         updateForm(formName, field.formField, e.target.value)
@@ -72,7 +72,7 @@ function Form(props) {
                   <label>
                     <input
                       type={'radio'}
-                      value={'no'}
+                      value={'false'}
                       checked={currentForm[field.formField] === 'no'}
                       onChange={(e) =>
                         updateForm(formName, field.formField, e.target.value)
