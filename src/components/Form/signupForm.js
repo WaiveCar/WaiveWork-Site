@@ -119,7 +119,22 @@ export default [
     submitName: 'next',
   },
   {
-    fields: [],
+    fields: [
+      {
+        name: 'driving experience',
+        formField: 'experience',
+        type: 'number',
+        width: 1,
+        label: 'How many years of driving experience do you have?',
+      },
+      {
+        name: 'price per day',
+        formField: 'perDay',
+        type: 'number',
+        width: 1,
+        label: 'How much would you be willing to pay per day?',
+      },
+    ],
     submitName: 'submit',
   },
 ];

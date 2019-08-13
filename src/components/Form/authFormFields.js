@@ -14,4 +14,6 @@ export default {
   licenseState: '',
   birthday: '',
   expiration: '',
+  experience: '',
+  perDay: '',
 };

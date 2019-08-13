@@ -17,6 +17,9 @@ function Form(props) {
     title,
   } = props;
   const currentForm = props[formName];
+  let missing = []; /*fields
+    .map((item) => !currentForm[item.formField] && item.name)
+    .filter((item) => item);*/
   return (
     <div>
       <div className="align-center">{title && <div>{title}</div>}</div>
@@ -29,7 +32,9 @@ function Form(props) {
                   <input
                     className={`col-${field.width ? field.width : 12} field`}
                     value={currentForm[field.formField]}
-                    placeholder={field.name}
+                    placeholder={
+                      !field.width || field.width === 12 ? field.name : null
+                    }
                     type={field.type}
                     onChange={(e) =>
                       updateForm(formName, field.formField, e.target.value)
@@ -44,18 +49,15 @@ function Form(props) {
               <button
                 type="button"
                 className="btn btn-primary"
-                onClick={() => {
-                  let missing = fields
-                    .map((item) => !currentForm[item.formField] && item.name)
-                    .filter((item) => item);
+                onClick={() =>
                   missing.length
                     ? showSnackbar(
                         `Please add the following items before continuing: ${missing.join(
                           ', ',
                         )}.`,
                       )
-                    : onSubmit(currentForm);
-                }}
+                    : onSubmit(currentForm)
+                }
               >
                 {submitName}
               </button>
