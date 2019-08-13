@@ -45,14 +45,9 @@ function Form(props) {
                 type="button"
                 className="btn btn-primary"
                 onClick={() => {
-                  let missing = [];
-                  for (let item of fields) {
-                    console.log(item);
-                    if (!currentForm[item.fieldName]) {
-                      missing.push(item.name);
-                    }
-                  }
-                  console.log('missing');
+                  let missing = fields
+                    .map((item) => !currentForm[item.formField] && item.name)
+                    .filter((item) => item);
                   missing.length
                     ? showSnackbar(
                         `Please add the following items before continuing: ${missing.join(
