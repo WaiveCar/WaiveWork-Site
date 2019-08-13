@@ -149,13 +149,19 @@ export default [
     title:
       'We have a fleet of Hyundai Ioniqs which are otherwise identical except some are hybrid and electric.',
     body: `
-    1) Electric
-    -140 mile range
-    - 5mi charge/hr slow charger included
-    - 20 minutes to fast charge to 75% ($.25/minute)
-    2) Hybrid
-    -60mpg
-    -600 miles/tank
+    <div>
+      1) Electric
+      <ul>
+        <li>140 mile range</li>
+        <li>5mi charge/hr slow charger included</li>
+        <li>20 minutes to fast charge to 75% ($.25/minute)</li>
+      </ul>
+      2) Hybrid
+      <ul>
+        <li>60mpg</li>
+        <li>600 miles/tank</li>
+      </ul>
+    </div>
     `,
     fields: [
       {
