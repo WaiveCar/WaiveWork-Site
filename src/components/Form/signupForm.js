@@ -143,6 +143,29 @@ export default [
         width: 8,
       },
     ],
+    submitName: 'next',
+  },
+  {
+    title:
+      'We have a fleet of Hyundai Ioniqs which are otherwise identical except some are hybrid and electric.',
+    body: `
+    1) Electric
+    -140 mile range
+    - 5mi charge/hr slow charger included
+    - 20 minutes to fast charge to 75% ($.25/minute)
+    2) Hybrid
+    -60mpg
+    -600 miles/tank
+    `,
+    fields: [
+      {
+        name: 'for rideshare',
+        formField: 'isElectric',
+        type: 'radio',
+        label: 'Are you interested in using an electric car?',
+        width: 8,
+      },
+    ],
     submitName: 'submit',
   },
 ];

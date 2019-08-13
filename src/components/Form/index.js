@@ -15,6 +15,7 @@ function Form(props) {
     showSnackbar,
     formWidth,
     title,
+    body,
   } = props;
   const currentForm = props[formName];
   let missing = []; /*fields
@@ -22,7 +23,14 @@ function Form(props) {
     .filter((item) => item);*/
   return (
     <div>
-      <div className="align-center">{title && <div>{title}</div>}</div>
+      <div className="align-center">
+        {title && <div className="col-4 center-text">{title}</div>}
+      </div>
+      {body && (
+        <div className="align-center">
+          <div className="col-4">{body}</div>
+        </div>
+      )}
       <div className="align-center">
         <div className="inner-form">
           {fields.map((field, i) => {
@@ -39,7 +47,7 @@ function Form(props) {
                   )}
                   <input
                     id={field.label && field.formName}
-                    className={`col-${field.width ? field.width : 12} field`}
+                    className={`col-${field.width ? field.width : 8} field`}
                     value={currentForm[field.formField]}
                     placeholder={!field.label ? field.name : ''}
                     type={field.type}

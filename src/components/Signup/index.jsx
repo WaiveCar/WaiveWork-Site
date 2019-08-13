@@ -24,6 +24,7 @@ function Signup({
           <Form
             fields={signupFormPages[selectedSignupPage].fields}
             title={signupFormPages[selectedSignupPage].title}
+            body={signupFormPages[selectedSignupPage].body}
             formName={'authForm'}
             onSubmit={(form) => onSubmit(authForm)}
             submitName={signupFormPages[selectedSignupPage].submitName}
