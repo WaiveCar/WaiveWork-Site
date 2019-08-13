@@ -12,6 +12,7 @@ function Form(props) {
     updateForm,
     onSubmit,
     submitName,
+    showSnackbar,
     formWidth,
     title,
   } = props;
@@ -46,15 +47,17 @@ function Form(props) {
                 onClick={() => {
                   let missing = [];
                   for (let item of fields) {
-                    if (!currentForm[item]) {
-                      missing.push(item);
+                    console.log(item);
+                    if (!currentForm[item.fieldName]) {
+                      missing.push(item.name);
                     }
                   }
+                  console.log('missing');
                   missing.length
                     ? showSnackbar(
-                        `Please input the following items before submitting: ${missing.join(
+                        `Please add the following items before continuing: ${missing.join(
                           ', ',
-                        )}`,
+                        )}.`,
                       )
                     : onSubmit(currentForm);
                 }}
