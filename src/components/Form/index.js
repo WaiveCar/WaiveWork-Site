@@ -23,15 +23,11 @@ function Form(props) {
     .map((item) => !currentForm[item.formField] && item.name)
     .filter((item) => item);*/
   return (
-    <div>
+    <div className="container">
       <div className="align-center">
-        {title && <div className="col-4 center-text">{title}</div>}
+        {title && <div className="col-8 center-text">{title}</div>}
       </div>
-      {body && (
-        <div className="align-center">
-          <div className="col-4">{Parser(body)}</div>
-        </div>
-      )}
+      {body && <div className="align-center">{Parser(body)}</div>}
       <div className="align-center">
         <div className="inner-form">
           {fields.map((field, i) => {
