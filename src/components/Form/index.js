@@ -31,7 +31,7 @@ function Form(props) {
                 <div className={'row align-center'}>
                   {field.label && (
                     <label
-                      className="col-sm-6 mt-1 col-form-label"
+                      className="col-sm-6 col-form-label"
                       htmlFor={field.formName}
                     >
                       {field.label}
@@ -41,7 +41,7 @@ function Form(props) {
                     id={field.label && field.formName}
                     className={`col-${field.width ? field.width : 12} field`}
                     value={currentForm[field.formField]}
-                    placeholder={!field.label && field.name}
+                    placeholder={!field.label ? field.name : ''}
                     type={field.type}
                     onChange={(e) =>
                       updateForm(formName, field.formField, e.target.value)
