@@ -26,7 +26,7 @@ function Form(props) {
       <div className="align-center">
         <div className="inner-form">
           {fields.map((field, i) => {
-            return (
+            return field.type !== 'radio' ? (
               <div className="input-row" key={i}>
                 <div className={'row align-center'}>
                   {field.label && (
@@ -47,6 +47,34 @@ function Form(props) {
                       updateForm(formName, field.formField, e.target.value)
                     }
                   />
+                </div>
+              </div>
+            ) : (
+              <div key={i}>
+                <div className="align-center">{field.label}</div>
+                <div className="space-evenly">
+                  <label>
+                    <input
+                      type={'radio'}
+                      value={'yes'}
+                      checked={currentForm[field.formField] === 'yes'}
+                      onChange={(e) =>
+                        updateForm(formName, field.formField, e.target.value)
+                      }
+                    />
+                    Yes
+                  </label>
+                  <label>
+                    <input
+                      type={'radio'}
+                      value={'no'}
+                      checked={currentForm[field.formField] === 'no'}
+                      onChange={(e) =>
+                        updateForm(formName, field.formField, e.target.value)
+                      }
+                    />
+                    No
+                  </label>
                 </div>
               </div>
             );

@@ -135,6 +135,13 @@ export default [
         width: 2,
         label: 'How much would you be willing to pay per day?',
       },
+      {
+        name: 'for rideshare',
+        formField: 'forRideshare',
+        type: 'radio',
+        label: 'Will you be driving for rideshare services?',
+        width: 8,
+      },
     ],
     submitName: 'submit',
   },

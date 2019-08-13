@@ -16,4 +16,5 @@ export default {
   expiration: '',
   experience: '',
   perDay: '',
+  forRideshare: '',
 };
