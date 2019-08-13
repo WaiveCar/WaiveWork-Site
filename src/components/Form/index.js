@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { updateForm } from '../../store/actions/userActions';
+import { showSnackbar } from '../../store/actions/snackbarActions';
 import './form.scss';
 
 function Form(props) {
@@ -42,7 +43,21 @@ function Form(props) {
               <button
                 type="button"
                 className="btn btn-primary"
-                onClick={() => onSubmit(currentForm)}
+                onClick={() => {
+                  let missing = [];
+                  for (let item of fields) {
+                    if (!currentForm[item]) {
+                      missing.push(item);
+                    }
+                  }
+                  missing.length
+                    ? showSnackbar(
+                        `Please input the following items before submitting: ${missing.join(
+                          ', ',
+                        )}`,
+                      )
+                    : onSubmit(currentForm);
+                }}
               >
                 {submitName}
               </button>
@@ -63,6 +78,7 @@ function mapStateToProps({ userReducer }) {
 function mapDispatchToProps(dispatch) {
   return {
     updateForm: bindActionCreators(updateForm, dispatch),
+    showSnackbar: bindActionCreators(showSnackbar, dispatch),
   };
 }
 
