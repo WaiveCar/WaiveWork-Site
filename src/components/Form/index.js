@@ -21,10 +21,8 @@ function Form(props) {
       <div className="align-center">
         <div className="inner-form">
           {fields.map((field, i) => {
-            let Svg = field.svg;
             return (
               <div className="input-row" key={i}>
-                <Svg className="input-icon" />
                 <div className={'row align-center'}>
                   <input
                     className={`col-${field.width ? field.width : 12} field`}

@@ -1,3 +1,11 @@
-export const hideSnackbar = () => (dispatch) => {
-  return dispatch({ type: 'HIDE_SNACKBAR' });
-};
+export const showSnackbar = (message) => (dispatch) =>
+  dispatch({
+    type: 'SHOW_SNACKBAR',
+    payload: {
+      message,
+      type: 'error',
+    },
+  });
+
+export const hideSnackbar = () => (dispatch) =>
+  dispatch({ type: 'HIDE_SNACKBAR' });
