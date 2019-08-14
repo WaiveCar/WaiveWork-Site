@@ -1,5 +1,6 @@
 import React from 'react';
 import Form from '../Form';
+import { withRouter } from 'react-router';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -13,6 +14,7 @@ function Signup({
   changeSignupPage,
   signup,
   authForm,
+  history,
 }) {
   const onSubmit =
     selectedSignupPage !== signupFormPages.length - 1
@@ -30,7 +32,7 @@ function Signup({
             title={signupFormPages[selectedSignupPage].title}
             body={signupFormPages[selectedSignupPage].body}
             formName={'authForm'}
-            onSubmit={(form) => onSubmit(authForm)}
+            onSubmit={(form) => onSubmit(authForm, history)}
             altAction={altAction ? () => altAction() : null}
             submitName={signupFormPages[selectedSignupPage].submitName}
             altActionName={signupFormPages[selectedSignupPage].altActionName}
@@ -57,7 +59,9 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Signup);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(Signup),
+);

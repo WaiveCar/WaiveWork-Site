@@ -67,10 +67,10 @@ export const changeSignupPage = (newPage) => (dispatch) => {
   });
 };
 
-export const signup = (form) => (dispatch) => {
+export const signup = (form, history) => (dispatch) => {
   axios
     .post('/waitlist/add', form)
-    .then((response) => console.log('response to signup', response))
+    .then((response) => history.push('/thanks'))
     .catch((e) =>
       dispatch({
         type: 'SHOW_SNACKBAR',

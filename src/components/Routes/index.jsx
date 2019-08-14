@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { verifyAuth } from '../../store/actions/userActions';
 import Login from '../Login';
 import Signup from '../Signup';
+import AuthorizedRoute from '../AuthorizedRoute';
 
 const routes = [
   {
@@ -30,17 +31,24 @@ const routes = [
     name: '1',
     path: '/1',
     component: () => <div>1</div>,
-    requireAuth: true,
+    requireAuth: false,
   },
 ];
 
-function Routes({ loggedIn, authChecked }) {
+function Routes({ authChecked, loggedIn }) {
   return (
     <Switch>
       {authChecked &&
         routes.map((route) => {
-          if (!loggedIn && route.requireAuth) {
-            return <Redirect key={route.name} to={'/login'} />;
+          if (route.requireAuth) {
+            return (
+              <AuthorizedRoute
+                key={route.name}
+                path={route.path}
+                component={route.component}
+                loggedIn={loggedIn}
+              />
+            );
           }
           return (
             <Route
