@@ -3,11 +3,10 @@ import { Redirect } from 'react-router';
 import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { verifyAuth } from '../../store/actions/userActions';
 import AuthorizedRoute from '../AuthorizedRoute';
 import routes from './routeList';
 
-function Routes({ authChecked, loggedIn }) {
+function Routes({ authChecked }) {
   return (
     <Switch>
       {authChecked &&
@@ -18,7 +17,6 @@ function Routes({ authChecked, loggedIn }) {
                 key={route.name}
                 path={route.path}
                 component={route.component}
-                loggedIn={loggedIn}
               />
             );
           }
@@ -33,6 +31,7 @@ function Routes({ authChecked, loggedIn }) {
     </Switch>
   );
 }
+
 function mapStateToProps({ userReducer }) {
   return {
     ...userReducer,
