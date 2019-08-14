@@ -86,22 +86,20 @@ function Form(props) {
               </div>
             );
           })}
-          {altAction && (
-            <div className="align-center">
+          <div className="space-evenly">
+            {altAction && (
               <button
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-outline-primary"
                 onClick={() => altAction()}
               >
                 {altActionName}
               </button>
-            </div>
-          )}
-          {onSubmit && (
-            <div className="align-center">
+            )}
+            {onSubmit && (
               <button
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-outline-primary"
                 onClick={() =>
                   missing.length
                     ? showSnackbar(
@@ -114,8 +112,8 @@ function Form(props) {
               >
                 {submitName}
               </button>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </div>
