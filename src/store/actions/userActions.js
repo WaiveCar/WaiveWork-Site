@@ -68,5 +68,16 @@ export const changeSignupPage = (newPage) => (dispatch) => {
 };
 
 export const signup = (form) => (dispatch) => {
-  console.log(form);
+  axios
+    .post('/waitlist/add', form)
+    .then((response) => console.log('response to signup', response))
+    .catch((e) =>
+      dispatch({
+        type: 'SHOW_SNACKBAR',
+        payload: {
+          message: e.response ? e.response.data.message : e,
+          type: 'error',
+        },
+      }),
+    );
 };

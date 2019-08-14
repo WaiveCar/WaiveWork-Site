@@ -5,6 +5,8 @@ export default {
   lastName: '',
   phone: '',
   placeName: '',
+  latitude: '',
+  longitude: '',
   street1: '',
   street2: '',
   city: '',
@@ -18,4 +20,5 @@ export default {
   offerPerWeek: '',
   rideshare: '',
   wantsElectric: '',
+  accountType: 'waivework',
 };
