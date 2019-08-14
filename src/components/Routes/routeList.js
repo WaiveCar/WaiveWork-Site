@@ -29,4 +29,10 @@ export default [
     component: Thanks,
     requireAuth: false,
   },
+  {
+    name: 'Wildcard',
+    path: '/*',
+    component: Dashboard,
+    requireAuth: true,
+  },
 ];
