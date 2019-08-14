@@ -1,6 +1,8 @@
 import React from 'react';
 import Login from '../Login';
 import Signup from '../Signup';
+import Dashboard from '../Dashboard';
+import Thanks from '../Thanks';
 
 export default [
   {
@@ -18,13 +20,13 @@ export default [
   {
     name: 'Dashboard',
     path: '/dashboard',
-    component: () => <div>dashboard</div>,
+    component: Dashboard,
     requireAuth: true,
   },
   {
-    name: '1',
-    path: '/1',
-    component: () => <div>1</div>,
+    name: 'Thanks',
+    path: '/thanks',
+    component: Thanks,
     requireAuth: false,
   },
 ];

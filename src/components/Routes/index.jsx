@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import AuthorizedRoute from '../AuthorizedRoute';
+import Dashboard from '../Dashboard';
 import routes from './routeList';
 
 function Routes({ authChecked }) {
@@ -28,6 +29,7 @@ function Routes({ authChecked }) {
             />
           );
         })}
+      <AuthorizedRoute path={'/*'} component={Dashboard} />
     </Switch>
   );
 }
