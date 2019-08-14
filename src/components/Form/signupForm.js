@@ -83,6 +83,7 @@ export default [
       },
     ],
     submitName: 'next',
+    altActionName: 'back',
   },
   {
     title: 'What is your driver’s license information?',
@@ -116,6 +117,7 @@ export default [
         svg: Key,
       },
     ],
+    altActionName: 'back',
     submitName: 'next',
   },
   {
@@ -143,6 +145,7 @@ export default [
         width: 8,
       },
     ],
+    altActionName: 'back',
     submitName: 'next',
   },
   {
@@ -172,6 +175,7 @@ export default [
         width: 8,
       },
     ],
+    altActionName: 'back',
     submitName: 'submit',
   },
 ];

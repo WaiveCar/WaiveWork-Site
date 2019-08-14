@@ -12,7 +12,9 @@ function Form(props) {
     formName,
     updateForm,
     onSubmit,
+    altAction,
     submitName,
+    altActionName,
     showSnackbar,
     formWidth,
     title,
@@ -84,6 +86,17 @@ function Form(props) {
               </div>
             );
           })}
+          {altAction && (
+            <div className="align-center">
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={() => altAction()}
+              >
+                {altActionName}
+              </button>
+            </div>
+          )}
           {onSubmit && (
             <div className="align-center">
               <button

@@ -17,6 +17,9 @@ function Signup({
     selectedSignupPage !== signupFormPages.length - 1
       ? changeSignupPage.bind(null, selectedSignupPage + 1)
       : signup;
+  const altAction =
+    selectedSignupPage !== 0 &&
+    changeSignupPage.bind(null, selectedSignupPage - 1);
   return (
     <div>
       {!loggedIn ? (
@@ -27,7 +30,9 @@ function Signup({
             body={signupFormPages[selectedSignupPage].body}
             formName={'authForm'}
             onSubmit={(form) => onSubmit(authForm)}
+            altAction={altAction ? () => altAction() : null}
             submitName={signupFormPages[selectedSignupPage].submitName}
+            altActionName={signupFormPages[selectedSignupPage].altActionName}
             formWidth={'60%'}
           />
         </div>

@@ -30,7 +30,6 @@
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",
     "redux": "^4.0.4",
-    "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
@@ -45,6 +44,7 @@
     "lint-staged": "^9.2.1",
     "prettier": "^1.18.2",
     "react-svg-loader": "^3.0.3",
+    "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
