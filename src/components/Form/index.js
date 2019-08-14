@@ -25,7 +25,7 @@ function Form(props) {
     .map((item) => !currentForm[item.formField] && item.name)
     .filter((item) => item);*/
   return (
-    <div className="container">
+    <div className="container form-holder">
       <div className="align-center">
         {title && <div className="col-8 center-text">{title}</div>}
       </div>
@@ -86,34 +86,38 @@ function Form(props) {
               </div>
             );
           })}
-          <div className="space-evenly">
-            {altAction && (
-              <button
-                type="button"
-                className="btn btn-outline-primary"
-                onClick={() => altAction()}
-              >
-                {altActionName}
-              </button>
-            )}
-            {onSubmit && (
-              <button
-                type="button"
-                className="btn btn-outline-primary"
-                onClick={() =>
-                  missing.length
-                    ? showSnackbar(
-                        `Please add the following items before continuing: ${missing.join(
-                          ', ',
-                        )}.`,
-                      )
-                    : onSubmit(currentForm)
-                }
-              >
-                {submitName}
-              </button>
-            )}
-          </div>
+        </div>
+      </div>
+      <div className="align-center">
+        <div className="space-between col-4">
+          {altAction ? (
+            <button
+              type="button"
+              className="btn btn-outline-primary"
+              onClick={() => altAction()}
+            >
+              {altActionName}
+            </button>
+          ) : (
+            <div />
+          )}
+          {onSubmit && (
+            <button
+              type="button"
+              className="btn btn-outline-primary"
+              onClick={() =>
+                missing.length
+                  ? showSnackbar(
+                      `Please add the following items before continuing: ${missing.join(
+                        ', ',
+                      )}.`,
+                    )
+                  : onSubmit(currentForm)
+              }
+            >
+              {submitName}
+            </button>
+          )}
         </div>
       </div>
     </div>

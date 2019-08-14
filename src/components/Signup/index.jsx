@@ -4,6 +4,7 @@ import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { changeSignupPage, signup } from '../../store/actions/userActions';
+import './signup.scss';
 
 function Signup({
   loggedIn,
