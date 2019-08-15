@@ -1,3 +1,27 @@
+@import '../../bootstrap/variables.scss';
+
 .top-bar {
-  position: fixed;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  height: 2.7rem;
+  background-color: $secondary;
+}
+
+.menu-button {
+  margin-left: 0.5rem;
+  display: flex;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: $primary;
+}
+
+.menu-svg {
+  display: block;
+  margin: 0 auto;
+  width: 65%;
+  height: 65%;
+  fill: $light;
 }
