@@ -11,7 +11,7 @@ import './menu.scss';
 function Menu({ logout, loggedIn, showMenu, menuVisible }) {
   return (
     <div>
-      {showMenu && <ExpandedMenu />}
+      {menuVisible && <ExpandedMenu />}
       <div className="top-bar">
         {loggedIn && (
           <div className="menu-button" onClick={() => showMenu()}>
@@ -30,6 +30,7 @@ function Menu({ logout, loggedIn, showMenu, menuVisible }) {
 function mapStateToProps({ userReducer, menuReducer }) {
   return {
     ...userReducer,
+    ...menuReducer,
   };
 }
 

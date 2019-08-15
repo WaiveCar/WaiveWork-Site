@@ -18,14 +18,17 @@ class Snackbar extends Component {
     return (
       showSnackbar && (
         <div
-          className="outer"
+          className="outer-snackbar"
           onClick={() => {
             hideSnackbar();
           }}
         >
           <div className="fixed-bottom">
             <div className="align-center">
-              <div className="inner" style={{ backgroundColor: color }}>
+              <div
+                className="inner-snackbar"
+                style={{ backgroundColor: color }}
+              >
                 {message}
               </div>
             </div>
