@@ -7,6 +7,7 @@ import { logout } from '../../store/actions/userActions';
 function Menu({ logout }) {
   return (
     <div>
+      <div className="top-bar">top bar</div>
       <Link to={'/login'}>login</Link>
       <Link to={'/signup'}>signup</Link>
       <Link to={'/dashboard'}>dashboard</Link>

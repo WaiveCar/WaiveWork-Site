@@ -2,6 +2,7 @@ const HtmlWebPackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
 const CompressionPlugin = require('compression-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 
 module.exports = {
   entry: __dirname + '/src/index.js',
@@ -25,6 +26,7 @@ module.exports = {
           { loader: 'style-loader' },
           { loader: 'css-loader' },
           { loader: 'sass-loader' },
+          { loader: 'postcss-loader' },
         ],
       },
       {
