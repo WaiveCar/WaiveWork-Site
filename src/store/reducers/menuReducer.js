@@ -18,4 +18,4 @@ function menuReducer(state = initialState, action) {
   }
 }
 
-export default snackbarReducer;
+export default menuReducer;
