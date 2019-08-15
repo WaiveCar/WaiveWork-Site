@@ -36,9 +36,7 @@ function mapStateToProps({ userReducer }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    login: bindActionCreators(login, dispatch),
-  };
+  return bindActionCreators({ login }, dispatch);
 }
 
 export default connect(

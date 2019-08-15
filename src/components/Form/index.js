@@ -131,10 +131,7 @@ function mapStateToProps({ userReducer }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    updateForm: bindActionCreators(updateForm, dispatch),
-    showSnackbar: bindActionCreators(showSnackbar, dispatch),
-  };
+  return bindActionCreators({ updateForm, showSnackbar }, dispatch);
 }
 
 export default connect(

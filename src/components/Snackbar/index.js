@@ -43,9 +43,7 @@ function mapStateToProps({ snackbarReducer }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    hideSnackbar: bindActionCreators(hideSnackbar, dispatch),
-  };
+  return bindActionCreators({ hideSnackbar }, dispatch);
 }
 
 export default connect(

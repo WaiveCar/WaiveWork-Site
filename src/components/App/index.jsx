@@ -36,9 +36,7 @@ function mapStateToProps({ userReducer }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    verifyAuth: bindActionCreators(verifyAuth, dispatch),
-  };
+  return bindActionCreators({ verifyAuth }, dispatch);
 }
 
 export default withRouter(

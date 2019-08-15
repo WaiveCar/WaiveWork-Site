@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { logout } from '../../store/actions/userActions';
+import { showMenu, hideMenu } from '../../store/actions/menuActions';
 import Bars from '../../svg/bars.svg';
 import './menu.scss';
 
@@ -24,16 +25,14 @@ function Menu({ logout, loggedIn }) {
   );
 }
 
-function mapStateToProps({ userReducer }) {
+function mapStateToProps({ userReducer, menuReducer }) {
   return {
     ...userReducer,
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    logout: bindActionCreators(logout, dispatch),
-  };
+  return bindActionCreators({ logout, showMenu, hideMenu }, dispatch);
 }
 
 export default connect(

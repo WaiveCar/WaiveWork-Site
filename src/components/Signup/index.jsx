@@ -53,10 +53,7 @@ function mapStateToProps({ userReducer }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    changeSignupPage: bindActionCreators(changeSignupPage, dispatch),
-    signup: bindActionCreators(signup, dispatch),
-  };
+  return bindActionCreators({ changeSignupPage, signup }, dispatch);
 }
 
 export default withRouter(
