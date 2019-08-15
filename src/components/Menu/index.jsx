@@ -5,14 +5,16 @@ import { bindActionCreators } from 'redux';
 import { logout } from '../../store/actions/userActions';
 import { showMenu, hideMenu } from '../../store/actions/menuActions';
 import Bars from '../../svg/bars.svg';
+import ExpandedMenu from './ExpandedMenu';
 import './menu.scss';
 
-function Menu({ logout, loggedIn }) {
+function Menu({ logout, loggedIn, showMenu, menuVisible }) {
   return (
     <div>
+      {showMenu && <ExpandedMenu />}
       <div className="top-bar">
         {loggedIn && (
-          <div className="menu-button">
+          <div className="menu-button" onClick={() => showMenu()}>
             <Bars className="menu-svg" />
           </div>
         )}

@@ -1,5 +1,5 @@
 const initialState = {
-  showMenu: false,
+  menuVisible: false,
 };
 
 function menuReducer(state = initialState, action) {
@@ -7,11 +7,11 @@ function menuReducer(state = initialState, action) {
   switch (action.type) {
     case 'SHOW_MENU':
       return {
-        showSnackbar: true,
+        menuVisible: true,
       };
     case 'HIDE_MENU':
       return {
-        showSnackbar: false,
+        menuVisible: false,
       };
     default:
       return state;
