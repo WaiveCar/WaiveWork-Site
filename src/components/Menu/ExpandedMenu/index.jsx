@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { hideMenu } from '../../../store/actions/menuActions';
+import { hideMenu, toggleItem } from '../../../store/actions/menuActions';
 import './expandedMenu.scss';
 
 function ExpandedMenu({ hideMenu, menuLinks }) {

@@ -16,6 +16,17 @@ function menuReducer(state = initialState, action) {
       return {
         menuVisible: false,
       };
+    case 'TOGGLE_MENU_ITEM':
+      return {
+        ...state,
+        menuLinks: {
+          ...menuLinks,
+          [name]: {
+            ...state.menuLinks[name],
+            menuVisible: !state.menuLinks[name].menuVisible,
+          },
+        },
+      };
     default:
       return state;
   }

@@ -1,6 +1,5 @@
-export default [
-  {
-    name: 'Current Booking',
+export default {
+  'Current Booking': {
     expanded: false,
     children: [
       {
@@ -25,8 +24,7 @@ export default [
       },
     ],
   },
-  {
-    name: 'Billing Information',
+  'Billing Information': {
     expanded: false,
     children: [
       {
@@ -43,14 +41,12 @@ export default [
       },
     ],
   },
-  {
-    name: 'Account Info',
+  'Account Info': {
     expanded: false,
     href: '/account',
   },
-  {
-    name: 'Contact Info',
+  'Contact Info': {
     expanded: false,
     href: '/contact',
   },
-];
+};
