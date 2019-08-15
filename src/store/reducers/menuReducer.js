@@ -1,5 +1,8 @@
+import menuLinks from '../../components/Menu/menuLinks';
+
 const initialState = {
   menuVisible: false,
+  menuLinks,
 };
 
 function menuReducer(state = initialState, action) {

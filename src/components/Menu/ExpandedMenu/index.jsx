@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { hideMenu } from '../../../store/actions/menuActions';
 import './expandedMenu.scss';
 
-function ExpandedMenu({ hideMenu }) {
+function ExpandedMenu({ hideMenu, menuLinks }) {
   return (
     <div className="outer-menu" onClick={() => hideMenu()}>
       <div className="inner-menu" onClick={(e) => e.stopPropagation()}></div>

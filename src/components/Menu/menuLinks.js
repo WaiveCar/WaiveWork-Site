@@ -1,6 +1,7 @@
 export default [
   {
     name: 'Current Booking',
+    expanded: false,
     children: [
       {
         name: 'Information',
@@ -26,6 +27,7 @@ export default [
   },
   {
     name: 'Billing Information',
+    expanded: false,
     children: [
       {
         name: 'Payments',
@@ -43,10 +45,12 @@ export default [
   },
   {
     name: 'Account Info',
+    expanded: false,
     href: '/account',
   },
   {
     name: 'Contact Info',
+    expanded: false,
     href: '/contact',
   },
 ];
