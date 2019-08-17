@@ -21,7 +21,7 @@ function Form(props) {
     body,
   } = props;
   const currentForm = props[formName];
-  let missing = []; /*fields
+  let missing = []; /*commenting this back in will make these form fields required
     .map((item) => !currentForm[item.formField] && item.name)
     .filter((item) => item);*/
   return (

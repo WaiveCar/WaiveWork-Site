@@ -5,6 +5,7 @@ import { hideMenu, toggleItem } from '../../../store/actions/menuActions';
 import './expandedMenu.scss';
 
 function ExpandedMenu({ hideMenu, menuLinks }) {
+  console.log('menuLinks', menuLinks);
   return (
     <div className="outer-menu" onClick={() => hideMenu()}>
       <div className="inner-menu" onClick={(e) => e.stopPropagation()}></div>
