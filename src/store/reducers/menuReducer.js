@@ -19,13 +19,14 @@ function menuReducer(state = initialState, action) {
         menuVisible: false,
       };
     case 'TOGGLE_MENU_ITEM':
+      const { name } = payload;
       return {
         ...state,
         menuLinks: {
           ...menuLinks,
           [name]: {
             ...state.menuLinks[name],
-            menuVisible: !state.menuLinks[name].menuVisible,
+            expanded: !state.menuLinks[name].expanded,
           },
         },
       };

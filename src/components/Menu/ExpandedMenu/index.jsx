@@ -5,20 +5,26 @@ import { hideMenu, toggleItem } from '../../../store/actions/menuActions';
 import { Link } from 'react-router-dom';
 import './expandedMenu.scss';
 
-function ExpandedMenu({ hideMenu, menuLinks }) {
+function ExpandedMenu({ hideMenu, menuLinks, toggleItem }) {
   return (
     <div className="outer-menu" onClick={() => hideMenu()}>
       <div className="inner-menu" onClick={(e) => e.stopPropagation()}>
-        {menuLinks.map((item, i) => {
-          console.log(item, item.href);
+        {Object.keys(menuLinks).map((name, i) => {
+          let item = menuLinks[name];
           return (
             <div key={i}>
               {item.href ? (
                 <Link to={item.href} onClick={() => hideMenu()}>
-                  {item.name}
+                  {name}
                 </Link>
               ) : (
-                <div>{item.name}</div>
+                <div onClick={() => toggleItem(name)} key={i}>
+                  {name}
+                  {item.expanded &&
+                    item.children.map((child, j) => (
+                      <div key={j}>{child.name}</div>
+                    ))}
+                </div>
               )}
             </div>
           );
@@ -35,7 +41,7 @@ function mapStateToProps({ menuReducer }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ hideMenu }, dispatch);
+  return bindActionCreators({ hideMenu, toggleItem }, dispatch);
 }
 
 export default connect(
