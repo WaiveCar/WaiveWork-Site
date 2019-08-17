@@ -22,7 +22,11 @@ function ExpandedMenu({ hideMenu, menuLinks, toggleItem }) {
                   {name}
                   {item.expanded &&
                     item.children.map((child, j) => (
-                      <div key={j}>{child.name}</div>
+                      <div key={j} onClick={(e) => e.stopPropagation()}>
+                        <Link to={child.href} onClick={() => hideMenu()}>
+                          {child.name}
+                        </Link>
+                      </div>
                     ))}
                 </div>
               )}
