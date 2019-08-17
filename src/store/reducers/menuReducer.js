@@ -10,10 +10,12 @@ function menuReducer(state = initialState, action) {
   switch (action.type) {
     case 'SHOW_MENU':
       return {
+        ...state,
         menuVisible: true,
       };
     case 'HIDE_MENU':
       return {
+        ...state,
         menuVisible: false,
       };
     case 'TOGGLE_MENU_ITEM':

@@ -14,6 +14,7 @@ function ExpandedMenu({ hideMenu, menuLinks }) {
 }
 
 function mapStateToProps({ menuReducer }) {
+  console.log('menuReducer', menuReducer);
   return {
     ...menuReducer,
   };
