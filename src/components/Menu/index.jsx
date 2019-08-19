@@ -2,13 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { logout } from '../../store/actions/userActions';
 import { showMenu, hideMenu } from '../../store/actions/menuActions';
 import Bars from '../../svg/bars.svg';
 import ExpandedMenu from './ExpandedMenu';
 import './menu.scss';
 
-function Menu({ logout, loggedIn, showMenu, menuVisible }) {
+function Menu({ loggedIn, showMenu, menuVisible }) {
   return (
     <div>
       {menuVisible && <ExpandedMenu />}
@@ -19,10 +18,12 @@ function Menu({ logout, loggedIn, showMenu, menuVisible }) {
           </div>
         )}
       </div>
-      <Link to={'/login'}>login</Link>
-      <Link to={'/signup'}>signup</Link>
-      <Link to={'/dashboard'}>dashboard</Link>
-      <button onClick={() => logout()}>logout</button>
+      {!loggedIn && (
+        <div>
+          <Link to={'/login'}>login</Link>
+          <Link to={'/signup'}>signup</Link>
+        </div>
+      )}
     </div>
   );
 }
@@ -35,7 +36,7 @@ function mapStateToProps({ userReducer, menuReducer }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ logout, showMenu, hideMenu }, dispatch);
+  return bindActionCreators({ showMenu, hideMenu }, dispatch);
 }
 
 export default connect(
