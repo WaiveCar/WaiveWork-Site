@@ -39,6 +39,7 @@ export const login = (email, password) => (dispatch) => {
       password,
     })
     .then((response) => {
+      console.log('response', response);
       localStorage.setItem('token', response.data.token);
       axios.defaults.headers.common['Authorization'] = response.data.token;
       dispatch({ type: 'CLEAR_FORM', payload: { formName: 'authForm' } });
@@ -80,4 +81,8 @@ export const signup = (form, history) => (dispatch) => {
         },
       }),
     );
+};
+
+export const fetchUserInfo = (userId) => (dispatch) => {
+  console.log('fetching info');
 };

@@ -5,7 +5,7 @@ import Routes from '../Routes';
 import Snackbar from '../Snackbar';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { verifyAuth } from '../../store/actions/userActions';
+import { verifyAuth, fetchUserInfo } from '../../store/actions/userActions';
 
 class App extends Component {
   constructor(props) {
@@ -15,6 +15,14 @@ class App extends Component {
   componentDidMount() {
     const { verifyAuth, history, location } = this.props;
     verifyAuth(history, location.pathname);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { loggedIn, fetchUserInfo } = this.props;
+    if (!prevProps.loggedIn && loggedIn) {
+      // This call should only be made if a user is verified as logged in
+      fetchUserInfo();
+    }
   }
 
   render() {
@@ -36,7 +44,7 @@ function mapStateToProps({ userReducer }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ verifyAuth }, dispatch);
+  return bindActionCreators({ verifyAuth, fetchUserInfo }, dispatch);
 }
 
 export default withRouter(
