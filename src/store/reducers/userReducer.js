@@ -11,6 +11,7 @@ const initialState = {
   selectedSignupPage: 0,
   loggedIn: false,
   authChecked: false,
+  user: null,
 };
 
 function userReducer(state = initialState, action) {
@@ -44,6 +45,11 @@ function userReducer(state = initialState, action) {
       return {
         ...state,
         selectedSignupPage: payload.selectedSignupPage,
+      };
+    case 'UPDATE_USER':
+      return {
+        ...state,
+        user: payload.user,
       };
     default:
       return state;

@@ -90,6 +90,8 @@ export const signup = (form, history) => (dispatch) => {
 export const fetchUserInfo = (userId) => (dispatch) => {
   axios
     .get('/users/me')
-    .then((response) => console.log('resp', response))
+    .then((response) =>
+      dispatch({ type: 'UPDATE_USER', payload: { user: response.data } }),
+    )
     .catch((e) => console.log('error fetching me', e.response));
 };
