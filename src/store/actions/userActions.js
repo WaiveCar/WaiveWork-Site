@@ -120,6 +120,7 @@ export const fetchUserInfo = () => async (dispatch) => {
       type: 'UPDATE_INSURANCE',
       payload: { insuranceFiles: insuranceResponse.data },
     });
+    dispatch({ type: 'TOGGLE_USER_RESOURCES_LOADED' });
   } catch (e) {
     console.log('error fetching me', e.response);
   }

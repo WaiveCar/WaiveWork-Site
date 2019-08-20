@@ -11,6 +11,7 @@ const initialState = {
   selectedSignupPage: 0,
   loggedIn: false,
   authChecked: false,
+  userResourcesLoaded: false,
   user: null,
   currentBooking: null,
   car: null,
@@ -76,6 +77,11 @@ function userReducer(state = initialState, action) {
       return {
         ...state,
         insuranceFile: payload.insuranceFiles[0],
+      };
+    case 'TOGGLE_USER_RESOURCES_LOADED':
+      return {
+        ...state,
+        userResourcesLoaded: !state.userResourcesLoaded,
       };
     default:
       return state;
