@@ -12,6 +12,8 @@ const initialState = {
   loggedIn: false,
   authChecked: false,
   user: null,
+  currentBooking: null,
+  car: null,
 };
 
 function userReducer(state = initialState, action) {
@@ -50,6 +52,12 @@ function userReducer(state = initialState, action) {
       return {
         ...state,
         user: payload.user,
+      };
+    case 'UPDATE_CURRENT_BOOKING':
+      return {
+        ...state,
+        currentBooking: payload.currentBooking,
+        car: payload.currentBooking.car,
       };
     default:
       return state;

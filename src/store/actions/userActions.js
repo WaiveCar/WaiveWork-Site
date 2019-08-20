@@ -84,12 +84,16 @@ export const fetchUserInfo = () => async (dispatch) => {
   try {
     let userResponse = await axios.get('/users/me');
     dispatch({ type: 'UPDATE_USER', payload: { user: userResponse.data } });
-    if (response.data.booking) {
+    if (userResponse.data.booking.id) {
       let bookingResponse = await axios.get(
-        `/bookings/${bookingResponse.data.booking}`,
+        `/bookings/${userResponse.data.booking.id}`,
       );
+      dispatch({
+        type: 'UPDATE_CURRENT_BOOKING',
+        payload: { currentBooking: bookingResponse.data },
+      });
     }
   } catch (e) {
-    console.log('error fetching me', e.response);
+    console.log('error fetching me', e);
   }
 };
