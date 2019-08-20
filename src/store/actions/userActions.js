@@ -97,13 +97,19 @@ export const fetchUserInfo = () => async (dispatch) => {
         let registrationResponse = await axios.get(
           `/files/${car.registrationFileId}`,
         );
-        console.log('reg resp', registrationResponse);
+        dispatch({
+          type: 'UPDATE_REGISTRATION',
+          payload: { registrationFile: registrationResponse.data },
+        });
       }
       if (car && car.inspectionFileId) {
         let inspectionResponse = await axios.get(
-          `/files/${car.registrationFileId}`,
+          `/files/${car.inspectionFileId}`,
         );
-        console.log('inspect response', inspectionResponse);
+        dispatch({
+          type: 'UPDATE_INSPECTION',
+          payload: { inspectionFile: inspectionResponse.data },
+        });
       }
     }
   } catch (e) {
