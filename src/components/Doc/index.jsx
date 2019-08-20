@@ -1,23 +1,25 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import './doc.scss';
 
 function Doc(props) {
   const { type, userResourcesLoaded } = props;
-  return props[`${props.type}File`] ? (
+  const currentFile = props[`${props.type}File`];
+  return currentFile ? (
     <div>
-      {props[`${type}File`].mime !== 'image/jpeg' ? (
+      {currentFile.mime !== 'image/jpeg' ? (
         <div>
-          {props[`${type}File`].mime === 'application/pdf' ? (
+          {currentFile.mime === 'application/pdf' ? (
             <embed
               className={'doc-embed'}
-              src={`http://docs.google.com/gview?url=http://waivecar-prod.s3.amazonaws.com/${props[`${type}File`].path}&embedded=true`}
+              src={`http://docs.google.com/gview?url=http://waivecar-prod.s3.amazonaws.com/${currentFile.path}&embedded=true`}
             />
           ) : (
             <video classname={'doc-video'} controls="controls">
               <source
-                src={`http://waivecar-prod.s3.amazonaws.com/${props[`${type}File`].path}`}
+                src={`http://waivecar-prod.s3.amazonaws.com/${currentFile.path}`}
                 type={'video/mp4'}
               />
             </video>
@@ -26,7 +28,7 @@ function Doc(props) {
       ) : (
         <img
           className={'doc-image'}
-          src={`http://waivecar-prod.s3.amazonaws.com/${props[`${type}File`].path}`}
+          src={`http://waivecar-prod.s3.amazonaws.com/${currentFile.path}`}
         />
       )}
     </div>
