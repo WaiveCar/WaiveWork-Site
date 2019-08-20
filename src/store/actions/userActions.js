@@ -92,6 +92,19 @@ export const fetchUserInfo = () => async (dispatch) => {
         type: 'UPDATE_CURRENT_BOOKING',
         payload: { currentBooking: bookingResponse.data },
       });
+      let { car } = bookingResponse.data;
+      if (car && car.registrationFileId) {
+        let registrationResponse = await axios.get(
+          `/files/${car.registrationFileId}`,
+        );
+        console.log('reg resp', registrationResponse);
+      }
+      if (car && car.inspectionFileId) {
+        let inspectionResponse = await axios.get(
+          `/files/${car.registrationFileId}`,
+        );
+        console.log('inspect response', inspectionResponse);
+      }
     }
   } catch (e) {
     console.log('error fetching me', e);

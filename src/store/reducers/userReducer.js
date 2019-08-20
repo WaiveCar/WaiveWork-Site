@@ -14,6 +14,9 @@ const initialState = {
   user: null,
   currentBooking: null,
   car: null,
+  registrationFile: null,
+  inpectionFile: null,
+  insuranceFile: null,
 };
 
 function userReducer(state = initialState, action) {
