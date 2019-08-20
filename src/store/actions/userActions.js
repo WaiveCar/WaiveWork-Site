@@ -32,27 +32,25 @@ export const verifyAuth = (history, pathName) => async (dispatch) => {
   }
 };
 
-export const login = (email, password) => (dispatch) => {
-  axios
-    .post('/auth/login', {
+export const login = (email, password) => async (dispatch) => {
+  try {
+    let response = await axios.post('/auth/login', {
       identifier: email,
       password,
-    })
-    .then((response) => {
-      localStorage.setItem('token', response.data.token);
-      axios.defaults.headers.common['Authorization'] = response.data.token;
-      dispatch({ type: 'CLEAR_FORM', payload: { formName: 'authForm' } });
-      return dispatch({ type: 'TOGGLE_LOGIN', payload: { loggedIn: true } });
-    })
-    .catch((e) =>
-      dispatch({
-        type: 'SHOW_SNACKBAR',
-        payload: {
-          message: e.response ? e.response.data.message : e,
-          type: 'error',
-        },
-      }),
-    );
+    });
+    localStorage.setItem('token', response.data.token);
+    axios.defaults.headers.common['Authorization'] = response.data.token;
+    dispatch({ type: 'CLEAR_FORM', payload: { formName: 'authForm' } });
+    return dispatch({ type: 'TOGGLE_LOGIN', payload: { loggedIn: true } });
+  } catch (e) {
+    dispatch({
+      type: 'SHOW_SNACKBAR',
+      payload: {
+        message: e.response ? e.response.data.message : e,
+        type: 'error',
+      },
+    });
+  }
 };
 
 export const logout = () => (dispatch) => {
@@ -68,30 +66,31 @@ export const changeSignupPage = (newPage) => (dispatch) => {
 };
 
 export const signup = (form, history) => (dispatch) => {
-  axios
-    .post('/waitlist/add', form)
-    .then((response) => history.push('/thanks'))
-    .catch((e) =>
-      dispatch({
-        type: 'SHOW_SNACKBAR',
-        payload: {
-          message: e.response ? e.response.data.message : e,
-          type: 'error',
-        },
-      }),
-    );
+  try {
+    let response = axios.post('/waitlist/add', form);
+    history.push('/thanks');
+  } catch (e) {
+    dispatch({
+      type: 'SHOW_SNACKBAR',
+      payload: {
+        message: e.response ? e.response.data.message : e,
+        type: 'error',
+      },
+    });
+  }
 };
 
 export const fetchUserInfo = (userId) => (dispatch) => {
-  axios
-    .get('/users/me')
-    .then((response) => {
+  try {
+    let response = axios.get('/users/me').then((response) => {
       dispatch({ type: 'UPDATE_USER', payload: { user: response.data } });
       if (response.data.booking) {
         return axios
           .get(`/bookings/${response.data.booking}`)
           .then((response) => console.log('response for booking', response));
       }
-    })
-    .catch((e) => console.log('error fetching me', e.response));
+    });
+  } catch (e) {
+    console.log('error fetching me', e.response);
+  }
 };
