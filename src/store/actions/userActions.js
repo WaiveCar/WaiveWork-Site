@@ -83,16 +83,16 @@ export const signup = (form, history) => async (dispatch) => {
 export const fetchUserInfo = () => async (dispatch) => {
   try {
     let userResponse = await axios.get('/users/me');
-    dispatch({ type: 'UPDATE_USER', payload: { user: userResponse.data } });
-    if (userResponse.data.booking.id) {
-      let bookingResponse = await axios.get(
-        `/bookings/${userResponse.data.booking.id}`,
-      );
+    let user = userResponse.data;
+    dispatch({ type: 'UPDATE_USER', payload: { user } });
+    if (user.booking) {
+      let bookingResponse = await axios.get(`/bookings/${user.booking.id}`);
+      let currentBooking = bookingResponse.data;
       dispatch({
         type: 'UPDATE_CURRENT_BOOKING',
-        payload: { currentBooking: bookingResponse.data },
+        payload: { currentBooking },
       });
-      let { car } = bookingResponse.data;
+      let { car } = currentBooking;
       if (car && car.registrationFileId) {
         let registrationResponse = await axios.get(
           `/files/${car.registrationFileId}`,
