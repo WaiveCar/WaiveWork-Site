@@ -118,7 +118,7 @@ export const fetchUserInfo = () => async (dispatch) => {
     );
     dispatch({
       type: 'UPDATE_INSURANCE',
-      payload: { insuranceFile: insuranceResponse.data },
+      payload: { insuranceFiles: insuranceResponse.data },
     });
   } catch (e) {
     console.log('error fetching me', e.response);
