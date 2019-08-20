@@ -112,7 +112,15 @@ export const fetchUserInfo = () => async (dispatch) => {
         });
       }
     }
+    // This step must be below the others because if the file is not there, a 404 is thrown
+    let insuranceResponse = await axios.get(
+      `/files?userId=${user.id}&collectionId=insurance&limit=1`,
+    );
+    dispatch({
+      type: 'UPDATE_INSURANCE',
+      payload: { insuranceFile: insuranceResponse.data },
+    });
   } catch (e) {
-    console.log('error fetching me', e);
+    console.log('error fetching me', e.response);
   }
 };

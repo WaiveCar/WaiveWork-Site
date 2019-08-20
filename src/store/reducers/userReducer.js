@@ -72,6 +72,11 @@ function userReducer(state = initialState, action) {
         ...state,
         inspectionFile: payload.inspectionFile,
       };
+    case 'UPDATE_INSURANCE':
+      return {
+        ...state,
+        insuranceFile: payload.insuranceFile,
+      };
     default:
       return state;
   }
