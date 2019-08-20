@@ -4,31 +4,26 @@ import { Redirect } from 'react-router';
 export const updateForm = (formName, field, value) => (dispatch) =>
   dispatch({ type: 'UPDATE_FORM', payload: { formName, field, value } });
 
-export const verifyAuth = (history, pathName) => (dispatch) => {
+export const verifyAuth = (history, pathName) => async (dispatch) => {
   let token = localStorage.getItem('token');
   if (token) {
-    axios
-      .get('/auth/validate', { headers: { Authorization: token } })
-      .then((response) => {
-        console.log('before toggled');
-        dispatch({ type: 'TOGGLE_LOGIN', payload: { loggedIn: true } });
-        history.push(pathName);
-        axios.defaults.headers.common['Authorization'] = token;
-        console.log(
-          'in verify',
-          axios.defaults.headers.common['Authorization'],
-        );
-        return dispatch({
-          type: 'TOGGLE_AUTH_CHECKED',
-          payload: { authChecked: true },
-        });
-      })
-      .catch((e) => {
-        return dispatch({
-          type: 'TOGGLE_AUTH_CHECKED',
-          payload: { authChecked: true },
-        });
+    try {
+      let repsponse = await axios.get('/auth/validate', {
+        headers: { Authorization: token },
       });
+      dispatch({ type: 'TOGGLE_LOGIN', payload: { loggedIn: true } });
+      history.push(pathName);
+      axios.defaults.headers.common['Authorization'] = token;
+      return dispatch({
+        type: 'TOGGLE_AUTH_CHECKED',
+        payload: { authChecked: true },
+      });
+    } catch (e) {
+      return dispatch({
+        type: 'TOGGLE_AUTH_CHECKED',
+        payload: { authChecked: true },
+      });
+    }
   } else {
     return dispatch({
       type: 'TOGGLE_AUTH_CHECKED',
@@ -90,8 +85,13 @@ export const signup = (form, history) => (dispatch) => {
 export const fetchUserInfo = (userId) => (dispatch) => {
   axios
     .get('/users/me')
-    .then((response) =>
-      dispatch({ type: 'UPDATE_USER', payload: { user: response.data } }),
-    )
+    .then((response) => {
+      dispatch({ type: 'UPDATE_USER', payload: { user: response.data } });
+      if (response.data.booking) {
+        return axios
+          .get(`/bookings/${response.data.booking}`)
+          .then((response) => console.log('response for booking', response));
+      }
+    })
     .catch((e) => console.log('error fetching me', e.response));
 };
