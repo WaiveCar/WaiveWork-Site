@@ -3,6 +3,7 @@ import Login from '../Login';
 import Signup from '../Signup';
 import Dashboard from '../Dashboard';
 import Thanks from '../Thanks';
+import Doc from '../Doc';
 
 export default [
   {
@@ -29,6 +30,13 @@ export default [
     component: Thanks,
     requireAuth: false,
   },
+  {
+    name: 'Registration',
+    path: '/registration',
+    component: () => <Doc />,
+    requireAuth: true,
+  },
+  // This must remain the last in this list
   {
     name: 'Wildcard',
     path: '/*',
