@@ -16,7 +16,7 @@ const initialState = {
   car: null,
   registrationFile: null,
   inspectionFile: null,
-  insuranceFiles: null,
+  insuranceFile: null,
 };
 
 function userReducer(state = initialState, action) {
@@ -75,7 +75,7 @@ function userReducer(state = initialState, action) {
     case 'UPDATE_INSURANCE':
       return {
         ...state,
-        insuranceFiles: payload.insuranceFiles,
+        insuranceFile: payload.insuranceFiles[0],
       };
     default:
       return state;

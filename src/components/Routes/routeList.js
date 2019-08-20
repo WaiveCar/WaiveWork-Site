@@ -33,7 +33,19 @@ export default [
   {
     name: 'Registration',
     path: '/registration',
-    component: () => <Doc />,
+    component: () => <Doc type={'registration'} />,
+    requireAuth: true,
+  },
+  {
+    name: 'Insurance',
+    path: '/insurance',
+    component: () => <Doc type={'insurance'} />,
+    requireAuth: true,
+  },
+  {
+    name: 'Inspection',
+    path: '/inspection',
+    component: () => <Doc type={'inspection'} />,
     requireAuth: true,
   },
   // This must remain the last in this list
