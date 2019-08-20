@@ -9,28 +9,31 @@ function Doc(props) {
   const currentFile = props[`${props.type}File`];
   return currentFile ? (
     <div>
-      {currentFile.mime !== 'image/jpeg' ? (
-        <div>
-          {currentFile.mime === 'application/pdf' ? (
-            <embed
-              className={'doc-embed'}
-              src={`http://docs.google.com/gview?url=http://waivecar-prod.s3.amazonaws.com/${currentFile.path}&embedded=true`}
-            />
-          ) : (
-            <video classname={'doc-video'} controls="controls">
-              <source
-                src={`http://waivecar-prod.s3.amazonaws.com/${currentFile.path}`}
-                type={'video/mp4'}
+      <div>Expires {moment(currentFile.comment).format('MM/DD/YYYY')}</div>
+      <div>
+        {currentFile.mime !== 'image/jpeg' ? (
+          <div>
+            {currentFile.mime === 'application/pdf' ? (
+              <embed
+                className={'doc-embed'}
+                src={`http://docs.google.com/gview?url=http://waivecar-prod.s3.amazonaws.com/${currentFile.path}&embedded=true`}
               />
-            </video>
-          )}
-        </div>
-      ) : (
-        <img
-          className={'doc-image'}
-          src={`http://waivecar-prod.s3.amazonaws.com/${currentFile.path}`}
-        />
-      )}
+            ) : (
+              <video classname={'doc-video'} controls="controls">
+                <source
+                  src={`http://waivecar-prod.s3.amazonaws.com/${currentFile.path}`}
+                  type={'video/mp4'}
+                />
+              </video>
+            )}
+          </div>
+        ) : (
+          <img
+            className={'doc-image'}
+            src={`http://waivecar-prod.s3.amazonaws.com/${currentFile.path}`}
+          />
+        )}
+      </div>
     </div>
   ) : (
     <div>
