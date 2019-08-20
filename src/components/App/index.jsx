@@ -19,7 +19,10 @@ class App extends Component {
 
   componentDidUpdate(prevProps) {
     const { loggedIn, authChecked, fetchUserInfo } = this.props;
-    if (loggedIn && authChecked && !prevProps.authChecked) {
+    if (
+      (loggedIn && authChecked && !prevProps.authChecked) ||
+      (!prevProps.loggedIn && loggedIn && authChecked)
+    ) {
       // This call should only be made if a user is verified as logged in
       fetchUserInfo();
     }
