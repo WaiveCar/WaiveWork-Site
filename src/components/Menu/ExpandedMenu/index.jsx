@@ -15,7 +15,12 @@ function ExpandedMenu({ hideMenu, menuLinks, toggleItem, logout }) {
           return (
             <div key={i}>
               {item.href ? (
-                <Link to={item.href} onClick={() => hideMenu()}>
+                <Link
+                  to={item.href}
+                  onClick={() => {
+                    toggleItem(name), hideMenu();
+                  }}
+                >
                   {name}
                 </Link>
               ) : (
@@ -24,7 +29,12 @@ function ExpandedMenu({ hideMenu, menuLinks, toggleItem, logout }) {
                   {item.expanded &&
                     item.children.map((child, j) => (
                       <div key={j} onClick={(e) => e.stopPropagation()}>
-                        <Link to={child.href} onClick={() => hideMenu()}>
+                        <Link
+                          to={child.href}
+                          onClick={() => {
+                            toggleItem(name), hideMenu();
+                          }}
+                        >
                           {child.name}
                         </Link>
                       </div>
