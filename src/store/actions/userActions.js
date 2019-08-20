@@ -65,9 +65,9 @@ export const changeSignupPage = (newPage) => (dispatch) => {
   });
 };
 
-export const signup = (form, history) => (dispatch) => {
+export const signup = (form, history) => async (dispatch) => {
   try {
-    let response = axios.post('/waitlist/add', form);
+    let response = await axios.post('/waitlist/add', form);
     history.push('/thanks');
   } catch (e) {
     dispatch({
@@ -80,16 +80,15 @@ export const signup = (form, history) => (dispatch) => {
   }
 };
 
-export const fetchUserInfo = (userId) => (dispatch) => {
+export const fetchUserInfo = () => async (dispatch) => {
   try {
-    let response = axios.get('/users/me').then((response) => {
-      dispatch({ type: 'UPDATE_USER', payload: { user: response.data } });
-      if (response.data.booking) {
-        return axios
-          .get(`/bookings/${response.data.booking}`)
-          .then((response) => console.log('response for booking', response));
-      }
-    });
+    let userResponse = await axios.get('/users/me');
+    dispatch({ type: 'UPDATE_USER', payload: { user: userResponse.data } });
+    if (response.data.booking) {
+      let bookingResponse = await axios.get(
+        `/bookings/${bookingResponse.data.booking}`,
+      );
+    }
   } catch (e) {
     console.log('error fetching me', e.response);
   }
