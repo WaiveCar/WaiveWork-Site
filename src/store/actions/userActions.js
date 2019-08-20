@@ -10,9 +10,14 @@ export const verifyAuth = (history, pathName) => (dispatch) => {
     axios
       .get('/auth/validate', { headers: { Authorization: token } })
       .then((response) => {
+        console.log('before toggled');
         dispatch({ type: 'TOGGLE_LOGIN', payload: { loggedIn: true } });
         history.push(pathName);
         axios.defaults.headers.common['Authorization'] = token;
+        console.log(
+          'in verify',
+          axios.defaults.headers.common['Authorization'],
+        );
         return dispatch({
           type: 'TOGGLE_AUTH_CHECKED',
           payload: { authChecked: true },
@@ -39,7 +44,6 @@ export const login = (email, password) => (dispatch) => {
       password,
     })
     .then((response) => {
-      console.log('response', response);
       localStorage.setItem('token', response.data.token);
       axios.defaults.headers.common['Authorization'] = response.data.token;
       dispatch({ type: 'CLEAR_FORM', payload: { formName: 'authForm' } });
@@ -84,5 +88,8 @@ export const signup = (form, history) => (dispatch) => {
 };
 
 export const fetchUserInfo = (userId) => (dispatch) => {
-  console.log('fetching info');
+  axios
+    .get('/users/me')
+    .then((response) => console.log('resp', response))
+    .catch((e) => console.log('error fetching me', e.response));
 };
