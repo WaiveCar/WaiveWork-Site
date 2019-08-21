@@ -9,7 +9,14 @@ function Doc(props) {
   const currentFile = props[`${props.type}File`];
   return currentFile ? (
     <div>
-      <div>Expires {moment(currentFile.comment).format('MM/DD/YYYY')}</div>
+      <div>
+        <a
+          href={`https://waivecar-prod.s3.amazonaws.com/${currentFile.path}`}
+          target="_blank"
+        >
+          Expires {moment(currentFile.comment).format('MM/DD/YYYY')}
+        </a>
+      </div>
       <div>
         {currentFile.mime !== 'image/jpeg' ? (
           <div>
