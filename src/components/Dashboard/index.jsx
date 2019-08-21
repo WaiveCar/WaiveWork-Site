@@ -3,7 +3,7 @@ import CarInfo from './CarInfo';
 
 function Dashboard() {
   return (
-    <div>
+    <div className="container">
       Dashboard
       <CarInfo />
     </div>
