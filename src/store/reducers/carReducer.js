@@ -7,10 +7,14 @@ const initialState = {
 function carReducer(state = initialState, action) {
   const { payload } = action;
   switch (action.type) {
-    case 'UPDATE_REGISTRATION':
+    case 'UPDATE_CAR':
       return {
         ...state,
         car: payload.car,
+      };
+    case 'UPDATE_REGISTRATION':
+      return {
+        ...state,
         registrationFile: payload.registrationFile,
       };
     case 'UPDATE_INSPECTION':

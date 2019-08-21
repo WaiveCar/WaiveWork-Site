@@ -98,8 +98,12 @@ export const fetchUserInfo = () => async (dispatch) => {
           `/files/${car.registrationFileId}`,
         );
         dispatch({
+          type: 'UPDATE_CAR',
+          payload: { car },
+        });
+        dispatch({
           type: 'UPDATE_REGISTRATION',
-          payload: { car, registrationFile: registrationResponse.data },
+          payload: { registrationFile: registrationResponse.data },
         });
       }
       if (car && car.inspectionFileId) {
