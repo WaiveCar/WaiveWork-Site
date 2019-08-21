@@ -11,14 +11,14 @@ function CarInfo({ car, carCommand }) {
         <div>
           <button
             type="button"
-            class="btn btn-outline-primary"
+            className="btn btn-outline-primary"
             onClick={() => carCommand(car.id, 'lock')}
           >
             Lock
           </button>
           <button
             type="button"
-            class="btn btn-outline-primary"
+            className="btn btn-outline-primary"
             onClick={() => carCommand(car.id, 'unlock')}
           >
             Unlock

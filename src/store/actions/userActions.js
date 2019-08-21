@@ -84,6 +84,11 @@ export const fetchUserInfo = () => async (dispatch) => {
   try {
     let userResponse = await axios.get('/users/me');
     let user = userResponse.data;
+
+    let location = await new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition((pos) => resolve(pos));
+    });
+    user.currentLocation = location;
     dispatch({ type: 'UPDATE_USER', payload: { user } });
     if (user.booking) {
       let bookingResponse = await axios.get(`/bookings/${user.booking.id}`);
