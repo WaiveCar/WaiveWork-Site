@@ -85,10 +85,23 @@ export const fetchUserInfo = () => async (dispatch) => {
     let userResponse = await axios.get('/users/me');
     let user = userResponse.data;
 
-    let location = await new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition((pos) => resolve(pos));
-    });
-    user.currentLocation = location;
+    try {
+      let location = await new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(
+          (pos) => resolve(pos),
+          (err) => reject(err),
+        );
+      });
+      user.currentLocation = location;
+    } catch (e) {
+      dispatch({
+        type: 'SHOW_SNACKBAR',
+        payload: {
+          message: e.message,
+          type: 'error',
+        },
+      });
+    }
     dispatch({ type: 'UPDATE_USER', payload: { user } });
     if (user.booking) {
       let bookingResponse = await axios.get(`/bookings/${user.booking.id}`);
