@@ -26,16 +26,18 @@ function Form(props) {
     .filter((item) => item);
   return (
     <div className="container form-holder">
-      <div className="align-center">
+      <div className="row justify-content-md-center">
         {title && <div className="col-8 center-text">{title}</div>}
       </div>
-      {body && <div className="align-center">{Parser(body)}</div>}
-      <div className="align-center">
+      {body && (
+        <div className="row justify-content-md-center">{Parser(body)}</div>
+      )}
+      <div className="row justify-content-md-center">
         <div className="inner-form">
           {fields.map((field, i) => {
             return field.type !== 'radio' ? (
               <div className="input-row" key={i}>
-                <div className={'row align-center'}>
+                <div className={'row row justify-content-md-center'}>
                   {field.label && (
                     <label
                       className="col-sm-6 col-form-label"
@@ -58,7 +60,9 @@ function Form(props) {
               </div>
             ) : (
               <div key={i}>
-                <div className="align-center">{field.label}</div>
+                <div className="row justify-content-md-center">
+                  {field.label}
+                </div>
                 <div className="space-evenly">
                   <label>
                     <input
@@ -88,7 +92,7 @@ function Form(props) {
           })}
         </div>
       </div>
-      <div className="align-center">
+      <div className="row justify-content-md-center">
         <div className="space-between col-4">
           {altAction ? (
             <button

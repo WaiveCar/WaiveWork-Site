@@ -24,12 +24,14 @@ class Snackbar extends Component {
           }}
         >
           <div className="fixed-bottom">
-            <div className="align-center">
-              <div
-                className="inner-snackbar"
-                style={{ backgroundColor: color }}
-              >
-                {message}
+            <div className="container">
+              <div className="row justify-content-md-center">
+                <div
+                  className="inner-snackbar"
+                  style={{ backgroundColor: color }}
+                >
+                  {message}
+                </div>
               </div>
             </div>
           </div>
