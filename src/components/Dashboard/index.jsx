@@ -1,7 +1,13 @@
 import React from 'react';
+import CarInfo from './CarInfo';
 
 function Dashboard() {
-  return <div>Dashboard</div>;
+  return (
+    <div>
+      Dashboard
+      <CarInfo />
+    </div>
+  );
 }
 
 export default Dashboard;
