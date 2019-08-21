@@ -14,9 +14,6 @@ const initialState = {
   userResourcesLoaded: false,
   user: null,
   currentBooking: null,
-  car: null,
-  registrationFile: null,
-  inspectionFile: null,
   insuranceFile: null,
 };
 
@@ -61,17 +58,6 @@ function userReducer(state = initialState, action) {
       return {
         ...state,
         currentBooking: payload.currentBooking,
-        car: payload.currentBooking.car,
-      };
-    case 'UPDATE_REGISTRATION':
-      return {
-        ...state,
-        registrationFile: payload.registrationFile,
-      };
-    case 'UPDATE_INSPECTION':
-      return {
-        ...state,
-        inspectionFile: payload.inspectionFile,
       };
     case 'UPDATE_INSURANCE':
       return {

@@ -99,7 +99,7 @@ export const fetchUserInfo = () => async (dispatch) => {
         );
         dispatch({
           type: 'UPDATE_REGISTRATION',
-          payload: { registrationFile: registrationResponse.data },
+          payload: { car, registrationFile: registrationResponse.data },
         });
       }
       if (car && car.inspectionFileId) {

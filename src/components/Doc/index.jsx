@@ -53,8 +53,8 @@ function Doc(props) {
   );
 }
 
-function mapStateToProps({ userReducer }) {
-  return { ...userReducer };
+function mapStateToProps({ userReducer, carReducer }) {
+  return { ...userReducer, ...carReducer };
 }
 
 function mapDispatchToProps() {
