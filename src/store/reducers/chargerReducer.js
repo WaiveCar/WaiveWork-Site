@@ -1,10 +1,15 @@
 const initialState = {
-  chargers: null,
+  chargers: [],
 };
 
 function carReducer(state = initialState, action) {
   const { payload } = action;
   switch (action.type) {
+    case 'UPDATE_CHARGERS':
+      return {
+        ...state,
+        chargers: payload.chargers,
+      };
     default:
       return state;
   }

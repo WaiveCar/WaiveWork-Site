@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -6,7 +6,7 @@ function ChargerInfo() {
   return <div>Charger info</div>;
 }
 
-function mapStateToProps({ chargerReducer }) {
+function mapStateToProps({ userReducer, chargerReducer }) {
   return {
     ...chargerReducer,
   };

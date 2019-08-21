@@ -21,9 +21,9 @@ function Form(props) {
     body,
   } = props;
   const currentForm = props[formName];
-  let missing = fields
+  let missing = []; /*fields
     .map((item) => !currentForm[item.formField] && item.name)
-    .filter((item) => item);
+    .filter((item) => item);*/
   return (
     <div className="container form-holder">
       <div className="row justify-content-md-center">

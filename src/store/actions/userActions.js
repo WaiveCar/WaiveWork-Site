@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { Redirect } from 'react-router';
+import { fetchChargers } from './chargerActions';
+import { showSnackbar } from './snackbarActions';
 
 export const updateForm = (formName, field, value) => (dispatch) =>
   dispatch({ type: 'UPDATE_FORM', payload: { formName, field, value } });
@@ -43,13 +45,7 @@ export const login = (email, password) => async (dispatch) => {
     dispatch({ type: 'CLEAR_FORM', payload: { formName: 'authForm' } });
     return dispatch({ type: 'TOGGLE_LOGIN', payload: { loggedIn: true } });
   } catch (e) {
-    dispatch({
-      type: 'SHOW_SNACKBAR',
-      payload: {
-        message: e.response ? e.response.data.message : e,
-        type: 'error',
-      },
-    });
+    dispatch(showSnackbar(e.response ? e.response.data.message : e, 'error'));
   }
 };
 
@@ -70,13 +66,7 @@ export const signup = (form, history) => async (dispatch) => {
     let response = await axios.post('/waitlist/add', form);
     history.push('/thanks');
   } catch (e) {
-    dispatch({
-      type: 'SHOW_SNACKBAR',
-      payload: {
-        message: e.response ? e.response.data.message : e,
-        type: 'error',
-      },
-    });
+    dispatch(showSnackbar(e.response ? e.response.data.message : e, 'error'));
   }
 };
 
@@ -84,7 +74,6 @@ export const fetchUserInfo = () => async (dispatch) => {
   try {
     let userResponse = await axios.get('/users/me');
     let user = userResponse.data;
-
     try {
       let location = await new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(
@@ -94,13 +83,7 @@ export const fetchUserInfo = () => async (dispatch) => {
       });
       user.currentLocation = location;
     } catch (e) {
-      dispatch({
-        type: 'SHOW_SNACKBAR',
-        payload: {
-          message: e.message,
-          type: 'error',
-        },
-      });
+      dispatch(showSnackbar(e.message, 'error'));
     }
     dispatch({ type: 'UPDATE_USER', payload: { user } });
     if (user.booking) {
@@ -142,6 +125,7 @@ export const fetchUserInfo = () => async (dispatch) => {
       type: 'UPDATE_INSURANCE',
       payload: { insuranceFiles: insuranceResponse.data },
     });
+    dispatch(fetchChargers());
     dispatch({ type: 'TOGGLE_USER_RESOURCES_LOADED' });
   } catch (e) {
     console.log('error fetching me', e.response);

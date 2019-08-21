@@ -1,9 +1,9 @@
-export const showSnackbar = (message) => (dispatch) => {
+export const showSnackbar = (message, type) => (dispatch) => {
   dispatch({
     type: 'SHOW_SNACKBAR',
     payload: {
       message,
-      type: 'error',
+      type,
     },
   });
 };
