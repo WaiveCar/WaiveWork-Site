@@ -4,6 +4,7 @@ import Signup from '../Signup';
 import Dashboard from '../Dashboard';
 import Thanks from '../Thanks';
 import Doc from '../Doc';
+import Chargers from '../Chargers';
 
 export default [
   {
@@ -47,6 +48,12 @@ export default [
     path: '/inspection',
     component: () => <Doc type={'inspection'} />,
     requireAuth: true,
+  },
+  {
+    name: 'Chargers',
+    path: '/chargers',
+    component: Chargers,
+    requireAuth: false,
   },
   // This must remain the last in this list
   {

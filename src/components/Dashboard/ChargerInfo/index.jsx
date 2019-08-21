@@ -1,7 +1,6 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { carCommand } from '../../../store/actions/carActions';
 
 function ChargerInfo() {
   return <div>Charger info</div>;

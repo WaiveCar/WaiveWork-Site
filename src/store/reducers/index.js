@@ -3,10 +3,12 @@ import userReducer from './userReducer';
 import snackbarReducer from './snackbarReducer';
 import menuReducer from './menuReducer';
 import carReducer from './carReducer';
+import chargerReducer from './chargerReducer';
 
 export default combineReducers({
   userReducer,
   snackbarReducer,
   menuReducer,
   carReducer,
+  chargerReducer,
 });
