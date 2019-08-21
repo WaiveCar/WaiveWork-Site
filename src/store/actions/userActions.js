@@ -84,6 +84,7 @@ export const fetchUserInfo = () => async (dispatch) => {
           : reject('This browser does not suppor geolocation');
       });
       user.currentLocation = location;
+      dispatch(fetchChargers(location.coords));
     } catch (e) {
       dispatch(showSnackbar(e.message, 'error'));
     }
@@ -127,7 +128,6 @@ export const fetchUserInfo = () => async (dispatch) => {
       type: 'UPDATE_INSURANCE',
       payload: { insuranceFiles: insuranceResponse.data },
     });
-    dispatch(fetchChargers());
     dispatch({ type: 'TOGGLE_USER_RESOURCES_LOADED' });
   } catch (e) {
     console.log('error fetching me', e.response);
