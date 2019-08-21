@@ -21,9 +21,9 @@ function Form(props) {
     body,
   } = props;
   const currentForm = props[formName];
-  let missing = []; /*commenting this back in will make these form fields required
+  let missing = fields
     .map((item) => !currentForm[item.formField] && item.name)
-    .filter((item) => item);*/
+    .filter((item) => item);
   return (
     <div className="container form-holder">
       <div className="align-center">
