@@ -1,9 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import MapHolder from '../../MapHolder';
 
 function ChargerInfo() {
-  return <div>Charger info</div>;
+  return (
+    <div>
+      <MapHolder />
+    </div>
+  );
 }
 
 function mapStateToProps({ userReducer, chargerReducer }) {

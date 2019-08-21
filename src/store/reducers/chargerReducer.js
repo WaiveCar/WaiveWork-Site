@@ -1,5 +1,6 @@
 const initialState = {
-  chargers: [],
+  allChargers: [],
+  nearest5: [],
 };
 
 function carReducer(state = initialState, action) {
@@ -8,7 +9,8 @@ function carReducer(state = initialState, action) {
     case 'UPDATE_CHARGERS':
       return {
         ...state,
-        chargers: payload.chargers,
+        allChargers: payload.chargers,
+        nearest5: payload.chargers.slice(0, 6),
       };
     default:
       return state;
