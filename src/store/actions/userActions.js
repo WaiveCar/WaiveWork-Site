@@ -76,10 +76,12 @@ export const fetchUserInfo = () => async (dispatch) => {
     let user = userResponse.data;
     try {
       let location = await new Promise((resolve, reject) => {
-        navigator.geolocation.getCurrentPosition(
-          (pos) => resolve(pos),
-          (err) => reject(err),
-        );
+        navigator.geolocation
+          ? navigator.geolocation.getCurrentPosition(
+              (pos) => resolve(pos),
+              (err) => reject(err),
+            )
+          : reject('This browser does not suppor geolocation');
       });
       user.currentLocation = location;
     } catch (e) {
