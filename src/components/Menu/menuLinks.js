@@ -24,7 +24,7 @@ export default {
       },
     ],
   },
-  'Billing Information': {
+  Billing: {
     expanded: false,
     children: [
       {
@@ -34,10 +34,6 @@ export default {
       {
         name: 'My Cards',
         href: '/cards',
-      },
-      {
-        name: 'About',
-        href: '/about',
       },
     ],
   },
