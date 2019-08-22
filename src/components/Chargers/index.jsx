@@ -15,6 +15,7 @@ function Chargers({
   expandChargerLocation,
   startCharger,
 }) {
+  console.log('current5', current5, car);
   return user && user.currentLocation ? (
     <div className="container">
       <div className="charger-map row justify-content-center">
@@ -34,7 +35,20 @@ function Chargers({
               <div onClick={() => expandChargerLocation(i)}>{charger.name}</div>
             </div>
             <div className="row justify-content-center">
-              {charger.expanded && <div>expanded</div>}
+              {charger.expanded && (
+                <div>
+                  <div className="row justify-content-center">
+                    {charger.portList.map((port, i) => (
+                      <div
+                        key={i}
+                        onClick={() => startCharger(car.id, port.id)}
+                      >
+                        {port.name}: {port.type}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         ))}
@@ -45,9 +59,10 @@ function Chargers({
   );
 }
 
-function mapStateToProps({ userReducer, chargerReducer }) {
+function mapStateToProps({ userReducer, carReducer, chargerReducer }) {
   return {
     ...userReducer,
+    ...carReducer,
     ...chargerReducer,
   };
 }

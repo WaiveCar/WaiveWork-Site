@@ -51,14 +51,14 @@ export const fetchChargers = (currentLocation) => async (dispatch) => {
 export const startCharger = (carId, chargerId) => async (dispatch) => {
   try {
     if (process.env.NODE_ENV !== 'production') {
-      dispatch(
+      return dispatch(
         showSnackbar(
           'EvGoChargers are not available in development environment.',
           'error',
         ),
       );
     }
-    await axios.get(`${config().API_URL}/chargers/start/${carId}/${chargerId}`);
+    let response = await axios.put(`/chargers/start/${carId}/${chargerId}`);
   } catch (e) {
     dispatch(
       showSnackbar(e.response ? e.response.data.message : e.message, 'error'),
