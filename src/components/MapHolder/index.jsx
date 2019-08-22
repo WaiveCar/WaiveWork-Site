@@ -2,10 +2,10 @@ import React from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import config from '../../config';
 
-function MapHolder({ initialCenter, markers, google }) {
+function MapHolder({ initialCenter, markers, google, zoom }) {
   return (
     <div>
-      <Map google={google} initialCenter={initialCenter} zoom={10}>
+      <Map google={google} initialCenter={initialCenter} zoom={zoom}>
         <Marker title={'Your location'} />
         {markers.map((item, i) => (
           <Marker
