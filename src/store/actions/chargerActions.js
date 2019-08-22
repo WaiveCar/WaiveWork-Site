@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { showSnackbar } from './snackbarActions';
 
 function distance(lat1, lon1, lat2, lon2, unit) {
   if (lat1 == lat2 && lon1 == lon2) {
@@ -44,4 +45,22 @@ export const fetchChargers = (currentLocation) => async (dispatch) => {
     type: 'UPDATE_CHARGERS',
     payload: { chargers },
   });
+};
+
+export const startCharger = (carId, chargerId) => async (dispatch) => {
+  try {
+    if (process.env.NODE_ENV !== 'production') {
+      dispatch(
+        showSnackbar(
+          'EvGoChargers are not available in development environment.',
+          'error',
+        ),
+      );
+    }
+    await axios.get(`${config().API_URL}/chargers/start/${carId}/${chargerId}`);
+  } catch (e) {
+    dispatch(
+      showSnackbar(e.response ? e.response.data.message : e.message, 'error'),
+    );
+  }
 };
