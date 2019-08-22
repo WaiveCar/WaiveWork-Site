@@ -3,16 +3,22 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import MapHolder from '../../MapHolder';
 
-function ChargerInfo() {
-  return (
+function ChargerInfo({ user, nearest5 }) {
+  return user && user.currentLocation ? (
     <div>
-      <MapHolder />
+      <MapHolder
+        initialCenter={user.currentLocation.coords}
+        markers={nearest5}
+      />
     </div>
+  ) : (
+    <div>Unable to get current location</div>
   );
 }
 
 function mapStateToProps({ userReducer, chargerReducer }) {
   return {
+    ...userReducer,
     ...chargerReducer,
   };
 }
