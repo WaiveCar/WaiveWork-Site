@@ -3,11 +3,12 @@ import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import config from '../../config';
 console.log('config', config);
 
-function MapHolder({ initialCenter, markers, google }) {
+function MapHolder({ initialCenter, markers, google, elWidth }) {
   console.log('markers', markers);
   return (
-    <div>
-      <Map google={google} initialCenter={initialCenter}>
+    <div className="row">
+      <Map className={elWidth} google={google} initialCenter={initialCenter}>
+        <Marker title={'Your location'} />
         {markers.map((item, i) => (
           <Marker
             key={i}

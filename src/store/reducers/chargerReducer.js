@@ -3,7 +3,7 @@ const initialState = {
   nearest5: [],
 };
 
-function carReducer(state = initialState, action) {
+function chargerReducer(state = initialState, action) {
   const { payload } = action;
   switch (action.type) {
     case 'UPDATE_CHARGERS':
@@ -17,4 +17,4 @@ function carReducer(state = initialState, action) {
   }
 }
 
-export default carReducer;
+export default chargerReducer;
