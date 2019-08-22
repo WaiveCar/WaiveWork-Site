@@ -3,8 +3,12 @@ import { Map, GoogleApiWrapper } from 'google-maps-react';
 import config from '../../config';
 console.log('config', config);
 
-function MapHolder() {
-  return <div>Map Holder</div>;
+function MapHolder({ initialCenter, markers, google }) {
+  return (
+    <div>
+      <Map google={google} initial />
+    </div>
+  );
 }
 
 export default GoogleApiWrapper({ apiKey: config.mapsKey })(MapHolder);

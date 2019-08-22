@@ -7,7 +7,10 @@ function ChargerInfo({ user, nearest5 }) {
   return user && user.currentLocation ? (
     <div>
       <MapHolder
-        initialCenter={user.currentLocation.coords}
+        initialCenter={{
+          lat: user.currentLocation.coords.latitude,
+          lng: user.currentLocation.coords.longitude,
+        }}
         markers={nearest5}
       />
     </div>
