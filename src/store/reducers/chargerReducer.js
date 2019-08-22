@@ -10,7 +10,7 @@ function carReducer(state = initialState, action) {
       return {
         ...state,
         allChargers: payload.chargers,
-        nearest5: payload.chargers.slice(0, 6),
+        nearest5: payload.chargers.slice(0, 5),
       };
     default:
       return state;
