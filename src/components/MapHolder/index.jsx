@@ -9,6 +9,12 @@ function MapHolder({ initialCenter, markers, google }) {
         <Marker title={'Your location'} />
         {markers.map((item, i) => (
           <Marker
+            onClick={() =>
+              window.open(
+                `http://maps.google.com/maps?daddr=${item.latitude},${item.longitude}`,
+                '_blank',
+              )
+            }
             key={i}
             title={item.address}
             position={{
