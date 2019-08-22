@@ -16,6 +16,13 @@ function chargerReducer(state = initialState, action) {
         nearest5: first5,
         current5: first5,
       };
+    case 'EXPAND_CHARGER_LOCATION':
+      let temp = [...state.current5];
+      temp[payload.index].expanded = !temp[payload.index].expanded;
+      return {
+        ...state,
+        current5: temp,
+      };
     default:
       return state;
   }

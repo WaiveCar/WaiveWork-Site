@@ -38,6 +38,7 @@ export const fetchChargers = (currentLocation) => async (dispatch) => {
       Number(charger.longitude),
       'M',
     );
+    charger.expanded = false;
     return charger;
   });
   chargers.sort((a, b) => a.distance - b.distance);
@@ -63,4 +64,8 @@ export const startCharger = (carId, chargerId) => async (dispatch) => {
       showSnackbar(e.response ? e.response.data.message : e.message, 'error'),
     );
   }
+};
+
+export const expandChargerLocation = (index) => (dispatch) => {
+  dispatch({ type: 'EXPAND_CHARGER_LOCATION', payload: { index } });
 };
