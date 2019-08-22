@@ -37,9 +37,22 @@ export default {
       },
     ],
   },
-  'Account Info': {
+  Account: {
     expanded: false,
-    href: '/account',
+    children: [
+      {
+        name: 'License',
+        href: '/license',
+      },
+      {
+        name: 'Personal Info',
+        href: '/personal',
+      },
+      {
+        name: 'Reset Password',
+        href: '/password',
+      },
+    ],
   },
   'Contact Info': {
     expanded: false,
