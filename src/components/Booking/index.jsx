@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 
 function Booking({ currentBooking, car, carHistory }) {
+  console.log('carHistory', carHistory);
   return (
     <div>
       {currentBooking && currentBooking.waiveworkPayment && (

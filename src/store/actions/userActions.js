@@ -3,7 +3,6 @@ import { Redirect } from 'react-router';
 import { fetchChargers } from './chargerActions';
 import { showSnackbar } from './snackbarActions';
 import { fetchBookingInfo } from './bookingActions';
-import { updateCar, getCarHistory } from './carActions';
 
 export const updateForm = (formName, field, value) => (dispatch) =>
   dispatch({ type: 'UPDATE_FORM', payload: { formName, field, value } });
@@ -47,13 +46,15 @@ export const login = (email, password) => async (dispatch) => {
     dispatch({ type: 'CLEAR_FORM', payload: { formName: 'authForm' } });
     return dispatch({ type: 'TOGGLE_LOGIN', payload: { loggedIn: true } });
   } catch (e) {
-    dispatch(showSnackbar(e.response ? e.response.data.message : e, 'error'));
+    return dispatch(
+      showSnackbar(e.response ? e.response.data.message : e, 'error'),
+    );
   }
 };
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem('token');
-  dispatch({ type: 'TOGGLE_LOGIN', payload: { loggedIn: false } });
+  return dispatch({ type: 'TOGGLE_LOGIN', payload: { loggedIn: false } });
 };
 
 export const changeSignupPage = (newPage) => (dispatch) => {
@@ -106,7 +107,7 @@ export const fetchUserInfo = () => async (dispatch) => {
       type: 'UPDATE_INSURANCE',
       payload: { insuranceFiles: insuranceResponse.data },
     });
-    dispatch({ type: 'TOGGLE_USER_RESOURCES_LOADED' });
+    return dispatch({ type: 'TOGGLE_USER_RESOURCES_LOADED' });
   } catch (e) {
     console.log('error fetching me', e.response);
   }
