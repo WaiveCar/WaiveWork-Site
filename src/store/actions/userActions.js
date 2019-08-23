@@ -3,6 +3,7 @@ import { Redirect } from 'react-router';
 import { fetchChargers } from './chargerActions';
 import { showSnackbar } from './snackbarActions';
 import { updateBooking } from './bookingActions';
+import { updateCar } from './carActions';
 
 export const updateForm = (formName, field, value) => (dispatch) =>
   dispatch({ type: 'UPDATE_FORM', payload: { formName, field, value } });
@@ -102,10 +103,7 @@ export const fetchUserInfo = () => async (dispatch) => {
         let registrationResponse = await axios.get(
           `/files/${car.registrationFileId}`,
         );
-        dispatch({
-          type: 'UPDATE_CAR',
-          payload: { car },
-        });
+        dispatch(updateCar(car));
         dispatch({
           type: 'UPDATE_REGISTRATION',
           payload: { registrationFile: registrationResponse.data },
