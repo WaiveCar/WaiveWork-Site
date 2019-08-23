@@ -78,7 +78,7 @@ export const shiftSelected = (chargers, currentStart, shiftAmount) => (
     newStart = 0;
   }
   if (newStart >= chargers.length) {
-    newStart = Math.abs(newStart - chargers.length);
+    newStart = currentStart;
   }
   return dispatch({
     type: 'SHIFT_SELECTED',
