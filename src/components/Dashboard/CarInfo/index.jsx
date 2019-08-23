@@ -6,9 +6,11 @@ import { carCommand } from '../../../store/actions/carActions';
 function CarInfo({ car, carCommand }) {
   return (
     car && (
-      <div>
-        Currently in {car.license}
-        <div>
+      <div className="container">
+        <div className="row justify-content-center">
+          Currently in {car.license}
+        </div>
+        <div className="row justify-content-center">
           <button
             type="button"
             className="btn btn-outline-primary"

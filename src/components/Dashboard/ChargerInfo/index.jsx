@@ -16,11 +16,13 @@ function ChargerInfo({ user, nearest5, history }) {
               lng: user.currentLocation.coords.longitude,
             }}
             markers={nearest5}
-            zoom={10}
+            zoom={12}
           />
         </div>
       </div>
-      <Link to={'/chargers'}>Click Here</Link> to get charging
+      <div className="row justify-content-center">
+        <Link to={'/chargers'}>Click Here</Link> to start charging
+      </div>
     </div>
   ) : (
     <div>Unable to get current location</div>
