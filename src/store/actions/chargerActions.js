@@ -60,12 +60,28 @@ export const startCharger = (carId, chargerId) => async (dispatch) => {
     }
     let response = await axios.put(`/chargers/start/${carId}/${chargerId}`);
   } catch (e) {
-    dispatch(
+    return dispatch(
       showSnackbar(e.response ? e.response.data.message : e.message, 'error'),
     );
   }
 };
 
 export const expandChargerLocation = (index) => (dispatch) => {
-  dispatch({ type: 'EXPAND_CHARGER_LOCATION', payload: { index } });
+  return dispatch({ type: 'EXPAND_CHARGER_LOCATION', payload: { index } });
+};
+
+export const shiftSelected = (chargers, currentStart, shiftAmount) => (
+  dispatch,
+) => {
+  let newStart = currentStart + shiftAmount;
+  if (newStart < 0) {
+    newStart = 0;
+  }
+  if (newStart >= chargers.length) {
+    newStart = Math.abs(newStart - chargers.length);
+  }
+  return dispatch({
+    type: 'SHIFT_SELECTED',
+    payload: { currentStart: newStart },
+  });
 };

@@ -3,6 +3,7 @@ import MapHolder from '../MapHolder';
 import {
   startCharger,
   expandChargerLocation,
+  shiftSelected,
 } from '../../store/actions/chargerActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -11,11 +12,13 @@ import './chargers.scss';
 function Chargers({
   user,
   car,
+  allChargers,
   current5,
   expandChargerLocation,
+  currentStart,
   startCharger,
+  shiftSelected,
 }) {
-  console.log('current5', current5, car);
   return user && user.currentLocation ? (
     <div className="container">
       <div className="charger-map row justify-content-center">
@@ -52,6 +55,12 @@ function Chargers({
             </div>
           </div>
         ))}
+        <button onClick={() => shiftSelected(allChargers, currentStart, -5)}>
+          Prev 5
+        </button>
+        <button onClick={() => shiftSelected(allChargers, currentStart, 5)}>
+          Next 5
+        </button>
       </div>
     </div>
   ) : (
@@ -68,7 +77,10 @@ function mapStateToProps({ userReducer, carReducer, chargerReducer }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ startCharger, expandChargerLocation }, dispatch);
+  return bindActionCreators(
+    { startCharger, expandChargerLocation, shiftSelected },
+    dispatch,
+  );
 }
 
 export default connect(

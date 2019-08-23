@@ -23,6 +23,15 @@ function chargerReducer(state = initialState, action) {
         ...state,
         current5: temp,
       };
+    case 'SHIFT_SELECTED':
+      return {
+        ...state,
+        currentStart: payload.currentStart,
+        current5: state.allChargers.slice(
+          payload.currentStart,
+          payload.currentStart + 5,
+        ),
+      };
     default:
       return state;
   }
