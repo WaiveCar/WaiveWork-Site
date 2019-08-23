@@ -36,23 +36,14 @@ function Booking({
           {currentBooking && currentBooking.waiveworkPayment && (
             <div>
               <div>
-                Start Date:{' '}
-                {moment(currentBooking.createdAt).format('MM/DD/YYYY')}
+                Start Date: {currentBooking.stats.startDate}
                 {' - '}
-                Day{' '}
-                {moment().diff(moment(currentBooking.createdAt), 'days') + 1} of
-                Booking
+                Day {currentBooking.stats.dayOfBooking} of Booking
               </div>
               <div>
-                Next Payment Date:{' '}
-                {moment
-                  .utc(currentBooking.waiveworkPayment.date)
-                  .format('MM/DD/YYYY')}
+                Next Payment Date: {currentBooking.stats.nextPaymentDate}
                 {' - '}
-                {moment(currentBooking.waiveworkPayment.date).diff(
-                  moment(moment().format('YYYY-MM-DD')),
-                  'days',
-                ) + 1}{' '}
+                {currentBooking.stats.nextPaymentFromNow}
                 Days From Now - <Link to={'/payments'}>Click here</Link> for
                 more details
               </div>
@@ -60,15 +51,8 @@ function Booking({
           )}
           {carHistory && carHistory.length > 1 && (
             <div>
-              <div>
-                Total Miles Driven:{' '}
-                {(
-                  (Number(carHistory[carHistory.length - 1].data) -
-                    Number(carHistory[0].data)) *
-                  0.621371
-                ).toFixed(2)}
-              </div>
-              <div>Average per day: </div>
+              <div>Total Miles Driven: {currentBooking.stats.totalMiles}</div>
+              <div>Average per day for: </div>
               <table style={{ width: '100%' }}>
                 <tbody>
                   <tr>
@@ -78,45 +62,10 @@ function Booking({
                     <th>Yesterday</th>
                   </tr>
                   <tr>
-                    <td>
-                      {carHistory.length
-                        ? (
-                            ((Number(carHistory[carHistory.length - 1].data) -
-                              Number(carHistory[0].data)) /
-                              carHistory.length) *
-                            0.621371
-                          ).toFixed(2)
-                        : 'Ride not yet over 1 day'}
-                    </td>
-                    <td>
-                      {carHistory[carHistory.length - 31]
-                        ? (
-                            ((Number(carHistory[carHistory.length - 1].data) -
-                              Number(carHistory[carHistory.length - 31].data)) /
-                              30) *
-                            0.621371
-                          ).toFixed(2)
-                        : 'Ride not yet over 30 days'}
-                    </td>
-                    <td>
-                      {carHistory[carHistory.length - 8]
-                        ? (
-                            ((Number(carHistory[carHistory.length - 1].data) -
-                              Number(carHistory[carHistory.length - 8].data)) /
-                              7) *
-                            0.621371
-                          ).toFixed(2)
-                        : 'Ride not yet over 1 week'}
-                    </td>
-                    <td>
-                      {carHistory.length > 1
-                        ? (
-                            (Number(carHistory[carHistory.length - 1].data) -
-                              Number(carHistory[carHistory.length - 2].data)) *
-                            0.621371
-                          ).toFixed(2)
-                        : 'Ride not yet over 1 day'}
-                    </td>
+                    <td>{currentBooking.stats.totalMiles}</td>
+                    <td>{currentBooking.stats.last30Days}</td>
+                    <td>{currentBooking.stats.last7Days}</td>
+                    <td>{currentBooking.stats.Day}</td>
                   </tr>
                 </tbody>
               </table>
