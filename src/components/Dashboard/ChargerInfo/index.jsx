@@ -7,16 +7,18 @@ import './chargerInfo.scss';
 
 function ChargerInfo({ user, nearest5, history }) {
   return user && user.currentLocation ? (
-    <div>
-      <div className="charger-map-preview">
-        <MapHolder
-          initialCenter={{
-            lat: user.currentLocation.coords.latitude,
-            lng: user.currentLocation.coords.longitude,
-          }}
-          markers={nearest5}
-          zoom={10}
-        />
+    <div className="container">
+      <div className="row justify-content-center">
+        <div className="charger-map-preview">
+          <MapHolder
+            initialCenter={{
+              lat: user.currentLocation.coords.latitude,
+              lng: user.currentLocation.coords.longitude,
+            }}
+            markers={nearest5}
+            zoom={10}
+          />
+        </div>
       </div>
       <Link to={'/chargers'}>Click Here</Link> to get charging
     </div>
