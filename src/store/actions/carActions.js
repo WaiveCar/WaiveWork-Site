@@ -9,9 +9,11 @@ export const updateCar = (car) => (dispatch) => {
 };
 
 export const getCarHistory = (carId, booking) => async (dispatch) => {
+  console.log('carId', carId, 'booking', booking);
   let response = await axios.get(
     `/cars/${carId}/history?start=${booking.createdAt}`,
   );
+  console.log('response', response);
   return dispatch({
     type: 'UPDATE_CAR_HISTORY',
     payload: { carHistory: response.data },
@@ -23,6 +25,8 @@ export const carCommand = (carId, command) => async (dispatch) => {
     let response = await axios.get(`/cars/${carId}/${command}`);
     dispatch({ type: 'UPDATE_CAR', payload: { car: response.data } });
   } catch (e) {
-    dispatch(showSnackbar(e.response ? e.response.data.message : e, 'error'));
+    return dispatch(
+      showSnackbar(e.response ? e.response.data.message : e, 'error'),
+    );
   }
 };

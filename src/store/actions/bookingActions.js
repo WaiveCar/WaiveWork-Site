@@ -10,7 +10,7 @@ export const fetchBookingInfo = (user) => async (dispatch) => {
   let { car } = currentBooking;
   dispatch(updateBooking(currentBooking));
   dispatch(updateCar(car));
-  dispatch(getCarHistory(car.id, currentBooking.id));
+  dispatch(getCarHistory(car.id, currentBooking));
   if (car && car.registrationFileId) {
     let registrationResponse = await axios.get(
       `/files/${car.registrationFileId}`,
