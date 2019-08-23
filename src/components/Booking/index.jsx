@@ -65,7 +65,7 @@ function Booking({
                     <td>{currentBooking.stats.totalMiles}</td>
                     <td>{currentBooking.stats.last30Days}</td>
                     <td>{currentBooking.stats.last7Days}</td>
-                    <td>{currentBooking.stats.Day}</td>
+                    <td>{currentBooking.stats.lastDay}</td>
                   </tr>
                 </tbody>
               </table>
