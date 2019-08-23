@@ -21,7 +21,7 @@ function Chargers({
 }) {
   return user && user.currentLocation ? (
     <div className="container">
-      <div className="charger-map row justify-content-center">
+      <div className="charger-map">
         <MapHolder
           initialCenter={{
             lat: user.currentLocation.coords.latitude,
