@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 
 function Booking({ currentBooking, car, carHistory }) {
-  console.log('carHistory', carHistory);
   return (
     <div>
       {currentBooking && currentBooking.waiveworkPayment && (
@@ -31,12 +30,66 @@ function Booking({ currentBooking, car, carHistory }) {
       )}
       {carHistory && carHistory.length > 1 && (
         <div>
-          Total Miles Driven:{' '}
-          {(
-            (Number(carHistory[carHistory.length - 1].data) -
-              Number(carHistory[0].data)) *
-            0.621371
-          ).toFixed(2)}
+          <div>
+            Total Miles Driven:{' '}
+            {(
+              (Number(carHistory[carHistory.length - 1].data) -
+                Number(carHistory[0].data)) *
+              0.621371
+            ).toFixed(2)}
+          </div>
+          <div>Average per day: </div>
+          <table style={{ width: '100%' }}>
+            <tbody>
+              <tr>
+                <th>All Time</th>
+                <th>Last 30 Days</th>
+                <th>Last Week</th>
+                <th>Yesterday</th>
+              </tr>
+              <tr>
+                <td>
+                  {carHistory.length
+                    ? (
+                        ((Number(carHistory[carHistory.length - 1].data) -
+                          Number(carHistory[0].data)) /
+                          carHistory.length) *
+                        0.621371
+                      ).toFixed(2)
+                    : 'Ride not yet over 1 day'}
+                </td>
+                <td>
+                  {carHistory[carHistory.length - 31]
+                    ? (
+                        ((Number(carHistory[carHistory.length - 1].data) -
+                          Number(carHistory[carHistory.length - 31].data)) /
+                          30) *
+                        0.621371
+                      ).toFixed(2)
+                    : 'Ride not yet over 30 days'}
+                </td>
+                <td>
+                  {carHistory[carHistory.length - 8]
+                    ? (
+                        ((Number(carHistory[carHistory.length - 1].data) -
+                          Number(carHistory[carHistory.length - 8].data)) /
+                          7) *
+                        0.621371
+                      ).toFixed(2)
+                    : 'Ride not yet over 1 week'}
+                </td>
+                <td>
+                  {carHistory.length > 1
+                    ? (
+                        (Number(carHistory[carHistory.length - 1].data) -
+                          Number(carHistory[carHistory.length - 2].data)) *
+                        0.621371
+                      ).toFixed(2)
+                    : 'Ride not yet over 1 day'}
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       )}
     </div>
