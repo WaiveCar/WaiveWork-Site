@@ -55,12 +55,24 @@ function Chargers({
             </div>
           </div>
         ))}
-        <button onClick={() => shiftSelected(allChargers, currentStart, -5)}>
-          Prev 5
-        </button>
-        <button onClick={() => shiftSelected(allChargers, currentStart, 5)}>
-          Next 5
-        </button>
+      </div>
+      <div className="row justify-content-center">
+        <div className="shift-buttons space-between">
+          <button
+            className="btn btn-outline-primary"
+            disabled={currentStart === 0}
+            onClick={() => shiftSelected(allChargers, currentStart, -5)}
+          >
+            Prev 5
+          </button>
+          <button
+            className="btn btn-outline-primary"
+            disabled={currentStart + 5 >= allChargers.length}
+            onClick={() => shiftSelected(allChargers, currentStart, 5)}
+          >
+            Next 5
+          </button>
+        </div>
       </div>
     </div>
   ) : (
