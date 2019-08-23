@@ -2,6 +2,7 @@ import axios from 'axios';
 import { Redirect } from 'react-router';
 import { fetchChargers } from './chargerActions';
 import { showSnackbar } from './snackbarActions';
+import { updateBooking } from './bookingActions';
 
 export const updateForm = (formName, field, value) => (dispatch) =>
   dispatch({ type: 'UPDATE_FORM', payload: { formName, field, value } });
@@ -95,10 +96,7 @@ export const fetchUserInfo = () => async (dispatch) => {
         `/bookings?userId=${user.id}&order=id,desc&limit=1&status=reserved,started,ended&details=true&includeWaiveworkPayment=true`,
       );
       let currentBooking = bookingResponse.data[0];
-      dispatch({
-        type: 'UPDATE_CURRENT_BOOKING',
-        payload: { currentBooking },
-      });
+      dispatch(updateBooking(currentBooking));
       let { car } = currentBooking;
       if (car && car.registrationFileId) {
         let registrationResponse = await axios.get(

@@ -13,7 +13,6 @@ const initialState = {
   authChecked: false,
   userResourcesLoaded: false,
   user: null,
-  currentBooking: null,
   insuranceFile: null,
 };
 
@@ -53,11 +52,6 @@ function userReducer(state = initialState, action) {
       return {
         ...state,
         user: payload.user,
-      };
-    case 'UPDATE_CURRENT_BOOKING':
-      return {
-        ...state,
-        currentBooking: payload.currentBooking,
       };
     case 'UPDATE_INSURANCE':
       return {

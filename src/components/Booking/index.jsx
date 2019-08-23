@@ -6,9 +6,9 @@ function Booking() {
   return <div>Booking Page</div>;
 }
 
-function mapStateToProps({ userReducer, carReducer }) {
+function mapStateToProps({ bookingReducer, carReducer }) {
   return {
-    ...userReducer,
+    ...bookingReducer,
     ...carReducer,
   };
 }
