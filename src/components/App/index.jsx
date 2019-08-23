@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import Menu from '../Menu';
 import Routes from '../Routes';
 import Snackbar from '../Snackbar';
+import Intercom from 'react-intercom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { verifyAuth, fetchUserInfo } from '../../store/actions/userActions';
@@ -29,12 +30,20 @@ class App extends Component {
   }
 
   render() {
-    const { authChecked } = this.props;
+    const { authChecked, user } = this.props;
     return (
       <div>
         <Menu />
         {authChecked ? <Routes /> : <div>Loading...</div>}
         <Snackbar />
+        {user && (
+          <Intercom
+            appID={'wmtsw9cn'}
+            user_id={user.id}
+            email={user.email}
+            name={`${user.firstName} ${user.lastName}`}
+          />
+        )}
       </div>
     );
   }
