@@ -90,8 +90,11 @@ export const fetchUserInfo = () => async (dispatch) => {
     }
     dispatch({ type: 'UPDATE_USER', payload: { user } });
     if (user.booking) {
-      let bookingResponse = await axios.get(`/bookings/${user.booking.id}`);
-      let currentBooking = bookingResponse.data;
+      // This is done instead of retching by id because this api call allows inclusion of additional info
+      let bookingResponse = await axios.get(
+        `/bookings?userId=${user.id}&order=id,desc&limit=1&status=reserved,started,ended&details=true&includeWaiveworkPayment=true`,
+      );
+      let currentBooking = bookingResponse.data[0];
       dispatch({
         type: 'UPDATE_CURRENT_BOOKING',
         payload: { currentBooking },
