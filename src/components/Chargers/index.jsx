@@ -35,7 +35,9 @@ function Chargers({
         {current5.map((charger, i) => (
           <div key={i}>
             <div className="row justify-content-center">
-              <div onClick={() => expandChargerLocation(i)}>{charger.name}</div>
+              <div onClick={() => expandChargerLocation(i)}>
+                {charger.name}: {charger.distance.toFixed(2)} miles
+              </div>
             </div>
             <div className="row justify-content-center">
               {charger.expanded && (

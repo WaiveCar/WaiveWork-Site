@@ -5,7 +5,12 @@ import config from '../../config';
 function MapHolder({ initialCenter, markers, google, zoom }) {
   return (
     <div>
-      <Map google={google} initialCenter={initialCenter} zoom={zoom}>
+      <Map
+        google={google}
+        initialCenter={initialCenter}
+        zoom={zoom}
+        disableDefaultUI
+      >
         <Marker title={'Your location'} />
         {markers.map((item, i) => (
           <Marker
