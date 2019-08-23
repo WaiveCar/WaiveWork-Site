@@ -72,6 +72,10 @@ export const signup = (form, history) => async (dispatch) => {
   }
 };
 
+export const updateUser = (user) => (dispatch) => {
+  return dispatch({ type: 'UPDATE_USER', payload: { user } });
+};
+
 export const fetchUserInfo = () => async (dispatch) => {
   try {
     let userResponse = await axios.get('/users/me');
@@ -90,7 +94,7 @@ export const fetchUserInfo = () => async (dispatch) => {
     } catch (e) {
       dispatch(showSnackbar(e.message, 'error'));
     }
-    dispatch({ type: 'UPDATE_USER', payload: { user } });
+    dispatch(updateUser(user));
     if (user.booking) {
       dispatch(fetchBookingInfo(user));
     }
