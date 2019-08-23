@@ -34,27 +34,26 @@ function Chargers({
       <div>
         {current5.map((charger, i) => (
           <div key={i}>
-            <div className="row justify-content-center">
-              <div onClick={() => expandChargerLocation(i)}>
+            <div
+              className="row justify-content-around"
+              onClick={() => expandChargerLocation(i)}
+            >
+              <div>
                 {charger.name}: {charger.distance.toFixed(2)} miles
               </div>
+              <div>{charger.address}</div>
             </div>
-            <div className="row justify-content-center">
-              {charger.expanded && (
-                <div>
-                  <div className="row justify-content-center">
-                    {charger.portList.map((port, i) => (
-                      <div
-                        key={i}
-                        onClick={() => startCharger(car.id, port.id)}
-                      >
-                        {port.name}: {port.type}
-                      </div>
-                    ))}
-                  </div>
+            {charger.expanded && (
+              <div>
+                <div className="row justify-content-around">
+                  {charger.portList.map((port, i) => (
+                    <div key={i} onClick={() => startCharger(car.id, port.id)}>
+                      {port.name}: {port.type}
+                    </div>
+                  ))}
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         ))}
       </div>
