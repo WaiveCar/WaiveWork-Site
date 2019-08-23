@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { showSnackbar } from './snackbarActions';
+import { getBookingStats } from './bookingActions';
 
 export const updateCar = (car) => (dispatch) => {
   return dispatch({
@@ -12,6 +13,7 @@ export const getCarHistory = (carId, booking) => async (dispatch) => {
   let response = await axios.get(
     `/cars/${carId}/history?start=${booking.createdAt}`,
   );
+  dispatch(getBookingStats(booking, response.data));
   return dispatch({
     type: 'UPDATE_CAR_HISTORY',
     payload: { carHistory: response.data },
