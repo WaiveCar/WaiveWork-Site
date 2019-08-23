@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Redirect } from 'react-router';
 import { fetchChargers } from './chargerActions';
 import { showSnackbar } from './snackbarActions';
-import { updateBooking } from './bookingActions';
+import { fetchBookingInfo } from './bookingActions';
 import { updateCar, getCarHistory } from './carActions';
 
 export const updateForm = (formName, field, value) => (dispatch) =>
@@ -92,33 +92,7 @@ export const fetchUserInfo = () => async (dispatch) => {
     }
     dispatch({ type: 'UPDATE_USER', payload: { user } });
     if (user.booking) {
-      // This is done instead of retching by id because this api call already allows inclusion of WaiveworkPayment and details
-      let bookingResponse = await axios.get(
-        `/bookings?userId=${user.id}&order=id,desc&limit=1&status=reserved,started,ended&details=true&includeWaiveworkPayment=true`,
-      );
-      let currentBooking = bookingResponse.data[0];
-      let { car } = currentBooking;
-      dispatch(updateBooking(currentBooking));
-      dispatch(updateCar(car));
-      dispatch(getCarHistory(car.id, currentBooking.id));
-      if (car && car.registrationFileId) {
-        let registrationResponse = await axios.get(
-          `/files/${car.registrationFileId}`,
-        );
-        dispatch({
-          type: 'UPDATE_REGISTRATION',
-          payload: { registrationFile: registrationResponse.data },
-        });
-      }
-      if (car && car.inspectionFileId) {
-        let inspectionResponse = await axios.get(
-          `/files/${car.inspectionFileId}`,
-        );
-        dispatch({
-          type: 'UPDATE_INSPECTION',
-          payload: { inspectionFile: inspectionResponse.data },
-        });
-      }
+      dispatch(fetchBookingInfo(user));
     }
     // This step must be below the others because if the file is not there, a 404 is thrown
     let insuranceResponse = await axios.get(

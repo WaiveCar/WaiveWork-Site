@@ -12,7 +12,6 @@ export const getCarHistory = (carId, booking) => async (dispatch) => {
   let response = await axios.get(
     `/cars/${carId}/history?start=${booking.createdAt}`,
   );
-  console.log('car hist: ', response);
   return dispatch({
     type: 'UPDATE_CAR_HISTORY',
     payload: { carHistory: response.data },
