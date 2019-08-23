@@ -90,7 +90,7 @@ export const fetchUserInfo = () => async (dispatch) => {
     }
     dispatch({ type: 'UPDATE_USER', payload: { user } });
     if (user.booking) {
-      // This is done instead of retching by id because this api call allows inclusion of additional info
+      // This is done instead of retching by id because this api call already allows inclusion of WaiveworkPayment and details
       let bookingResponse = await axios.get(
         `/bookings?userId=${user.id}&order=id,desc&limit=1&status=reserved,started,ended&details=true&includeWaiveworkPayment=true`,
       );
