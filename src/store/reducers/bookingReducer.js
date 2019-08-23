@@ -1,5 +1,5 @@
 const initialState = {
-  booking: null,
+  currentBooking: null,
 };
 
 function bookingReducer(state = initialState, action) {
@@ -8,7 +8,7 @@ function bookingReducer(state = initialState, action) {
     case 'UPDATE_BOOKING':
       return {
         ...state,
-        booking: payload.booking,
+        currentBooking: payload.booking,
       };
     default:
       return state;
