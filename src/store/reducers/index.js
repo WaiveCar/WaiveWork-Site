@@ -4,6 +4,7 @@ import snackbarReducer from './snackbarReducer';
 import menuReducer from './menuReducer';
 import carReducer from './carReducer';
 import chargerReducer from './chargerReducer';
+import bookingReducer from './bookingReducer';
 
 export default combineReducers({
   userReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   menuReducer,
   carReducer,
   chargerReducer,
+  bookingReducer,
 });
