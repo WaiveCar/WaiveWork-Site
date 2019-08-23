@@ -2,6 +2,7 @@ const initialState = {
   car: null,
   registrationFile: null,
   inspectionFile: null,
+  carHistory: null,
 };
 
 function carReducer(state = initialState, action) {
@@ -21,6 +22,11 @@ function carReducer(state = initialState, action) {
       return {
         ...state,
         inspectionFile: payload.inspectionFile,
+      };
+    case 'UPDATE_CAR_HISTORY':
+      return {
+        ...state,
+        carHistory: payload.carHistory,
       };
     default:
       return state;
