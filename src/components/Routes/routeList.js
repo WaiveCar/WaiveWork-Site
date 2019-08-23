@@ -5,6 +5,7 @@ import Dashboard from '../Dashboard';
 import Thanks from '../Thanks';
 import Doc from '../Doc';
 import Chargers from '../Chargers';
+import Booking from '../Booking';
 
 export default [
   {
@@ -32,6 +33,12 @@ export default [
     requireAuth: false,
   },
   {
+    name: 'Booking',
+    path: '/booking',
+    component: Booking,
+    requireAuth: true,
+  },
+  {
     name: 'Registration',
     path: '/registration',
     component: () => <Doc type={'registration'} />,
@@ -53,7 +60,7 @@ export default [
     name: 'Chargers',
     path: '/chargers',
     component: Chargers,
-    requireAuth: false,
+    requireAuth: true,
   },
   // This must remain the last in this list
   {
