@@ -1,6 +1,7 @@
 import React from 'react';
 import CarInfo from './CarInfo';
 import ChargerInfo from './ChargerInfo';
+import PaymentsPreview from './PaymentsPreview';
 
 function Dashboard() {
   return (
@@ -8,6 +9,7 @@ function Dashboard() {
       Dashboard
       <CarInfo />
       <ChargerInfo />
+      <PaymentsPreview />
     </div>
   );
 }
