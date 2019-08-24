@@ -6,7 +6,7 @@ import PaymentsPreview from './PaymentsPreview';
 function Dashboard() {
   return (
     <div className="container">
-      Dashboard
+      <h3>Dashboard</h3>
       <CarInfo />
       <ChargerInfo />
       <PaymentsPreview />

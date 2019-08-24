@@ -42,7 +42,7 @@ export const getBookingStats = (booking, carHistory) => (dispatch) => {
           0.621371
         ).toFixed(2)
       : 'Ride not yet over 1 day';
-  booking.stats = {
+  let stats = {
     startDate,
     dayOfBooking,
     nextPaymentDate,
@@ -52,7 +52,7 @@ export const getBookingStats = (booking, carHistory) => (dispatch) => {
     last7Days,
     lastDay,
   };
-  return dispatch(updateBooking(booking));
+  return dispatch(updateBooking({ ...booking, stats }));
 };
 
 export const fetchBookingInfo = (user) => async (dispatch) => {
@@ -85,5 +85,6 @@ export const fetchBookingInfo = (user) => async (dispatch) => {
 };
 
 export const updateBooking = (booking) => (dispatch) => {
+  console.log('stats: ', booking.stats);
   return dispatch({ type: 'UPDATE_BOOKING', payload: { booking } });
 };
