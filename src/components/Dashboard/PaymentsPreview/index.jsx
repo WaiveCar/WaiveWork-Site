@@ -4,7 +4,11 @@ import { advancePayment } from '../../../store/actions/paymentActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-function PaymentsPreview({ currentBooking, advancePayment }) {
+function PaymentsPreview({
+  currentBooking,
+  advancePayment,
+  userResourcesLoaded,
+}) {
   if (currentBooking && currentBooking.waiveworkPayment) {
     let nextPaymentDate = moment
       .utc(currentBooking.waiveworkPayment.date)
@@ -27,12 +31,21 @@ function PaymentsPreview({ currentBooking, advancePayment }) {
       </div>
     );
   } else {
-    return <div>No upcoming payment</div>;
+    return (
+      <div>
+        {!userResourcesLoaded ? (
+          <div>Loading...</div>
+        ) : (
+          <div>No upcoming payment</div>
+        )}
+      </div>
+    );
   }
 }
 
-function mapStateToProps({ bookingReducer, paymentReducer }) {
+function mapStateToProps({ bookingReducer, paymentReducer, userReducer }) {
   return {
+    ...userReducer,
     ...bookingReducer,
     ...paymentReducer,
   };
