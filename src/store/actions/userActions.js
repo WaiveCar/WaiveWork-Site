@@ -77,6 +77,7 @@ export const updateUser = (user) => (dispatch) => {
   return dispatch({ type: 'UPDATE_USER', payload: { user } });
 };
 
+// Pretty much everything that needs fetching on page loading is fetched in this function
 export const fetchUserInfo = () => async (dispatch) => {
   try {
     let userResponse = await axios.get('/users/me');
