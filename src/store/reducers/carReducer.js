@@ -2,7 +2,7 @@ const initialState = {
   car: null,
   registrationFile: null,
   inspectionFile: null,
-  carHistory: null,
+  carHistory: [],
 };
 
 function carReducer(state = initialState, action) {

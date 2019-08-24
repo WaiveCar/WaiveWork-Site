@@ -12,9 +12,17 @@ function Booking({
   carHistory,
   carCommand,
 }) {
-  return (
-    <div className="container">
-      {currentBooking && car ? (
+  if (car && currentBooking && currentBooking.waiveworkPayment) {
+    let nextPaymentDate = moment
+      .utc(currentBooking.waiveworkPayment.date)
+      .format('MM/DD/YYYY');
+    let nextPaymentFromNow =
+      moment(currentBooking.waiveworkPayment.date).diff(
+        moment(moment().format('YYYY-MM-DD')),
+        'days',
+      ) + 1;
+    return (
+      <div className="container">
         <div>
           <h3>Info about your booking in {car.license}</h3>
           <div className="row justify-content-center">
@@ -41,9 +49,9 @@ function Booking({
                 Day {currentBooking.stats.dayOfBooking} of Booking
               </div>
               <div>
-                Next Payment Date: {currentBooking.stats.nextPaymentDate}
+                Next Payment Date: {nextPaymentDate}
                 {' - '}
-                {currentBooking.stats.nextPaymentFromNow}
+                {nextPaymentFromNow}
                 Days From Now - <Link to={'/payments'}>Click here</Link> for
                 more details
               </div>
@@ -72,7 +80,11 @@ function Booking({
             </div>
           )}
         </div>
-      ) : (
+      </div>
+    );
+  } else {
+    return (
+      <div className="container">
         <div>
           {!userResourcesLoaded ? (
             <div>loading</div>
@@ -80,9 +92,9 @@ function Booking({
             <div>not currently in booking</div>
           )}
         </div>
-      )}
-    </div>
-  );
+      </div>
+    );
+  }
 }
 
 function mapStateToProps({ userReducer, bookingReducer, carReducer }) {
