@@ -52,7 +52,7 @@ function Payments({
                   )}
                 </td>
                 <td>{payment[payment.length - 1].description}</td>
-                <td>{payment[payment.length - 1].amount}</td>
+                <td>{(payment[payment.length - 1].amount / 100).toFixed(2)}</td>
                 <td>{payment[payment.length - 1].status}</td>
               </tr>
             ))}
