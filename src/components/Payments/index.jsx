@@ -21,7 +21,10 @@ function Payments({ currentBooking, advancePayment, userResourcesLoaded }) {
             Next payment date: {nextPaymentDate} - {nextPaymentFromNow} days
           </div>
           <div>
-            <button onClick={() => advancePayment(currentBooking)}>
+            <button
+              className="btn btn-outline-primary"
+              onClick={() => advancePayment(currentBooking)}
+            >
               Advance payment
             </button>
           </div>

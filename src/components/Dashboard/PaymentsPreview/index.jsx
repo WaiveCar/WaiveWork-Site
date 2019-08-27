@@ -19,12 +19,15 @@ function PaymentsPreview({
         'days',
       ) + 1;
     return (
-      <div>
-        <div>
+      <div className="container">
+        <div className="row">
           Next payment date: {nextPaymentDate} - {nextPaymentFromNow} days
         </div>
         <div>
-          <button onClick={() => advancePayment(currentBooking)}>
+          <button
+            className="btn btn-outline-primary"
+            onClick={() => advancePayment(currentBooking)}
+          >
             Advance payment
           </button>
         </div>
