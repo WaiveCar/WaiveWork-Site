@@ -10,7 +10,6 @@ function Payments({
   userResourcesLoaded,
   currentBookingPayments,
 }) {
-  console.log('currentBookingPayments', currentBookingPayments);
   if (currentBooking && currentBooking.waiveworkPayment) {
     let nextPaymentDate = moment
       .utc(currentBooking.waiveworkPayment.date)
