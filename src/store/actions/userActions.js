@@ -55,7 +55,11 @@ export const login = (email, password) => async (dispatch) => {
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem('token');
-  return dispatch({ type: 'TOGGLE_LOGIN', payload: { loggedIn: false } });
+  dispatch({ type: 'TOGGLE_LOGIN', payload: { loggedIn: false } });
+  return dispatch({
+    type: 'TOGGLE_AUTH_CHECKED',
+    payload: { authChecked: true },
+  });
 };
 
 export const changeSignupPage = (newPage) => (dispatch) => {
