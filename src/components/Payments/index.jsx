@@ -34,11 +34,30 @@ function Payments({
             </button>
           </div>
         </div>
-        {currentBookingPayments.map((payment, i) => (
-          <div key={i} className="row">
-            {payment[0].createdAt}
-          </div>
-        ))}
+        <table style={{ width: '100%' }}>
+          <thead>
+            <th>Initial Date</th>
+            <th>Most Recent Attempt</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Status</th>
+          </thead>
+          <tbody>
+            {currentBookingPayments.map((payment, i) => (
+              <tr key={i}>
+                <td>{moment(payment[0].createdAt).format('MM/DD/YYYY')}</td>
+                <td>
+                  {moment(payment[payment.length - 1].createdAt).format(
+                    'MM/DD/YYYY',
+                  )}
+                </td>
+                <td>{payment[payment.length - 1].description}</td>
+                <td>{payment[payment.length - 1].amount}</td>
+                <td>{payment[payment.length - 1].status}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     );
   } else {
