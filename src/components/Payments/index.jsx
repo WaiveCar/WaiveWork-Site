@@ -35,13 +35,11 @@ function Payments({
             </button>
           </div>
         </div>
-        <div className="row">
-          {currentBookingPayments.map((payment, i) => (
-            <div key={i}>
-              {i}: {payment[0].createdAt}
-            </div>
-          ))}
-        </div>
+        {currentBookingPayments.map((payment, i) => (
+          <div key={i} className="row">
+            {payment[0].createdAt}
+          </div>
+        ))}
       </div>
     );
   } else {
