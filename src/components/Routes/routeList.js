@@ -6,6 +6,7 @@ import Thanks from '../Thanks';
 import Doc from '../Doc';
 import Chargers from '../Chargers';
 import Booking from '../Booking';
+import Payments from '../Payments';
 
 export default [
   {
@@ -60,6 +61,12 @@ export default [
     name: 'Chargers',
     path: '/chargers',
     component: Chargers,
+    requireAuth: true,
+  },
+  {
+    name: 'Payments',
+    path: '/payments',
+    component: Payments,
     requireAuth: true,
   },
   // This must remain the last in this list
