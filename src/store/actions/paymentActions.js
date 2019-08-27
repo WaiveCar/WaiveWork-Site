@@ -5,9 +5,25 @@ import { updateBooking, getBookingStats } from './bookingActions';
 export const groupCurrentBookingPayments = (payments) => async (dispatch) => {
   const table = {};
   for (let payment of payments) {
-    table[payment.id] = [...table[payment.id], payment] || [payment];
+    if (payment.refId) {
+      if (!table[payment.refId]) {
+        table[payment.refId] = [];
+      }
+      table[payment.refId].push(payment);
+    } else {
+      if (!table[payment.id]) {
+        table[payment.id] = [];
+      }
+      table[payment.id].push(payment);
+    }
   }
-  console.log('array from', Array.from(table));
+  let paymentArray = Object.values(table)
+    .map((paymentGroup) => paymentGroup)
+    .reverse();
+  return dispatch({
+    type: 'UPDATE_PAYMENTS',
+    payload: { payments: paymentArray },
+  });
 };
 
 export const advancePayment = (booking, carHistory) => async (dispatch) => {

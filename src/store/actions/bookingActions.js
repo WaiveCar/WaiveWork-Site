@@ -57,7 +57,7 @@ export const fetchBookingInfo = (user) => async (dispatch) => {
   dispatch(updateBooking(currentBooking));
   dispatch(updateCar(car));
   dispatch(getCarHistory(car.id, currentBooking));
-  dispatch(groupCurrentBookingPayments(bookingResponse.data.payments));
+  dispatch(groupCurrentBookingPayments(bookingResponse.data[0].payments));
   if (car && car.registrationFileId) {
     let registrationResponse = await axios.get(
       `/files/${car.registrationFileId}`,
