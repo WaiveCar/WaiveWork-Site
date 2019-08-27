@@ -4,7 +4,13 @@ import { advancePayment } from '../../store/actions/paymentActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-function Payments({ currentBooking, advancePayment, userResourcesLoaded }) {
+function Payments({
+  currentBooking,
+  advancePayment,
+  userResourcesLoaded,
+  currentBookingPayments,
+}) {
+  console.log('currentBookingPayments', currentBookingPayments);
   if (currentBooking && currentBooking.waiveworkPayment) {
     let nextPaymentDate = moment
       .utc(currentBooking.waiveworkPayment.date)
@@ -28,6 +34,13 @@ function Payments({ currentBooking, advancePayment, userResourcesLoaded }) {
               Advance payment
             </button>
           </div>
+        </div>
+        <div className="row">
+          {currentBookingPayments.map((payment, i) => (
+            <div key={i}>
+              {i}: {payment[0].createdAt}
+            </div>
+          ))}
         </div>
       </div>
     );

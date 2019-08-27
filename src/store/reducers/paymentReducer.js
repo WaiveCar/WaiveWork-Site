@@ -10,7 +10,7 @@ function paymentReducer(state = initialState, action) {
         ...state,
         currentBookingPayments: [
           ...state.currentBookingPayments,
-          payload.payments,
+          ...payload.payments,
         ],
       };
     default:
