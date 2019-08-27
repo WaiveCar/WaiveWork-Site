@@ -1,6 +1,7 @@
 import axios from 'axios';
 import moment from 'moment';
 import { updateCar, getCarHistory } from './carActions';
+import { groupCurrentBookingPayments } from './paymentActions';
 
 export const getBookingStats = (booking, carHistory) => (dispatch) => {
   let startDate = moment(booking.createdAt).format('MM/DD/YYYY');
@@ -56,6 +57,7 @@ export const fetchBookingInfo = (user) => async (dispatch) => {
   dispatch(updateBooking(currentBooking));
   dispatch(updateCar(car));
   dispatch(getCarHistory(car.id, currentBooking));
+  dispatch(groupCurrentBookingPayments(bookingResponse.data.payments));
   if (car && car.registrationFileId) {
     let registrationResponse = await axios.get(
       `/files/${car.registrationFileId}`,
