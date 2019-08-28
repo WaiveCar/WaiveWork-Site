@@ -3,6 +3,7 @@ import moment from 'moment';
 import { advancePayment } from '../../../store/actions/paymentActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import './paymentsTable.scss';
 
 function Payments({
   currentBooking,
@@ -20,7 +21,7 @@ function Payments({
         'days',
       ) + 1;
     return (
-      <div className="table-responsive">
+      <div>
         <div className="row">
           <div>
             Next payment date: {nextPaymentDate} - {nextPaymentFromNow} days
@@ -34,42 +35,47 @@ function Payments({
             </button>
           </div>
         </div>
-        <table className="table table-hover">
-          <thead className="thead-dark">
-            <tr>
-              <th>Date</th>
-              <th>Description</th>
-              <th>Amount</th>
-              <th>Status</th>
-              <th>Late Fees</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentBookingPayments.map((payment, i) => (
-              <tr key={i}>
-                <td>
-                  Original: {moment(payment[0].createdAt).format('MM/DD/YYYY')}
-                  Last Tried
-                  {moment(payment[payment.length - 1].createdAt).format(
-                    'MM/DD/YYYY',
-                  )}
-                </td>
-                <td>{payment[payment.length - 1].description}</td>
-                <td>
-                  ${(payment[payment.length - 1].amount / 100).toFixed(2)}
-                </td>
-                <td>{payment[payment.length - 1].status}</td>
-                {payment[payment.length - 1].lateFees ? (
-                  <td>
-                    ${(payment[payment.length - 1].lateFees / 100).toFixed(2)}
-                  </td>
-                ) : (
-                  <td>Paid</td>
-                )}
+        <div>
+          <table className="payments-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Late Fee</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {currentBookingPayments.map((payment, i) => (
+                <tr key={i}>
+                  <td>
+                    <div>
+                      Original:{' '}
+                      {moment(payment[0].createdAt).format('MM/DD/YYYY')}
+                    </div>
+                    <div>
+                      Last Tried:
+                      {moment(payment[payment.length - 1].createdAt).format(
+                        'MM/DD/YYYY',
+                      )}
+                    </div>
+                  </td>
+                  <td>{payment[payment.length - 1].description}</td>
+                  <td>
+                    ${(payment[payment.length - 1].amount / 100).toFixed(2)}
+                  </td>
+                  {payment[payment.length - 1].lateFees ? (
+                    <td>
+                      ${(payment[payment.length - 1].lateFees / 100).toFixed(2)}
+                    </td>
+                  ) : (
+                    <td>Paid</td>
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   } else {
