@@ -68,16 +68,14 @@ function Payments({
                       onClick={() =>
                         retryPayment(
                           payment[payment.length - 1].id,
-                          payment.lateFees,
+                          payment[0].lateFees,
                           currentBooking.payments,
                         )
                       }
                     >
                       $
-                      {payment[payment.length - 1].lateFees
-                        ? (payment[payment.length - 1].lateFees / 100).toFixed(
-                            2,
-                          )
+                      {payment[0].lateFees
+                        ? (payment[0].lateFees / 100).toFixed(2)
                         : 0}
                     </td>
                   ) : (

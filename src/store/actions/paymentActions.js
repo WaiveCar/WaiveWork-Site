@@ -48,12 +48,10 @@ export const retryPayment = (paymentId, lateFees, allPayments) => async (
     let response = await axios.post(`/shop/retryPayment/${paymentId}`, {
       lateFees: lateFees,
     });
-    console.log('response', response);
     return dispatch(
       groupCurrentBookingPayments([response.data, ...allPayments]),
     );
   } catch (e) {
-    console.log('e', e.response);
     dispatch(
       groupCurrentBookingPayments([e.response.data.data, ...allPayments]),
     );
