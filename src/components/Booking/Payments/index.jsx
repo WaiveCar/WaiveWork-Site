@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { advancePayment } from '../../store/actions/paymentActions';
+import { advancePayment } from '../../../store/actions/paymentActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -36,11 +36,13 @@ function Payments({
         </div>
         <table style={{ width: '100%' }}>
           <thead>
-            <th>Initial Date</th>
-            <th>Most Recent Attempt</th>
-            <th>Description</th>
-            <th>Amount</th>
-            <th>Status</th>
+            <tr>
+              <th>Initial Date</th>
+              <th>Most Recent Attempt</th>
+              <th>Description</th>
+              <th>Amount</th>
+              <th>Status</th>
+            </tr>
           </thead>
           <tbody>
             {currentBookingPayments.map((payment, i) => (

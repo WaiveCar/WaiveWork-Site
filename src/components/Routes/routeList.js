@@ -6,7 +6,7 @@ import Thanks from '../Thanks';
 import Doc from '../Doc';
 import Chargers from '../Chargers';
 import Booking from '../Booking';
-import Payments from '../Payments';
+import Payments from '../Booking/Payments';
 
 export default [
   {

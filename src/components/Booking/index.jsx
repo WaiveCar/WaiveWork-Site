@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { carCommand } from '../../store/actions/carActions';
+import Payments from './Payments';
 import moment from 'moment';
 
 function Booking({
@@ -80,6 +81,7 @@ function Booking({
             </div>
           )}
         </div>
+        <Payments />
       </div>
     );
   } else {
