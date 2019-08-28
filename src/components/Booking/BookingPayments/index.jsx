@@ -50,24 +50,20 @@ function Payments({
               </tr>
             </thead>
             <tbody>
-              {currentBookingPayments.map((payment, i) => (
-                <tr key={i}>
-                  <td>
-                    <div>
-                      {moment(payment[payment.length - 1].createdAt).format(
-                        'MM/DD/YYYY',
-                      )}
-                    </div>
-                  </td>
-                  <td>{payment[payment.length - 1].description}</td>
-                  <td>
-                    ${(payment[payment.length - 1].amount / 100).toFixed(2)}
-                  </td>
-                  {payment[payment.length - 1].status === 'failed' ? (
+              {currentBookingPayments.map((payment, i) =>
+                payment[payment.length - 1].status === 'failed' ? (
+                  <tr key={i}>
+                    <td>
+                      <div>
+                        {moment(payment[0].createdAt).format('MM/DD/YYYY')}
+                      </div>
+                    </td>
+                    <td>{payment[0].description}</td>
+                    <td>${(payment[0].amount / 100).toFixed(2)}</td>
                     <td
                       onClick={() =>
                         retryPayment(
-                          payment[payment.length - 1].id,
+                          payment[0].id,
                           payment[0].lateFees,
                           currentBooking.payments,
                         )
@@ -78,11 +74,24 @@ function Payments({
                         ? (payment[0].lateFees / 100).toFixed(2)
                         : 0}
                     </td>
-                  ) : (
+                  </tr>
+                ) : (
+                  <tr key={i}>
+                    <td>
+                      <div>
+                        {moment(payment[payment.length - 1].createdAt).format(
+                          'MM/DD/YYYY',
+                        )}
+                      </div>
+                    </td>
+                    <td>{payment[payment.length - 1].description}</td>
+                    <td>
+                      ${(payment[payment.length - 1].amount / 100).toFixed(2)}
+                    </td>
                     <td>Paid</td>
-                  )}
-                </tr>
-              ))}
+                  </tr>
+                ),
+              )}
             </tbody>
           </table>
         </div>
