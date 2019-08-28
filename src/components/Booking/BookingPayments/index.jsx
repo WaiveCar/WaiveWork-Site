@@ -20,7 +20,7 @@ function Payments({
         'days',
       ) + 1;
     return (
-      <div className="container">
+      <div className="table-responsive">
         <div className="row">
           <div>
             Next payment date: {nextPaymentDate} - {nextPaymentFromNow} days
@@ -34,11 +34,10 @@ function Payments({
             </button>
           </div>
         </div>
-        <table style={{ width: '100%' }}>
-          <thead>
+        <table className="table table-hover">
+          <thead className="thead-dark">
             <tr>
-              <th>Initial Date</th>
-              <th>Most Recent Attempt</th>
+              <th>Date</th>
               <th>Description</th>
               <th>Amount</th>
               <th>Status</th>
@@ -48,8 +47,9 @@ function Payments({
           <tbody>
             {currentBookingPayments.map((payment, i) => (
               <tr key={i}>
-                <td>{moment(payment[0].createdAt).format('MM/DD/YYYY')}</td>
                 <td>
+                  Original: {moment(payment[0].createdAt).format('MM/DD/YYYY')}
+                  Last Tried
                   {moment(payment[payment.length - 1].createdAt).format(
                     'MM/DD/YYYY',
                   )}
@@ -64,7 +64,7 @@ function Payments({
                     ${(payment[payment.length - 1].lateFees / 100).toFixed(2)}
                   </td>
                 ) : (
-                  <td>$0.00</td>
+                  <td>Paid</td>
                 )}
               </tr>
             ))}
