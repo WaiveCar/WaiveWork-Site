@@ -33,17 +33,21 @@ class App extends Component {
     const { authChecked, user } = this.props;
     return (
       <div>
-        <Menu />
-        {authChecked ? <Routes /> : <div>Loading...</div>}
-        <Snackbar />
-        {user && (
-          <Intercom
-            appID={'wmtsw9cn'}
-            user_id={user.id}
-            email={user.email}
-            name={`${user.firstName} ${user.lastName}`}
-          />
-        )}
+        <div>
+          <div>
+            <Menu />
+            {authChecked ? <Routes /> : <div>Loading...</div>}
+            <Snackbar />
+          </div>
+          {user && (
+            <Intercom
+              appID={'wmtsw9cn'}
+              user_id={user.id}
+              email={user.email}
+              name={`${user.firstName} ${user.lastName}`}
+            />
+          )}
+        </div>
       </div>
     );
   }

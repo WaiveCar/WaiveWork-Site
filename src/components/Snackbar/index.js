@@ -23,15 +23,13 @@ class Snackbar extends Component {
             hideSnackbar();
           }}
         >
-          <div className="fixed-bottom">
-            <div className="container">
-              <div className="row justify-content-md-center">
-                <div
-                  className="inner-snackbar"
-                  style={{ backgroundColor: color }}
-                >
-                  {message}
-                </div>
+          <div className="row justify-content-center">
+            <div className="bottom">
+              <div
+                className="inner-snackbar"
+                style={{ backgroundColor: color }}
+              >
+                {message}
               </div>
             </div>
           </div>
