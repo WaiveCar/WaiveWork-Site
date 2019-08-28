@@ -63,7 +63,7 @@ function Payments({
                   <td>
                     ${(payment[payment.length - 1].amount / 100).toFixed(2)}
                   </td>
-                  {payment[payment.length - 1].lateFees ? (
+                  {payment[payment.length - 1].status === 'failed' ? (
                     <td
                       onClick={() =>
                         retryPayment(
@@ -73,7 +73,12 @@ function Payments({
                         )
                       }
                     >
-                      ${(payment[payment.length - 1].lateFees / 100).toFixed(2)}
+                      $
+                      {payment[payment.length - 1].lateFees
+                        ? (payment[payment.length - 1].lateFees / 100).toFixed(
+                            2,
+                          )
+                        : 0}
                     </td>
                   ) : (
                     <td>Paid</td>
