@@ -8,10 +8,7 @@ function paymentReducer(state = initialState, action) {
     case 'UPDATE_PAYMENTS':
       return {
         ...state,
-        currentBookingPayments: [
-          ...state.currentBookingPayments,
-          ...payload.payments,
-        ],
+        currentBookingPayments: [...payload.payments],
       };
     default:
       return state;

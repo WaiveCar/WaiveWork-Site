@@ -41,4 +41,24 @@ export const advancePayment = (booking, carHistory) => async (dispatch) => {
   }
 };
 
-export const retryPayment = (paymentId) => async (dispatch) => {};
+export const retryPayment = (paymentId, lateFees, allPayments) => async (
+  dispatch,
+) => {
+  try {
+    let response = await axios.post(`/shop/retryPayment/${paymentId}`, {
+      lateFees: lateFees,
+    });
+    console.log('response', response);
+    return dispatch(
+      groupCurrentBookingPayments([response.data, ...allPayments]),
+    );
+  } catch (e) {
+    console.log('e', e.response);
+    dispatch(
+      groupCurrentBookingPayments([e.response.data.data, ...allPayments]),
+    );
+    return dispatch(
+      showSnackbar(e.response ? e.response.data.message : e, 'error'),
+    );
+  }
+};

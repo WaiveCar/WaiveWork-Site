@@ -1,6 +1,9 @@
 import React from 'react';
 import moment from 'moment';
-import { advancePayment } from '../../../store/actions/paymentActions';
+import {
+  advancePayment,
+  retryPayment,
+} from '../../../store/actions/paymentActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import './paymentsTable.scss';
@@ -10,6 +13,7 @@ function Payments({
   advancePayment,
   userResourcesLoaded,
   currentBookingPayments,
+  retryPayment,
 }) {
   if (currentBooking && currentBooking.waiveworkPayment) {
     let nextPaymentDate = moment
@@ -60,7 +64,15 @@ function Payments({
                     ${(payment[payment.length - 1].amount / 100).toFixed(2)}
                   </td>
                   {payment[payment.length - 1].lateFees ? (
-                    <td>
+                    <td
+                      onClick={() =>
+                        retryPayment(
+                          payment[payment.length - 1].id,
+                          payment.lateFees,
+                          currentBooking.payments,
+                        )
+                      }
+                    >
                       ${(payment[payment.length - 1].lateFees / 100).toFixed(2)}
                     </td>
                   ) : (
@@ -95,7 +107,7 @@ function mapStateToProps({ bookingReducer, paymentReducer, userReducer }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ advancePayment }, dispatch);
+  return bindActionCreators({ advancePayment, retryPayment }, dispatch);
 }
 
 export default connect(
