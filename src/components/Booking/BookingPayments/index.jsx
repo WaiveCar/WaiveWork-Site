@@ -50,11 +50,6 @@ function Payments({
                 <tr key={i}>
                   <td>
                     <div>
-                      Original:{' '}
-                      {moment(payment[0].createdAt).format('MM/DD/YYYY')}
-                    </div>
-                    <div>
-                      Last Tried:
                       {moment(payment[payment.length - 1].createdAt).format(
                         'MM/DD/YYYY',
                       )}
