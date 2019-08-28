@@ -1,6 +1,5 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { carCommand } from '../../store/actions/carActions';
 import BookingPayments from './BookingPayments';
@@ -53,8 +52,7 @@ function Booking({
                 Next Payment Date: {nextPaymentDate}
                 {' - '}
                 {nextPaymentFromNow}
-                Days From Now - <Link to={'/payments'}>Click here</Link> for
-                more details
+                Days From Now
               </div>
             </div>
           )}
