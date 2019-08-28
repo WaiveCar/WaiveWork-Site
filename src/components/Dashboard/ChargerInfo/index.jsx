@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import MapHolder from '../../MapHolder';
 import './chargerInfo.scss';
 
-function ChargerInfo({ user, nearest5, history }) {
+function ChargerInfo({ user, nearest5, history, userResourcesLoaded }) {
   return user && user.currentLocation ? (
     <div className="container">
       <div className="row justify-content-center">
@@ -25,7 +25,13 @@ function ChargerInfo({ user, nearest5, history }) {
       </div>
     </div>
   ) : (
-    <div>Unable to get current location</div>
+    <div>
+      {!userResourcesLoaded ? (
+        <div>Loading</div>
+      ) : (
+        <div>Unable to get current location</div>
+      )}{' '}
+    </div>
   );
 }
 

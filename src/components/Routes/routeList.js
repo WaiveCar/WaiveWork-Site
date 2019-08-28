@@ -6,7 +6,7 @@ import Thanks from '../Thanks';
 import Doc from '../Doc';
 import Chargers from '../Chargers';
 import Booking from '../Booking';
-import Payments from '../Booking/Payments';
+import BookingPayments from '../Booking/BookingPayments';
 
 export default [
   {
@@ -66,7 +66,7 @@ export default [
   {
     name: 'Payments',
     path: '/payments',
-    component: Payments,
+    component: BookingPayments,
     requireAuth: true,
   },
   // This must remain the last in this list
