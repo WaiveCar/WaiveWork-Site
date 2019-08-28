@@ -42,6 +42,7 @@ function Payments({
               <th>Description</th>
               <th>Amount</th>
               <th>Status</th>
+              <th>Late Fees</th>
             </tr>
           </thead>
           <tbody>
@@ -54,8 +55,17 @@ function Payments({
                   )}
                 </td>
                 <td>{payment[payment.length - 1].description}</td>
-                <td>{(payment[payment.length - 1].amount / 100).toFixed(2)}</td>
+                <td>
+                  ${(payment[payment.length - 1].amount / 100).toFixed(2)}
+                </td>
                 <td>{payment[payment.length - 1].status}</td>
+                {payment[payment.length - 1].lateFees ? (
+                  <td>
+                    ${(payment[payment.length - 1].lateFees / 100).toFixed(2)}
+                  </td>
+                ) : (
+                  <td>$0.00</td>
+                )}
               </tr>
             ))}
           </tbody>

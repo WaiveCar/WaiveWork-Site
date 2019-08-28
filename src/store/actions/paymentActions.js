@@ -40,3 +40,5 @@ export const advancePayment = (booking, carHistory) => async (dispatch) => {
     );
   }
 };
+
+export const retryPayment = (paymentId) => async (dispatch) => {};

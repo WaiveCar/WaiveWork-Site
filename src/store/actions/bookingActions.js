@@ -49,7 +49,7 @@ export const getBookingStats = (booking, carHistory) => (dispatch) => {
 export const fetchBookingInfo = (user) => async (dispatch) => {
   // This is done instead of fetching by id because this api call already allows inclusion of WaiveworkPayment and details
   let bookingResponse = await axios.get(
-    `/bookings?userId=${user.id}&order=id,desc&limit=1&status=reserved,started,ended&details=true&includeWaiveworkPayment=true`,
+    `/bookings?userId=${user.id}&order=id,desc&limit=1&status=reserved,started,ended&details=true&includeWaiveworkPayment=true&includeLateFees=true`,
   );
   let currentBooking = bookingResponse.data[0];
   let { car } = currentBooking;
