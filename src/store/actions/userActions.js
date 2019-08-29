@@ -3,6 +3,7 @@ import { Redirect } from 'react-router';
 import { fetchChargers } from './chargerActions';
 import { showSnackbar } from './snackbarActions';
 import { fetchBookingInfo } from './bookingActions';
+import { fetchCards } from './paymentActions';
 
 export const updateForm = (formName, field, value) => (dispatch) =>
   dispatch({ type: 'UPDATE_FORM', payload: { formName, field, value } });
@@ -102,6 +103,7 @@ export const fetchUserInfo = () => async (dispatch) => {
       dispatch(showSnackbar(e.message, 'error'));
     }
     dispatch(updateUser(user));
+    dispatch(fetchCards(user.id));
     if (user.booking) {
       dispatch(fetchBookingInfo(user));
     }
