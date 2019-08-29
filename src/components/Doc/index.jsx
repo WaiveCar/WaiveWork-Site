@@ -57,8 +57,8 @@ function mapStateToProps({ userReducer, carReducer }) {
   return { ...userReducer, ...carReducer };
 }
 
-function mapDispatchToProps() {
-  return {};
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({}, dispatch);
 }
 
 export default connect(

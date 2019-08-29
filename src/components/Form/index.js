@@ -21,6 +21,7 @@ function Form(props) {
     body,
   } = props;
   const currentForm = props[formName];
+  console.log('fields', fields);
   let missing = fields
     .map((item) => !currentForm[item.formField] && item.name)
     .filter((item) => item);
@@ -128,9 +129,10 @@ function Form(props) {
   );
 }
 
-function mapStateToProps({ userReducer }) {
+function mapStateToProps({ userReducer, paymentReducer }) {
   return {
     ...userReducer,
+    ...paymentReducer,
   };
 }
 
