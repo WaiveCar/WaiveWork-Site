@@ -3,11 +3,15 @@ import Key from '../../svg/key.svg';
 import signupForm from '../../components/Form/signupForm';
 import loginForm from '../../components/Form/loginForm';
 import authFormFields from '../../components/Form/authFormFields';
+import paymentFormFields from '../../components/Form/paymentFormFields';
+import paymentForm from '../../components/Form/paymentForm';
 
 const initialState = {
   authForm: { ...authFormFields },
   loginFormFields: loginForm,
   signupFormPages: signupForm,
+  paymentFormFields: { ...paymentFormFields },
+  paymentForm: paymentForm,
   selectedSignupPage: 0,
   loggedIn: false,
   authChecked: false,

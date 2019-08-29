@@ -79,10 +79,12 @@ export const fetchCards = (user) => async (dispatch) => {
 
 export const addCard = (user, form) => async (dispatch) => {
   try {
-    let { data } = axios.post('/shop.cards', { userId: user.id, card: form });
+    let { data } = await axios.post('/shop/cards', {
+      userId: user.id,
+      card: form,
+    });
     return dispatch({ type: 'ADD_CARD', payload: data });
   } catch (e) {
-    console.log('e', e.response);
     return dispatch(
       showSnackbar(e.response ? e.response.data.message : e, 'error'),
     );

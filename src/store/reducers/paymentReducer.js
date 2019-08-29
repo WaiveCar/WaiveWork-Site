@@ -1,11 +1,6 @@
-import paymentFormFields from '../../components/Form/paymentFormFields';
-import paymentForm from '../../components/Form/paymentForm';
-
 const initialState = {
   currentBookingPayments: [],
   cards: [],
-  paymentFormFields: { ...paymentFormFields },
-  paymentForm: paymentForm,
 };
 
 function paymentReducer(state = initialState, action) {
