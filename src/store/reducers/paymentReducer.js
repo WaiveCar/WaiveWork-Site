@@ -11,6 +11,16 @@ function paymentReducer(state = initialState, action) {
         ...state,
         currentBookingPayments: [...payload.payments],
       };
+    case 'UPDATE_CARDS':
+      return {
+        ...state,
+        cards: [...payload.cards],
+      };
+    case 'ADD_CARD':
+      return {
+        ...state,
+        cards: [...state.cards, payload.card],
+      };
     default:
       return state;
   }
