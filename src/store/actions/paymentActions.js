@@ -49,11 +49,11 @@ export const retryPayment = (paymentId, lateFees, allPayments) => async (
       lateFees: lateFees,
     });
     return dispatch(
-      groupCurrentBookingPayments([response.data, ...allPayments]),
+      groupCurrentBookingPayments([...allPayments, response.data]),
     );
   } catch (e) {
     dispatch(
-      groupCurrentBookingPayments([e.response.data.data, ...allPayments]),
+      groupCurrentBookingPayments([...allPayments, e.response.data.data]),
     );
     return dispatch(
       showSnackbar(e.response ? e.response.data.message : e, 'error'),
