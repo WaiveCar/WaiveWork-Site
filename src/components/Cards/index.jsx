@@ -4,14 +4,14 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Form from '../Form';
 
-function Cards({ paymentForm, addCard, user }) {
+function Cards({ paymentFormFields, addCard, user }) {
   addCard = addCard.bind(null, user);
   return (
     <div className="container">
       <Form
-        fields={paymentForm}
+        fields={paymentFormFields}
         title={'Add Card'}
-        formName={'paymentFormFields'}
+        formName={'paymentForm'}
         onSubmit={(form) => addCard(form)}
         submitName={'Add'}
         formWidth={'60%'}
