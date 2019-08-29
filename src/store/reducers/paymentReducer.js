@@ -1,5 +1,6 @@
 const initialState = {
   currentBookingPayments: [],
+  cards: [],
 };
 
 function paymentReducer(state = initialState, action) {
