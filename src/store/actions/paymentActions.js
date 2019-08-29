@@ -61,7 +61,7 @@ export const retryPayment = (paymentId, lateFees, allPayments) => async (
   }
 };
 
-export const fetchCards = (userId) => async (dispatch) => {
-  let { data } = await axios.get(`shop/cards?userId=${userId}`);
+export const fetchCards = (user) => async (dispatch) => {
+  let { data } = await axios.get(`shop/cards?userId=${user.id}`);
   return dispatch({ type: 'UPDATE_CARDS', payload: { cards: data } });
 };

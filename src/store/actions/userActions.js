@@ -103,7 +103,7 @@ export const fetchUserInfo = () => async (dispatch) => {
       dispatch(showSnackbar(e.message, 'error'));
     }
     dispatch(updateUser(user));
-    dispatch(fetchCards(user.id));
+    dispatch(fetchCards(user));
     if (user.booking) {
       dispatch(fetchBookingInfo(user));
     }
