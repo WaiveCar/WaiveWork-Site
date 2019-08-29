@@ -62,6 +62,17 @@ export const retryPayment = (paymentId, lateFees, allPayments) => async (
 };
 
 export const fetchCards = (user) => async (dispatch) => {
-  let { data } = await axios.get(`shop/cards?userId=${user.id}`);
-  return dispatch({ type: 'UPDATE_CARDS', payload: { cards: data } });
+  try {
+    // if user hasn't already been added to stripe, they need to be
+    if (!user.stripeId) {
+      await axios.post(`/shop/customers`, {
+        userId: user.id,
+        customer: { description: 'WaiveCar customer registered via web.' },
+      });
+    }
+    let { data } = await axios.get(`shop/cards?userId=${user.id}`);
+    return dispatch({ type: 'UPDATE_CARDS', payload: { cards: data } });
+  } catch (e) {
+    console.log(e.response);
+  }
 };
