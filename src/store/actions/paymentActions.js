@@ -60,3 +60,8 @@ export const retryPayment = (paymentId, lateFees, allPayments) => async (
     );
   }
 };
+
+export const fetchCards = (userId) => async (dispatch) => {
+  let cardsResponse = axios.get(`shop/cards?userId=${userId}`);
+  console.log('cards: ', cardsResponse);
+};
