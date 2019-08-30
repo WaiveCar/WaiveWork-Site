@@ -90,8 +90,21 @@ export const addCard = (user, form) => async (dispatch) => {
 export const deleteCard = (cardId, index) => async (dispatch) => {
   try {
     let deleteResponse = await axios.delete(`/shop/cards/${cardId}`);
-    console.log('deleteResponse', deleteResponse);
     return dispatch({ type: 'DELETE_CARD', payload: { index } });
+  } catch (e) {
+    return dispatch(
+      showSnackbar(e.response ? e.response.data.message : e, 'error'),
+    );
+  }
+};
+
+export const selectCurrentlyUsedCard = (cardId) => async (dispatch) => {
+  // Currently when our api looks for which card to use, it just selects the most recently updated
+  // Though this api call is not meant to be used to select the currently used card,
+  // It will modify the updated_at field of the card so that it is the currently used one
+  try {
+    let response = await axios.update(`/shop/cards/${cardId}`, {});
+    console.log('response', response);
   } catch (e) {
     return dispatch(
       showSnackbar(e.response ? e.response.data.message : e, 'error'),
