@@ -1,13 +1,12 @@
 import React from 'react';
-import { addCard } from '../../store/actions/paymentActions';
+import { addCard, deleteCard } from '../../store/actions/paymentActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Form from '../Form';
 import './cards.scss';
 
-function Cards({ paymentFormFields, addCard, user, cards }) {
+function Cards({ paymentFormFields, addCard, deleteCard, user, cards }) {
   addCard = addCard.bind(null, user);
-  console.log(cards);
   return (
     <div className="container">
       <Form
@@ -34,7 +33,15 @@ function Cards({ paymentFormFields, addCard, user, cards }) {
                 <td>{card.last4}</td>
                 <td>{card.brand}</td>
                 <td>{`${card.expMonth}/${card.expYear}`}</td>
-                <td>delete card</td>
+                <td>
+                  <button
+                    type="button"
+                    className="btn btn-outline-primary"
+                    onClick={() => deleteCard(card.id, i)}
+                  >
+                    delete
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -49,7 +56,7 @@ function mapStateToProps({ paymentReducer, userReducer, formReducer }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ addCard }, dispatch);
+  return bindActionCreators({ addCard, deleteCard }, dispatch);
 }
 
 export default connect(

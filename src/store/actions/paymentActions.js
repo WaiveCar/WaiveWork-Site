@@ -86,3 +86,15 @@ export const addCard = (user, form) => async (dispatch) => {
     );
   }
 };
+
+export const deleteCard = (cardId, index) => async (dispatch) => {
+  try {
+    let deleteResponse = await axios.delete(`/shop/cards/${cardId}`);
+    console.log('deleteResponse', deleteResponse);
+    return dispatch({ type: 'DELETE_CARD', payload: { index } });
+  } catch (e) {
+    return dispatch(
+      showSnackbar(e.response ? e.response.data.message : e, 'error'),
+    );
+  }
+};
