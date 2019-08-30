@@ -5,9 +5,6 @@ import { showSnackbar } from './snackbarActions';
 import { fetchBookingInfo } from './bookingActions';
 import { fetchCards } from './paymentActions';
 
-export const updateForm = (formName, field, value) => (dispatch) =>
-  dispatch({ type: 'UPDATE_FORM', payload: { formName, field, value } });
-
 export const verifyAuth = (history, pathName) => async (dispatch) => {
   let token = localStorage.getItem('token');
   if (token) {

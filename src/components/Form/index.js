@@ -2,7 +2,7 @@ import React from 'react';
 import Parser from 'html-react-parser';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { updateForm } from '../../store/actions/userActions';
+import { updateForm } from '../../store/actions/formActions';
 import { showSnackbar } from '../../store/actions/snackbarActions';
 import './form.scss';
 
