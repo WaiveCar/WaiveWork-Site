@@ -1,6 +1,7 @@
 export default {
   name: '',
   number: '',
-  expiration: '',
+  expMonth: '',
+  expYear: '',
   cvc: '',
 };

@@ -12,8 +12,14 @@ export default [
     width: 8,
   },
   {
-    name: 'expiration',
-    formField: 'expiration',
+    name: 'expiration month',
+    formField: 'expMonth',
+    type: 'text',
+    width: 8,
+  },
+  {
+    name: 'expiration year',
+    formField: 'expYear',
     type: 'text',
     width: 8,
   },
