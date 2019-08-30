@@ -1,11 +1,22 @@
 import React from 'react';
-import { addCard, deleteCard } from '../../store/actions/paymentActions';
+import {
+  addCard,
+  deleteCard,
+  selectCurrentlyUsedCard,
+} from '../../store/actions/paymentActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Form from '../Form';
 import './cards.scss';
 
-function Cards({ paymentFormFields, addCard, deleteCard, user, cards }) {
+function Cards({
+  paymentFormFields,
+  addCard,
+  deleteCard,
+  selectCurrentlyUsedCard,
+  user,
+  cards,
+}) {
   addCard = addCard.bind(null, user);
   return (
     <div className="container">
@@ -41,6 +52,13 @@ function Cards({ paymentFormFields, addCard, deleteCard, user, cards }) {
                   >
                     delete
                   </button>
+                  <button
+                    type="button"
+                    className="btn btn-outline-primary"
+                    onClick={() => selectCurrentlyUsedCard(card.id)}
+                  >
+                    delete
+                  </button>
                 </td>
               </tr>
             ))}
@@ -56,7 +74,10 @@ function mapStateToProps({ paymentReducer, userReducer, formReducer }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ addCard, deleteCard }, dispatch);
+  return bindActionCreators(
+    { addCard, deleteCard, selectCurrentlyUsedCard },
+    dispatch,
+  );
 }
 
 export default connect(
