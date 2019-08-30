@@ -46,9 +46,10 @@ function Signup({
   );
 }
 
-function mapStateToProps({ userReducer }) {
+function mapStateToProps({ userReducer, formReducer }) {
   return {
     ...userReducer,
+    ...formReducer,
   };
 }
 

@@ -6,7 +6,6 @@ import Form from '../Form';
 
 function Cards({ paymentFormFields, addCard, user }) {
   addCard = addCard.bind(null, user);
-  console.log('fields', paymentFormFields);
   return (
     <div className="container">
       <Form
