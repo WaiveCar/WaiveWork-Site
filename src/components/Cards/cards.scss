@@ -1,4 +1,8 @@
 .card-list {
   width: 40%;
   font-size: 14px;
+  td,
+  th {
+    width: 15%;
+  }
 }
