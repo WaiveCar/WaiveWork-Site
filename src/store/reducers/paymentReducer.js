@@ -24,7 +24,7 @@ function paymentReducer(state = initialState, action) {
     case 'DELETE_CARD':
       return {
         ...state,
-        cards: state.cards.splice(payload.index, 1),
+        cards: state.cards.splice(payload.index - 1, 1),
       };
     default:
       return state;
