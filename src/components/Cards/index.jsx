@@ -57,7 +57,7 @@ function Cards({
                     className="btn btn-outline-primary"
                     onClick={() => selectCurrentlyUsedCard(card.id)}
                   >
-                    delete
+                    select
                   </button>
                 </td>
               </tr>

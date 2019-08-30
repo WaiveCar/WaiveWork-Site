@@ -103,9 +103,10 @@ export const selectCurrentlyUsedCard = (cardId) => async (dispatch) => {
   // Though this api call is not meant to be used to select the currently used card,
   // It will modify the updated_at field of the card so that it is the currently used one
   try {
-    let response = await axios.update(`/shop/cards/${cardId}`, {});
+    let response = await axios.put(`/shop/cards/${cardId}`, {});
     console.log('response', response);
   } catch (e) {
+    console.log('e', e);
     return dispatch(
       showSnackbar(e.response ? e.response.data.message : e, 'error'),
     );
