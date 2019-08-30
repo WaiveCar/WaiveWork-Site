@@ -1,17 +1,4 @@
-import Envelope from '../../svg/envelope.svg';
-import Key from '../../svg/key.svg';
-import signupForm from '../../components/Form/signupForm';
-import loginForm from '../../components/Form/loginForm';
-import authFormTemplate from '../../components/Form/authFormTemplate';
-import paymentForm from '../../components/Form/paymentForm';
-import paymentFormTemplate from '../../components/Form/paymentFormTemplate';
-
 const initialState = {
-  authForm: { ...authFormTemplate },
-  loginFormFields: loginForm,
-  signupFormPages: signupForm,
-  paymentForm: { ...paymentFormTemplate },
-  paymentFormFields: paymentForm,
   selectedSignupPage: 0,
   loggedIn: false,
   authChecked: false,

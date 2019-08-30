@@ -128,10 +128,9 @@ function Form(props) {
   );
 }
 
-function mapStateToProps({ userReducer, paymentReducer }) {
+function mapStateToProps({ userReducer, paymentReducer, formReducer }) {
   return {
-    ...userReducer,
-    ...paymentReducer,
+    ...formReducer,
   };
 }
 

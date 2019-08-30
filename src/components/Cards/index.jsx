@@ -6,6 +6,7 @@ import Form from '../Form';
 
 function Cards({ paymentFormFields, addCard, user }) {
   addCard = addCard.bind(null, user);
+  console.log('fields', paymentFormFields);
   return (
     <div className="container">
       <Form
@@ -20,8 +21,8 @@ function Cards({ paymentFormFields, addCard, user }) {
   );
 }
 
-function mapStateToProps({ paymentReducer, userReducer }) {
-  return { ...paymentReducer, ...userReducer };
+function mapStateToProps({ paymentReducer, userReducer, formReducer }) {
+  return { ...paymentReducer, ...userReducer, ...formReducer };
 }
 
 function mapDispatchToProps(dispatch) {
