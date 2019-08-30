@@ -3,9 +3,11 @@ import { addCard } from '../../store/actions/paymentActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Form from '../Form';
+import './cards.scss';
 
-function Cards({ paymentFormFields, addCard, user }) {
+function Cards({ paymentFormFields, addCard, user, cards }) {
   addCard = addCard.bind(null, user);
+  console.log(cards);
   return (
     <div className="container">
       <Form
@@ -16,6 +18,28 @@ function Cards({ paymentFormFields, addCard, user }) {
         submitName={'Add'}
         formWidth={'60%'}
       />
+      <div className="row justify-content-center">
+        <table className="card-list col-md-6">
+          <thead>
+            <tr>
+              <th>Last 4</th>
+              <th>Brand</th>
+              <th>Expiration</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {cards.map((card, i) => (
+              <tr key={i}>
+                <td>{card.last4}</td>
+                <td>{card.brand}</td>
+                <td>{`${card.expMonth}/${card.expYear}`}</td>
+                <td>delete card</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
