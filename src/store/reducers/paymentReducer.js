@@ -16,6 +16,17 @@ function paymentReducer(state = initialState, action) {
         ...state,
         cards: [...payload.cards],
       };
+    case 'SELECT_CARD':
+      let idx = state.cards.findIndex((card) => payload.card.id === card.id);
+      let temp = state.cards.map((card) => {
+        delete card.selected;
+        return card;
+      });
+      temp[idx].selected = true;
+      return {
+        ...state,
+        cards: temp,
+      };
     case 'ADD_CARD':
       return {
         ...state,
