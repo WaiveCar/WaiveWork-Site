@@ -62,14 +62,16 @@ export const retryPayment = (paymentId, lateFees, allPayments) => async (
 };
 
 export const fetchCards = (user) => async (dispatch) => {
-  // if user hasn't already been added to stripe, they need to be
+  // If user hasn't already been added to stripe, they need to be
   if (!user.stripeId) {
     await axios.post(`/shop/customers`, {
       userId: user.id,
       customer: { description: 'WaiveCar customer registered via web.' },
     });
   }
-  let { data } = await axios.get(`shop/cards?userId=${user.id}`);
+  let { data } = await axios.get(
+    `shop/cards?userId=${user.id}&showSelected=true`,
+  );
   return dispatch({ type: 'UPDATE_CARDS', payload: { cards: data } });
 };
 
@@ -100,13 +102,12 @@ export const deleteCard = (cardId, index) => async (dispatch) => {
 
 export const selectCurrentlyUsedCard = (cardId) => async (dispatch) => {
   // Currently when our api looks for which card to use, it just selects the most recently updated
-  // Though this api call is not meant to be used to select the currently used card,
-  // It will modify the updated_at field of the card so that it is the currently used one
+  // though this api call is not meant to be used to select the currently used card,
+  // it will modify the updated_at field of the card so that it is the currently used one
   try {
     let response = await axios.put(`/shop/cards/${cardId}`, {});
     console.log('response', response);
   } catch (e) {
-    console.log('e', e);
     return dispatch(
       showSnackbar(e.response ? e.response.data.message : e, 'error'),
     );

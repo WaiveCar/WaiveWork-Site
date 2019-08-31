@@ -45,20 +45,23 @@ function Cards({
                 <td>{card.brand}</td>
                 <td>{`${card.expMonth}/${card.expYear}`}</td>
                 <td>
-                  <button
-                    type="button"
-                    className="btn btn-outline-primary"
-                    onClick={() => deleteCard(card.id, i)}
-                  >
-                    delete
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-outline-primary"
-                    onClick={() => selectCurrentlyUsedCard(card.id)}
-                  >
-                    select
-                  </button>
+                  <div>
+                    <button
+                      type="button"
+                      className="btn btn-outline-primary"
+                      onClick={() => deleteCard(card.id, i)}
+                    >
+                      delete
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-outline-primary"
+                      onClick={() => selectCurrentlyUsedCard(card.id)}
+                    >
+                      select
+                    </button>
+                    {card.selected && <span>selected</span>}
+                  </div>
                 </td>
               </tr>
             ))}
