@@ -46,7 +46,7 @@ function Payments({
                 <th>Date</th>
                 <th>Description</th>
                 <th>Amount</th>
-                <th>Late Fee</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
@@ -60,7 +60,7 @@ function Payments({
                     </td>
                     <td>{payment[0].description}</td>
                     <td>${(payment[0].amount / 100).toFixed(2)}</td>
-                    {payment.canRetry ? (
+                    {payment[0].canRetry ? (
                       <td
                         onClick={() =>
                           retryPayment(
@@ -70,13 +70,13 @@ function Payments({
                           )
                         }
                       >
-                        $
+                        late fee: $
                         {payment[0].lateFees
                           ? (payment[0].lateFees / 100).toFixed(2)
                           : 0}
                       </td>
                     ) : (
-                      <td>can't retry</td>
+                      <td>failed</td>
                     )}
                   </tr>
                 ) : (
