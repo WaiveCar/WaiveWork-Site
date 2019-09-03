@@ -60,20 +60,24 @@ function Payments({
                     </td>
                     <td>{payment[0].description}</td>
                     <td>${(payment[0].amount / 100).toFixed(2)}</td>
-                    <td
-                      onClick={() =>
-                        retryPayment(
-                          payment[0].id,
-                          payment[0].lateFees,
-                          currentBooking.payments,
-                        )
-                      }
-                    >
-                      $
-                      {payment[0].lateFees
-                        ? (payment[0].lateFees / 100).toFixed(2)
-                        : 0}
-                    </td>
+                    {payment.canRetry ? (
+                      <td
+                        onClick={() =>
+                          retryPayment(
+                            payment[0].id,
+                            payment[0].lateFees,
+                            currentBooking.payments,
+                          )
+                        }
+                      >
+                        $
+                        {payment[0].lateFees
+                          ? (payment[0].lateFees / 100).toFixed(2)
+                          : 0}
+                      </td>
+                    ) : (
+                      <td>can't retry</td>
+                    )}
                   </tr>
                 ) : (
                   <tr key={i}>
