@@ -24,29 +24,20 @@ export default {
       },
     ],
   },
-  Billing: {
+  Account: {
     expanded: false,
     children: [
       {
-        name: 'Payments',
-        href: '/payments',
+        name: 'Personal Info',
+        href: '/personal',
       },
       {
         name: 'My Cards',
         href: '/cards',
       },
-    ],
-  },
-  Account: {
-    expanded: false,
-    children: [
       {
         name: 'License',
         href: '/license',
-      },
-      {
-        name: 'Personal Info',
-        href: '/personal',
       },
       {
         name: 'Reset Password',
