@@ -64,12 +64,16 @@ export default [
     component: Chargers,
     requireAuth: true,
   },
+  /* The route below is needed to be added later, but the initial version of
+   * this app will not have a list of all the payments. It will only initially 
+   * have a list of payments from the current booking
   {
     name: 'Payments',
     path: '/payments',
     component: BookingPayments,
     requireAuth: true,
   },
+  */
   {
     name: 'Cards',
     path: '/cards',
