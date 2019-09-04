@@ -51,7 +51,16 @@ function Payments({
             </thead>
             <tbody>
               {currentBookingPayments.map((payment, i) =>
-                payment[payment.length - 1].status === 'failed' ? (
+                payment[0].isWarning ? (
+                  <tr key={i} className="warning-row">
+                    <td />
+                    <td>
+                      Please note that there may be discrepancies in payments
+                      from before around 8/15/2019. If you need a more accurate
+                      accounting of your payments, please contact us
+                    </td>
+                  </tr>
+                ) : payment[payment.length - 1].status === 'failed' ? (
                   <tr key={i}>
                     <td>
                       <div>
