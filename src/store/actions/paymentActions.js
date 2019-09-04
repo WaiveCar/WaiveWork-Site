@@ -28,9 +28,12 @@ export const groupCurrentBookingPayments = (payments) => async (dispatch) => {
       break;
     }
   }
+  let retryablePayments = paymentArray.filter(
+    (payment) => payment[payment.length - 1].canRetry,
+  );
   return dispatch({
     type: 'UPDATE_PAYMENTS',
-    payload: { payments: paymentArray },
+    payload: { payments: paymentArray, retryablePayments },
   });
 };
 

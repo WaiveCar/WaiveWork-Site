@@ -1,5 +1,6 @@
 const initialState = {
   currentBookingPayments: [],
+  retryablePayments: [],
   cards: [],
 };
 
@@ -9,7 +10,8 @@ function paymentReducer(state = initialState, action) {
     case 'UPDATE_PAYMENTS':
       return {
         ...state,
-        currentBookingPayments: [...payload.payments],
+        currentBookingPayments: payload.payments,
+        retryablePayments: payload.retryablePayments,
       };
     case 'UPDATE_CARDS':
       return {

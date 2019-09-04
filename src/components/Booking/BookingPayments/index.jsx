@@ -69,7 +69,7 @@ function Payments({
                     </td>
                     <td>{payment[0].description}</td>
                     <td>${(payment[0].amount / 100).toFixed(2)}</td>
-                    {payment[0].canRetry ? (
+                    {payment[payment.length - 1].canRetry ? (
                       <td
                         onClick={() =>
                           retryPayment(
