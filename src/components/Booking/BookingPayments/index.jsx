@@ -53,7 +53,7 @@ function Payments({
               {currentBookingPayments.map((payment, i) =>
                 payment[0].isWarning ? (
                   <tr key={i} className="warning-row">
-                    <td colSpan={'4'}>
+                    <td colSpan={'5'}>
                       Please note that there may be discrepancies in payments
                       from before around 8/15/2019. If you need a more accurate
                       accounting of your payments or have any questions, please
@@ -86,6 +86,22 @@ function Payments({
                       </td>
                     ) : (
                       <td>failed</td>
+                    )}
+                    {payment[payment.length - 1].canRetry && (
+                      <td>
+                        <button
+                          className="btn btn-outline-primary"
+                          onClick={() =>
+                            retryPayment(
+                              payment[0].id,
+                              payment[0].lateFees,
+                              currentBooking.payments,
+                            )
+                          }
+                        >
+                          retry
+                        </button>
+                      </td>
                     )}
                   </tr>
                 ) : (
