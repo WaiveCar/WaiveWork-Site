@@ -53,7 +53,7 @@ function Payments({
               {currentBookingPayments.map((payment, i) =>
                 payment[0].isWarning ? (
                   <tr key={i} className="warning-row">
-                    <td colspan={'3'}>
+                    <td colSpan={'4'}>
                       Please note that there may be discrepancies in payments
                       from before around 8/15/2019. If you need a more accurate
                       accounting of your payments or have any questions, please
