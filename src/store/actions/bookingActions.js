@@ -47,33 +47,38 @@ export const getBookingStats = (booking, carHistory) => (dispatch) => {
 };
 
 export const fetchBookingInfo = (user) => async (dispatch) => {
-  // This is done instead of fetching by id because this api call already allows inclusion of WaiveworkPayment and details
-  let bookingResponse = await axios.get(
-    `/bookings?userId=${user.id}&order=id,desc&limit=1&status=reserved,started,ended&details=true&includeWaiveworkPayment=true&includeLateFees=true`,
-  );
-  let currentBooking = bookingResponse.data[0];
-  let { car } = currentBooking;
-  currentBooking.stats = getBookingStats(currentBooking);
-  dispatch(updateBooking(currentBooking));
-  dispatch(updateCar(car));
-  dispatch(getCarHistory(car.id, currentBooking));
-  dispatch(groupCurrentBookingPayments(bookingResponse.data[0].payments));
-  if (car && car.registrationFileId) {
-    let registrationResponse = await axios.get(
-      `/files/${car.registrationFileId}`,
+  try {
+    // This is done instead of fetching by id because this api call already allows inclusion of WaiveworkPayment and details
+    let bookingResponse = await axios.get(
+      `/bookings?userId=${user.id}&order=id,desc&limit=1&status=reserved,started,ended&details=true&includeWaiveworkPayment=true&includeLateFees=true`,
     );
-    dispatch({
-      type: 'UPDATE_REGISTRATION',
-      payload: { registrationFile: registrationResponse.data },
-    });
-  }
-  if (car && car.inspectionFileId) {
-    let inspectionResponse = await axios.get(`/files/${car.inspectionFileId}`);
-    dispatch({
-      type: 'UPDATE_INSPECTION',
-      payload: { inspectionFile: inspectionResponse.data },
-    });
-  }
+    let currentBooking = bookingResponse.data[0];
+    let { car } = currentBooking;
+    currentBooking.stats = getBookingStats(currentBooking);
+    dispatch(updateBooking(currentBooking));
+    dispatch(updateCar(car));
+    dispatch(getCarHistory(car.id, currentBooking));
+    dispatch(groupCurrentBookingPayments(bookingResponse.data[0].payments));
+    // Keep the request of these two types of requests at the bottom of this function so the at previous parts don't fail
+    if (car && car.registrationFileId) {
+      let registrationResponse = await axios.get(
+        `/files/${car.registrationFileId}`,
+      );
+      dispatch({
+        type: 'UPDATE_REGISTRATION',
+        payload: { registrationFile: registrationResponse.data },
+      });
+    }
+    if (car && car.inspectionFileId) {
+      let inspectionResponse = await axios.get(
+        `/files/${car.inspectionFileId}`,
+      );
+      dispatch({
+        type: 'UPDATE_INSPECTION',
+        payload: { inspectionFile: inspectionResponse.data },
+      });
+    }
+  } catch (e) {}
 };
 
 export const updateBooking = (booking) => (dispatch) => {

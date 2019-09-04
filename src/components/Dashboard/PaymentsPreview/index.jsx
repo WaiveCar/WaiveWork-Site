@@ -1,6 +1,9 @@
 import React from 'react';
 import moment from 'moment';
-import { advancePayment } from '../../../store/actions/paymentActions';
+import {
+  advancePayment,
+  retryPayment,
+} from '../../../store/actions/paymentActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -8,6 +11,7 @@ function PaymentsPreview({
   currentBooking,
   advancePayment,
   userResourcesLoaded,
+  retryablePayments,
 }) {
   if (currentBooking && currentBooking.waiveworkPayment) {
     let nextPaymentDate = moment
@@ -23,7 +27,31 @@ function PaymentsPreview({
         <div className="row">
           Next payment date: {nextPaymentDate} - {nextPaymentFromNow} days
         </div>
-        <div>
+        {retryablePayments.length && (
+          <table className="payments-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {retryablePayments.map((payment, i) => (
+                <div className="row">
+                  <div>{payment[0].date}</div>
+                  <div>{payment[0].description}</div>
+                  {payment[0].lateFees && (
+                    <div>late fees: {payment[0].lateFees}</div>
+                  )}
+                  <button className="btn btn-outline-primary">retry</button>
+                </div>
+              ))}
+            </tbody>
+          </table>
+        )}
+        <div className="row">
           <button
             className="btn btn-outline-primary"
             onClick={() => advancePayment(currentBooking)}
@@ -55,7 +83,7 @@ function mapStateToProps({ bookingReducer, paymentReducer, userReducer }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ advancePayment }, dispatch);
+  return bindActionCreators({ advancePayment, retryPayment }, dispatch);
 }
 
 export default connect(
