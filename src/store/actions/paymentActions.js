@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { showSnackbar } from './snackbarActions';
 import { updateBooking, getBookingStats } from './bookingActions';
+import moment from 'moment';
 
 export const groupCurrentBookingPayments = (payments) => async (dispatch) => {
   const table = {};
@@ -20,6 +21,13 @@ export const groupCurrentBookingPayments = (payments) => async (dispatch) => {
   let paymentArray = Object.values(table)
     .map((paymentGroup) => paymentGroup)
     .reverse();
+  let warningRow = [{ isWarning: true }];
+  for (let i = 0; i < paymentArray.length; i++) {
+    if (moment(paymentArray[i][0].createdAt).isBefore('2019-08-15')) {
+      paymentArray.splice(i, 0, warningRow);
+      break;
+    }
+  }
   return dispatch({
     type: 'UPDATE_PAYMENTS',
     payload: { payments: paymentArray },
