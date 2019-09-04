@@ -11,6 +11,7 @@ function PaymentsPreview({
   currentBooking,
   advancePayment,
   userResourcesLoaded,
+  retryPayment,
   retryablePayments,
 }) {
   if (currentBooking && currentBooking.waiveworkPayment) {
@@ -34,19 +35,35 @@ function PaymentsPreview({
                 <th>Date</th>
                 <th>Description</th>
                 <th>Amount</th>
-                <th>Status</th>
+                <th>Late Fees</th>
               </tr>
             </thead>
             <tbody>
               {retryablePayments.map((payment, i) => (
-                <div className="row">
-                  <div>{payment[0].date}</div>
-                  <div>{payment[0].description}</div>
-                  {payment[0].lateFees && (
-                    <div>late fees: {payment[0].lateFees}</div>
-                  )}
-                  <button className="btn btn-outline-primary">retry</button>
-                </div>
+                <tr key={i}>
+                  <td>{moment(payment[0].createdAt).format('MM/DD/YYYY')}</td>
+                  <td>{payment[0].description}</td>
+                  <td>{(payment[0].amount / 100).toFixed(2)}</td>
+                  <td>
+                    {payment[0].lateFees
+                      ? `late fees: ${(payment[0].lateFees / 100).toFixed(2)}`
+                      : 0}
+                  </td>
+                  <td>
+                    <button
+                      className="btn btn-outline-primary"
+                      onClick={() =>
+                        retryPayment(
+                          payment[0].id,
+                          payment[0].lateFees,
+                          currentBooking.payments,
+                        )
+                      }
+                    >
+                      retry
+                    </button>
+                  </td>
+                </tr>
               ))}
             </tbody>
           </table>

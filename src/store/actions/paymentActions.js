@@ -63,9 +63,6 @@ export const retryPayment = (paymentId, lateFees, allPayments) => async (
       groupCurrentBookingPayments([...allPayments, response.data]),
     );
   } catch (e) {
-    dispatch(
-      groupCurrentBookingPayments([...allPayments, e.response.data.data]),
-    );
     return dispatch(
       showSnackbar(e.response ? e.response.data.message : e, 'error'),
     );
