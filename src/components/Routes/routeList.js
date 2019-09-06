@@ -8,7 +8,7 @@ import Chargers from '../Chargers';
 import Booking from '../Booking';
 import BookingPayments from '../Booking/BookingPayments';
 import Cards from '../Cards';
-import Contact from './contact';
+import Contact from '../Contact';
 
 export default [
   {
