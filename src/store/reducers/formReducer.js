@@ -13,7 +13,7 @@ const initialState = {
   paymentForm: { ...paymentFormTemplate },
   paymentFormFields: paymentForm,
   personalForm: { ...personalFormTemplate },
-  personalFormFormFields: personalForm,
+  personalFormFields: personalForm,
 };
 
 function formReducer(state = initialState, action) {

@@ -1,22 +1,17 @@
 import React from 'react';
-import {
-  addCard,
-  deleteCard,
-  selectCurrentlyUsedCard,
-} from '../../store/actions/paymentActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Form from '../Form';
 
-function Personal({ paymentFormFields, user }) {
+function Personal({ personalFormFields, user }) {
   return (
     <div className="container">
       <Form
-        fields={paymentFormFields}
+        fields={personalFormFields}
         title={'Add Card'}
-        formName={'paymentForm'}
-        onSubmit={(form) => addCard(form)}
-        submitName={'Add'}
+        formName={'personalForm'}
+        onSubmit={(form) => console.log(form)}
+        submitName={'Update'}
         formWidth={'60%'}
       />
     </div>
