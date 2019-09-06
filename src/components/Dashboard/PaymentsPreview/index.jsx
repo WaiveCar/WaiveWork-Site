@@ -28,7 +28,7 @@ function PaymentsPreview({
         <div className="row">
           Next payment date: {nextPaymentDate} - {nextPaymentFromNow} days
         </div>
-        {retryablePayments.length && (
+        {retryablePayments.length ? (
           <table className="payments-table">
             <thead>
               <tr>
@@ -67,6 +67,8 @@ function PaymentsPreview({
               ))}
             </tbody>
           </table>
+        ) : (
+          <div />
         )}
         <div className="row">
           <button
