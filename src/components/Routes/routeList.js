@@ -8,6 +8,7 @@ import Chargers from '../Chargers';
 import Booking from '../Booking';
 import BookingPayments from '../Booking/BookingPayments';
 import Cards from '../Cards';
+import Contact from './contact';
 
 export default [
   {
@@ -79,6 +80,12 @@ export default [
     path: '/cards',
     component: Cards,
     requireAuth: true,
+  },
+  {
+    name: 'Contact',
+    path: '/contact',
+    component: Contact,
+    requireAuth: false,
   },
   // This must remain the last in this list
   {
