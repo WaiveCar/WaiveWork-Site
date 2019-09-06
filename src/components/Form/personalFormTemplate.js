@@ -1,6 +1,6 @@
 export default {
   firstName: '',
   lastName: '',
-  phoneNumber: '',
+  phone: '',
   email: '',
 };

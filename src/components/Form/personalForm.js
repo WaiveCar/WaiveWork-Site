@@ -13,7 +13,7 @@ export default [
   },
   {
     name: 'phone number',
-    formField: 'phoneNumber',
+    formField: 'phone',
     type: 'text',
     width: 8,
   },

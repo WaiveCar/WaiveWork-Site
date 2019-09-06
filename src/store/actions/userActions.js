@@ -4,6 +4,7 @@ import { fetchChargers } from './chargerActions';
 import { showSnackbar } from './snackbarActions';
 import { fetchBookingInfo } from './bookingActions';
 import { fetchCards } from './paymentActions';
+import { updateForm } from './formActions';
 
 export const verifyAuth = (history, pathName) => async (dispatch) => {
   let token = localStorage.getItem('token');
@@ -85,6 +86,9 @@ export const fetchUserInfo = () => async (dispatch) => {
   try {
     let userResponse = await axios.get('/users/me');
     let user = userResponse.data;
+    ['firstName', 'lastName', 'phone', 'email'].forEach((field) =>
+      dispatch(updateForm('personalForm', field, user[field])),
+    );
     try {
       let location = await new Promise((resolve, reject) => {
         navigator.geolocation
