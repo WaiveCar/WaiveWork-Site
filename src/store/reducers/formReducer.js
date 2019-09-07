@@ -5,6 +5,8 @@ import paymentForm from '../../components/Form/paymentForm';
 import paymentFormTemplate from '../../components/Form/paymentFormTemplate';
 import personalForm from '../../components/Form/personalForm';
 import personalFormTemplate from '../../components/Form/personalFormTemplate';
+import passwordForm from '../../components/Form/passwordForm';
+import passwordFormTemplate from '../../components/Form/passwordFormTemplate';
 
 const initialState = {
   authForm: { ...authFormTemplate },
@@ -14,6 +16,8 @@ const initialState = {
   paymentFormFields: paymentForm,
   personalForm: { ...personalFormTemplate },
   personalFormFields: personalForm,
+  passwordForm: { ...passwordFormTemplate },
+  passwordFormFields: passwordForm,
 };
 
 function formReducer(state = initialState, action) {
