@@ -83,9 +83,12 @@ export const updateUser = (user, form) => async (dispatch) => {
       let { data } = await axios.put(`/users/${user.id}`, form);
       user = data;
     } catch (e) {
-      dispatch(showSnackbar(e.response ? e.response.data.message : e, 'error'));
+      return dispatch(
+        showSnackbar(e.response ? e.response.data.message : e, 'error'),
+      );
     }
   }
+  dispatch(showSnackbar('User Updated', 'success'));
   return dispatch({ type: 'UPDATE_USER', payload: { user } });
 };
 
