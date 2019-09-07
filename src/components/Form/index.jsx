@@ -2,7 +2,7 @@ import React from 'react';
 import Parser from 'html-react-parser';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { updateForm } from '../../store/actions/formActions';
+import { updateForm, clearForm } from '../../store/actions/formActions';
 import { showSnackbar } from '../../store/actions/snackbarActions';
 import './form.scss';
 
@@ -19,6 +19,8 @@ function Form(props) {
     formWidth,
     title,
     body,
+    clearOnSubmit,
+    clearForm,
   } = props;
   const currentForm = props[formName];
   let missing = fields
@@ -109,15 +111,18 @@ function Form(props) {
             <button
               type="button"
               className="btn btn-outline-primary"
-              onClick={() =>
-                missing.length
-                  ? showSnackbar(
-                      `Please add the following items before continuing: ${missing.join(
-                        ', ',
-                      )}.`,
-                    )
-                  : onSubmit(currentForm)
-              }
+              onClick={() => {
+                if (missing.length) {
+                  showSnackbar(
+                    `Please add the following items before continuing: ${missing.join(
+                      ', ',
+                    )}.`,
+                  );
+                } else {
+                  onSubmit(currentForm);
+                  clearOnSubmit && clearForm(formName);
+                }
+              }}
             >
               {submitName}
             </button>
@@ -137,7 +142,7 @@ function mapStateToProps({ userReducer, paymentReducer, formReducer }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ updateForm, showSnackbar }, dispatch);
+  return bindActionCreators({ updateForm, showSnackbar, clearForm }, dispatch);
 }
 
 export default connect(

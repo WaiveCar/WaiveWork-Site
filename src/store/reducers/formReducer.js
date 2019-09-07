@@ -35,7 +35,7 @@ function formReducer(state = initialState, action) {
     case 'CLEAR_FORM':
       return {
         ...state,
-        [payload.formName]: initialState[formName],
+        [payload.formName]: initialState[payload.formName],
       };
     default:
       return state;

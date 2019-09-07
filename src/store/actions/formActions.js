@@ -3,5 +3,5 @@ export const updateForm = (formName, field, value) => (dispatch) => {
 };
 
 export const clearForm = (formName) => (dispatch) => {
-  return dipsatch({ type: 'CLEAR_FORM', payload: { formName } });
+  return dispatch({ type: 'CLEAR_FORM', payload: { formName } });
 };

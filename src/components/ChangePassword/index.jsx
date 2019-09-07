@@ -14,6 +14,7 @@ function ChangePassword({ passwordFormFields, user, updateUser }) {
         onSubmit={(form) => updateUser(user, form)}
         submitName={'Update'}
         formWidth={'60%'}
+        clearOnSubmit
       />
     </div>
   );
