@@ -40,8 +40,8 @@ export default {
         href: '/license',
       },
       {
-        name: 'Reset Password',
-        href: '/password',
+        name: 'Change Password',
+        href: '/change-password',
       },
     ],
   },

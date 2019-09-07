@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Form from '../Form';
 
-function PasswordUpdate({ passwordFormFields, user, updateUser }) {
+function ChangePassword({ passwordFormFields, user, updateUser }) {
   return (
     <div className="container">
       <Form
@@ -30,4 +30,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(PasswordUpdate);
+)(ChangePassword);
