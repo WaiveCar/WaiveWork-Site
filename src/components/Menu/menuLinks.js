@@ -36,7 +36,7 @@ export default {
         href: '/cards',
       },
       {
-        name: 'License',
+        name: 'My License',
         href: '/license',
       },
       {
