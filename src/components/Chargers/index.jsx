@@ -43,7 +43,7 @@ function Chargers({
               </div>
               <div>{charger.address}</div>
             </div>
-            {charger.expanded && (
+            {charger.expanded ? (
               <div>
                 <div className="row justify-content-around">
                   {charger.portList.map((port, i) => (
@@ -53,6 +53,8 @@ function Chargers({
                   ))}
                 </div>
               </div>
+            ) : (
+              <div />
             )}
           </div>
         ))}

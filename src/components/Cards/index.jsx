@@ -60,7 +60,7 @@ function Cards({
                     >
                       select
                     </button>
-                    {card.selected && <span>selected</span>}
+                    {card.selected ? <span>selected</span> : <span />}
                   </div>
                 </td>
               </tr>

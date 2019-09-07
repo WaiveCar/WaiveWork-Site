@@ -27,7 +27,7 @@ function Form(props) {
   return (
     <div className="container form-holder">
       <div className="row justify-content-center">
-        {title && <div>{title}</div>}
+        {title ? <div>{title}</div> : <span />}
       </div>
       {body && <div className="row justify-content-center">{Parser(body)}</div>}
       <div className="row justify-content-center">
@@ -36,13 +36,15 @@ function Form(props) {
             return field.type !== 'radio' ? (
               <div className="input-row" key={i}>
                 <div className={'row row justify-content-center'}>
-                  {field.label && (
+                  {field.label ? (
                     <label
                       className="col-sm-6 col-form-label"
                       htmlFor={field.formName}
                     >
                       {field.label}
                     </label>
+                  ) : (
+                    <span />
                   )}
                   <input
                     id={field.label && field.formName}
@@ -103,7 +105,7 @@ function Form(props) {
           ) : (
             <div />
           )}
-          {onSubmit && (
+          {onSubmit ? (
             <button
               type="button"
               className="btn btn-outline-primary"
@@ -119,6 +121,8 @@ function Form(props) {
             >
               {submitName}
             </button>
+          ) : (
+            <span />
           )}
         </div>
       </div>

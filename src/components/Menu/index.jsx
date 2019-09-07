@@ -10,19 +10,23 @@ import './menu.scss';
 function Menu({ loggedIn, showMenu, menuVisible }) {
   return (
     <div>
-      {menuVisible && <ExpandedMenu />}
+      {menuVisible ? <ExpandedMenu /> : <div />}
       <div className="top-bar">
-        {loggedIn && (
+        {loggedIn ? (
           <div className="menu-button" onClick={() => showMenu()}>
             <Bars className="menu-svg" />
           </div>
+        ) : (
+          <div />
         )}
       </div>
-      {!loggedIn && (
+      {!loggedIn ? (
         <div>
           <Link to={'/login'}>login</Link>
           <Link to={'/signup'}>signup</Link>
         </div>
+      ) : (
+        <div />
       )}
     </div>
   );
