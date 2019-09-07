@@ -20,6 +20,7 @@ function Login(props) {
             onSubmit={(form) => login(form.email, form.password)}
             submitName={'login'}
             formWidth={'60%'}
+            clearOnSubmit
           />
         </div>
       ) : (

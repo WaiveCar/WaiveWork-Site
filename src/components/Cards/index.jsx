@@ -27,6 +27,7 @@ function Cards({
         onSubmit={(form) => addCard(form)}
         submitName={'Add'}
         formWidth={'60%'}
+        clearOnSubmit
       />
       <div className="row justify-content-center">
         <table className="card-list col-md-6">

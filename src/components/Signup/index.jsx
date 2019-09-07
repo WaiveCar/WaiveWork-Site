@@ -37,6 +37,7 @@ function Signup({
             submitName={signupFormPages[selectedSignupPage].submitName}
             altActionName={signupFormPages[selectedSignupPage].altActionName}
             formWidth={'60%'}
+            clearOnSubmit
           />
         </div>
       ) : (
