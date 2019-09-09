@@ -3,8 +3,9 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
 const CompressionPlugin = require('compression-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const webpack = require('webpack');
 
-module.exports = {
+const config = {
   entry: __dirname + '/src/index.js',
   output: {
     path: __dirname + '/static',
@@ -50,8 +51,10 @@ module.exports = {
       template: './src/index.html',
       filename: './index.html',
     }),
-    /*new BundleAnalyzerPlugin(),*/
+    new BundleAnalyzerPlugin(),
     new CompressionPlugin(),
+    // The line below makes webpack skip importing moment locales, though they may be needed later
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   ],
   devServer: {
     inline: true,
@@ -61,3 +64,5 @@ module.exports = {
     },
   },
 };
+
+module.exports = config;
