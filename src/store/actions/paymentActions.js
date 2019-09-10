@@ -23,7 +23,7 @@ export const groupCurrentBookingPayments = (payments) => async (dispatch) => {
     .reverse();
   let warningRow = [{ isWarning: true }];
   for (let i = 0; i < paymentArray.length; i++) {
-    if (moment(paymentArray[i][0].createdAt).isBefore('2019-08-15')) {
+    if (moment(paymentArray[i][0].createdAt).isBefore('2019-08-23')) {
       paymentArray.splice(i, 0, warningRow);
       break;
     }

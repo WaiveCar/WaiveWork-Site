@@ -55,7 +55,7 @@ function Payments({
                   <tr key={i} className="warning-row">
                     <td colSpan={'5'}>
                       Please note that there may be discrepancies in payments
-                      from before around 8/15/2019. If you need a more accurate
+                      from before around 8/23/2019. If you need a more accurate
                       accounting of your payments or have any questions, please
                       don't hesitate to contact us.
                     </td>
