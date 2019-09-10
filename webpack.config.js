@@ -51,7 +51,7 @@ const config = {
       template: './src/index.html',
       filename: './index.html',
     }),
-    new BundleAnalyzerPlugin(),
+    //new BundleAnalyzerPlugin(),
     new CompressionPlugin(),
     // The line below makes webpack skip importing moment locales, though they may be needed later
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
