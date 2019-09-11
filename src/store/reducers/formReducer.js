@@ -7,6 +7,8 @@ import personalForm from '../../components/Form/personalForm';
 import personalFormTemplate from '../../components/Form/personalFormTemplate';
 import passwordForm from '../../components/Form/passwordForm';
 import passwordFormTemplate from '../../components/Form/passwordFormTemplate';
+import licenseForm from '../../components/Form/licenseForm';
+import licenseFormTemplate from '../../components/Form/licenseFormTemplate';
 
 const initialState = {
   authForm: { ...authFormTemplate },
@@ -18,6 +20,8 @@ const initialState = {
   personalFormFields: personalForm,
   passwordForm: { ...passwordFormTemplate },
   passwordFormFields: passwordForm,
+  licenseForm: { ...licenseFormTemplate },
+  licenseFormFields: licenseForm,
 };
 
 function formReducer(state = initialState, action) {

@@ -11,6 +11,7 @@ import Cards from '../Cards';
 import Contact from '../Contact';
 import Personal from '../Personal';
 import ChangePassword from '../ChangePassword';
+import License from '../License';
 
 export default [
   {
@@ -99,6 +100,12 @@ export default [
     name: 'Change Password',
     path: '/change-password',
     component: ChangePassword,
+    requireAuth: true,
+  },
+  {
+    name: 'Update License',
+    path: '/license',
+    component: License,
     requireAuth: true,
   },
   // This must remain the last in this list

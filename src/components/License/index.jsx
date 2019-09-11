@@ -8,7 +8,7 @@ function License({ licenseFormFields, user, updateLicense }) {
   return (
     <div className="container">
       <Form
-        fields={personalFormFields}
+        fields={licenseFormFields}
         title={'Update License'}
         formName={'licenseForm'}
         onSubmit={(form) => updateLicense(form)}
