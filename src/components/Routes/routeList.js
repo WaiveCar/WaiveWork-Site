@@ -88,7 +88,7 @@ export default [
     name: 'Contact',
     path: '/contact',
     component: Contact,
-    requireAuth: false,
+    requireAuth: true,
   },
   {
     name: 'Personal',

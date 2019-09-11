@@ -21,6 +21,7 @@ function Chargers({
 }) {
   return user && user.currentLocation ? (
     <div className="container">
+      <h3>Chargers</h3>
       <div className="charger-map">
         <MapHolder
           initialCenter={{
