@@ -4,14 +4,14 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Form from '../Form';
 
-function License({ licenseFormFields, user, updateLicense }) {
+function License({ licenseFormFields, license, updateLicense }) {
   return (
     <div className="container">
       <Form
         fields={licenseFormFields}
         title={'Update License'}
         formName={'licenseForm'}
-        onSubmit={(form) => updateLicense(form)}
+        onSubmit={(form) => updateLicense(license, form)}
         submitName={'Update'}
         formWidth={'60%'}
       />
@@ -24,7 +24,7 @@ function mapStateToProps({ userReducer, formReducer }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({}, dispatch);
+  return bindActionCreators({ updateLicense }, dispatch);
 }
 
 export default connect(

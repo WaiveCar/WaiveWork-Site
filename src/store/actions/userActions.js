@@ -156,3 +156,17 @@ export const fetchUserInfo = () => async (dispatch) => {
     console.log('error fetching me', e.response);
   }
 };
+
+export const updateLicense = (license, form) => async (dispatch) => {
+  try {
+    let { data } = await axios.put(`/licenses/${license.id}`, form);
+    dispatch({
+      type: 'UPDATE_LICENSE',
+      payload: { license: data },
+    });
+  } catch (e) {
+    return dispatch(
+      showSnackbar(e.response ? e.response.data.message : e, 'error'),
+    );
+  }
+};
