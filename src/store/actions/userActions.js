@@ -127,8 +127,24 @@ export const fetchUserInfo = () => async (dispatch) => {
       type: 'UPDATE_INSURANCE',
       payload: { insuranceFiles: insuranceResponse.data },
     });
+    let licenseResponse = await axios.get(`/licenses?userId=${user.id}`);
+    if (licenseResponse.data.length) {
+      [
+        'firstName',
+        'lastName',
+        'state',
+        'number',
+        'birthDate',
+        'expirationDate',
+      ].forEach((field) =>
+        dispatch(
+          updateForm('licenseForm', field, licenseResponse.data[0][field]),
+        ),
+      );
+    }
     return dispatch({ type: 'TOGGLE_USER_RESOURCES_LOADED' });
   } catch (e) {
+    console.log('e', e);
     console.log('error fetching me', e.response);
   }
 };

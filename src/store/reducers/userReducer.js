@@ -5,6 +5,7 @@ const initialState = {
   userResourcesLoaded: false,
   user: null,
   insuranceFile: null,
+  license: null,
 };
 
 function userReducer(state = initialState, action) {
