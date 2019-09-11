@@ -141,6 +141,10 @@ export const fetchUserInfo = () => async (dispatch) => {
           updateForm('licenseForm', field, licenseResponse.data[0][field]),
         ),
       );
+      dispatch({
+        type: 'UPDATE_LICENSE',
+        payload: { license: licenseResponse.data[0] },
+      });
     }
     return dispatch({ type: 'TOGGLE_USER_RESOURCES_LOADED' });
   } catch (e) {

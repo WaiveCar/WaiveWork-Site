@@ -46,6 +46,11 @@ function userReducer(state = initialState, action) {
         ...state,
         userResourcesLoaded: !state.userResourcesLoaded,
       };
+    case 'UPDATE_LICENSE':
+      return {
+        ...state,
+        license: payload.license,
+      };
     default:
       return state;
   }
