@@ -50,6 +50,7 @@ export const fetchChargers = (currentLocation) => async (dispatch) => {
 
 export const startCharger = (carId, chargerId) => async (dispatch) => {
   try {
+    /*
     if (process.env.NODE_ENV !== 'production') {
       return dispatch(
         showSnackbar(
@@ -58,10 +59,17 @@ export const startCharger = (carId, chargerId) => async (dispatch) => {
         ),
       );
     }
-    let response = await axios.put(`/chargers/start/${carId}/${chargerId}`);
+    */
+    let response = await axios.put(`/chargers/start/${carId}/${chargerId}`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return dispatch(showSnackbar('Charger Started!', 'success'));
   } catch (e) {
+    console.log('e', e);
     return dispatch(
-      showSnackbar(e.response ? e.response.data.message : e.message, 'error'),
+      showSnackbar(e.response ? e.response.data.message : e, 'error'),
     );
   }
 };
