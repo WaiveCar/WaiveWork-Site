@@ -50,6 +50,7 @@ export const fetchChargers = (currentLocation) => async (dispatch) => {
 
 export const startCharger = (carId, chargerId) => async (dispatch) => {
   try {
+    /*
     if (process.env.NODE_ENV !== 'production') {
       return dispatch(
         showSnackbar(
@@ -58,6 +59,7 @@ export const startCharger = (carId, chargerId) => async (dispatch) => {
         ),
       );
     }
+    */
     let response = await axios.put(`/chargers/start/${carId}/${chargerId}`, {});
     return dispatch(
       showSnackbar(
