@@ -13,7 +13,8 @@ function userReducer(state = initialState, action) {
   switch (action.type) {
     case 'TOGGLE_LOGIN':
       return {
-        ...state,
+        ...initialState,
+        authChecked: true,
         loggedIn: payload.loggedIn,
       };
     case 'TOGGLE_AUTH_CHECKED':

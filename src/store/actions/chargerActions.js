@@ -65,9 +65,13 @@ export const startCharger = (carId, chargerId) => async (dispatch) => {
         'Content-Type': 'application/json',
       },
     });
-    return dispatch(showSnackbar('Charger Started!', 'success'));
+    return dispatch(
+      showSnackbar(
+        'Charger Started! Please wait a few seconds for the charger to respond',
+        'success',
+      ),
+    );
   } catch (e) {
-    console.log('e', e);
     return dispatch(
       showSnackbar(e.response ? e.response.data.message : e, 'error'),
     );

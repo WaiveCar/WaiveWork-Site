@@ -54,6 +54,7 @@ export const login = (email, password) => async (dispatch) => {
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem('token');
+  // The state for cars and other items also needs to be modified at this time, not just user state
   dispatch({ type: 'TOGGLE_LOGIN', payload: { loggedIn: false } });
   return dispatch({
     type: 'TOGGLE_AUTH_CHECKED',
