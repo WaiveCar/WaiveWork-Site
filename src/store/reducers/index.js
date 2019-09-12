@@ -8,7 +8,7 @@ import bookingReducer from './bookingReducer';
 import paymentReducer from './paymentReducer';
 import formReducer from './formReducer';
 
-export default combineReducers({
+const appReducer = combineReducers({
   userReducer,
   snackbarReducer,
   menuReducer,
@@ -18,3 +18,10 @@ export default combineReducers({
   paymentReducer,
   formReducer,
 });
+
+export default function(state, action) {
+  if (action.type === 'RESET_STORE') {
+    state = undefined;
+  }
+  return appReducer(state, action);
+}
