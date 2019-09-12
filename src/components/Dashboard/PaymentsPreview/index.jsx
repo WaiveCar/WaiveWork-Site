@@ -28,6 +28,7 @@ function PaymentsPreview({
         <div className="row">
           Next payment date: {nextPaymentDate} - {nextPaymentFromNow} days
         </div>
+        <h4>Missed Payments:</h4>
         {retryablePayments.length ? (
           <table className="payments-table">
             <thead>
