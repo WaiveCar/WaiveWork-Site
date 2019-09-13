@@ -139,7 +139,10 @@ export const fetchUserInfo = () => async (dispatch) => {
         'birthDate',
         'expirationDate',
       ].forEach((field) => {
-        if (['birthDate', 'expirationDate'].includes(field)) {
+        if (
+          ['birthDate', 'expirationDate'].includes(field) &&
+          licenseResponse.data[0][field]
+        ) {
           licenseResponse.data[0][field] = licenseResponse.data[0][field].split(
             'T',
           )[0];
@@ -155,6 +158,7 @@ export const fetchUserInfo = () => async (dispatch) => {
     }
     return dispatch({ type: 'TOGGLE_USER_RESOURCES_LOADED' });
   } catch (e) {
+    console.log('e', e);
     console.log('error fetching me', e.response);
   }
 };
