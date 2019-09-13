@@ -7,7 +7,7 @@ import Bars from '../../svg/bars.svg';
 import ExpandedMenu from './ExpandedMenu';
 import './menu.scss';
 
-function Menu({ loggedIn, showMenu, menuVisible }) {
+function Menu({ loggedIn, showMenu, menuVisible, authChecked }) {
   return (
     <div>
       {menuVisible ? <ExpandedMenu /> : <div />}
@@ -20,7 +20,7 @@ function Menu({ loggedIn, showMenu, menuVisible }) {
           <div />
         )}
       </div>
-      {!loggedIn ? (
+      {!loggedIn && authChecked ? (
         <div>
           <Link to={'/login'}>login</Link>
           <Link to={'/signup'}>signup</Link>
