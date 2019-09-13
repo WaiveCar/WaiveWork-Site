@@ -4,40 +4,23 @@ import { bindActionCreators } from 'redux';
 import { hideSnackbar } from '../../store/actions/snackbarActions';
 import './snackbar.scss';
 
-class Snackbar extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  componentDidUpdate(prevProps) {
-    const { hideSnackbar, showSnackbar, message, color } = this.props;
-  }
-
-  render() {
-    const { showSnackbar, message, color, hideSnackbar } = this.props;
-    return (
-      showSnackbar && (
-        <div
-          className="outer-snackbar"
-          onClick={() => {
-            hideSnackbar();
-          }}
-        >
-          <div className="row justify-content-center">
-            <div className="bottom">
-              <div
-                className="inner-snackbar"
-                style={{ backgroundColor: color }}
-              >
-                {message}
-              </div>
-            </div>
+const Snackbar = ({ showSnackbar, message, color, hideSnackbar }) =>
+  showSnackbar && (
+    <div
+      className="outer-snackbar"
+      onClick={() => {
+        hideSnackbar();
+      }}
+    >
+      <div className="row justify-content-center">
+        <div className="bottom">
+          <div className="inner-snackbar" style={{ backgroundColor: color }}>
+            {message}
           </div>
         </div>
-      )
-    );
-  }
-}
+      </div>
+    </div>
+  );
 
 function mapStateToProps({ snackbarReducer }) {
   return {
