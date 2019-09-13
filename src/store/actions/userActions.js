@@ -85,7 +85,6 @@ export const updateUser = (user, form) => async (dispatch) => {
     dispatch(
       showModal(
         'Are you sure you want to update your license information?',
-        'confirm',
         async () => {
           try {
             let { data } = await axios.put(`/users/${user.id}`, form);
@@ -181,7 +180,6 @@ export const updateLicense = (license, form) => async (dispatch) => {
   dispatch(
     showModal(
       'Are you sure you want to update your license information?',
-      'confirm',
       async () => {
         try {
           let { data } = await axios.put(`/licenses/${license.id}`, form);

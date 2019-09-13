@@ -13,8 +13,8 @@ function modalReducer(state = initialState, action) {
         ...state,
         showModal: true,
         message: payload.message,
-        confirmButton: payload.confirmButton,
         confirmFunc: payload.confirmFunc,
+        confirmButton: payload.confirmButton,
       };
     case 'HIDE_MODAL':
       return {

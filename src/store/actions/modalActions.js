@@ -1,4 +1,4 @@
-export const showModal = (message, confirmButton, confirmFunc) => (
+export const showModal = (message, confirmFunc, confirmButton = 'Confirm') => (
   dispatch,
 ) => {
   dispatch({
