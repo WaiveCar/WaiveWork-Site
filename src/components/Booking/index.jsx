@@ -88,8 +88,10 @@ function Booking({
         <div>
           {!userResourcesLoaded ? (
             <div>loading</div>
+          ) : !currentBooking.waiveworkPayment ? (
+            <div>You are in a booking, but it is not a WaiveWork booking</div>
           ) : (
-            <div>not currently in booking</div>
+            <div>You are not currently in booking</div>
           )}
         </div>
       </div>
