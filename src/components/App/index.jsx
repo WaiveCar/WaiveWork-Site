@@ -30,13 +30,17 @@ class App extends Component {
   }
 
   render() {
-    const { authChecked, user } = this.props;
+    const { authChecked, user, userResourcesLoaded } = this.props;
     return (
       <div>
         <div>
           <div>
             <Menu />
-            {authChecked ? <Routes /> : <div>Loading...</div>}
+            {authChecked && userResourcesLoaded ? (
+              <Routes />
+            ) : (
+              <div>Loading...</div>
+            )}
             <Snackbar />
           </div>
           {user && (
