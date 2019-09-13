@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import Menu from '../Menu';
 import Routes from '../Routes';
+import Modal from '../Modal';
 import Snackbar from '../Snackbar';
 import Intercom from 'react-intercom';
 import { connect } from 'react-redux';
@@ -35,6 +36,7 @@ class App extends Component {
       <div>
         <div>
           <div>
+            <Modal />
             <Menu />
             {(authChecked && userResourcesLoaded) ||
             (authChecked && !loggedIn) ? (

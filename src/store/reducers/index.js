@@ -7,6 +7,7 @@ import chargerReducer from './chargerReducer';
 import bookingReducer from './bookingReducer';
 import paymentReducer from './paymentReducer';
 import formReducer from './formReducer';
+import modalReducer from './modalReducer';
 
 const appReducer = combineReducers({
   userReducer,
@@ -17,6 +18,7 @@ const appReducer = combineReducers({
   bookingReducer,
   paymentReducer,
   formReducer,
+  modalReducer,
 });
 
 export default function(state, action) {
