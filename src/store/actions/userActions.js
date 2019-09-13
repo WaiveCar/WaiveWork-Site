@@ -5,6 +5,7 @@ import { showSnackbar } from './snackbarActions';
 import { fetchBookingInfo } from './bookingActions';
 import { fetchCards } from './paymentActions';
 import { updateForm } from './formActions';
+import { showModal } from './modalActions';
 
 export const verifyAuth = (history, pathName) => async (dispatch) => {
   let token = localStorage.getItem('token');
@@ -164,21 +165,28 @@ export const fetchUserInfo = () => async (dispatch) => {
     }
     return dispatch({ type: 'TOGGLE_USER_RESOURCES_LOADED' });
   } catch (e) {
-    console.log('e', e);
-    console.log('error fetching me', e.response);
+    console.log('error fetching me', e.response ? e.response : e);
   }
 };
 
 export const updateLicense = (license, form) => async (dispatch) => {
-  try {
-    let { data } = await axios.put(`/licenses/${license.id}`, form);
-    dispatch({
-      type: 'UPDATE_LICENSE',
-      payload: { license: data },
-    });
-  } catch (e) {
-    return dispatch(
-      showSnackbar(e.response ? e.response.data.message : e, 'error'),
-    );
-  }
+  dispatch(
+    showModal(
+      'Are you sure you want to update your license information?',
+      'confirm',
+      async () => {
+        try {
+          let { data } = await axios.put(`/licenses/${license.id}`, form);
+          dispatch({
+            type: 'UPDATE_LICENSE',
+            payload: { license: data },
+          });
+        } catch (e) {
+          return dispatch(
+            showSnackbar(e.response ? e.response.data.message : e, 'error'),
+          );
+        }
+      },
+    ),
+  );
 };

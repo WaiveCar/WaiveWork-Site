@@ -1,9 +1,12 @@
-export const showModal = (message, type) => (dispatch) => {
+export const showModal = (message, confirmButton, confirmFunc) => (
+  dispatch,
+) => {
   dispatch({
     type: 'SHOW_MODAL',
     payload: {
+      confirmFunc: async () => (confirmFunc(), dispatch(hideModal())),
       message,
-      type,
+      confirmButton,
     },
   });
 };
