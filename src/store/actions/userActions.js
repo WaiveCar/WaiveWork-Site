@@ -148,7 +148,13 @@ export const fetchUserInfo = () => async (dispatch) => {
           )[0];
         }
         dispatch(
-          updateForm('licenseForm', field, licenseResponse.data[0][field]),
+          updateForm(
+            'licenseForm',
+            field,
+            licenseResponse.data[0][field]
+              ? licenseResponse.data[0][field]
+              : '',
+          ),
         );
       });
       dispatch({
