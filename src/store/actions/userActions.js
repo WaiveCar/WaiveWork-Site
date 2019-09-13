@@ -82,15 +82,23 @@ export const signup = (form, history) => async (dispatch) => {
 
 export const updateUser = (user, form) => async (dispatch) => {
   if (form) {
-    try {
-      let { data } = await axios.put(`/users/${user.id}`, form);
-      user = data;
-      dispatch(showSnackbar('User Updated', 'success'));
-    } catch (e) {
-      return dispatch(
-        showSnackbar(e.response ? e.response.data.message : e, 'error'),
-      );
-    }
+    dispatch(
+      showModal(
+        'Are you sure you want to update your license information?',
+        'confirm',
+        async () => {
+          try {
+            let { data } = await axios.put(`/users/${user.id}`, form);
+            user = data;
+            dispatch(showSnackbar('User Updated', 'success'));
+          } catch (e) {
+            return dispatch(
+              showSnackbar(e.response ? e.response.data.message : e, 'error'),
+            );
+          }
+        },
+      ),
+    );
   }
   return dispatch({ type: 'UPDATE_USER', payload: { user } });
 };

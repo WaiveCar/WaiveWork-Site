@@ -4,13 +4,19 @@ import { bindActionCreators } from 'redux';
 import { hideModal } from '../../store/actions/modalActions';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-const ModalHolder = ({ showModal, message, color, hideModal, confirmFunc }) => (
+const ModalHolder = ({
+  showModal,
+  message,
+  confirmButton,
+  hideModal,
+  confirmFunc,
+}) => (
   <Modal isOpen={showModal}>
     <ModalHeader>Modal title</ModalHeader>
     <ModalBody>{message}</ModalBody>
     <ModalFooter>
       <Button color="primary" onClick={() => confirmFunc()}>
-        Do Something
+        {confirmButton}
       </Button>{' '}
       <Button color="secondary" onClick={() => hideModal()}>
         Cancel
