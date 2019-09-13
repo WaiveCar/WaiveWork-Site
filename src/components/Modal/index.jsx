@@ -12,7 +12,7 @@ const ModalHolder = ({
   confirmFunc,
 }) => (
   <Modal isOpen={showModal}>
-    <ModalHeader>Modal title</ModalHeader>
+    <ModalHeader />
     <ModalBody>{message}</ModalBody>
     <ModalFooter>
       <Button color="primary" onClick={() => confirmFunc()}>
