@@ -47,7 +47,7 @@ function PaymentsPreview({
                   <td>{(payment[0].amount / 100).toFixed(2)}</td>
                   <td>
                     {payment[0].lateFees
-                      ? `late fees: ${(payment[0].lateFees / 100).toFixed(2)}`
+                      ? `${(payment[0].lateFees / 100).toFixed(2)}`
                       : 0}
                   </td>
                   <td>

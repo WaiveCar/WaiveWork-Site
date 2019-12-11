@@ -28,6 +28,7 @@ export const groupCurrentBookingPayments = (payments) => async (dispatch) => {
       break;
     }
   }
+  console.log('payment array: ', paymentArray);
   let retryablePayments = paymentArray.filter(
     (payment) => payment[payment.length - 1].canRetry,
   );
