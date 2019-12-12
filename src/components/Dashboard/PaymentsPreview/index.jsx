@@ -27,12 +27,12 @@ function PaymentsPreview({
     return (
       <div className="card booking-card mt-4">
         <div className="card-body">
-          <div className="row">
+          <h5 className="card-title">Payment info</h5>
+          <div>
             Next payment date: {nextPaymentDate} - {nextPaymentFromNow} days
           </div>
           {retryablePayments.length ? (
             <div>
-              <h4>Missed Payments:</h4>
               <table className="table table-sm payment-table">
                 <thead>
                   <tr>

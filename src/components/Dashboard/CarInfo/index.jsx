@@ -7,7 +7,7 @@ function CarInfo({ car, carCommand }) {
   return car ? (
     <div className="card booking-card mt-4">
       <div className="card-body">
-        <h5 className="card-title">Car Controls</h5>
+        <h5 className="card-title">Car Info</h5>
         <div className="row d-flex justify-content-center">
           <div className="btn-group" role="group">
             <button
