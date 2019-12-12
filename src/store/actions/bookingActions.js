@@ -55,16 +55,18 @@ export const fetchBookingInfo = (user) => async (dispatch) => {
     let currentBooking = bookingResponse.data[0];
     let { car } = currentBooking;
     currentBooking.stats = getBookingStats(currentBooking);
-    dispatch(updateBooking(currentBooking));
-    dispatch(updateCar(car));
-    dispatch(getCarHistory(car.id, currentBooking));
-    dispatch(groupCurrentBookingPayments(bookingResponse.data[0].payments));
+    await dispatch(updateBooking(currentBooking));
+    await dispatch(updateCar(car));
+    await dispatch(getCarHistory(car.id, currentBooking));
+    await dispatch(
+      groupCurrentBookingPayments(bookingResponse.data[0].payments),
+    );
     // Keep the request of these two types of requests at the bottom of this function so the at previous parts don't fail
     if (car && car.registrationFileId) {
       let registrationResponse = await axios.get(
         `/files/${car.registrationFileId}`,
       );
-      dispatch({
+      await dispatch({
         type: 'UPDATE_REGISTRATION',
         payload: { registrationFile: registrationResponse.data },
       });
@@ -73,7 +75,7 @@ export const fetchBookingInfo = (user) => async (dispatch) => {
       let inspectionResponse = await axios.get(
         `/files/${car.inspectionFileId}`,
       );
-      dispatch({
+      await dispatch({
         type: 'UPDATE_INSPECTION',
         payload: { inspectionFile: inspectionResponse.data },
       });

@@ -101,7 +101,7 @@ export const addCard = (user, form) => async (dispatch) => {
       userId: user.id,
       card: form,
     });
-    dispatch({ type: 'ADD_CARD', payload: { card: data } });
+    await dispatch({ type: 'ADD_CARD', payload: { card: data } });
     return dispatch({ type: 'SELECT_CARD', payload: { card: data } });
   } catch (e) {
     return dispatch(

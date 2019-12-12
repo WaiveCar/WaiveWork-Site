@@ -42,7 +42,7 @@ export const fetchChargers = (currentLocation) => async (dispatch) => {
     return charger;
   });
   chargers.sort((a, b) => a.distance - b.distance);
-  dispatch({
+  return dispatch({
     type: 'UPDATE_CHARGERS',
     payload: { chargers },
   });

@@ -1,5 +1,5 @@
 export const showSnackbar = (message, type) => (dispatch) => {
-  dispatch({
+  return dispatch({
     type: 'SHOW_SNACKBAR',
     payload: {
       message,

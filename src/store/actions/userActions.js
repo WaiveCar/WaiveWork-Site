@@ -14,7 +14,7 @@ export const verifyAuth = (history, pathName) => async (dispatch) => {
       let repsponse = await axios.get('/auth/validate', {
         headers: { Authorization: token },
       });
-      dispatch({ type: 'TOGGLE_LOGIN', payload: { loggedIn: true } });
+      await dispatch({ type: 'TOGGLE_LOGIN', payload: { loggedIn: true } });
       history.push(pathName);
       axios.defaults.headers.common['Authorization'] = token;
       return dispatch({
