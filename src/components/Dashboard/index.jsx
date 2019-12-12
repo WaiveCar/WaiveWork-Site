@@ -6,10 +6,12 @@ import PaymentsPreview from './PaymentsPreview';
 function Dashboard() {
   return (
     <div className="container">
-      <h3>Dashboard</h3>
-      <CarInfo />
-      <ChargerInfo />
-      <PaymentsPreview />
+      <h1>Dashboard</h1>
+      <div className="row d-flex justify-content-between">
+        <ChargerInfo />
+        <CarInfo />
+        <PaymentsPreview />
+      </div>
     </div>
   );
 }

@@ -6,25 +6,27 @@ import { carCommand } from '../../../store/actions/carActions';
 function CarInfo({ car, carCommand }) {
   return (
     car && (
-      <div className="container">
-        <div className="row justify-content-center">
-          Currently in {car.license}
-        </div>
-        <div className="row justify-content-center">
-          <button
-            type="button"
-            className="btn btn-outline-primary"
-            onClick={() => carCommand(car.id, 'lock')}
-          >
-            Lock
-          </button>
-          <button
-            type="button"
-            className="btn btn-outline-primary"
-            onClick={() => carCommand(car.id, 'unlock')}
-          >
-            Unlock
-          </button>
+      <div className="card booking-card mt-4">
+        <div className="card-body">
+          <h5 className="card-title">Car Controls</h5>
+          <div className="row d-flex justify-content-center">
+            <div className="btn-group" role="group">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={() => carCommand(car.id, 'lock')}
+              >
+                Lock
+              </button>
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={() => carCommand(car.id, 'unlock')}
+              >
+                Unlock
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     )
@@ -41,7 +43,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ carCommand }, dispatch);
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(CarInfo);
+export default connect(mapStateToProps, mapDispatchToProps)(CarInfo);
