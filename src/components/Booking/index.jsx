@@ -35,17 +35,17 @@ function Booking({
           <div className="row d-flex justify-content-around mt-4">
             <div className="card booking-card mt-4">
               <div className="card-body">
-                <h5 class="card-title">Important Info</h5>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">
+                <h5 className="card-title">Important Info</h5>
+                <ul className="list-group list-group-flush">
+                  <li className="list-group-item">
                     Start Date: {currentBooking.stats.startDate} (
                     {currentBooking.stats.dayOfBooking} Days Ago)
                   </li>
-                  <li class="list-group-item">
+                  <li className="list-group-item">
                     Next Payment Date: {nextPaymentDate} ({nextPaymentFromNow}{' '}
                     Days From Now)
                   </li>
-                  <li class="list-group-item">
+                  <li className="list-group-item">
                     Total Miles Driven: {currentBooking.stats.totalMiles}
                   </li>
                 </ul>
@@ -53,7 +53,7 @@ function Booking({
             </div>
             <div className="card booking-card mt-4">
               <div className="card-body">
-                <h5 class="card-title">Car Controls</h5>
+                <h5 className="card-title">Car Controls</h5>
                 <div className="row d-flex justify-content-center">
                   <div className="btn-group" role="group">
                     <button
@@ -76,7 +76,7 @@ function Booking({
                   Did you know that you can make your weekly payments in
                   advance?
                 </div>
-                <div class="d-flex justify-content-center mt-4">
+                <div className="d-flex justify-content-center mt-4">
                   <button
                     className="btn btn-outline-primary"
                     onClick={() => advancePayment(currentBooking)}
@@ -122,7 +122,7 @@ function Booking({
           ) : currentBooking && !currentBooking.waiveworkPayment ? (
             <div>You are in a booking, but it is not a WaiveWork booking</div>
           ) : (
-            <div>You are not currently in booking</div>
+            <div>You are not currently in a booking</div>
           )}
         </div>
       </div>

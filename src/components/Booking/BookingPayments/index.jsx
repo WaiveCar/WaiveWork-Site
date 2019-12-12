@@ -15,7 +15,7 @@ function Payments({
   currentBookingPayments,
   retryPayment,
 }) {
-  return currentBooking && currentBooking.waiveworkPayment ? (
+  return (
     <div>
       <h4>Payment History</h4>
       <div className="mt-4 table-holder">
@@ -103,14 +103,6 @@ function Payments({
           </tbody>
         </table>
       </div>
-    </div>
-  ) : (
-    <div>
-      {!userResourcesLoaded ? (
-        <div>Loading...</div>
-      ) : (
-        <div>No upcoming payment</div>
-      )}
     </div>
   );
 }

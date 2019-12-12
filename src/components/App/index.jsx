@@ -4,6 +4,7 @@ import Menu from '../Menu';
 import Routes from '../Routes';
 import Modal from '../Modal';
 import Snackbar from '../Snackbar';
+import Loading from '../Loading';
 import Intercom from 'react-intercom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -42,7 +43,9 @@ class App extends Component {
             (authChecked && !loggedIn) ? (
               <Routes />
             ) : (
-              <div>Loading...</div>
+              <div>
+                <Loading />
+              </div>
             )}
             <Snackbar />
           </div>
@@ -70,9 +73,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ verifyAuth, fetchUserInfo }, dispatch);
 }
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  )(App),
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
