@@ -4,6 +4,7 @@ import {
   advancePayment,
   retryPayment,
 } from '../../../store/actions/paymentActions';
+import Redo from '../../../svg/redo.svg';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import './paymentsTable.scss';
@@ -19,7 +20,7 @@ function Payments({
     <div>
       <h4>Payment History</h4>
       <div className="mt-4 table-holder">
-        <table className="table table-sm">
+        <table className="table payment-table table-sm">
           <thead>
             <tr>
               <th scope="col">Date</th>
@@ -67,8 +68,8 @@ function Payments({
                   )}
                   {payment[payment.length - 1].canRetry && (
                     <td>
-                      <button
-                        className="btn btn-sm btn-outline-primary"
+                      <Redo
+                        className="retry-btn"
                         onClick={() =>
                           retryPayment(
                             payment[0].id,
@@ -76,9 +77,8 @@ function Payments({
                             currentBooking.payments,
                           )
                         }
-                      >
-                        retry
-                      </button>
+                      />
+                      retry
                     </td>
                   )}
                 </tr>
