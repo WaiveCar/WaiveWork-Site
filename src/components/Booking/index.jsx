@@ -2,6 +2,10 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { carCommand } from '../../store/actions/carActions';
+import {
+  advancePayment,
+  retryPayment,
+} from '../../store/actions/paymentActions';
 import BookingPayments from './BookingPayments';
 import moment from 'moment';
 
@@ -10,6 +14,7 @@ function Booking({
   userResourcesLoaded,
   car,
   carHistory,
+  advancePayment,
   carCommand,
 }) {
   if (car && currentBooking && currentBooking.waiveworkPayment) {
@@ -22,25 +27,27 @@ function Booking({
         'days',
       ) + 1;
     return (
-      <div className="container fluid">
-        <div>
-          <h3>Info about your booking in {car.license}</h3>
-          <div className="row justify-content-center">
+      <div className="container fluid mt-4">
+        <h1>Info about your booking in {car.license}</h1>
+        <div className="row d-flex justify-content-center">
+          <div className="btn-group" role="group">
             <button
               type="button"
-              className="btn btn-outline-primary"
+              className="btn btn-secondary"
               onClick={() => carCommand(car.id, 'lock')}
             >
               Lock
             </button>
             <button
               type="button"
-              className="btn btn-outline-primary"
+              className="btn btn-secondary"
               onClick={() => carCommand(car.id, 'unlock')}
             >
               Unlock
             </button>
           </div>
+        </div>
+        <div className="col">
           {currentBooking && currentBooking.waiveworkPayment && (
             <div>
               <div>
@@ -51,34 +58,41 @@ function Booking({
               <div>
                 Next Payment Date: {nextPaymentDate}
                 {' - '}
-                {nextPaymentFromNow}
-                Days From Now
+                {nextPaymentFromNow} Days From Now
               </div>
-            </div>
-          )}
-          {carHistory && carHistory.length > 1 && (
-            <div>
               <div>Total Miles Driven: {currentBooking.stats.totalMiles}</div>
-              <div>Average per day for: </div>
-              <table className="table table-borderd">
-                <tbody>
-                  <tr>
-                    <th scope="col">All Time</th>
-                    <th scope="col">Last 30 Days</th>
-                    <th scope="col">Last Week</th>
-                    <th scope="col">Yesterday</th>
-                  </tr>
-                  <tr>
-                    <td>{currentBooking.stats.totalMiles}</td>
-                    <td>{currentBooking.stats.last30Days}</td>
-                    <td>{currentBooking.stats.last7Days}</td>
-                    <td>{currentBooking.stats.lastDay}</td>
-                  </tr>
-                </tbody>
-              </table>
             </div>
           )}
         </div>
+        <div>
+          <button
+            className="btn btn-outline-primary"
+            onClick={() => advancePayment(currentBooking)}
+          >
+            Advance payment
+          </button>
+        </div>
+        {carHistory && carHistory.length > 1 && (
+          <div className="mt-4">
+            <h4>Daily Mileage Averages</h4>
+            <table className="table table-sm">
+              <tbody>
+                <tr>
+                  <th scope="col">All Time</th>
+                  <th scope="col">Last 30 Days</th>
+                  <th scope="col">Last Week</th>
+                  <th scope="col">Yesterday</th>
+                </tr>
+                <tr>
+                  <td>{currentBooking.stats.totalMiles}</td>
+                  <td>{currentBooking.stats.last30Days}</td>
+                  <td>{currentBooking.stats.last7Days}</td>
+                  <td>{currentBooking.stats.lastDay}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        )}
         <BookingPayments />
       </div>
     );
@@ -108,7 +122,7 @@ function mapStateToProps({ userReducer, bookingReducer, carReducer }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ carCommand }, dispatch);
+  return bindActionCreators({ carCommand, advancePayment }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Booking);
