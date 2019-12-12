@@ -39,8 +39,8 @@ function Payments({
             </button>
           </div>
         </div>
-        <div className="mt-4">
-          <table className="table">
+        <div className="mt-4 table-holder">
+          <table className="table table-sm">
             <thead>
               <tr>
                 <th scope="col">Date</th>
@@ -53,7 +53,7 @@ function Payments({
             <tbody>
               {currentBookingPayments.map((payment, i) =>
                 payment[0].isWarning ? (
-                  <tr key={i} className="warning-row">
+                  <tr key={i} className="warning-row" scope="row">
                     <td colSpan={'5'}>
                       Please note that there may be discrepancies in payments
                       from before around 8/23/2019. If you need a more accurate
@@ -64,9 +64,7 @@ function Payments({
                 ) : payment[payment.length - 1].status === 'failed' ? (
                   <tr key={i} scope="row">
                     <td>
-                      <div>
-                        {moment(payment[0].createdAt).format('MM/DD/YYYY')}
-                      </div>
+                      <div>{moment(payment[0].createdAt).format('MM/DD')}</div>
                     </td>
                     <td>{payment[0].description}</td>
                     <td>${(payment[0].amount / 100).toFixed(2)}</td>
@@ -91,7 +89,7 @@ function Payments({
                     {payment[payment.length - 1].canRetry && (
                       <td>
                         <button
-                          className="btn btn-outline-primary"
+                          className="btn btn-sm btn-outline-primary"
                           onClick={() =>
                             retryPayment(
                               payment[0].id,
@@ -106,11 +104,11 @@ function Payments({
                     )}
                   </tr>
                 ) : (
-                  <tr key={i}>
+                  <tr key={i} scope="row">
                     <td>
                       <div>
                         {moment(payment[payment.length - 1].createdAt).format(
-                          'MM/DD/YYYY',
+                          'MM/DD',
                         )}
                       </div>
                     </td>

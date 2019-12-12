@@ -22,7 +22,7 @@ function Booking({
         'days',
       ) + 1;
     return (
-      <div className="container">
+      <div className="container fluid">
         <div>
           <h3>Info about your booking in {car.license}</h3>
           <div className="row justify-content-center">
@@ -60,13 +60,13 @@ function Booking({
             <div>
               <div>Total Miles Driven: {currentBooking.stats.totalMiles}</div>
               <div>Average per day for: </div>
-              <table style={{ width: '100%' }}>
+              <table className="table table-borderd">
                 <tbody>
                   <tr>
-                    <th>All Time</th>
-                    <th>Last 30 Days</th>
-                    <th>Last Week</th>
-                    <th>Yesterday</th>
+                    <th scope="col">All Time</th>
+                    <th scope="col">Last 30 Days</th>
+                    <th scope="col">Last Week</th>
+                    <th scope="col">Yesterday</th>
                   </tr>
                   <tr>
                     <td>{currentBooking.stats.totalMiles}</td>
@@ -111,7 +111,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ carCommand }, dispatch);
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Booking);
+export default connect(mapStateToProps, mapDispatchToProps)(Booking);
