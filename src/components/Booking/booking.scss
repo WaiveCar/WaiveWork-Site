@@ -1,0 +1,9 @@
+.booking-card {
+  width: 33rem;
+}
+
+@media (max-width: 768px) {
+  .booking-card {
+    width: 40rem;
+  }
+}

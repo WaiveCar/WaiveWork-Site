@@ -8,6 +8,7 @@ import {
 } from '../../store/actions/paymentActions';
 import BookingPayments from './BookingPayments';
 import moment from 'moment';
+import './booking.scss';
 
 function Booking({
   currentBooking,
@@ -28,54 +29,69 @@ function Booking({
       ) + 1;
     return (
       <div className="container fluid mt-4">
-        <h1>Info about your booking in {car.license}</h1>
-        <div className="row d-flex justify-content-center">
-          <div className="btn-group" role="group">
-            <button
-              type="button"
-              className="btn btn-secondary"
-              onClick={() => carCommand(car.id, 'lock')}
-            >
-              Lock
-            </button>
-            <button
-              type="button"
-              className="btn btn-secondary"
-              onClick={() => carCommand(car.id, 'unlock')}
-            >
-              Unlock
-            </button>
-          </div>
-        </div>
-        <div className="col">
-          {currentBooking && currentBooking.waiveworkPayment && (
-            <div>
-              <div>
-                Start Date: {currentBooking.stats.startDate}
-                {' - '}
-                Day {currentBooking.stats.dayOfBooking} of Booking
+        <h1>Your booking in {car.license}</h1>
+        {currentBooking && currentBooking.waiveworkPayment && (
+          <div className="row d-flex justify-content-around mt-4">
+            <div className="card booking-card mt-4">
+              <div className="card-body">
+                <h5 class="card-title">Important Info</h5>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    Start Date: {currentBooking.stats.startDate} (
+                    {currentBooking.stats.dayOfBooking} Days Ago)
+                  </li>
+                  <li class="list-group-item">
+                    Next Payment Date: {nextPaymentDate} ({nextPaymentFromNow}{' '}
+                    Days From Now)
+                  </li>
+                  <li class="list-group-item">
+                    Total Miles Driven: {currentBooking.stats.totalMiles}
+                  </li>
+                </ul>
               </div>
-              <div>
-                Next Payment Date: {nextPaymentDate}
-                {' - '}
-                {nextPaymentFromNow} Days From Now
-              </div>
-              <div>Total Miles Driven: {currentBooking.stats.totalMiles}</div>
             </div>
-          )}
-        </div>
-        <div>
-          <button
-            className="btn btn-outline-primary"
-            onClick={() => advancePayment(currentBooking)}
-          >
-            Advance payment
-          </button>
-        </div>
+            <div className="card booking-card mt-4">
+              <div className="card-body">
+                <h5 class="card-title">Car Controls</h5>
+                <div className="row d-flex justify-content-center">
+                  <div className="btn-group" role="group">
+                    <button
+                      type="button"
+                      className="btn btn-secondary"
+                      onClick={() => carCommand(car.id, 'lock')}
+                    >
+                      Lock
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-secondary"
+                      onClick={() => carCommand(car.id, 'unlock')}
+                    >
+                      Unlock
+                    </button>
+                  </div>
+                </div>
+                <div className="text-center pl-4 pr-4 mt-4">
+                  Did you know that you can make your weekly payments in
+                  advance?
+                </div>
+                <div class="d-flex justify-content-center mt-4">
+                  <button
+                    className="btn btn-outline-primary"
+                    onClick={() => advancePayment(currentBooking)}
+                  >
+                    Pay Now
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+        <div className="row"></div>
         {carHistory && carHistory.length > 1 && (
           <div className="mt-4">
             <h4>Daily Mileage Averages</h4>
-            <table className="table table-sm">
+            <table className="table table-sm mt-4">
               <tbody>
                 <tr>
                   <th scope="col">All Time</th>
