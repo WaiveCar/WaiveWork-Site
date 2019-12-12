@@ -125,20 +125,20 @@ export const fetchUserInfo = () => async (dispatch) => {
           : reject('This browser does not suppor geolocation');
       });
       user.currentLocation = location;
-      dispatch(fetchChargers(location.coords));
+      await dispatch(fetchChargers(location.coords));
     } catch (e) {
-      dispatch(showSnackbar(e.message, 'error'));
+      await dispatch(showSnackbar(e.message, 'error'));
     }
-    dispatch(updateUser(user));
-    dispatch(fetchCards(user));
+    await dispatch(updateUser(user));
+    await dispatch(fetchCards(user));
     if (user.booking) {
-      dispatch(fetchBookingInfo(user));
+      await dispatch(fetchBookingInfo(user));
     }
     // This step must be below the others because if the file is not there, a 404 is thrown
     let insuranceResponse = await axios.get(
       `/files?userId=${user.id}&collectionId=insurance&limit=1`,
     );
-    dispatch({
+    await dispatch({
       type: 'UPDATE_INSURANCE',
       payload: { insuranceFiles: insuranceResponse.data },
     });
@@ -151,7 +151,7 @@ export const fetchUserInfo = () => async (dispatch) => {
         'number',
         'birthDate',
         'expirationDate',
-      ].forEach((field) => {
+      ].forEach(async (field) => {
         if (
           ['birthDate', 'expirationDate'].includes(field) &&
           licenseResponse.data[0][field]
@@ -160,7 +160,7 @@ export const fetchUserInfo = () => async (dispatch) => {
             'T',
           )[0];
         }
-        dispatch(
+        await dispatch(
           updateForm(
             'licenseForm',
             field,
@@ -170,7 +170,7 @@ export const fetchUserInfo = () => async (dispatch) => {
           ),
         );
       });
-      dispatch({
+      await dispatch({
         type: 'UPDATE_LICENSE',
         payload: { license: licenseResponse.data[0] },
       });
