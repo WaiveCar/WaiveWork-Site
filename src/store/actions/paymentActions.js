@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { showSnackbar } from './snackbarActions';
 import { updateBooking, getBookingStats } from './bookingActions';
+import { showModal } from './modalActions';
 import moment from 'moment';
 
 export const groupCurrentBookingPayments = (payments) => async (dispatch) => {
@@ -38,35 +39,46 @@ export const groupCurrentBookingPayments = (payments) => async (dispatch) => {
 };
 
 export const advancePayment = (booking, carHistory) => async (dispatch) => {
-  try {
-    let response = await axios.get(
-      `/waiveworkPayment/advanceWorkPayment/${booking.id}/`,
-    );
-    return dispatch(
-      updateBooking({ ...booking, waiveworkPayment: response.data }),
-    );
-  } catch (e) {
-    return dispatch(
-      showSnackbar(e.response ? e.response.data.message : e, 'error'),
-    );
-  }
+  dispatch(
+    showModal(
+      'Are you sure you want to make your payment in advance?',
+      async () => {
+        try {
+          let response = await axios.get(
+            `/waiveworkPayment/advanceWorkPayment/${booking.id}/`,
+          );
+          return dispatch(
+            updateBooking({ ...booking, waiveworkPayment: response.data }),
+          );
+        } catch (e) {
+          return dispatch(
+            showSnackbar(e.response ? e.response.data.message : e, 'error'),
+          );
+        }
+      },
+    ),
+  );
 };
 
 export const retryPayment = (paymentId, lateFees, allPayments) => async (
   dispatch,
 ) => {
-  try {
-    let response = await axios.post(`/shop/retryPayment/${paymentId}`, {
-      lateFees: lateFees,
-    });
-    return dispatch(
-      groupCurrentBookingPayments([...allPayments, response.data]),
-    );
-  } catch (e) {
-    return dispatch(
-      showSnackbar(e.response ? e.response.data.message : e, 'error'),
-    );
-  }
+  dispatch(
+    showModal('Are you sure you want to retry your payment?', async () => {
+      try {
+        let response = await axios.post(`/shop/retryPayment/${paymentId}`, {
+          lateFees: lateFees,
+        });
+        return dispatch(
+          groupCurrentBookingPayments([...allPayments, response.data]),
+        );
+      } catch (e) {
+        return dispatch(
+          showSnackbar(e.response ? e.response.data.message : e, 'error'),
+        );
+      }
+    }),
+  );
 };
 
 export const fetchCards = (user) => async (dispatch) => {

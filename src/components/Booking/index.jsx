@@ -2,6 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { carCommand } from '../../store/actions/carActions';
+import { showModal } from '../../store/actions/modalActions';
 import {
   advancePayment,
   retryPayment,
