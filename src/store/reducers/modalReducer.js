@@ -1,6 +1,6 @@
 const initialState = {
   showModal: false,
-  confirmButton: '',
+  confirmButton: 'Confirm',
   confirmFunc: null,
   message: null,
 };
@@ -18,7 +18,8 @@ function modalReducer(state = initialState, action) {
       };
     case 'HIDE_MODAL':
       return {
-        ...initialState,
+        ...state,
+        confirmFunc: null,
         showModal: false,
       };
     default:
