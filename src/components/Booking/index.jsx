@@ -92,7 +92,7 @@ function Booking({
         {carHistory && carHistory.length > 1 && (
           <div className="mt-4">
             <h4>Daily Mileage Averages</h4>
-            <table className="table table-sm mt-4">
+            <table className="table table-sm mt-4 payment-table">
               <tbody>
                 <tr>
                   <th scope="col">All Time</th>

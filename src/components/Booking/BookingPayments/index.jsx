@@ -26,8 +26,8 @@ function Payments({
               <th scope="col">Date</th>
               <th scope="col">Description</th>
               <th scope="col">Amount</th>
-              <th scope="col">Status</th>
-              <th scope="col"> </th>
+              <th scope="col">Late Fee</th>
+              <th scope="col">Retry</th>
             </tr>
           </thead>
           <tbody>
@@ -58,7 +58,7 @@ function Payments({
                         )
                       }
                     >
-                      late fee: $
+                      $
                       {payment[0].lateFees
                         ? (payment[0].lateFees / 100).toFixed(2)
                         : 0}
@@ -78,7 +78,6 @@ function Payments({
                           )
                         }
                       />
-                      retry
                     </td>
                   )}
                 </tr>
