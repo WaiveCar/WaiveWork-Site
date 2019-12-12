@@ -39,14 +39,15 @@ function Payments({
             </button>
           </div>
         </div>
-        <div>
-          <table className="payments-table">
+        <div className="mt-4">
+          <table className="table">
             <thead>
               <tr>
-                <th>Date</th>
-                <th>Description</th>
-                <th>Amount</th>
-                <th>Status</th>
+                <th scope="col">Date</th>
+                <th scope="col">Description</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Status</th>
+                <th scope="col"> </th>
               </tr>
             </thead>
             <tbody>
@@ -61,7 +62,7 @@ function Payments({
                     </td>
                   </tr>
                 ) : payment[payment.length - 1].status === 'failed' ? (
-                  <tr key={i}>
+                  <tr key={i} scope="row">
                     <td>
                       <div>
                         {moment(payment[0].createdAt).format('MM/DD/YYYY')}
@@ -118,6 +119,7 @@ function Payments({
                       ${(payment[payment.length - 1].amount / 100).toFixed(2)}
                     </td>
                     <td>Paid</td>
+                    <td />
                   </tr>
                 ),
               )}
@@ -151,7 +153,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ advancePayment, retryPayment }, dispatch);
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Payments);
+export default connect(mapStateToProps, mapDispatchToProps)(Payments);
