@@ -44,7 +44,6 @@ export const login = (email, password) => async (dispatch) => {
     localStorage.setItem('token', response.data.token);
     axios.defaults.headers.common['Authorization'] = response.data.token;
     dispatch({ type: 'CLEAR_FORM', payload: { formName: 'authForm' } });
-    // TODO: Make sure all old user data is also removed at this point
     return dispatch({ type: 'TOGGLE_LOGIN', payload: { loggedIn: true } });
   } catch (e) {
     return dispatch(
