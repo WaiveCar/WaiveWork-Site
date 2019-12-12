@@ -74,12 +74,15 @@ function PaymentsPreview({
           ) : (
             <div>Good Job! You do not have any outstanding payments.</div>
           )}
-          <div className="row">
+          <div className="text-center pl-4 pr-4 mt-4">
+            Did you know that you can make your weekly payments in advance?
+          </div>
+          <div className="d-flex justify-content-center mt-4">
             <button
               className="btn btn-outline-primary"
               onClick={() => advancePayment(currentBooking)}
             >
-              Advance payment
+              Pay Now
             </button>
           </div>
         </div>
