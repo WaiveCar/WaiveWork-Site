@@ -4,32 +4,39 @@ import { connect } from 'react-redux';
 import { carCommand } from '../../../store/actions/carActions';
 
 function CarInfo({ car, carCommand }) {
-  return (
-    car && (
-      <div className="card booking-card mt-4">
-        <div className="card-body">
-          <h5 className="card-title">Car Controls</h5>
-          <div className="row d-flex justify-content-center">
-            <div className="btn-group" role="group">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                onClick={() => carCommand(car.id, 'lock')}
-              >
-                Lock
-              </button>
-              <button
-                type="button"
-                className="btn btn-secondary"
-                onClick={() => carCommand(car.id, 'unlock')}
-              >
-                Unlock
-              </button>
-            </div>
+  return car ? (
+    <div className="card booking-card mt-4">
+      <div className="card-body">
+        <h5 className="card-title">Car Controls</h5>
+        <div className="row d-flex justify-content-center">
+          <div className="btn-group" role="group">
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={() => carCommand(car.id, 'lock')}
+            >
+              Lock
+            </button>
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={() => carCommand(car.id, 'unlock')}
+            >
+              Unlock
+            </button>
           </div>
         </div>
       </div>
-    )
+    </div>
+  ) : (
+    <div className="card booking-card mt-4">
+      <div className="card-body">
+        <h5 className="card-title">Car Controls</h5>
+        <div className="text-center">
+          You are not currently booked into WaiveWork
+        </div>
+      </div>
+    </div>
   );
 }
 

@@ -7,7 +7,7 @@ function Dashboard() {
   return (
     <div className="container">
       <h1>Dashboard</h1>
-      <div className="row d-flex justify-content-between">
+      <div className="row d-flex justify-content-around">
         <ChargerInfo />
         <CarInfo />
         <PaymentsPreview />
