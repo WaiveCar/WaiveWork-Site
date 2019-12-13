@@ -38,7 +38,7 @@ function Booking({
                 <h5 className="card-title">Important Info</h5>
                 <ul className="list-group list-group-flush booking-info mt-4">
                   <li className="list-group-item">
-                    Start Date: {currentBooking.stats.startDate} (
+                    Start Date: {currentBooking.stats.startDate}(
                     {currentBooking.stats.dayOfBooking} Days Ago)
                   </li>
                   <li className="list-group-item">

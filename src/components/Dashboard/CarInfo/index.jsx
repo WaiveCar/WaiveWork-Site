@@ -2,12 +2,13 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { carCommand } from '../../../store/actions/carActions';
+import './carInfo.scss';
 
-function CarInfo({ car, carCommand }) {
+function CarInfo({ car, carCommand, registrationFile, insuranceFile }) {
   return car ? (
     <div className="card booking-card mt-4">
       <div className="card-body">
-        <h5 className="card-title">Car Info</h5>
+        <h5 className="card-title">Your Car: {car.license}</h5>
         <div className="row d-flex justify-content-center">
           <div className="btn-group" role="group">
             <button
@@ -26,6 +27,14 @@ function CarInfo({ car, carCommand }) {
             </button>
           </div>
         </div>
+        <img
+          className="car-info-img"
+          src={`https://waivecar-prod.s3.amazonaws.com/${registrationFile.path}`}
+        />
+        <img
+          className="car-info-img"
+          src={`https://waivecar-prod.s3.amazonaws.com/${insuranceFile.path}`}
+        />
       </div>
     </div>
   ) : (
@@ -40,9 +49,10 @@ function CarInfo({ car, carCommand }) {
   );
 }
 
-function mapStateToProps({ carReducer }) {
+function mapStateToProps({ carReducer, userReducer }) {
   return {
     ...carReducer,
+    ...userReducer,
   };
 }
 
