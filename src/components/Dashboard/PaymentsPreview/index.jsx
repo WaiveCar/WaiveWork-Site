@@ -30,7 +30,7 @@ function PaymentsPreview({
           <h5 className="card-title">Booking Info</h5>
           {retryablePayments.length ? (
             <div>
-              <table className="table table-sm payment-table">
+              <table className="table table-sm payment-table mt-4">
                 <thead>
                   <tr>
                     <th scope="col">Date</th>
@@ -69,9 +69,11 @@ function PaymentsPreview({
               </table>
             </div>
           ) : (
-            <div>Good Job! You do not have any outstanding payments.</div>
+            <div className="mt-4 text-center">
+              Good Job! You do not have any outstanding payments.
+            </div>
           )}
-          <ul className="list-group list-group-flush booking-info">
+          <ul className="list-group list-group-flush booking-info mt-4">
             <li className="list-group-item">
               Start Date: {currentBooking.stats.startDate} (
               {currentBooking.stats.dayOfBooking} Days Ago)

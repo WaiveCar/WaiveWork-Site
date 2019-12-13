@@ -31,20 +31,28 @@ function CarInfo({ car, carCommand, registrationFile, insuranceFile }) {
         <Link to={'/registration'}>
           <h5 className="mt-4">Registration</h5>
           <div className="d-flex justify-content-center">
-            <img
-              className="car-info-img"
-              src={`https://waivecar-prod.s3.amazonaws.com/${registrationFile.path}`}
-            />
+            {registrationFile ? (
+              <img
+                className="car-info-img"
+                src={`https://waivecar-prod.s3.amazonaws.com/${registrationFile.path}`}
+              />
+            ) : (
+              <div>Registration not uploaded</div>
+            )}
           </div>
         </Link>
         <Link to={'/insurance'}>
           <h5 className="mt-4">Proof of Insurance</h5>
-          <div className="d-flex justify-content-center">
-            <img
-              className="car-info-img"
-              src={`https://waivecar-prod.s3.amazonaws.com/${insuranceFile.path}`}
-            />
-          </div>
+          {insuranceFile ? (
+            <div className="d-flex justify-content-center">
+              <img
+                className="car-info-img"
+                src={`https://waivecar-prod.s3.amazonaws.com/${insuranceFile.path}`}
+              />
+            </div>
+          ) : (
+            <div>Insurance not uploaded</div>
+          )}
         </Link>
       </div>
     </div>
