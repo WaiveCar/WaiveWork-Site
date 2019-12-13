@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { carCommand } from '../../../store/actions/carActions';
@@ -27,14 +28,24 @@ function CarInfo({ car, carCommand, registrationFile, insuranceFile }) {
             </button>
           </div>
         </div>
-        <img
-          className="car-info-img"
-          src={`https://waivecar-prod.s3.amazonaws.com/${registrationFile.path}`}
-        />
-        <img
-          className="car-info-img"
-          src={`https://waivecar-prod.s3.amazonaws.com/${insuranceFile.path}`}
-        />
+        <Link to={'/registration'}>
+          <h5 className="mt-4">Registration</h5>
+          <div className="d-flex justify-content-center">
+            <img
+              className="car-info-img"
+              src={`https://waivecar-prod.s3.amazonaws.com/${registrationFile.path}`}
+            />
+          </div>
+        </Link>
+        <Link to={'/insurance'}>
+          <h5 className="mt-4">Proof of Insurance</h5>
+          <div className="d-flex justify-content-center">
+            <img
+              className="car-info-img"
+              src={`https://waivecar-prod.s3.amazonaws.com/${insuranceFile.path}`}
+            />
+          </div>
+        </Link>
       </div>
     </div>
   ) : (
