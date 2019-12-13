@@ -36,7 +36,7 @@ function Booking({
             <div className="card booking-card mt-4">
               <div className="card-body">
                 <h5 className="card-title">Important Info</h5>
-                <ul className="list-group list-group-flush">
+                <ul className="list-group list-group-flush booking-info mt-4">
                   <li className="list-group-item">
                     Start Date: {currentBooking.stats.startDate} (
                     {currentBooking.stats.dayOfBooking} Days Ago)
@@ -72,7 +72,8 @@ function Booking({
                     </button>
                   </div>
                 </div>
-                <div className="text-center pl-4 pr-4 mt-4">
+                <h5 className="card-title mt-4">Advance Payments</h5>
+                <div className="text-center pl-4 pr-4 mt-4 booking-info">
                   Did you know that you can make your weekly payments in
                   advance?
                 </div>

@@ -27,10 +27,7 @@ function PaymentsPreview({
     return (
       <div className="card booking-card mt-4">
         <div className="card-body">
-          <h5 className="card-title">Payment info</h5>
-          <div>
-            Next payment date: {nextPaymentDate} - {nextPaymentFromNow} days
-          </div>
+          <h5 className="card-title">Booking Info</h5>
           {retryablePayments.length ? (
             <div>
               <table className="table table-sm payment-table">
@@ -39,7 +36,7 @@ function PaymentsPreview({
                     <th scope="col">Date</th>
                     <th scope="col">Description</th>
                     <th scope="col">Amount</th>
-                    <th scope="col">Late Fees</th>
+                    <th scope="col">Fees</th>
                     <th scope="col">Retry</th>
                   </tr>
                 </thead>
@@ -74,7 +71,20 @@ function PaymentsPreview({
           ) : (
             <div>Good Job! You do not have any outstanding payments.</div>
           )}
-          <div className="text-center pl-4 pr-4 mt-4">
+          <ul className="list-group list-group-flush booking-info">
+            <li className="list-group-item">
+              Start Date: {currentBooking.stats.startDate} (
+              {currentBooking.stats.dayOfBooking} Days Ago)
+            </li>
+            <li className="list-group-item">
+              Next Payment Date: {nextPaymentDate} ({nextPaymentFromNow} Days
+              From Now)
+            </li>
+            <li className="list-group-item">
+              Total Miles Driven: {currentBooking.stats.totalMiles}
+            </li>
+          </ul>
+          <div className="text-center pl-4 pr-4 mt-4 booking-info">
             Did you know that you can make your weekly payments in advance?
           </div>
           <div className="d-flex justify-content-center mt-4">

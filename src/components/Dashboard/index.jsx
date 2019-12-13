@@ -5,7 +5,7 @@ import PaymentsPreview from './PaymentsPreview';
 
 function Dashboard() {
   return (
-    <div className="container">
+    <div className="container mt-4 mb-4">
       <h1>Dashboard</h1>
       <div className="row d-flex justify-content-around">
         <ChargerInfo />
