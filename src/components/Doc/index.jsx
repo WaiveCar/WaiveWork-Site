@@ -8,32 +8,33 @@ function Doc(props) {
   const { type, userResourcesLoaded } = props;
   const currentFile = props[`${props.type}File`];
   return currentFile ? (
-    <div>
-      <div>
-        <a
-          href={`https://waivecar-prod.s3.amazonaws.com/${currentFile.path}`}
-          target="_blank"
-        >
-          Expires {moment(currentFile.comment).format('MM/DD/YYYY')}
-        </a>
+    <div className="container">
+      <h1>Your {type}</h1>
+      <div className="row">
+        <h5>
+          <a
+            href={`https://waivecar-prod.s3.amazonaws.com/${currentFile.path}`}
+            target="_blank"
+          >
+            Expires {moment(currentFile.comment).format('MM/DD/YYYY')}
+          </a>
+        </h5>
       </div>
-      <div>
+      <div className="row">
         {currentFile.mime !== 'image/jpeg' ? (
-          <div>
-            {currentFile.mime === 'application/pdf' ? (
-              <embed
-                className={'doc-embed'}
-                src={`http://docs.google.com/gview?url=http://waivecar-prod.s3.amazonaws.com/${currentFile.path}&embedded=true`}
+          currentFile.mime === 'application/pdf' ? (
+            <embed
+              className={'doc-embed'}
+              src={`http://docs.google.com/gview?url=http://waivecar-prod.s3.amazonaws.com/${currentFile.path}&embedded=true`}
+            />
+          ) : (
+            <video classname={'doc-video'} controls="controls">
+              <source
+                src={`http://waivecar-prod.s3.amazonaws.com/${currentFile.path}`}
+                type={'video/mp4'}
               />
-            ) : (
-              <video classname={'doc-video'} controls="controls">
-                <source
-                  src={`http://waivecar-prod.s3.amazonaws.com/${currentFile.path}`}
-                  type={'video/mp4'}
-                />
-              </video>
-            )}
-          </div>
+            </video>
+          )
         ) : (
           <img
             className={'doc-image'}
@@ -61,7 +62,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({}, dispatch);
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Doc);
+export default connect(mapStateToProps, mapDispatchToProps)(Doc);

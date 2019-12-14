@@ -9,8 +9,8 @@ function Dashboard() {
       <h1>Dashboard</h1>
       <div className="row d-flex justify-content-around">
         <ChargerInfo />
-        <CarInfo />
         <PaymentsPreview />
+        <CarInfo />
       </div>
     </div>
   );
