@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 import {
   advancePayment,
@@ -97,6 +98,7 @@ function PaymentsPreview({
               Pay Now
             </button>
           </div>
+          <Link to={'/booking'}>Learn More</Link>
         </div>
       </div>
     );

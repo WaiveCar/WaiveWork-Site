@@ -7,30 +7,32 @@ import './chargerInfo.scss';
 
 function ChargerInfo({ user, nearest5, history, userResourcesLoaded }) {
   return user && user.currentLocation ? (
-    <div className="container">
-      <div className="row justify-content-center">
-        <div className="charger-map-preview">
-          <MapHolder
-            initialCenter={{
-              lat: user.currentLocation.coords.latitude,
-              lng: user.currentLocation.coords.longitude,
-            }}
-            markers={nearest5}
-            zoom={12}
-          />
+    <div className="card charger-card">
+      <div className="card-body">
+        <h5 className="card-title">Chargers</h5>
+        <div className="row justify-content-center mt-4">
+          <div className="charger-map-preview">
+            <MapHolder
+              initialCenter={{
+                lat: user.currentLocation.coords.latitude,
+                lng: user.currentLocation.coords.longitude,
+              }}
+              markers={nearest5}
+              zoom={12}
+            />
+          </div>
         </div>
-      </div>
-      <div className="row justify-content-center">
-        <Link to={'/chargers'}>Click Here</Link> to start charging
+        <div className="row justify-content-center mt-4">
+          <Link to={'/chargers'}>Start Charging Now</Link>
+        </div>
       </div>
     </div>
   ) : (
-    <div>
-      {!userResourcesLoaded ? (
-        <div>Loading</div>
-      ) : (
+    <div className="card charger-card">
+      <div className="card-body">
+        <h5 className="card-title">Chargers</h5>
         <div>Unable to get current location</div>
-      )}{' '}
+      </div>
     </div>
   );
 }
@@ -46,7 +48,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({}, dispatch);
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ChargerInfo);
+export default connect(mapStateToProps, mapDispatchToProps)(ChargerInfo);
