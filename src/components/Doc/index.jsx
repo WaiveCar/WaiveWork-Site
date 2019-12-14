@@ -8,19 +8,18 @@ function Doc(props) {
   const { type, userResourcesLoaded } = props;
   const currentFile = props[`${props.type}File`];
   return currentFile ? (
-    <div className="container">
+    <div className="container mt-4">
       <h1>Your {type}</h1>
-      <div className="row">
-        <h5>
-          <a
-            href={`https://waivecar-prod.s3.amazonaws.com/${currentFile.path}`}
-            target="_blank"
-          >
-            Expires {moment(currentFile.comment).format('MM/DD/YYYY')}
-          </a>
-        </h5>
-      </div>
-      <div className="row">
+      <h5 className="d-flex justify-content-between">
+        <div>(expires {moment(currentFile.comment).format('MM/DD/YYYY')})</div>
+        <a
+          href={`https://waivecar-prod.s3.amazonaws.com/${currentFile.path}`}
+          target="_blank"
+        >
+          Download
+        </a>
+      </h5>
+      <div className="row d-flex justify-content-center mt-4">
         {currentFile.mime !== 'image/jpeg' ? (
           currentFile.mime === 'application/pdf' ? (
             <embed
@@ -45,11 +44,7 @@ function Doc(props) {
     </div>
   ) : (
     <div>
-      {userResourcesLoaded ? (
-        <div>File not uploaded yet</div>
-      ) : (
-        <div>Loading resource</div>
-      )}
+      <div>File not uploaded yet</div>
     </div>
   );
 }
