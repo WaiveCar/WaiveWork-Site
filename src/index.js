@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import ScrollToTop from './components/ScrollToTop';
 import App from './components/App';
 import store from './store';
 import './bootstrap/custom.scss';
@@ -13,6 +14,7 @@ axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 
 ReactDOM.render(
   <BrowserRouter>
+    <ScrollToTop />
     <Provider store={store}>
       <App />
     </Provider>
