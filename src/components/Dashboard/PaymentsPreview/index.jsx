@@ -31,6 +31,7 @@ function PaymentsPreview({
           <h5 className="card-title">Booking Info</h5>
           {retryablePayments.length ? (
             <div>
+              Missed Payments:
               <table className="table table-sm payment-table mt-4">
                 <thead>
                   <tr>
@@ -74,6 +75,17 @@ function PaymentsPreview({
               Good Job! You do not have any outstanding payments.
             </div>
           )}
+          <div className="text-center pl-4 pr-4 mt-4 booking-info">
+            Did you know that you can make your weekly payments in advance?
+          </div>
+          <div className="d-flex justify-content-center mt-4">
+            <button
+              className="btn btn-outline-primary"
+              onClick={() => advancePayment(currentBooking)}
+            >
+              Pay Now
+            </button>
+          </div>
           <ul className="list-group list-group-flush booking-info mt-4">
             <li className="list-group-item">
               Start Date: {currentBooking.stats.startDate} (
@@ -87,18 +99,9 @@ function PaymentsPreview({
               Total Miles Driven: {currentBooking.stats.totalMiles}
             </li>
           </ul>
-          <div className="text-center pl-4 pr-4 mt-4 booking-info">
-            Did you know that you can make your weekly payments in advance?
+          <div className="text-center mt-4">
+            <Link to={'/booking'}>Learn More</Link>
           </div>
-          <div className="d-flex justify-content-center mt-4">
-            <button
-              className="btn btn-outline-primary"
-              onClick={() => advancePayment(currentBooking)}
-            >
-              Pay Now
-            </button>
-          </div>
-          <Link to={'/booking'}>Learn More</Link>
         </div>
       </div>
     );
