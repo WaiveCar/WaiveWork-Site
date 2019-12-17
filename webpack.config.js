@@ -55,6 +55,7 @@ const config = {
     new CompressionPlugin(),
     // The line below makes webpack skip importing moment locales, though they may be needed later
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    autoprefixer,
   ],
   devServer: {
     inline: true,
