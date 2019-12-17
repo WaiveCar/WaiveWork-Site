@@ -34,34 +34,46 @@ function Cards({
             </tr>
           </thead>
           <tbody>
-            {cards.map((card, i) => (
-              <tr key={i}>
-                <td>{card.last4}</td>
-                <td>{card.brand}</td>
-                <td>{`${card.expMonth}/${card.expYear}`}</td>
-                <td className="pl-4">
-                  <input type="checkbox" checked={card.selected} readOnly />
-                </td>
-                <td>
-                  <div>
-                    <button
-                      type="button"
-                      className="btn btn-sm btn-outline-primary"
-                      onClick={() => deleteCard(card.id, i)}
-                    >
-                      delete
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-sm btn-outline-primary"
-                      onClick={() => selectCurrentlyUsedCard(card.id)}
-                    >
-                      select
-                    </button>
-                  </div>
+            {cards.length ? (
+              cards.map((card, i) => (
+                <tr key={i}>
+                  <td>{card.last4}</td>
+                  <td>{card.brand}</td>
+                  <td>{`${card.expMonth}/${card.expYear}`}</td>
+                  <td className="pl-4">
+                    <input
+                      type="checkbox"
+                      checked={card.selected}
+                      onChange={() => selectCurrentlyUsedCard(card.id)}
+                    />
+                  </td>
+                  <td>
+                    <div>
+                      <button
+                        type="button"
+                        className="btn btn-sm btn-outline-primary"
+                        onClick={() => deleteCard(card.id, i)}
+                      >
+                        delete
+                      </button>
+                      <button
+                        type="button"
+                        className="btn btn-sm btn-outline-primary"
+                        onClick={() => selectCurrentlyUsedCard(card.id)}
+                      >
+                        select
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr className="mt2">
+                <td className="text-center" colSpan={5}>
+                  No Cards Added Yet
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>
