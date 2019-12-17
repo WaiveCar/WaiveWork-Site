@@ -90,13 +90,13 @@ export default [
       {
         name: 'birthday',
         formField: 'birthDate',
-        type: 'text',
+        type: 'date',
         width: 8,
       },
       {
         name: 'license expiration',
         formField: 'expiration',
-        type: 'text',
+        type: 'date',
         width: 8,
       },
     ],
