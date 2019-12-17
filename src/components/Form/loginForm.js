@@ -6,14 +6,14 @@ export default [
     name: 'email',
     formField: 'email',
     type: 'text',
-    width: 8,
+    width: 12,
     svg: Envelope,
   },
   {
     name: 'password',
     formField: 'password',
     type: 'password',
-    width: 8,
+    width: 12,
     svg: Key,
   },
 ];

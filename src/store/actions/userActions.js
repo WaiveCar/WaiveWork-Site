@@ -81,27 +81,20 @@ export const signup = (form, history) => async (dispatch) => {
 
 export const updateUser = (user, form) => async (dispatch) => {
   if (form) {
-    dispatch(
-      showModal(
-        'Are you sure you want to update your license information?',
-        async () => {
-          try {
-            let { data } = await axios.put(`/users/${user.id}`, form);
-            user = data;
-            dispatch(
-              showSnackbar(
-                'Your information has been successfully updated.',
-                'success',
-              ),
-            );
-          } catch (e) {
-            return dispatch(
-              showSnackbar(e.response ? e.response.data.message : e, 'error'),
-            );
-          }
-        },
-      ),
-    );
+    try {
+      let { data } = await axios.put(`/users/${user.id}`, form);
+      user = data;
+      await dispatch(
+        showSnackbar(
+          'Your information has been successfully updated.',
+          'success',
+        ),
+      );
+    } catch (e) {
+      return dispatch(
+        showSnackbar(e.response ? e.response.data.message : e, 'error'),
+      );
+    }
   }
   return dispatch({ type: 'UPDATE_USER', payload: { user } });
 };
@@ -111,9 +104,9 @@ export const fetchUserInfo = () => async (dispatch) => {
   try {
     let userResponse = await axios.get('/users/me');
     let user = userResponse.data;
-    ['firstName', 'lastName', 'phone', 'email'].forEach((field) =>
-      dispatch(updateForm('personalForm', field, user[field])),
-    );
+    ['firstName', 'lastName', 'phone', 'email'].forEach(async (field) => {
+      await dispatch(updateForm('personalForm', field, user[field]));
+    });
     try {
       let location = await new Promise((resolve, reject) => {
         navigator.geolocation
@@ -187,7 +180,7 @@ export const updateLicense = (license, form) => async (dispatch) => {
       async () => {
         try {
           let { data } = await axios.put(`/licenses/${license.id}`, form);
-          dispatch({
+          return dispatch({
             type: 'UPDATE_LICENSE',
             payload: { license: data },
           });
