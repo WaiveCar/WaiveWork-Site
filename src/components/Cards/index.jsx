@@ -54,7 +54,7 @@ function Cards({
                       />
                       <Times
                         className="circle-icon times-circle"
-                        onClick={() => deleteCard(card.id, i)}
+                        onClick={() => deleteCard(card.id, i, card.last4)}
                       />
                     </div>
                   </td>

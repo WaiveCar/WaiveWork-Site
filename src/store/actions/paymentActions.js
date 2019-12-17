@@ -110,15 +110,22 @@ export const addCard = (user, form) => async (dispatch) => {
   }
 };
 
-export const deleteCard = (cardId, index) => async (dispatch) => {
-  try {
-    let deleteResponse = await axios.delete(`/shop/cards/${cardId}`);
-    return dispatch({ type: 'DELETE_CARD', payload: { index } });
-  } catch (e) {
-    return dispatch(
-      showSnackbar(e.response ? e.response.data.message : e, 'error'),
-    );
-  }
+export const deleteCard = (cardId, index, last4) => async (dispatch) => {
+  dispatch(
+    showModal(
+      `Are you sure you want to delete your card ending in ${last4}?`,
+      async () => {
+        try {
+          let deleteResponse = await axios.delete(`/shop/cards/${cardId}`);
+          return dispatch({ type: 'DELETE_CARD', payload: { index } });
+        } catch (e) {
+          return dispatch(
+            showSnackbar(e.response ? e.response.data.message : e, 'error'),
+          );
+        }
+      },
+    ),
+  );
 };
 
 export const selectCurrentlyUsedCard = (cardId) => async (dispatch) => {
