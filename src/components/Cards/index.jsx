@@ -39,7 +39,9 @@ function Cards({
                 <td>{card.last4}</td>
                 <td>{card.brand}</td>
                 <td>{`${card.expMonth}/${card.expYear}`}</td>
-                <td>{card.selected ? <span>selected</span> : <span />}</td>
+                <td className="pl-4">
+                  <input type="checkbox" checked={card.selected} readOnly />
+                </td>
                 <td>
                   <div>
                     <button
