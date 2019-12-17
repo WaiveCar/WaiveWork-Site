@@ -20,15 +20,7 @@ function Cards({
   addCard = addCard.bind(null, user);
   return (
     <div className="container">
-      <Form
-        fields={paymentFormFields}
-        title={'Add Card'}
-        formName={'paymentForm'}
-        onSubmit={(form) => addCard(form)}
-        submitName={'Add'}
-        formWidth={'60%'}
-        clearOnSubmit
-      />
+      <h5 className="mt-4 mb-4 text-center">Your Cards</h5>
       <div className="row justify-content-center">
         <table className="card-list col-md-6">
           <thead>
@@ -36,7 +28,8 @@ function Cards({
               <th>Last 4</th>
               <th>Brand</th>
               <th>Expiration</th>
-              <th></th>
+              <th>Selected</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -45,6 +38,7 @@ function Cards({
                 <td>{card.last4}</td>
                 <td>{card.brand}</td>
                 <td>{`${card.expMonth}/${card.expYear}`}</td>
+                <td>{card.selected ? <span>selected</span> : <span />}</td>
                 <td>
                   <div>
                     <button
@@ -61,7 +55,6 @@ function Cards({
                     >
                       select
                     </button>
-                    {card.selected ? <span>selected</span> : <span />}
                   </div>
                 </td>
               </tr>
@@ -69,6 +62,15 @@ function Cards({
           </tbody>
         </table>
       </div>
+      <Form
+        fields={paymentFormFields}
+        title={'Add Card'}
+        formName={'paymentForm'}
+        onSubmit={(form) => addCard(form)}
+        submitName={'Add'}
+        formWidth={'60%'}
+        clearOnSubmit
+      />
     </div>
   );
 }
@@ -84,7 +86,4 @@ function mapDispatchToProps(dispatch) {
   );
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Cards);
+export default connect(mapStateToProps, mapDispatchToProps)(Cards);

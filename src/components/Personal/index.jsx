@@ -9,7 +9,7 @@ function Personal({ personalFormFields, user, updateUser }) {
     <div className="container">
       <Form
         fields={personalFormFields}
-        title={'Update Personal Info'}
+        title={'Personal Info'}
         formName={'personalForm'}
         onSubmit={(form) => updateUser(user, form)}
         submitName={'Update'}
@@ -27,7 +27,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ updateUser }, dispatch);
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Personal);
+export default connect(mapStateToProps, mapDispatchToProps)(Personal);

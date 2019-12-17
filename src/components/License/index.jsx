@@ -9,7 +9,7 @@ function License({ licenseFormFields, license, updateLicense }) {
     <div className="container">
       <Form
         fields={licenseFormFields}
-        title={'Update License'}
+        title={'Your License'}
         formName={'licenseForm'}
         onSubmit={(form) => updateLicense(license, form)}
         submitName={'Update'}
@@ -27,7 +27,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ updateLicense }, dispatch);
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(License);
+export default connect(mapStateToProps, mapDispatchToProps)(License);
