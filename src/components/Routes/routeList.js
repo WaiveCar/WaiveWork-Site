@@ -8,7 +8,6 @@ import Chargers from '../Chargers';
 import Booking from '../Booking';
 import BookingPayments from '../Booking/BookingPayments';
 import Cards from '../Cards';
-import Contact from '../Contact';
 import Personal from '../Personal';
 import ChangePassword from '../ChangePassword';
 import License from '../License';
@@ -82,12 +81,6 @@ export default [
     name: 'Cards',
     path: '/cards',
     component: Cards,
-    requireAuth: true,
-  },
-  {
-    name: 'Contact',
-    path: '/contact',
-    component: Contact,
     requireAuth: true,
   },
   {

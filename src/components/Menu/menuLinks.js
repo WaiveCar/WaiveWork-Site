@@ -45,8 +45,4 @@ export default {
       },
     ],
   },
-  'Contact Info': {
-    expanded: false,
-    href: '/contact',
-  },
 };
