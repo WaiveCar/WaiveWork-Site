@@ -15,12 +15,12 @@ const ModalHolder = ({
     <ModalHeader />
     <ModalBody>{message}</ModalBody>
     <ModalFooter>
-      <Button color="primary" onClick={() => confirmFunc()}>
-        {confirmButton}
-      </Button>{' '}
       <Button color="secondary" onClick={() => hideModal()}>
         Cancel
       </Button>
+      <Button color="primary" onClick={() => confirmFunc()}>
+        {confirmButton}
+      </Button>{' '}
     </ModalFooter>
   </Modal>
 );
@@ -35,7 +35,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ hideModal }, dispatch);
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ModalHolder);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalHolder);
