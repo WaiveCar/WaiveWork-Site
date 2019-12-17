@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   addCard,
   deleteCard,
@@ -18,9 +18,10 @@ function Cards({
   cards,
 }) {
   addCard = addCard.bind(null, user);
+  const [addOpen, toggleAdd] = useState(false);
   return (
     <div className="container">
-      <h5 className="mt-4 mb-4 text-center">Your Cards</h5>
+      <h5 className="mt-4 mb-4 text-center">Your Credit Cards</h5>
       <div className="row justify-content-center">
         <table className="card-list col-md-6">
           <thead>
@@ -43,14 +44,14 @@ function Cards({
                   <div>
                     <button
                       type="button"
-                      className="btn btn-outline-primary"
+                      className="btn btn-sm btn-outline-primary"
                       onClick={() => deleteCard(card.id, i)}
                     >
                       delete
                     </button>
                     <button
                       type="button"
-                      className="btn btn-outline-primary"
+                      className="btn btn-sm btn-outline-primary"
                       onClick={() => selectCurrentlyUsedCard(card.id)}
                     >
                       select
@@ -62,15 +63,27 @@ function Cards({
           </tbody>
         </table>
       </div>
-      <Form
-        fields={paymentFormFields}
-        title={'Add Card'}
-        formName={'paymentForm'}
-        onSubmit={(form) => addCard(form)}
-        submitName={'Add'}
-        formWidth={'60%'}
-        clearOnSubmit
-      />
+      <div className="d-flex justify-content-center mt-4">
+        <button
+          type="button"
+          className="btn btn-sm btn-outline-primary"
+          onClick={() => toggleAdd(!addOpen)}
+        >
+          {!addOpen ? 'Add Card' : 'Hide Editor'}
+        </button>
+      </div>
+      {addOpen ? (
+        <Form
+          fields={paymentFormFields}
+          formName={'paymentForm'}
+          onSubmit={(form) => addCard(form)}
+          submitName={'Add'}
+          formWidth={'60%'}
+          clearOnSubmit
+        />
+      ) : (
+        <span />
+      )}
     </div>
   );
 }
