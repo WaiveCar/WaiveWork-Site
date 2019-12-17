@@ -1,3 +1,5 @@
+@import '../../bootstrap/variables.scss';
+
 .card-list {
   width: 40%;
   font-size: 14px;
@@ -5,4 +7,9 @@
   th {
     width: 15%;
   }
+}
+
+.cards-icon {
+  width: 0.6rem;
+  fill: $primary;
 }

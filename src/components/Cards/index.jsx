@@ -4,6 +4,7 @@ import {
   deleteCard,
   selectCurrentlyUsedCard,
 } from '../../store/actions/paymentActions';
+import Chevron from '../../svg/chevron-right.svg';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Form from '../Form';
@@ -26,10 +27,10 @@ function Cards({
         <table className="card-list col-md-6">
           <thead>
             <tr>
+              <th>Selected</th>
               <th>Last 4</th>
               <th>Brand</th>
               <th>Expiration</th>
-              <th>Selected</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -37,16 +38,12 @@ function Cards({
             {cards.length ? (
               cards.map((card, i) => (
                 <tr key={i}>
+                  <td className="pl-2">
+                    {card.selected ? <Chevron className="cards-icon" /> : ''}
+                  </td>
                   <td>{card.last4}</td>
                   <td>{card.brand}</td>
                   <td>{`${card.expMonth}/${card.expYear}`}</td>
-                  <td className="pl-4">
-                    <input
-                      type="checkbox"
-                      checked={card.selected}
-                      onChange={() => selectCurrentlyUsedCard(card.id)}
-                    />
-                  </td>
                   <td>
                     <div>
                       <button
