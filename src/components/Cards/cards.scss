@@ -13,3 +13,26 @@
   width: 0.6rem;
   fill: $primary;
 }
+
+.circle-icon {
+  width: 1.4rem;
+  fill: red;
+}
+
+.circle-icon:hover {
+  cursor: pointer;
+}
+
+.times-circle {
+  fill: red;
+}
+
+.check-circle {
+  fill: $primary;
+}
+
+@media (min-width: 768px) {
+  .w-60 {
+    width: 60%;
+  }
+}

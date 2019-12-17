@@ -5,6 +5,8 @@ import {
   selectCurrentlyUsedCard,
 } from '../../store/actions/paymentActions';
 import Chevron from '../../svg/chevron-right.svg';
+import Times from '../../svg/times-circle.svg';
+import Check from '../../svg/check-circle.svg';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Form from '../Form';
@@ -45,21 +47,15 @@ function Cards({
                   <td>{card.brand}</td>
                   <td>{`${card.expMonth}/${card.expYear}`}</td>
                   <td>
-                    <div>
-                      <button
-                        type="button"
-                        className="btn btn-sm btn-outline-primary"
-                        onClick={() => deleteCard(card.id, i)}
-                      >
-                        delete
-                      </button>
-                      <button
-                        type="button"
-                        className="btn btn-sm btn-outline-primary"
+                    <div className="d-flex justify-content-around w-60">
+                      <Check
+                        className="circle-icon check-circle"
                         onClick={() => selectCurrentlyUsedCard(card.id)}
-                      >
-                        select
-                      </button>
+                      />
+                      <Times
+                        className="circle-icon times-circle"
+                        onClick={() => deleteCard(card.id, i)}
+                      />
                     </div>
                   </td>
                 </tr>
