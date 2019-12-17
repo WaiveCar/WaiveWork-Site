@@ -27,114 +27,110 @@ function Form(props) {
     .map((item) => !currentForm[item.formField] && item.name)
     .filter((item) => item);
   return (
-    <div className="container form-holder">
-      <form>
-        <div className="row justify-content-center">
-          {title ? <div>{title}</div> : <span />}
-        </div>
-        {body && (
-          <div className="row justify-content-center">{Parser(body)}</div>
-        )}
-        <div className="row justify-content-center">
-          <div className="inner-form">
-            {fields.map((field, i) => {
-              return field.type !== 'radio' ? (
-                <div className="input-row form-group" key={i}>
-                  <div className={'row justify-content-center'}>
-                    {field.label ? (
-                      <label
-                        className="col-sm-6 col-form-label"
-                        htmlFor={field.formName}
-                      >
-                        {field.label}
-                      </label>
-                    ) : (
-                      <span />
-                    )}
+    <div className="container form-holder mt-4">
+      <div className="row justify-content-center">
+        {title ? <h5>{title}</h5> : <span />}
+      </div>
+      {body && <div className="row justify-content-center">{Parser(body)}</div>}
+      <div className="row justify-content-center">
+        <div className="inner-form">
+          {fields.map((field, i) => {
+            return field.type !== 'radio' ? (
+              <div className="input-row form-group" key={i}>
+                <div className={'row justify-content-center'}>
+                  {field.label ? (
+                    <label
+                      className="col-sm-6 col-form-label"
+                      htmlFor={field.formName}
+                    >
+                      {field.label}
+                    </label>
+                  ) : (
+                    <span />
+                  )}
+                  <input
+                    id={field.label && field.formName}
+                    className={`col-${field.width ? field.width : 8} field`}
+                    value={currentForm[field.formField]}
+                    placeholder={!field.label ? field.name : ''}
+                    type={field.type}
+                    onChange={(e) =>
+                      updateForm(formName, field.formField, e.target.value)
+                    }
+                  />
+                </div>
+              </div>
+            ) : (
+              <div key={i}>
+                <div className="row justify-content-md-center">
+                  {field.label}
+                </div>
+                <div className="space-evenly">
+                  <label>
                     <input
-                      id={field.label && field.formName}
-                      className={`col-${field.width ? field.width : 8} field`}
-                      value={currentForm[field.formField]}
-                      placeholder={!field.label ? field.name : ''}
-                      type={field.type}
+                      type={'radio'}
+                      value={'true'}
+                      checked={currentForm[field.formField] === 'true'}
                       onChange={(e) =>
                         updateForm(formName, field.formField, e.target.value)
                       }
                     />
-                  </div>
+                    Yes
+                  </label>
+                  <label>
+                    <input
+                      type={'radio'}
+                      value={'false'}
+                      checked={currentForm[field.formField] === 'false'}
+                      onChange={(e) =>
+                        updateForm(formName, field.formField, e.target.value)
+                      }
+                    />
+                    No
+                  </label>
                 </div>
-              ) : (
-                <div key={i}>
-                  <div className="row justify-content-md-center">
-                    {field.label}
-                  </div>
-                  <div className="space-evenly">
-                    <label>
-                      <input
-                        type={'radio'}
-                        value={'true'}
-                        checked={currentForm[field.formField] === 'true'}
-                        onChange={(e) =>
-                          updateForm(formName, field.formField, e.target.value)
-                        }
-                      />
-                      Yes
-                    </label>
-                    <label>
-                      <input
-                        type={'radio'}
-                        value={'false'}
-                        checked={currentForm[field.formField] === 'false'}
-                        onChange={(e) =>
-                          updateForm(formName, field.formField, e.target.value)
-                        }
-                      />
-                      No
-                    </label>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
         </div>
-        <div className="row justify-content-center">
-          <div className="space-between button-holder">
-            {altAction ? (
-              <button
-                type="button"
-                className="btn btn-outline-primary"
-                onClick={() => altAction()}
-              >
-                {altActionName}
-              </button>
-            ) : (
-              <div />
-            )}
-            {onSubmit ? (
-              <button
-                type="button"
-                className="btn btn-outline-primary"
-                onClick={() => {
-                  if (missing.length) {
-                    showSnackbar(
-                      `Please add the following items before continuing: ${missing.join(
-                        ', ',
-                      )}.`,
-                    );
-                  } else {
-                    onSubmit(currentForm);
-                    clearOnSubmit && clearForm(formName);
-                  }
-                }}
-              >
-                {submitName}
-              </button>
-            ) : (
-              <span />
-            )}
-          </div>
+      </div>
+      <div className="row justify-content-center">
+        <div className="space-between button-holder">
+          {altAction ? (
+            <button
+              type="button"
+              className="btn btn-outline-primary"
+              onClick={() => altAction()}
+            >
+              {altActionName}
+            </button>
+          ) : (
+            <div />
+          )}
+          {onSubmit ? (
+            <button
+              type="button"
+              className="btn btn-outline-primary"
+              onClick={() => {
+                if (missing.length) {
+                  showSnackbar(
+                    `Please add the following items before continuing: ${missing.join(
+                      ', ',
+                    )}.`,
+                  );
+                } else {
+                  onSubmit(currentForm);
+                  clearOnSubmit && clearForm(formName);
+                }
+              }}
+            >
+              {submitName}
+            </button>
+          ) : (
+            <span />
+          )}
         </div>
-      </form>
+      </div>
     </div>
   );
 }
