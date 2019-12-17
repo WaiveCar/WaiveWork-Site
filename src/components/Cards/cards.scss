@@ -31,6 +31,11 @@
   fill: $primary;
 }
 
+.check-circle:hover,
+.times-circle:hover {
+  fill: $info;
+}
+
 @media (min-width: 768px) {
   .w-60 {
     width: 60%;

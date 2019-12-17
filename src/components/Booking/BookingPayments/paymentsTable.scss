@@ -1,5 +1,18 @@
+@import '../../../bootstrap/variables.scss';
 .warning-row {
   text-align: center;
   height: 4rem;
   font-weight: bold;
+}
+
+.retry-btn {
+  width: 1.1rem;
+  height: 1.1rem;
+  fill: $success;
+  margin-left: 0.3rem;
+}
+
+.retry-btn:hover {
+  cursor: pointer;
+  fill: $info;
 }

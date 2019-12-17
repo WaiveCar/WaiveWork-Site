@@ -32,7 +32,7 @@ function Booking({
       <div className="container fluid mt-4">
         <h1>Your booking in {car.license}</h1>
         {currentBooking && currentBooking.waiveworkPayment && (
-          <div className="row d-flex justify-content-around mt-4">
+          <div className="row d-flex justify-content-around">
             <div className="card booking-card mt-4">
               <div className="card-body">
                 <h5 className="card-title">Important Info</h5>
