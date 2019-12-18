@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { showSnackbar } from './snackbarActions';
+import { showModal } from './modalActions';
 
 function distance(lat1, lon1, lat2, lon2, unit) {
   if (lat1 == lat2 && lon1 == lon2) {
@@ -49,27 +50,37 @@ export const fetchChargers = (currentLocation) => async (dispatch) => {
 };
 
 export const startCharger = (carId, chargerId) => async (dispatch) => {
-  try {
-    if (process.env.NODE_ENV !== 'production') {
-      return dispatch(
-        showSnackbar(
-          'EvGoChargers are not available in development environment.',
-          'error',
-        ),
-      );
-    }
-    let response = await axios.put(`/chargers/start/${carId}/${chargerId}`, {});
-    return dispatch(
-      showSnackbar(
-        'Charger Started! Please wait a few seconds for the charger to respond',
-        'success',
-      ),
-    );
-  } catch (e) {
-    return dispatch(
-      showSnackbar(e.response ? e.response.data.message : e, 'error'),
-    );
-  }
+  dispatch(
+    showModal(
+      'Are you sure you want to start this charger? The cost will be added to your weekly payment.',
+      async () => {
+        try {
+          if (process.env.NODE_ENV !== 'production') {
+            return dispatch(
+              showSnackbar(
+                'EvGoChargers are not available in development environment.',
+                'error',
+              ),
+            );
+          }
+          let response = await axios.put(
+            `/chargers/start/${carId}/${chargerId}`,
+            {},
+          );
+          return dispatch(
+            showSnackbar(
+              'Charger Started! Please wait a few seconds for the charger to respond',
+              'success',
+            ),
+          );
+        } catch (e) {
+          return dispatch(
+            showSnackbar(e.response ? e.response.data.message : e, 'error'),
+          );
+        }
+      },
+    ),
+  );
 };
 
 export const expandChargerLocation = (index) => (dispatch) => {
