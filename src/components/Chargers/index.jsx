@@ -37,7 +37,6 @@ function Chargers({
         <table className="table table-sm">
           <thead>
             <tr>
-              <th scope="col">Id</th>
               <th scope="col">Name</th>
               <th scope="col">Distance</th>
               <th scope="col">Address</th>
@@ -46,15 +45,21 @@ function Chargers({
           {current5.map((charger, i) =>
             !charger.isExpansion ? (
               <tr key={i} onClick={() => expandChargerLocation(i)}>
-                <td>{charger.id}</td>
                 <td>{charger.name}</td>
                 <td>{charger.distance.toFixed(2)} mi</td>
-                <td>{charger.address}</td>
+                <td>
+                  <a
+                    href={`http://maps.google.com/maps?daddr=${charger.latitude},${charger.longitude}`}
+                    target="_blank"
+                  >
+                    {charger.address}
+                  </a>
+                </td>
               </tr>
             ) : (
               <tr key={i}>
                 <td colSpan={4}>
-                  <h5>Click plug to start</h5>
+                  <h5 className="mt-2">Click plug to start</h5>
                   <div className="row justify-content-around">
                     {charger.portList.map((port, i) => (
                       <div
