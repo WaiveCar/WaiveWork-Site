@@ -18,10 +18,11 @@ function chargerReducer(state = initialState, action) {
       };
     case 'EXPAND_CHARGER_LOCATION':
       let expandedCurrent = [];
-      state.current5.forEach((charger, i) => {
+      let { current5 } = state;
+      current5.forEach((charger, i) => {
         if (!charger.isExpansion) {
           expandedCurrent.push(charger);
-          if (i === payload.index) {
+          if (i === payload.index && !current5[i + 1].isExpansion) {
             expandedCurrent.push({ ...charger, isExpansion: true });
           }
         }

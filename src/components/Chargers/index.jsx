@@ -20,8 +20,8 @@ function Chargers({
   shiftSelected,
 }) {
   return user && user.currentLocation ? (
-    <div className="container">
-      <h3>Chargers</h3>
+    <div className="container mt-4">
+      <h1>Chargers</h1>
       <div className="charger-map">
         <MapHolder
           initialCenter={{
