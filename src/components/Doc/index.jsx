@@ -9,9 +9,9 @@ function Doc(props) {
   const currentFile = props[`${type}File`];
   return (
     <div className="container mt-4">
-      <h1>Your {type}</h1>
       {currentFile ? (
         <div>
+          <h1>Your {type}</h1>
           <h5 className="d-flex justify-content-between">
             <div>
               (expires {moment(currentFile.comment).format('MM/DD/YYYY')})
@@ -47,13 +47,14 @@ function Doc(props) {
           </div>
         </div>
       ) : (
-        <div>
-          {!currentBooking &&
-          type !== 'registration' &&
-          type !== 'inspection' ? (
-            <h5>File not uploaded</h5>
+        <div className="mt-4">
+          {(!currentBooking &&
+            type !== 'registration' &&
+            type !== 'inspection') ||
+          (!currentBooking.waiveworkPayment && type === 'insurance') ? (
+            <h5>Insurance card file not uploaded</h5>
           ) : (
-            <h5>Not currently in a booking</h5>
+            <h5>You are not currently in a WaiveWork booking</h5>
           )}
         </div>
       )}

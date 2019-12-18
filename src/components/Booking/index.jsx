@@ -116,13 +116,9 @@ function Booking({
     );
   } else {
     return (
-      <div className="container">
+      <div className="container mt-4">
         <div>
-          {currentBooking && !currentBooking.waiveworkPayment ? (
-            <div>You are in a booking, but it is not a WaiveWork booking</div>
-          ) : (
-            <div>You are not currently in a booking</div>
-          )}
+          <h5>You are not currently in a WaiveWork booking</h5>
         </div>
       </div>
     );
