@@ -17,11 +17,18 @@ function chargerReducer(state = initialState, action) {
         current5: first5,
       };
     case 'EXPAND_CHARGER_LOCATION':
-      let temp = [...state.current5];
-      temp[payload.index].expanded = !temp[payload.index].expanded;
+      let expandedCurrent = [];
+      state.current5.forEach((charger, i) => {
+        if (!charger.isExpansion) {
+          expandedCurrent.push(charger);
+          if (i === payload.index) {
+            expandedCurrent.push({ ...charger, isExpansion: true });
+          }
+        }
+      });
       return {
         ...state,
-        current5: temp,
+        current5: expandedCurrent,
       };
     case 'SHIFT_SELECTED':
       return {
