@@ -43,47 +43,49 @@ function Chargers({
               <th scope="col">Address</th>
             </tr>
           </thead>
-          {current5.map((charger, i) =>
-            !charger.isExpansion ? (
-              <tr key={i} onClick={() => expandChargerLocation(i)}>
-                <td>{charger.name}</td>
-                <td>{charger.distance.toFixed(2)} mi</td>
-                <td>
-                  <a
-                    href={`http://maps.google.com/maps?daddr=${charger.latitude},${charger.longitude}`}
-                    target="_blank"
-                  >
-                    {charger.address}
-                  </a>
-                </td>
-              </tr>
-            ) : (
-              <tr key={i}>
-                <td colSpan={4}>
-                  <h5 className="mt-2">Click icon to start</h5>
-                  <div className="row justify-content-around">
-                    {charger.portList.map((port, i) => (
-                      <div
-                        key={i}
-                        className="card mb-2"
-                        onClick={() => startCharger(car.id, port.id)}
-                      >
-                        <div className="charger-body">
-                          <div className="text-center card-title">
-                            {port.type} charger
+          <tbody>
+            {current5.map((charger, i) =>
+              !charger.isExpansion ? (
+                <tr key={i} onClick={() => expandChargerLocation(i)}>
+                  <td>{charger.name}</td>
+                  <td>{charger.distance.toFixed(2)} mi</td>
+                  <td>
+                    <a
+                      href={`http://maps.google.com/maps?daddr=${charger.latitude},${charger.longitude}`}
+                      target="_blank"
+                    >
+                      {charger.address}
+                    </a>
+                  </td>
+                </tr>
+              ) : (
+                <tr key={i}>
+                  <td colSpan={4}>
+                    <h5 className="mt-2">Click icon to start</h5>
+                    <div className="row justify-content-around">
+                      {charger.portList.map((port, i) => (
+                        <div
+                          key={i}
+                          className="card mb-2"
+                          onClick={() => startCharger(car, port.id)}
+                        >
+                          <div className="charger-body">
+                            <div className="text-center card-title">
+                              {port.type} charger
+                            </div>
+                            <div className="text-center mt-1 mb-1">
+                              <Station className="charger-icon" />
+                            </div>
+                            <div className="text-center">{port.name}</div>
                           </div>
-                          <div className="text-center mt-1 mb-1">
-                            <Station className="charger-icon" />
-                          </div>
-                          <div className="text-center">{port.name}</div>
                         </div>
-                      </div>
-                    ))}
-                  </div>
-                </td>
-              </tr>
-            ),
-          )}
+                      ))}
+                    </div>
+                  </td>
+                </tr>
+              ),
+            )}
+          </tbody>
         </table>
       </div>
       <div className="row justify-content-center">

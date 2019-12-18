@@ -49,7 +49,15 @@ export const fetchChargers = (currentLocation) => async (dispatch) => {
   });
 };
 
-export const startCharger = (carId, chargerId) => async (dispatch) => {
+export const startCharger = (car, chargerId) => async (dispatch) => {
+  if (!car) {
+    return dispatch(
+      showSnackbar(
+        'You cannot use charging when you are not in a booking',
+        'error',
+      ),
+    );
+  }
   dispatch(
     showModal(
       'Are you sure you want to start this charger? The cost will be added to your weekly payment.',
@@ -64,7 +72,7 @@ export const startCharger = (carId, chargerId) => async (dispatch) => {
             );
           }
           let response = await axios.put(
-            `/chargers/start/${carId}/${chargerId}`,
+            `/chargers/start/${car.id}/${chargerId}`,
             {},
           );
           return dispatch(
