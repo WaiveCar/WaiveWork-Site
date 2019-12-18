@@ -22,7 +22,10 @@ function chargerReducer(state = initialState, action) {
       current5.forEach((charger, i) => {
         if (!charger.isExpansion) {
           expandedCurrent.push(charger);
-          if (i === payload.index && !current5[i + 1].isExpansion) {
+          if (
+            i === payload.index &&
+            !(current5[i + 1] && current5[i + 1].isExpansion)
+          ) {
             expandedCurrent.push({ ...charger, isExpansion: true });
           }
         }

@@ -53,7 +53,6 @@ function Chargers({
             ) : (
               <tr key={i}>
                 <td colSpan={4}>
-                  Expansion
                   <div className="row justify-content-around">
                     {charger.portList.map((port, i) => (
                       <div
