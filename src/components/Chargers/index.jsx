@@ -33,7 +33,8 @@ function Chargers({
           zoom={12}
         />
       </div>
-      <div>
+      <div className="mt-4">
+        <h5>Charger List (click to see ports)</h5>
         <table className="table table-sm">
           <thead>
             <tr>
@@ -59,7 +60,7 @@ function Chargers({
             ) : (
               <tr key={i}>
                 <td colSpan={4}>
-                  <h5 className="mt-2">Click plug to start</h5>
+                  <h5 className="mt-2">Click icon to start</h5>
                   <div className="row justify-content-around">
                     {charger.portList.map((port, i) => (
                       <div
