@@ -117,7 +117,7 @@ function Booking({
   } else {
     return (
       <div className="container mt-4">
-        <div>
+        <div className="text-center">
           <h5>You are not currently in a WaiveWork booking</h5>
         </div>
       </div>

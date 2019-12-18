@@ -47,11 +47,13 @@ function Doc(props) {
           </div>
         </div>
       ) : (
-        <div className="mt-4">
+        <div className="mt-4 text-center">
           {(!currentBooking &&
             type !== 'registration' &&
             type !== 'inspection') ||
-          (!currentBooking.waiveworkPayment && type === 'insurance') ? (
+          (currentBooking &&
+            !currentBooking.waiveworkPayment &&
+            type === 'insurance') ? (
             <h5>Insurance card file not uploaded</h5>
           ) : (
             <h5>You are not currently in a WaiveWork booking</h5>

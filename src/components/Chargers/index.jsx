@@ -61,7 +61,9 @@ function Chargers({
               ) : (
                 <tr key={i}>
                   <td colSpan={4}>
-                    <h5 className="mt-2">Click icon to start</h5>
+                    <div className="mt-2 text-center">
+                      Click icon to start charger
+                    </div>
                     <div className="row justify-content-around">
                       {charger.portList.map((port, i) => (
                         <div
