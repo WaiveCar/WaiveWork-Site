@@ -19,6 +19,13 @@ function Chargers({
   startCharger,
   shiftSelected,
 }) {
+  let expandedCurrent = [];
+  current5.forEach((charger) => {
+    expandedCurrent.push(charger);
+    if (charger.expanded) {
+      expandedCurrent.push({ ...charger, isExpansion: true });
+    }
+  });
   return user && user.currentLocation ? (
     <div className="container">
       <h3>Chargers</h3>
@@ -33,32 +40,50 @@ function Chargers({
         />
       </div>
       <div>
-        {current5.map((charger, i) => (
-          <div key={i}>
-            <div
-              className="row justify-content-around"
-              onClick={() => expandChargerLocation(i)}
-            >
-              <div>
-                {charger.name}: {charger.distance.toFixed(2)} miles
-              </div>
-              <div>{charger.address}</div>
-            </div>
-            {charger.expanded ? (
-              <div>
-                <div className="row justify-content-around">
-                  {charger.portList.map((port, i) => (
-                    <div key={i} onClick={() => startCharger(car.id, port.id)}>
-                      {port.name}: {port.type}
-                    </div>
-                  ))}
+        <table>
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Distance</th>
+              <th>Address</th>
+            </tr>
+          </thead>
+          {expandedCurrent.map((charger, i) => (
+            <tr key={i}>
+              {!charger.isExpansion ? (
+                <div
+                  className="row justify-content-around"
+                  onClick={() => expandChargerLocation(i)}
+                >
+                  <div>
+                    {charger.name}: {charger.distance.toFixed(2)} miles
+                  </div>
+                  <div>{charger.address}</div>
                 </div>
-              </div>
-            ) : (
-              <div />
-            )}
-          </div>
-        ))}
+              ) : (
+                <td>expansion</td>
+              )}
+
+              {/*charger.expanded ? (
+                <tr>
+                  <div className="row justify-content-around">
+                    {charger.portList.map((port, i) => (
+                      <div
+                        key={i}
+                        onClick={() => startCharger(car.id, port.id)}
+                      >
+                        {port.name}: {port.type}
+                      </div>
+                    ))}
+                  </div>
+                </tr>
+              ) : (
+                <div />
+              )*/}
+            </tr>
+          ))}
+        </table>
       </div>
       <div className="row justify-content-center">
         <div className="shift-buttons space-between">
@@ -99,7 +124,4 @@ function mapDispatchToProps(dispatch) {
   );
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Chargers);
+export default connect(mapStateToProps, mapDispatchToProps)(Chargers);
