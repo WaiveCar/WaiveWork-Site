@@ -155,7 +155,7 @@ export default [
     `,
     fields: [
       {
-        name: 'for rideshare',
+        name: 'wants electric',
         formField: 'wantsElectric',
         type: 'radio',
         label: 'Are you interested in using an electric car?',
