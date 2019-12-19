@@ -6,7 +6,7 @@ import Form from '../Form';
 
 function Personal({ personalFormFields, user, updateUser }) {
   return (
-    <div className="container">
+    <div className="container large-mt">
       <Form
         fields={personalFormFields}
         title={'Personal Info'}

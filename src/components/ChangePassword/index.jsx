@@ -6,7 +6,7 @@ import Form from '../Form';
 
 function ChangePassword({ passwordFormFields, user, updateUser }) {
   return (
-    <div className="container">
+    <div className="container large-mt">
       <Form
         fields={passwordFormFields}
         title={'Update Password'}
@@ -28,7 +28,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ updateUser }, dispatch);
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ChangePassword);
+export default connect(mapStateToProps, mapDispatchToProps)(ChangePassword);

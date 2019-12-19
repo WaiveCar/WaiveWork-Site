@@ -23,8 +23,8 @@ function Cards({
   addCard = addCard.bind(null, user);
   const [addOpen, toggleAdd] = useState(false);
   return (
-    <div className="container">
-      <h5 className="mt-4 mb-4 text-center">Your Credit Cards</h5>
+    <div className="container large-mt">
+      <h5 className="text-center">Your Credit Cards</h5>
       <div className="row justify-content-center">
         <table className="card-list col-md-6">
           <thead>
@@ -76,7 +76,7 @@ function Cards({
           className="btn btn-sm btn-outline-primary"
           onClick={() => toggleAdd(!addOpen)}
         >
-          {!addOpen ? 'Add Card' : 'Hide Editor'}
+          {!addOpen ? 'Add Card' : 'Hide'}
         </button>
       </div>
       {addOpen ? (
