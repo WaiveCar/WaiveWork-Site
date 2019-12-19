@@ -16,7 +16,7 @@
   height: 100%;
   width: 300px;
   background-color: $secondary;
-  padding: 0.5rem;
+  padding: 3rem 0.5rem;
 }
 
 .menu-chevron {
@@ -38,8 +38,17 @@
   margin: 0.35rem 0.3rem;
 }
 
+.menu-title-text:hover {
+  color: $primary;
+  cursor: pointer;
+}
+
 .expanded-list {
 }
 
 .expanded-link {
+}
+
+.signout-icon {
+  width: 1rem;
 }

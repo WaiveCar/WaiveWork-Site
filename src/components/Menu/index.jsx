@@ -13,7 +13,9 @@ function Menu({ loggedIn, showMenu, menuVisible, authChecked }) {
     <div>
       {menuVisible ? <ExpandedMenu /> : <div />}
       <div className="top-bar">
-        <Logo className="top-logo" />
+        <Link to={'/dashboard'} className="logo-link">
+          <Logo className="top-logo" />
+        </Link>
         {loggedIn ? (
           <div className="menu-button" onClick={() => showMenu()}>
             <Bars className="menu-svg" />

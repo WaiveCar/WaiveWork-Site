@@ -29,12 +29,16 @@
   fill: $light;
 }
 
-.top-logo {
-  width: 8rem;
+.logo-link {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   position: absolute;
+}
+
+.top-logo {
+  width: 8rem;
+  max-height: 2.7rem;
 }
 
 @media (max-width: 768px) {
