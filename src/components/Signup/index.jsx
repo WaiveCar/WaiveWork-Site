@@ -38,7 +38,7 @@ function Signup({
             submitName={signupFormPages[selectedSignupPage].submitName}
             altActionName={signupFormPages[selectedSignupPage].altActionName}
             formWidth={'60%'}
-            clearOnSubmit
+            clearOnSubmit={selectedSignupPage === signupFormPages.length - 1}
           />
           <div className="text-center">
             <Link to={'/login'} className="text-center">

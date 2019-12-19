@@ -25,6 +25,7 @@ export default [
         formField: 'placeName',
         type: 'text',
         width: 12,
+        optional: true,
       },
       {
         name: 'phone number',
@@ -49,6 +50,7 @@ export default [
         formField: 'street2',
         type: 'text',
         width: 12,
+        optional: true,
       },
       {
         name: 'city',
@@ -112,6 +114,7 @@ export default [
         type: 'number',
         width: 2,
         label: 'How many years of driving experience do you have?',
+        optional: true,
       },
       {
         name: 'price per week',
@@ -119,6 +122,7 @@ export default [
         type: 'number',
         width: 2,
         label: 'How much would you be willing to pay per week?',
+        optional: true,
       },
       {
         name: 'for rideshare',

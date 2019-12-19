@@ -24,7 +24,7 @@ function Form(props) {
   } = props;
   const currentForm = props[formName];
   let missing = fields
-    .map((item) => !currentForm[item.formField] && item.name)
+    .map((item) => !item.optional && !currentForm[item.formField] && item.name)
     .filter((item) => item);
   return (
     <div className="container form-holder mt-4">
