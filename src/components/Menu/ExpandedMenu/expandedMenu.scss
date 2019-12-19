@@ -16,7 +16,17 @@
   height: 100%;
   width: 220px;
   background-color: $secondary;
-  padding: 3rem 0.5rem;
+}
+
+.menu-logo-holder {
+  margin: 1rem 0;
+  display: block;
+  width: 100%;
+}
+
+.menu-logo {
+  height: 3rem;
+  margin-right: 1.5rem;
 }
 
 .menu-chevron {
@@ -35,7 +45,7 @@
   line-height: 1.1rem;
   font-size: 1.1rem;
   color: white;
-  margin: 1rem 0.3rem;
+  margin: 1rem 0.8rem;
 }
 
 .menu-title-text:hover {
@@ -51,7 +61,8 @@
 
 .logout {
   color: $light;
-  margin-right: 1.6rem;
+  margin-top: 0.5rem;
+  margin-right: 2rem;
 }
 
 .logout:hover {

@@ -7,12 +7,16 @@ import { Link } from 'react-router-dom';
 import ChevronRight from '../../../svg/chevron-right.svg';
 import ChevronLeft from '../../../svg/chevron-left.svg';
 import SignOut from '../../../svg/sign-out-alt.svg';
+import Logo from '../../../svg/logo-waivecar.svg';
 import './expandedMenu.scss';
 
 function ExpandedMenu({ hideMenu, menuLinks, toggleItem, logout }) {
   return (
     <div className="outer-menu" onClick={() => hideMenu()}>
       <div className="inner-menu" onClick={(e) => e.stopPropagation()}>
+        <div className="menu-logo-holder d-flex justify-content-center">
+          <Logo className="menu-logo" />
+        </div>
         {Object.keys(menuLinks).map((name, i) => {
           let item = menuLinks[name];
           return (
@@ -68,7 +72,7 @@ function ExpandedMenu({ hideMenu, menuLinks, toggleItem, logout }) {
         >
           <div className="logout">
             <SignOut className="signout-icon" />
-            Log Out
+            Logout
           </div>
         </div>
       </div>
