@@ -15,7 +15,9 @@ function ExpandedMenu({ hideMenu, menuLinks, toggleItem, logout }) {
     <div className="outer-menu" onClick={() => hideMenu()}>
       <div className="inner-menu" onClick={(e) => e.stopPropagation()}>
         <div className="menu-logo-holder d-flex justify-content-center">
-          <Logo className="menu-logo" />
+          <Link to={'/dashboard'}>
+            <Logo className="menu-logo" />
+          </Link>
         </div>
         {Object.keys(menuLinks).map((name, i) => {
           let item = menuLinks[name];
