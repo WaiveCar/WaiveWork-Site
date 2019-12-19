@@ -43,7 +43,7 @@ export const login = (email, password) => async (dispatch) => {
     });
     localStorage.setItem('token', response.data.token);
     axios.defaults.headers.common['Authorization'] = response.data.token;
-    dispatch({ type: 'CLEAR_FORM', payload: { formName: 'authForm' } });
+    //await dispatch({ type: 'CLEAR_FORM', payload: { formName: 'authForm' } });
     return dispatch({ type: 'TOGGLE_LOGIN', payload: { loggedIn: true } });
   } catch (e) {
     return dispatch(

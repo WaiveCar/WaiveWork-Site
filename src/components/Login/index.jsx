@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import { login } from '../../store/actions/userActions';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 import Form from '../Form';
 import Envelope from '../../svg/envelope.svg';
 import Key from '../../svg/key.svg';
@@ -10,7 +11,7 @@ import Key from '../../svg/key.svg';
 function Login(props) {
   const { login, loggedIn, loginFormFields } = props;
   return (
-    <div>
+    <div className="large-mt">
       {!loggedIn ? (
         <div className="container">
           <Form
@@ -22,6 +23,11 @@ function Login(props) {
             formWidth={'60%'}
             clearOnSubmit
           />
+          <div className="text-center">
+            <Link to={'/signup'} className="text-center">
+              Haven't signed up yet? Click here to sign up.
+            </Link>
+          </div>
         </div>
       ) : (
         <Redirect to={'/dashboard'} />
@@ -41,7 +47,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ login }, dispatch);
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

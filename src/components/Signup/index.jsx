@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from '../Form';
 import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -24,7 +25,7 @@ function Signup({
     selectedSignupPage !== 0 &&
     changeSignupPage.bind(null, selectedSignupPage - 1);
   return (
-    <div>
+    <div className="large-mt">
       {!loggedIn ? (
         <div className="container">
           <Form
@@ -39,6 +40,11 @@ function Signup({
             formWidth={'60%'}
             clearOnSubmit
           />
+          <div className="text-center">
+            <Link to={'/login'} className="text-center">
+              Already have an account? Click here to login.
+            </Link>
+          </div>
         </div>
       ) : (
         <Redirect to={'/dashboard'} />
@@ -58,9 +64,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ changeSignupPage, signup }, dispatch);
 }
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  )(Signup),
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Signup));

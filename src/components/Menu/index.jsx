@@ -24,14 +24,6 @@ function Menu({ loggedIn, showMenu, menuVisible, authChecked }) {
           <div />
         )}
       </div>
-      {!loggedIn && authChecked ? (
-        <div>
-          <Link to={'/login'}>login</Link>
-          <Link to={'/signup'}>signup</Link>
-        </div>
-      ) : (
-        <div />
-      )}
     </div>
   );
 }

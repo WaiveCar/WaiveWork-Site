@@ -113,7 +113,7 @@ function Form(props) {
             <button
               type="button"
               className="btn btn-outline-primary"
-              onClick={() => {
+              onClick={async () => {
                 if (missing.length) {
                   showSnackbar(
                     `Please add the following items before continuing: ${missing.join(
@@ -121,7 +121,7 @@ function Form(props) {
                     )}.`,
                   );
                 } else {
-                  onSubmit(currentForm);
+                  await onSubmit(currentForm);
                   clearOnSubmit && clearForm(formName);
                 }
               }}
