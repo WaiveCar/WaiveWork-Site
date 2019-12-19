@@ -11,6 +11,7 @@
 }
 
 .inner-menu {
+  border-top: 2px solid $primary;
   z-index: 1000;
   height: 100%;
   width: 300px;
@@ -34,13 +35,11 @@
   line-height: 1.1rem;
   font-size: 1.1rem;
   color: white;
-  margin: 0.5rem 0.3rem;
+  margin: 0.35rem 0.3rem;
 }
 
 .expanded-list {
-  background-color: $light;
 }
 
 .expanded-link {
-  border-bottom: 1px solid black;
 }

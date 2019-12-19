@@ -1,6 +1,7 @@
 @import '../../bootstrap/variables.scss';
 
 .top-bar {
+  border-top: 2px solid $primary;
   display: flex;
   align-items: center;
   position: sticky;
