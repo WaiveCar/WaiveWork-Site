@@ -4,12 +4,13 @@ import { bindActionCreators } from 'redux';
 import { hideMenu, toggleItem } from '../../../store/actions/menuActions';
 import { logout } from '../../../store/actions/userActions';
 import { Link } from 'react-router-dom';
+import ChevronRight from '../../../svg/chevron-right.svg';
 import './expandedMenu.scss';
 
 function ExpandedMenu({ hideMenu, menuLinks, toggleItem, logout }) {
   return (
     <div className="outer-menu" onClick={() => hideMenu()}>
-      <div className="inner-menu" onClick={(e) => e.stopPropagation()}>
+      <div className="inner-menu pt-4" onClick={(e) => e.stopPropagation()}>
         {Object.keys(menuLinks).map((name, i) => {
           let item = menuLinks[name];
           return (
@@ -25,20 +26,33 @@ function ExpandedMenu({ hideMenu, menuLinks, toggleItem, logout }) {
                 </Link>
               ) : (
                 <div onClick={() => toggleItem(name)} key={i}>
-                  {name}
-                  {item.expanded &&
-                    item.children.map((child, j) => (
-                      <div key={j} onClick={(e) => e.stopPropagation()}>
-                        <Link
-                          to={child.href}
-                          onClick={() => {
-                            toggleItem(name), hideMenu();
-                          }}
+                  <div className="menu-title">
+                    <ChevronRight
+                      className={`menu-chevron ${
+                        item.expanded ? 'rotated' : ''
+                      }`}
+                    />
+                    <span>{name}</span>
+                  </div>
+                  <ul className="expanded-list">
+                    {item.expanded &&
+                      item.children.map((child, j) => (
+                        <li
+                          key={j}
+                          className="expanded-link"
+                          onClick={(e) => e.stopPropagation()}
                         >
-                          {child.name}
-                        </Link>
-                      </div>
-                    ))}
+                          <Link
+                            to={child.href}
+                            onClick={() => {
+                              toggleItem(name), hideMenu();
+                            }}
+                          >
+                            {child.name}
+                          </Link>
+                        </li>
+                      ))}
+                  </ul>
                 </div>
               )}
             </div>
@@ -66,7 +80,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ hideMenu, toggleItem, logout }, dispatch);
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ExpandedMenu);
+export default connect(mapStateToProps, mapDispatchToProps)(ExpandedMenu);

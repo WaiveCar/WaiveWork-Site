@@ -14,5 +14,33 @@
   z-index: 1000;
   height: 100%;
   width: 300px;
+  background-color: $secondary;
+  padding: 0.5rem;
+}
+
+.menu-chevron {
+  vertical-align: -0.1rem;
+  margin-right: 0.4rem;
+  height: 100%;
+  fill: $primary;
+}
+
+.rotated {
+  transform: rotate(90deg);
+}
+
+.menu-title {
+  height: 1.1rem;
+  line-height: 1.1rem;
+  font-size: 1.1rem;
+  color: white;
+  margin: 0.5rem 0.3rem;
+}
+
+.expanded-list {
   background-color: $light;
+}
+
+.expanded-link {
+  border-bottom: 1px solid black;
 }

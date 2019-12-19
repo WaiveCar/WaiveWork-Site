@@ -33,7 +33,7 @@ function Chargers({
           zoom={12}
         />
       </div>
-      <div className="mt-4">
+      <div className="mt-4 charger-list">
         <h5>Charger List (click to see ports)</h5>
         <table className="table table-sm">
           <thead>

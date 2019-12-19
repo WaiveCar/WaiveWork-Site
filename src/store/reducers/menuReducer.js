@@ -23,7 +23,7 @@ function menuReducer(state = initialState, action) {
       return {
         ...state,
         menuLinks: {
-          ...menuLinks,
+          ...state.menuLinks,
           [name]: {
             ...state.menuLinks[name],
             expanded: !state.menuLinks[name].expanded,
