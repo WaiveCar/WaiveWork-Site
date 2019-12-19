@@ -14,7 +14,7 @@
   border-top: 2px solid $primary;
   z-index: 1000;
   height: 100%;
-  width: 300px;
+  width: 220px;
   background-color: $secondary;
   padding: 3rem 0.5rem;
 }
@@ -35,7 +35,7 @@
   line-height: 1.1rem;
   font-size: 1.1rem;
   color: white;
-  margin: 0.35rem 0.3rem;
+  margin: 1rem 0.3rem;
 }
 
 .menu-title-text:hover {
@@ -49,6 +49,23 @@
 .expanded-link {
 }
 
+.logout {
+  color: $light;
+  margin-top: 1rem;
+}
+
+.logout:hover {
+  color: $primary;
+  cursor: pointer;
+}
+
 .signout-icon {
-  width: 1rem;
+  margin-left: 0.6rem;
+  margin-right: 0.9rem;
+  width: 1.5rem;
+  fill: $light;
+}
+
+.signout-icon:hover {
+  fill: $primary;
 }

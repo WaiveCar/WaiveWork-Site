@@ -61,12 +61,13 @@ function ExpandedMenu({ hideMenu, menuLinks, toggleItem, logout }) {
           );
         })}
         <div
+          className="logout d-flex justify-content-center"
           onClick={() => {
             logout(), hideMenu();
           }}
         >
+          Log Out
           <SignOut className="signout-icon" />
-          logout
         </div>
       </div>
     </div>
