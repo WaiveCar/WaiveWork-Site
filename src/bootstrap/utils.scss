@@ -1,8 +1,13 @@
 @import 'variables';
-html,
-body {
-  height: 100%;
-  margin: 0;
+
+#app {
+  margin-top: 4rem;
+}
+
+@media (max-width: 768px) {
+  #app {
+    margin-top: 5rem;
+  }
 }
 
 .space-evenly {
@@ -48,5 +53,5 @@ body {
 }
 
 .large-mt {
-  margin-top: 18vh;
+  margin-top: 22vh;
 }
