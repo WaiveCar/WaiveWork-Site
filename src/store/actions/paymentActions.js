@@ -2,6 +2,7 @@ import axios from 'axios';
 import { showSnackbar } from './snackbarActions';
 import { updateBooking, getBookingStats } from './bookingActions';
 import { showModal } from './modalActions';
+import { toggleLoading } from './menuActions';
 import moment from 'moment';
 
 export const groupCurrentBookingPayments = (payments) => async (dispatch) => {
@@ -44,14 +45,17 @@ export const advancePayment = (booking, carHistory) => async (dispatch) => {
       'Are you sure you want to make your payment in advance?',
       async () => {
         try {
+          await dispatch(toggleLoading());
           let response = await axios.get(
             `/waiveworkPayment/advanceWorkPayment/${booking.id}/`,
           );
           await dispatch(
             updateBooking({ ...booking, waiveworkPayment: response.data }),
           );
+          await dispatch(toggleLoading());
           return dispatch(showSnackbar('Payment Completed'));
         } catch (e) {
+          await dispatch(toggleLoading());
           return dispatch(
             showSnackbar(e.response ? e.response.data.message : e, 'error'),
           );

@@ -4,6 +4,7 @@ body {
   height: 100%;
   margin: 0;
 }
+
 .space-evenly {
   display: flex;
   justify-content: space-evenly;
@@ -33,6 +34,8 @@ body {
 
 .container {
   margin-bottom: 2rem;
+  position: relative;
+  z-index: 600;
 }
 
 @media (max-width: 768px) {
