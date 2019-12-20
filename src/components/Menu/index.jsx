@@ -6,12 +6,13 @@ import { showMenu, hideMenu } from '../../store/actions/menuActions';
 import Bars from '../../svg/bars.svg';
 import Logo from '../../svg/waive-work-logo-white.svg';
 import ExpandedMenu from './ExpandedMenu';
+import Loading from '../Loading';
 import './menu.scss';
 
-function Menu({ loggedIn, showMenu, menuVisible, authChecked }) {
+function Menu({ loggedIn, showMenu, menuVisible, authChecked, loading }) {
   return (
     <div>
-      {menuVisible ? <ExpandedMenu /> : <div />}
+      {menuVisible ? <ExpandedMenu /> : null}
       <div className="top-bar">
         <Link to={'/dashboard'} className="logo-link">
           <Logo className="top-logo" />
@@ -24,6 +25,7 @@ function Menu({ loggedIn, showMenu, menuVisible, authChecked }) {
           <div />
         )}
       </div>
+      {loading ? <Loading /> : null}
     </div>
   );
 }

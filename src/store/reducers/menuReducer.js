@@ -3,6 +3,7 @@ import menuLinks from '../../components/Menu/menuLinks';
 const initialState = {
   menuVisible: false,
   menuLinks,
+  loading: false,
 };
 
 function menuReducer(state = initialState, action) {
@@ -29,6 +30,11 @@ function menuReducer(state = initialState, action) {
             expanded: !state.menuLinks[name].expanded,
           },
         },
+      };
+    case 'TOGGLE_LOADING':
+      return {
+        ...state,
+        loading: !state.loading,
       };
     default:
       return state;
