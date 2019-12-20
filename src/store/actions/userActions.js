@@ -55,6 +55,7 @@ export const login = (email, password) => async (dispatch) => {
 };
 
 export const logout = () => async (dispatch) => {
+  await dispatch(toggleLoading());
   localStorage.removeItem('token');
   // The state for cars and other items also needs to be modified at this time, not just user state
   await dispatch({ type: 'TOGGLE_LOGIN', payload: { loggedIn: false } });
