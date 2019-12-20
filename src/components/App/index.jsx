@@ -42,11 +42,7 @@ class App extends Component {
             {(authChecked && userResourcesLoaded) ||
             (authChecked && !loggedIn) ? (
               <Routes />
-            ) : (
-              <div>
-                <Loading />
-              </div>
-            )}
+            ) : null}
             <Snackbar />
           </div>
           {user && (

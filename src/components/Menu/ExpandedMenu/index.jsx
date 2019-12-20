@@ -10,7 +10,7 @@ import SignOut from '../../../svg/sign-out-alt.svg';
 import Logo from '../../../svg/logo-waivecar.svg';
 import './expandedMenu.scss';
 
-function ExpandedMenu({ hideMenu, menuLinks, toggleItem, logout }) {
+function ExpandedMenu({ hideMenu, menuLinks, toggleItem, logout, loading }) {
   return (
     <div className="outer-menu" onClick={() => hideMenu()}>
       <div className="inner-menu" onClick={(e) => e.stopPropagation()}>
@@ -66,17 +66,21 @@ function ExpandedMenu({ hideMenu, menuLinks, toggleItem, logout }) {
             </div>
           );
         })}
-        <div
-          className="d-flex justify-content-center"
-          onClick={() => {
-            logout(), hideMenu();
-          }}
-        >
-          <div className="logout">
-            <SignOut className="signout-icon" />
-            Logout
+        {!loading ? (
+          <div
+            className="d-flex justify-content-center"
+            onClick={() => {
+              logout(), hideMenu();
+            }}
+          >
+            <div className="logout">
+              <SignOut className="signout-icon" />
+              Logout
+            </div>
           </div>
-        </div>
+        ) : (
+          <div />
+        )}
       </div>
     </div>
   );

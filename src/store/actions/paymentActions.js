@@ -44,22 +44,21 @@ export const advancePayment = (booking, carHistory) => async (dispatch) => {
     showModal(
       'Are you sure you want to make your payment in advance?',
       async () => {
+        await dispatch(toggleLoading());
         try {
-          await dispatch(toggleLoading());
           let response = await axios.get(
             `/waiveworkPayment/advanceWorkPayment/${booking.id}/`,
           );
           await dispatch(
             updateBooking({ ...booking, waiveworkPayment: response.data }),
           );
-          await dispatch(toggleLoading());
-          return dispatch(showSnackbar('Payment Completed'));
+          await dispatch(showSnackbar('Payment Completed'));
         } catch (e) {
-          await dispatch(toggleLoading());
-          return dispatch(
+          await dispatch(
             showSnackbar(e.response ? e.response.data.message : e, 'error'),
           );
         }
+        return dispatch(toggleLoading());
       },
     ),
   );
@@ -70,6 +69,7 @@ export const retryPayment = (paymentId, lateFees, allPayments) => async (
 ) => {
   dispatch(
     showModal('Are you sure you want to retry your payment?', async () => {
+      await dispatch(toggleLoading());
       try {
         let response = await axios.post(`/shop/retryPayment/${paymentId}`, {
           lateFees: lateFees,
@@ -77,12 +77,13 @@ export const retryPayment = (paymentId, lateFees, allPayments) => async (
         await dispatch(
           groupCurrentBookingPayments([...allPayments, response.data]),
         );
-        return dispatch(showSnackbar('Payment Successful'));
+        await dispatch(showSnackbar('Payment Successful'));
       } catch (e) {
-        return dispatch(
+        await dispatch(
           showSnackbar(e.response ? e.response.data.message : e, 'error'),
         );
       }
+      return dispatch(toggleLoading());
     }),
   );
 };
@@ -103,18 +104,20 @@ export const fetchCards = (user) => async (dispatch) => {
 
 export const addCard = (user, form) => async (dispatch) => {
   try {
+    await dispatch(toggleLoading());
     let { data } = await axios.post('/shop/cards', {
       userId: user.id,
       card: form,
     });
     await dispatch({ type: 'ADD_CARD', payload: { card: data } });
     await dispatch({ type: 'SELECT_CARD', payload: { card: data } });
-    return dispatch(showSnackbar('Card Added Successfully'));
+    await dispatch(showSnackbar('Card Added Successfully'));
   } catch (e) {
-    return dispatch(
+    await dispatch(
       showSnackbar(e.response ? e.response.data.message : e, 'error'),
     );
   }
+  return dispatch(toggleLoading());
 };
 
 export const deleteCard = (cardId, index, last4) => async (dispatch) => {
@@ -122,15 +125,17 @@ export const deleteCard = (cardId, index, last4) => async (dispatch) => {
     showModal(
       `Are you sure you want to delete your card ending in ${last4}?`,
       async () => {
+        await dispatch(toggleLoading());
         try {
           let deleteResponse = await axios.delete(`/shop/cards/${cardId}`);
           await dispatch({ type: 'DELETE_CARD', payload: { index } });
-          return dispatch(showSnackbar('Card Deleted'));
+          await dispatch(showSnackbar('Card Deleted'));
         } catch (e) {
-          return dispatch(
+          await dispatch(
             showSnackbar(e.response ? e.response.data.message : e, 'error'),
           );
         }
+        return dispatch(toggleLoading());
       },
     ),
   );
@@ -140,14 +145,16 @@ export const selectCurrentlyUsedCard = (cardId) => async (dispatch) => {
   // Currently when our api looks for which card to use, it just selects the most recently updated
   // though this api call is not meant to be used to select the currently used card,
   // it will modify the updated_at field of the card so that it is the currently used one
+  await dispatch(toggleLoading());
   try {
     let { data } = await axios.put(`/shop/cards/${cardId}`, {});
     data.selected = true;
     await dispatch({ type: 'SELECT_CARD', payload: { card: data } });
-    return dispatch(showSnackbar('Card Selected'));
+    await dispatch(showSnackbar('Card Selected'));
   } catch (e) {
-    return dispatch(
+    await dispatch(
       showSnackbar(e.response ? e.response.data.message : e, 'error'),
     );
   }
+  return dispatch(toggleLoading());
 };
