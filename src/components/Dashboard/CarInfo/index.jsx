@@ -37,7 +37,7 @@ function CarInfo({ car, carCommand, registrationFile, insuranceFile }) {
                 src={`https://waivecar-prod.s3.amazonaws.com/${registrationFile.path}`}
               />
             ) : (
-              <div>Registration not uploaded</div>
+              <div className="text-center">Registration not uploaded</div>
             )}
           </div>
         </Link>
@@ -51,7 +51,7 @@ function CarInfo({ car, carCommand, registrationFile, insuranceFile }) {
               />
             </div>
           ) : (
-            <div>Insurance not uploaded</div>
+            <div className="text-center">Insurance not uploaded</div>
           )}
         </Link>
       </div>
