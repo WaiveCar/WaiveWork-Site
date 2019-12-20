@@ -47,9 +47,10 @@ export const advancePayment = (booking, carHistory) => async (dispatch) => {
           let response = await axios.get(
             `/waiveworkPayment/advanceWorkPayment/${booking.id}/`,
           );
-          return dispatch(
+          await dispatch(
             updateBooking({ ...booking, waiveworkPayment: response.data }),
           );
+          return dispatch(showSnackbar('Payment Completed'));
         } catch (e) {
           return dispatch(
             showSnackbar(e.response ? e.response.data.message : e, 'error'),
@@ -69,9 +70,10 @@ export const retryPayment = (paymentId, lateFees, allPayments) => async (
         let response = await axios.post(`/shop/retryPayment/${paymentId}`, {
           lateFees: lateFees,
         });
-        return dispatch(
+        await dispatch(
           groupCurrentBookingPayments([...allPayments, response.data]),
         );
+        return dispatch(showSnackbar('Payment Successful'));
       } catch (e) {
         return dispatch(
           showSnackbar(e.response ? e.response.data.message : e, 'error'),
@@ -102,7 +104,8 @@ export const addCard = (user, form) => async (dispatch) => {
       card: form,
     });
     await dispatch({ type: 'ADD_CARD', payload: { card: data } });
-    return dispatch({ type: 'SELECT_CARD', payload: { card: data } });
+    await dispatch({ type: 'SELECT_CARD', payload: { card: data } });
+    return dispatch(showSnackbar('Card Added Successfully'));
   } catch (e) {
     return dispatch(
       showSnackbar(e.response ? e.response.data.message : e, 'error'),
@@ -117,7 +120,8 @@ export const deleteCard = (cardId, index, last4) => async (dispatch) => {
       async () => {
         try {
           let deleteResponse = await axios.delete(`/shop/cards/${cardId}`);
-          return dispatch({ type: 'DELETE_CARD', payload: { index } });
+          await dispatch({ type: 'DELETE_CARD', payload: { index } });
+          return dispatch(showSnackbar('Card Deleted'));
         } catch (e) {
           return dispatch(
             showSnackbar(e.response ? e.response.data.message : e, 'error'),
@@ -135,7 +139,8 @@ export const selectCurrentlyUsedCard = (cardId) => async (dispatch) => {
   try {
     let { data } = await axios.put(`/shop/cards/${cardId}`, {});
     data.selected = true;
-    return dispatch({ type: 'SELECT_CARD', payload: { card: data } });
+    await dispatch({ type: 'SELECT_CARD', payload: { card: data } });
+    return dispatch(showSnackbar('Card Selected'));
   } catch (e) {
     return dispatch(
       showSnackbar(e.response ? e.response.data.message : e, 'error'),

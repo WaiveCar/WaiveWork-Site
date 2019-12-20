@@ -47,7 +47,7 @@ function Doc(props) {
           </div>
         </div>
       ) : (
-        <div className="mt-4 text-center">
+        <div className="large-mt text-center">
           {(!currentBooking &&
             type !== 'registration' &&
             type !== 'inspection') ||

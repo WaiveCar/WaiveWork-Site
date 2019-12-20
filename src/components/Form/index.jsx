@@ -119,6 +119,7 @@ function Form(props) {
                     `Please add the following items before continuing: ${missing.join(
                       ', ',
                     )}.`,
+                    'error',
                   );
                 } else {
                   await onSubmit(currentForm);

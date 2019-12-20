@@ -178,11 +178,13 @@ export const updateLicense = (license, form) => async (dispatch) => {
       'Are you sure you want to update your license information?',
       async () => {
         try {
+          form.skipCheckr = true;
           let { data } = await axios.put(`/licenses/${license.id}`, form);
-          return dispatch({
+          await dispatch({
             type: 'UPDATE_LICENSE',
             payload: { license: data },
           });
+          return dispatch(showSnackbar('License Updated'));
         } catch (e) {
           return dispatch(
             showSnackbar(e.response ? e.response.data.message : e, 'error'),
