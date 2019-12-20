@@ -7,12 +7,12 @@
   left: 0;
   top: 0;
   background-color: rgba(130, 130, 130, 0.7);
-  z-index: 900;
+  z-index: 1300;
 }
 
 .inner-menu {
   border-top: 2px solid $primary;
-  z-index: 1000;
+  z-index: 1300;
   height: 100%;
   width: 220px;
   background-color: $secondary;

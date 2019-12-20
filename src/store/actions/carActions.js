@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { showSnackbar } from './snackbarActions';
 import { getBookingStats } from './bookingActions';
+import { toggleLoading } from './menuActions';
 
 export const updateCar = (car) => (dispatch) => {
   return dispatch({
@@ -22,9 +23,12 @@ export const getCarHistory = (carId, booking) => async (dispatch) => {
 
 export const carCommand = (carId, command) => async (dispatch) => {
   try {
+    await dispatch(toggleLoading());
     let response = await axios.get(`/cars/${carId}/${command}`);
     await dispatch({ type: 'UPDATE_CAR', payload: { car: response.data } });
+    await dispatch(toggleLoading());
   } catch (e) {
+    await dispatch(toggleLoading());
     return dispatch(
       showSnackbar(e.response ? e.response.data.message : e, 'error'),
     );
