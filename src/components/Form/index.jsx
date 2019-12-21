@@ -23,13 +23,13 @@ function Form(props) {
     clearForm,
   } = props;
   const currentForm = props[formName];
-  let missing = fields
+  let missing = []; /*fields
     .map((item) => !item.optional && !currentForm[item.formField] && item.name)
-    .filter((item) => item);
+    .filter((item) => item);*/
   return (
-    <div className="container form-holder mt-4">
+    <div className="form-holder mt-4">
       <div className="d-flex justify-content-center">
-        {title ? <h5>{title}</h5> : <span />}
+        {title ? <h5 className="text-center ml-4 mr-4">{title}</h5> : <span />}
       </div>
       {body && (
         <div className="d-flex justify-content-center">{Parser(body)}</div>
@@ -67,7 +67,7 @@ function Form(props) {
                 <div className="d-flex justify-content-md-center">
                   {field.label}
                 </div>
-                <div className="space-evenly">
+                <div className="space-evenly mt-2">
                   <label>
                     <input
                       type={'radio'}
@@ -97,7 +97,7 @@ function Form(props) {
         </div>
       </div>
       <div className="d-flex justify-content-center">
-        <div className="space-between button-holder">
+        <div className="space-between button-holder mt-2">
           {altAction ? (
             <button
               type="button"

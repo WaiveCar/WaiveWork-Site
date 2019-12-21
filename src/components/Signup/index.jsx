@@ -24,32 +24,30 @@ function Signup({
   const altAction =
     selectedSignupPage !== 0 &&
     changeSignupPage.bind(null, selectedSignupPage - 1);
-  return (
-    <div className="large-mt">
-      {!loggedIn ? (
-        <div className="container">
-          <Form
-            fields={signupFormPages[selectedSignupPage].fields}
-            title={signupFormPages[selectedSignupPage].title}
-            body={signupFormPages[selectedSignupPage].body}
-            formName={'authForm'}
-            onSubmit={(form) => onSubmit(authForm, history)}
-            altAction={altAction ? () => altAction() : null}
-            submitName={signupFormPages[selectedSignupPage].submitName}
-            altActionName={signupFormPages[selectedSignupPage].altActionName}
-            formWidth={'60%'}
-            clearOnSubmit={selectedSignupPage === signupFormPages.length - 1}
-          />
-          <div className="text-center">
-            <Link to={'/login'} className="text-center">
-              Already have an account? Click here to login.
-            </Link>
-          </div>
+  return !loggedIn ? (
+    <div>
+      <div className="large-mt signup">
+        <Form
+          fields={signupFormPages[selectedSignupPage].fields}
+          title={signupFormPages[selectedSignupPage].title}
+          body={signupFormPages[selectedSignupPage].body}
+          formName={'authForm'}
+          onSubmit={(form) => onSubmit(authForm, history)}
+          altAction={altAction ? () => altAction() : null}
+          submitName={signupFormPages[selectedSignupPage].submitName}
+          altActionName={signupFormPages[selectedSignupPage].altActionName}
+          formWidth={'60%'}
+          clearOnSubmit={selectedSignupPage === signupFormPages.length - 1}
+        />
+        <div className="text-center mt-4">
+          <Link to={'/login'} className="text-center">
+            Already have an account? Click here to login.
+          </Link>
         </div>
-      ) : (
-        <Redirect to={'/dashboard'} />
-      )}
+      </div>
     </div>
+  ) : (
+    <Redirect to={'/dashboard'} />
   );
 }
 
