@@ -8,9 +8,9 @@ function Doc(props) {
   const { type, userResourcesLoaded, currentBooking } = props;
   const currentFile = props[`${type}File`];
   return (
-    <div className="container doc">
+    <div className="container">
       {currentFile ? (
-        <div>
+        <div className="doc">
           <h1>Your {type}</h1>
           <h5 className="d-flex justify-content-between">
             <div>
