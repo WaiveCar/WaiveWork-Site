@@ -29,7 +29,7 @@ function Booking({
         'days',
       ) + 1;
     return (
-      <div className="container fluid mt-4">
+      <div className="container fluid">
         <h1>Your booking in {car.license}</h1>
         {currentBooking && currentBooking.waiveworkPayment && (
           <div className="row d-flex justify-content-around">
@@ -116,7 +116,7 @@ function Booking({
     );
   } else {
     return (
-      <div className="container large-mt">
+      <div className="container">
         <div className="text-center">
           <h5>You are not currently in a WaiveWork booking</h5>
         </div>

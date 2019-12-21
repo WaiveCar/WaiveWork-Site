@@ -8,7 +8,7 @@ function Doc(props) {
   const { type, userResourcesLoaded, currentBooking } = props;
   const currentFile = props[`${type}File`];
   return (
-    <div className="container mt-4">
+    <div className="container doc">
       {currentFile ? (
         <div>
           <h1>Your {type}</h1>
@@ -47,7 +47,7 @@ function Doc(props) {
           </div>
         </div>
       ) : (
-        <div className="large-mt text-center">
+        <div className="text-center">
           {(!currentBooking &&
             type !== 'registration' &&
             type !== 'inspection') ||

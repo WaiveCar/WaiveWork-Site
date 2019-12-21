@@ -26,7 +26,7 @@ function Signup({
     changeSignupPage.bind(null, selectedSignupPage - 1);
   return !loggedIn ? (
     <div>
-      <div className="large-mt signup">
+      <div className="signup">
         <Form
           fields={signupFormPages[selectedSignupPage].fields}
           title={signupFormPages[selectedSignupPage].title}

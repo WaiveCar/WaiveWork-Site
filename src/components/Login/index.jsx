@@ -11,7 +11,7 @@ import Key from '../../svg/key.svg';
 function Login(props) {
   const { login, loggedIn, loginFormFields } = props;
   return (
-    <div className="large-mt">
+    <div>
       {!loggedIn ? (
         <div className="container">
           <Form

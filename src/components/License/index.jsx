@@ -6,7 +6,7 @@ import Form from '../Form';
 
 function License({ licenseFormFields, license, updateLicense }) {
   return (
-    <div className="container large-mt">
+    <div className="container">
       <Form
         fields={licenseFormFields}
         title={'Your License'}

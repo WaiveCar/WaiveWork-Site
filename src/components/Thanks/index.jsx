@@ -2,7 +2,7 @@ import React from 'react';
 
 function Thanks() {
   return (
-    <div className="container large-mt">
+    <div className="container">
       <p className="text-center">
         Thanks for Signing up! Your information has been saved, and submitted to
         insurance for a quote unique to you. Our staff will reach out to you by

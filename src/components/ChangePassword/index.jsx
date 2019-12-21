@@ -6,7 +6,7 @@ import Form from '../Form';
 
 function ChangePassword({ passwordFormFields, user, updateUser }) {
   return (
-    <div className="container large-mt">
+    <div className="container">
       <Form
         fields={passwordFormFields}
         title={'Update Password'}

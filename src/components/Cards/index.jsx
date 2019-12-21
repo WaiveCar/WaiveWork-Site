@@ -23,7 +23,7 @@ function Cards({
   addCard = addCard.bind(null, user);
   const [addOpen, toggleAdd] = useState(false);
   return (
-    <div className="container large-mt">
+    <div className="container">
       <h5 className="text-center">Your Credit Cards</h5>
       <div className="row justify-content-center">
         <table className="card-list col-md-6">
