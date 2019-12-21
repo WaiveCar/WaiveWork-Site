@@ -25,7 +25,7 @@ function Signup({
     selectedSignupPage !== 0 &&
     changeSignupPage.bind(null, selectedSignupPage - 1);
   return !loggedIn ? (
-    <div>
+    <div className="container">
       <div className="signup">
         <Form
           fields={signupFormPages[selectedSignupPage].fields}

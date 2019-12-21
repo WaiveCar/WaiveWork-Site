@@ -52,9 +52,7 @@ function Form(props) {
                   )}
                   <input
                     id={field.label && field.formName}
-                    className={`col-${
-                      field.width ? field.width : 8
-                    } field mt-1`}
+                    className={`col-${field.width ? field.width : 8} field`}
                     value={currentForm[field.formField]}
                     placeholder={!field.label ? field.name : ''}
                     type={field.type}
