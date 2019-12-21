@@ -3,6 +3,7 @@
 #app {
   margin-top: 4rem;
   margin-bottom: 5rem;
+  min-height: calc(91vh - 9rem);
 }
 
 @media (max-width: 768px) {

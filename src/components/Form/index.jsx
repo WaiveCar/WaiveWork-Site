@@ -23,9 +23,9 @@ function Form(props) {
     clearForm,
   } = props;
   const currentForm = props[formName];
-  let missing = []; /*fields
+  let missing = fields
     .map((item) => !item.optional && !currentForm[item.formField] && item.name)
-    .filter((item) => item);*/
+    .filter((item) => item);
   return (
     <div className="form-holder mt-4">
       <div className="d-flex justify-content-center">
@@ -52,7 +52,9 @@ function Form(props) {
                   )}
                   <input
                     id={field.label && field.formName}
-                    className={`col-${field.width ? field.width : 8} field`}
+                    className={`col-${
+                      field.width ? field.width : 8
+                    } field mt-1`}
                     value={currentForm[field.formField]}
                     placeholder={!field.label ? field.name : ''}
                     type={field.type}
