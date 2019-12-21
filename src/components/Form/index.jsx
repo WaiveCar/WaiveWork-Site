@@ -67,7 +67,7 @@ function Form(props) {
                 <div className="d-flex justify-content-md-center mt-4">
                   {field.label}
                 </div>
-                <div className="space-evenly mt-4">
+                <div className="space-evenly mt-2">
                   <label>
                     <input
                       type={'radio'}

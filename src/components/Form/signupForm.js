@@ -139,7 +139,7 @@ export default [
     title:
       'We have a fleet of Hyundai Ioniqs which are otherwise identical except some are hybrid and electric.',
     body: `
-    <div>
+    <div class="mt-4">
       1) Electric
       <ul>
         <li>140 mile range</li>
@@ -147,7 +147,7 @@ export default [
         <li>20 minutes to fast charge to 75% ($.25/minute)</li>
       </ul>
       2) Hybrid
-      <ul>
+      <ul class="mt-2">
         <li>60mpg</li>
         <li>600 miles/tank</li>
       </ul>
