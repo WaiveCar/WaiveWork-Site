@@ -42,7 +42,7 @@ function Form(props) {
                 <div className={'d-flex justify-content-center'}>
                   {field.label ? (
                     <label
-                      className="col-sm-6 col-form-label"
+                      className="col-sm-6 col-form-label text-center"
                       htmlFor={field.formName}
                     >
                       {field.label}
@@ -64,10 +64,10 @@ function Form(props) {
               </div>
             ) : (
               <div key={i}>
-                <div className="d-flex justify-content-md-center">
+                <div className="d-flex justify-content-md-center mt-4">
                   {field.label}
                 </div>
-                <div className="space-evenly mt-2">
+                <div className="space-evenly mt-4">
                   <label>
                     <input
                       type={'radio'}
