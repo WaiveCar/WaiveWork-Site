@@ -2,8 +2,8 @@
 
 #app {
   margin-top: 4rem;
-  margin-bottom: 5rem;
-  min-height: calc(91vh - 9rem);
+  margin-bottom: 2.5rem;
+  min-height: calc(91vh - 6.5rem);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,6 +12,7 @@
 @media (max-width: 768px) {
   #app {
     margin-top: 5rem;
+    min-height: calc(91vh - 7.5rem);
   }
 }
 
