@@ -16,7 +16,6 @@ function PaymentsPreview({
   retryPayment,
   currentBookingPayments,
   retryablePayments,
-  retryablePayments,
 }) {
   if (currentBooking && currentBooking.waiveworkPayment) {
     let nextPaymentDate = moment
