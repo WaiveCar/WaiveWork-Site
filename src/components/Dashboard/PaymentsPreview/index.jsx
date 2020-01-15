@@ -14,6 +14,8 @@ function PaymentsPreview({
   advancePayment,
   userResourcesLoaded,
   retryPayment,
+  currentBookingPayments,
+  retryablePayments,
   retryablePayments,
 }) {
   if (currentBooking && currentBooking.waiveworkPayment) {
@@ -81,7 +83,13 @@ function PaymentsPreview({
           <div className="d-flex justify-content-center mt-4">
             <button
               className="btn btn-outline-primary"
-              onClick={() => advancePayment(currentBooking)}
+              onClick={() =>
+                advancePayment(
+                  currentBooking,
+                  currentBookingPayments,
+                  retryablePayments,
+                )
+              }
             >
               Pay Now
             </button>
