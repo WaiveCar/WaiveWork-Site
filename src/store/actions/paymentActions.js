@@ -6,6 +6,7 @@ import { toggleLoading } from './menuActions';
 import moment from 'moment';
 
 export const groupCurrentBookingPayments = (payments) => async (dispatch) => {
+  console.log('payments', payments);
   const table = {};
   for (let payment of payments) {
     if (payment.refId) {
@@ -39,7 +40,11 @@ export const groupCurrentBookingPayments = (payments) => async (dispatch) => {
   });
 };
 
-export const advancePayment = (booking, carHistory) => async (dispatch) => {
+export const advancePayment = (
+  booking,
+  allPayments,
+  retryablePayments,
+) => async (dispatch) => {
   dispatch(
     showModal(
       'Are you sure you want to make your payment in advance?',
@@ -49,8 +54,18 @@ export const advancePayment = (booking, carHistory) => async (dispatch) => {
           let response = await axios.get(
             `/waiveworkPayment/advanceWorkPayment/${booking.id}/`,
           );
+          await dispatch({
+            type: 'UPDATE_PAYMENTS',
+            payload: {
+              payments: [[response.data.order], ...allPayments],
+              retryablePayments,
+            },
+          });
           await dispatch(
-            updateBooking({ ...booking, waiveworkPayment: response.data }),
+            updateBooking({
+              ...booking,
+              waiveworkPayment: response.data.waiveworkPayment,
+            }),
           );
           await dispatch(showSnackbar('Payment Completed'));
         } catch (e) {

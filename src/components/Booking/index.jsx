@@ -17,6 +17,8 @@ function Booking({
   car,
   carHistory,
   advancePayment,
+  currentBookingPayments,
+  retryablePayments,
   carCommand,
 }) {
   if (car && currentBooking && currentBooking.waiveworkPayment) {
@@ -28,6 +30,7 @@ function Booking({
         moment(moment().format('YYYY-MM-DD')),
         'days',
       ) + 1;
+    console.log(currentBookingPayments);
     return (
       <div className="container fluid">
         <h1>Your booking in {car.license}</h1>
@@ -80,7 +83,13 @@ function Booking({
                 <div className="d-flex justify-content-center mt-4">
                   <button
                     className="btn btn-outline-primary"
-                    onClick={() => advancePayment(currentBooking)}
+                    onClick={() =>
+                      advancePayment(
+                        currentBooking,
+                        currentBookingPayments,
+                        retryablePayments,
+                      )
+                    }
                   >
                     Pay Now
                   </button>
@@ -125,9 +134,15 @@ function Booking({
   }
 }
 
-function mapStateToProps({ userReducer, bookingReducer, carReducer }) {
+function mapStateToProps({
+  userReducer,
+  paymentReducer,
+  bookingReducer,
+  carReducer,
+}) {
   return {
     ...bookingReducer,
+    ...paymentReducer,
     ...carReducer,
     ...userReducer,
   };
