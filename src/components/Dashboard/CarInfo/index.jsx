@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import MiniDoc from '../MiniDoc';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { carCommand } from '../../../store/actions/carActions';
@@ -31,28 +32,12 @@ function CarInfo({ car, carCommand, registrationFile, insuranceFile }) {
         <Link to={'/registration'}>
           <h5 className="mt-4">Registration</h5>
           <div className="d-flex justify-content-center">
-            {registrationFile ? (
-              <img
-                className="car-info-img"
-                src={`https://waivecar-prod.s3.amazonaws.com/${registrationFile.path}`}
-              />
-            ) : (
-              <div className="text-center">Registration not uploaded</div>
-            )}
+            <MiniDoc file={registrationFile} />
           </div>
         </Link>
         <Link to={'/insurance'}>
           <h5 className="mt-4">Proof of Insurance</h5>
-          {insuranceFile ? (
-            <div className="d-flex justify-content-center">
-              <img
-                className="car-info-img"
-                src={`https://waivecar-prod.s3.amazonaws.com/${insuranceFile.path}`}
-              />
-            </div>
-          ) : (
-            <div className="text-center">Insurance not uploaded</div>
-          )}
+          <MiniDoc file={insuranceFile} />
         </Link>
       </div>
     </div>
