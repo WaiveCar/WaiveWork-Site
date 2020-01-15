@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { showSnackbar } from './snackbarActions';
 import { updateBooking, getBookingStats } from './bookingActions';
+import { updateUser } from './userActions';
 import { showModal } from './modalActions';
 import { toggleLoading } from './menuActions';
 import moment from 'moment';
@@ -43,6 +44,7 @@ export const advancePayment = (
   booking,
   allPayments,
   retryablePayments,
+  user,
 ) => async (dispatch) => {
   dispatch(
     showModal(
@@ -52,6 +54,12 @@ export const advancePayment = (
         try {
           let response = await axios.get(
             `/waiveworkPayment/advanceWorkPayment/${booking.id}/`,
+          );
+          await dispatch(
+            updateUser({
+              ...user,
+              waiveworkCredit: response.data.remainingCredit,
+            }),
           );
           await dispatch({
             type: 'UPDATE_PAYMENTS',

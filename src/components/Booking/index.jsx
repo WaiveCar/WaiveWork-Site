@@ -95,6 +95,7 @@ function Booking({
                         currentBooking,
                         currentBookingPayments,
                         retryablePayments,
+                        user,
                       )
                     }
                   >
