@@ -95,6 +95,7 @@ function PaymentsPreview({
                   currentBooking,
                   currentBookingPayments,
                   retryablePayments,
+                  user,
                 )
               }
             >
