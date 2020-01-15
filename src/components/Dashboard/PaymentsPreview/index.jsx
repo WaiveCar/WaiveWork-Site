@@ -16,6 +16,7 @@ function PaymentsPreview({
   retryPayment,
   currentBookingPayments,
   retryablePayments,
+  user,
 }) {
   if (currentBooking && currentBooking.waiveworkPayment) {
     let nextPaymentDate = moment
@@ -29,7 +30,14 @@ function PaymentsPreview({
     return (
       <div className="card booking-card mt-4">
         <div className="card-body">
-          <h5 className="card-title">Booking Info</h5>
+          <h5 className="card-title d-flex justify-content-between">
+            <div>Booking Info</div>
+            <div>
+              {user.waiveworkCredit
+                ? `Credit: $${(user.waiveworkCredit / 100).toFixed(2)}`
+                : ''}
+            </div>
+          </h5>
           {retryablePayments.length ? (
             <div>
               Missed Payments:
@@ -101,6 +109,9 @@ function PaymentsPreview({
             <li className="list-group-item">
               Next Payment Date: {nextPaymentDate} ({nextPaymentFromNow} Days
               From Now)
+            </li>
+            <li className="list-group-item">
+              Total Miles Driven: {currentBooking.stats.totalMiles}
             </li>
             <li className="list-group-item">
               Total Miles Driven: {currentBooking.stats.totalMiles}

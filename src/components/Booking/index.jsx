@@ -20,6 +20,7 @@ function Booking({
   currentBookingPayments,
   retryablePayments,
   carCommand,
+  user,
 }) {
   if (car && currentBooking && currentBooking.waiveworkPayment) {
     let nextPaymentDate = moment
@@ -30,10 +31,16 @@ function Booking({
         moment(moment().format('YYYY-MM-DD')),
         'days',
       ) + 1;
-    console.log(currentBookingPayments);
     return (
       <div className="container fluid">
-        <h1>Your booking in {car.license}</h1>
+        <h1 class="d-flex justify-content-between">
+          <div>Your booking in {car.license}</div>
+          <div>
+            {user.waiveworkCredit
+              ? `Credit: $${(user.waiveworkCredit / 100).toFixed(2)}`
+              : ''}
+          </div>
+        </h1>
         {currentBooking && currentBooking.waiveworkPayment && (
           <div className="row d-flex justify-content-around">
             <div className="card booking-card mt-4">

@@ -6,7 +6,6 @@ import { toggleLoading } from './menuActions';
 import moment from 'moment';
 
 export const groupCurrentBookingPayments = (payments) => async (dispatch) => {
-  console.log('payments', payments);
   const table = {};
   for (let payment of payments) {
     if (payment.refId) {
