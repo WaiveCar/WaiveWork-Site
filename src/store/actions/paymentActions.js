@@ -52,8 +52,9 @@ export const advancePayment = (
       async () => {
         await dispatch(toggleLoading());
         try {
-          let response = await axios.get(
-            `/waiveworkPayment/advanceWorkPayment/${booking.id}/`,
+          let response = await axios.post(
+            `/shop/advancePayment/${booking.id}`,
+            {},
           );
           await dispatch(
             updateUser({
