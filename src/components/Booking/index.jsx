@@ -33,7 +33,7 @@ function Booking({
       ) + 1;
     return (
       <div className="container fluid">
-        <h1 class="d-flex justify-content-between">
+        <h1 className="d-flex justify-content-between">
           <div>Your booking in {car.license}</div>
           <div>
             {user.waiveworkCredit

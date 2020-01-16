@@ -145,7 +145,7 @@ export const fetchUserInfo = () => async (dispatch) => {
       payload: { insuranceFiles: insuranceResponse.data },
     });
     let licenseResponse = await axios.get(`/licenses?userId=${user.id}`);
-    if (licenseResponse.data.length) {
+    if (licenseResponse.data[0]) {
       [
         'firstName',
         'lastName',
