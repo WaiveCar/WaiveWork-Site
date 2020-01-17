@@ -31,7 +31,7 @@ function PaymentsPreview({
       <div className="card booking-card mt-4">
         <div className="card-body">
           <h5 className="card-title d-flex justify-content-between">
-            <div>Booking Info</div>
+            <div>Payment Info</div>
             <div>
               {user.waiveworkCredit
                 ? `Credit: $${(user.waiveworkCredit / 100).toFixed(2)}`
@@ -128,11 +128,14 @@ function PaymentsPreview({
     return (
       <div className="card booking-card mt-4">
         <div className="card-body">
-          <h5 className="card-title">Payment info</h5>
-          <div className="text-center">
-            You are not currently in a WaiveWork booking and therefore do not
-            have any upcoming payments
-          </div>
+          <h5 className="card-title d-flex justify-content-between">
+            <div>Payment Info</div>
+            <div>
+              {user.waiveworkCredit
+                ? `Credit: $${(user.waiveworkCredit / 100).toFixed(2)}`
+                : ''}
+            </div>
+          </h5>
         </div>
       </div>
     );
