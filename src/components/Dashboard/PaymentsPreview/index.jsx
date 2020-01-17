@@ -136,6 +136,9 @@ function PaymentsPreview({
                 : ''}
             </div>
           </h5>
+          <div className="text-center">
+            You are not currently booked into WaiveWork
+          </div>
         </div>
       </div>
     );
