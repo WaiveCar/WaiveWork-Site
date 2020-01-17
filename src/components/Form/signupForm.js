@@ -91,15 +91,19 @@ export default [
       },
       {
         name: 'birthday',
+        label: 'birthday',
         formField: 'birthDate',
         type: 'date',
-        width: 12,
+        labelWidth: 4,
+        width: 8,
       },
       {
         name: 'license expiration',
+        label: 'expiration',
         formField: 'expiration',
         type: 'date',
-        width: 12,
+        labelWidth: 4,
+        width: 8,
       },
     ],
     altActionName: 'back',
@@ -133,8 +137,10 @@ export default [
       },
     ],
     altActionName: 'back',
-    submitName: 'next',
+    submitName: 'submit',
   },
+  /*
+  This section is currently commented out, as we are not giving out any electrics to users for the time being
   {
     title:
       'We have a fleet of Hyundai Ioniqs which are otherwise identical except some are hybrid and electric.',
@@ -164,5 +170,5 @@ export default [
     ],
     altActionName: 'back',
     submitName: 'submit',
-  },
+  },*/
 ];

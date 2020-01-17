@@ -42,7 +42,9 @@ function Form(props) {
                 <div className={'d-flex justify-content-center'}>
                   {field.label ? (
                     <label
-                      className="col-sm-6 col-form-label text-center"
+                      className={`col-sm-${
+                        field.labelWidth ? field.labelWidth : 6
+                      } col-form-label text-center`}
                       htmlFor={field.formName}
                     >
                       {field.label}
