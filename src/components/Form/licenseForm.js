@@ -53,12 +53,16 @@ export default [
     name: 'birthday',
     formField: 'birthDate',
     type: 'date',
-    width: 12,
+    label: 'birthday',
+    labelWidth: 4,
+    width: 8,
   },
   {
     name: 'expiration date',
     formField: 'expirationDate',
     type: 'date',
-    width: 12,
+    label: 'expiration',
+    labelWidth: 4,
+    width: 8,
   },
 ];
