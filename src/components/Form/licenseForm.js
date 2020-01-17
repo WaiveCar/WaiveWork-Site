@@ -11,7 +11,6 @@ export default [
     type: 'text',
     width: 12,
   },
-  /* The fields below may be added into this form later if is determined that we require them
   {
     name: 'address line 1',
     formField: 'street1',
@@ -29,20 +28,19 @@ export default [
     formField: 'city',
     type: 'text',
     width: 12,
-  },*/
+  },
   {
     name: 'state',
     formField: 'state',
     type: 'text',
     width: 12,
   },
-  /*
   {
     name: 'zip',
     formField: 'zip',
     type: 'number',
     width: 12,
-  },*/
+  },
   {
     name: 'number',
     formField: 'number',

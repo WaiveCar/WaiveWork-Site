@@ -7,6 +7,7 @@ import { fetchCards } from './paymentActions';
 import { updateForm } from './formActions';
 import { showModal } from './modalActions';
 import { toggleLoading } from './menuActions';
+import licenseFormFields from '../../components/Form/licenseFormTemplate.js';
 
 export const verifyAuth = (history, pathName) => async (dispatch) => {
   let token = localStorage.getItem('token');
@@ -146,14 +147,7 @@ export const fetchUserInfo = () => async (dispatch) => {
     });
     let licenseResponse = await axios.get(`/licenses?userId=${user.id}`);
     if (licenseResponse.data[0]) {
-      [
-        'firstName',
-        'lastName',
-        'state',
-        'number',
-        'birthDate',
-        'expirationDate',
-      ].forEach(async (field) => {
+      Object.keys(licenseFormFields).forEach(async (field) => {
         if (
           ['birthDate', 'expirationDate'].includes(field) &&
           licenseResponse.data[0][field]
