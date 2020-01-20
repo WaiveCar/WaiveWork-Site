@@ -121,14 +121,6 @@ export default [
         optional: true,
       },
       {
-        name: 'price per week',
-        formField: 'offerPerWeek',
-        type: 'number',
-        width: 2,
-        label: 'How much would you be willing to pay per week?',
-        optional: true,
-      },
-      {
         name: 'for rideshare',
         formField: 'rideshare',
         type: 'radio',
