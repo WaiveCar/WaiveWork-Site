@@ -42,7 +42,13 @@ function Payments({
                   </td>
                 </tr>
               ) : payment[payment.length - 1].status === 'failed' ? (
-                <tr key={i} scope="row">
+                <tr
+                  key={i}
+                  scope="row"
+                  className={
+                    payment[payment.length - 1].canRetry ? 'red-text' : ''
+                  }
+                >
                   <td>
                     <div>{moment(payment[0].createdAt).format('MM/DD')}</div>
                   </td>
