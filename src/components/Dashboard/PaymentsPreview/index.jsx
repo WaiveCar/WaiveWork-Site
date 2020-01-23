@@ -56,8 +56,9 @@ function PaymentsPreview({
                     <tr key={i} scope="row" className={`red-text`}>
                       <td>{moment(payment[0].createdAt).format('MM/DD')}</td>
                       <td>{payment[0].description}</td>
-                      <td>{(payment[0].amount / 100).toFixed(2)}</td>
+                      <td>${(payment[0].amount / 100).toFixed(2)}</td>
                       <td>
+                        $
                         {payment[0].lateFees
                           ? `${(payment[0].lateFees / 100).toFixed(2)}`
                           : 0}
