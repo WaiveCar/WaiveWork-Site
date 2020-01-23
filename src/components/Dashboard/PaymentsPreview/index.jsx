@@ -84,24 +84,28 @@ function PaymentsPreview({
               Good Job! You do not have any outstanding payments.
             </div>
           )}
-          <div className="text-center pl-4 pr-4 mt-4 booking-info">
-            Did you know that you can make your weekly payments in advance?
-          </div>
-          <div className="d-flex justify-content-center mt-4">
-            <button
-              className="btn btn-outline-primary"
-              onClick={() =>
-                advancePayment(
-                  currentBooking,
-                  currentBookingPayments,
-                  retryablePayments,
-                  user,
-                )
-              }
-            >
-              Pay Now
-            </button>
-          </div>
+          {!retryablePayments.length ? (
+            <div>
+              <div className="text-center pl-4 pr-4 mt-4 booking-info">
+                Did you know that you can make your weekly payments in advance?
+              </div>
+              <div className="d-flex justify-content-center mt-4">
+                <button
+                  className="btn btn-outline-primary"
+                  onClick={() =>
+                    advancePayment(
+                      currentBooking,
+                      currentBookingPayments,
+                      retryablePayments,
+                      user,
+                    )
+                  }
+                >
+                  Advance Payment
+                </button>
+              </div>
+            </div>
+          ) : null}
           <ul className="list-group list-group-flush booking-info mt-4">
             <li className="list-group-item">
               Start Date: {currentBooking.stats.startDate} (
