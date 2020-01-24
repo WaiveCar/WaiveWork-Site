@@ -21,7 +21,7 @@ export default [
         width: 12,
       },
       {
-        name: 'location',
+        name: 'what neighborhood will you be driving in?',
         formField: 'placeName',
         type: 'text',
         width: 12,
