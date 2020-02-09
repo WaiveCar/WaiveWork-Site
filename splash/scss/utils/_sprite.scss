@@ -19,7 +19,18 @@ $ico25-height: 154px;
 $ico25-total-width: 293px;
 $ico25-total-height: 180px;
 $ico25-image: '../img/sprite.png';
-$ico25: (181px, 0px, -181px, 0px, 112px, 154px, 293px, 180px, '../img/sprite.png', 'ico25', );
+$ico25: (
+  181px,
+  0px,
+  -181px,
+  0px,
+  112px,
+  154px,
+  293px,
+  180px,
+  '../img/sprite.png',
+  'ico25'
+);
 $refresh-name: 'refresh';
 $refresh-x: 0px;
 $refresh-y: 0px;
@@ -30,12 +41,23 @@ $refresh-height: 180px;
 $refresh-total-width: 293px;
 $refresh-total-height: 180px;
 $refresh-image: '../img/sprite.png';
-$refresh: (0px, 0px, 0px, 0px, 176px, 180px, 293px, 180px, '../img/sprite.png', 'refresh', );
+$refresh: (
+  0px,
+  0px,
+  0px,
+  0px,
+  176px,
+  180px,
+  293px,
+  180px,
+  '../img/sprite.png',
+  'refresh'
+);
 $spritesheet-width: 293px;
 $spritesheet-height: 180px;
 $spritesheet-image: '../img/sprite.png';
-$spritesheet-sprites: ($ico25, $refresh, );
-$spritesheet: (293px, 180px, '../img/sprite.png', $spritesheet-sprites, );
+$spritesheet-sprites: ($ico25, $refresh);
+$spritesheet: (293px, 180px, '../img/sprite.png', $spritesheet-sprites);
 
 // The provided mixins are intended to be used with the array-like variables
 //
@@ -72,7 +94,7 @@ $spritesheet: (293px, 180px, '../img/sprite.png', $spritesheet-sprites, );
 @mixin sprite-position($sprite) {
   $sprite-offset-x: nth($sprite, 3);
   $sprite-offset-y: nth($sprite, 4);
-  background-position: $sprite-offset-x  $sprite-offset-y;
+  background-position: $sprite-offset-x $sprite-offset-y;
 }
 
 @mixin sprite-image($sprite) {
