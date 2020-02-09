@@ -1,0 +1,47 @@
+.m-show {display: none;}  
+.m-hid {display: block;}
+.d-hid {display: none;}
+
+.wrapper {padding:0 30px;}
+html {font-size: 21px !important;}
+
+.header {padding: 21px 0 16px;height: 100px;
+	.wrapper {    padding: 0 30px;    max-width: 1440px;}
+}
+.header_btn .btn { width: 200px;    height: 40px;    line-height: 38px;    font-size: 18px;}
+.header_right { padding-top: 11px;}
+.header_login { margin: 0px 52px 3px 0;}
+.header_login_link {font-size: 18px;}
+.header_logo {width:248px;height:60px;}
+
+.footer_logo {width: 165px;height: 40px;}
+.footer_list li {margin:0;}
+
+h1 {font-size: 50px;}
+h2 {font-size: 44px;}
+
+
+
+
+.main {    margin: 0 auto;    max-width: 849px;}
+.main_cont {max-width: 620px;}
+.business_txt {font-size: 23px; margin: 21px 0 -58px auto;}
+.business_car_img {margin: 0 0 0 0px;}
+.business_cont {   max-width: 560px;}
+
+.piqs_item { width: 25%;}
+
+.faq_item_title {font-size: 32px;}
+.faq_item_sign { width: 30px;    height: 30px;  min-width: 30px;
+	&:before, &:after { left:14px;   height: 30px;}
+}
+
+/* */
+@media screen and (min-width: 1099px) { 
+	h1 {font-size: 52px;} 
+	h2 {font-size: 46px;}
+	.business_cont {   max-width: 580px;}
+	.business_car_img {margin: 0 0 0 12px;}
+	.business_txt {font-size: 24px; }
+
+}
