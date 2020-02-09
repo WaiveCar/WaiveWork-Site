@@ -9,7 +9,7 @@ function RequireAuth(props) {
   return loggedIn ? (
     <Route path={path} component={component} />
   ) : (
-    <Redirect to={'/login'} />
+    <Redirect to={'/welcome'} />
   );
 }
 
