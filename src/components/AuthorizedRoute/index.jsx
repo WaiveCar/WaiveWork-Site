@@ -6,11 +6,11 @@ import { bindActionCreators } from 'redux';
 
 function RequireAuth(props) {
   const { loggedIn, path, component } = props;
-  return loggedIn ? (
-    <Route path={path} component={component} />
-  ) : (
-    <Redirect to={'/welcome'} />
-  );
+  if (loggedIn) {
+    return <Route path={path} component={component} />;
+  } else {
+    window.location.href = 'https://waivework.com/welcome';
+  }
 }
 
 function mapStateToProps({ userReducer }) {
@@ -23,7 +23,4 @@ function mapDispatchToProps(dispatch) {
   return {};
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(RequireAuth);
+export default connect(mapStateToProps, mapDispatchToProps)(RequireAuth);
