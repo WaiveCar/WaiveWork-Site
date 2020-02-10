@@ -5,6 +5,7 @@ import Dashboard from '../Dashboard';
 import Thanks from '../Thanks';
 import Doc from '../Doc';
 import Chargers from '../Chargers';
+import Contact from '../Contact';
 import Booking from '../Booking';
 import BookingPayments from '../Booking/BookingPayments';
 import Cards from '../Cards';
@@ -102,6 +103,12 @@ export default [
     name: 'Update License',
     path: '/license',
     component: License,
+    requireAuth: true,
+  },
+  {
+    name: 'Contact Us',
+    path: '/contact',
+    component: Contact,
     requireAuth: true,
   },
   // This must remain the last in this list
