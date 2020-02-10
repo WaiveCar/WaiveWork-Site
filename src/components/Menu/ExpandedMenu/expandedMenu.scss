@@ -48,9 +48,11 @@
   margin: 1rem 0.8rem;
 }
 
-.menu-title-text:hover {
+.menu-title-text:hover,
+.menu-link:hover {
   color: $primary;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .expanded-list {
@@ -78,4 +80,8 @@
 
 .signout-icon:hover {
   fill: $primary;
+}
+
+.menu-link {
+  color: white;
 }

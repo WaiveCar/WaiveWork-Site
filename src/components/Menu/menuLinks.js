@@ -47,4 +47,8 @@ export default {
       },
     ],
   },
+  Contact: {
+    expanded: false,
+    href: '/contact',
+  },
 };
