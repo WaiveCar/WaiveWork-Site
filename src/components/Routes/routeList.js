@@ -61,12 +61,15 @@ export default [
     component: () => <Doc type={'inspection'} />,
     requireAuth: true,
   },
+  /* Chargers are being commented out to potentially be added back in later, but for now
+   * we are discontinuing electric cars
   {
     name: 'Chargers',
     path: '/chargers',
     component: Chargers,
     requireAuth: true,
   },
+  */
   /* The route below is needed to be added later, but the initial version of
    * this app will not have a list of all the payments. It will only initially 
    * have a list of payments from the current booking

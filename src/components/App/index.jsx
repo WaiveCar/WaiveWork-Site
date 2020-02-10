@@ -45,14 +45,6 @@ class App extends Component {
             ) : null}
             <Snackbar />
           </div>
-          {user && (
-            <Intercom
-              appID={'wmtsw9cn'}
-              user_id={user.id}
-              email={user.email}
-              name={`${user.firstName} ${user.lastName}`}
-            />
-          )}
         </div>
       </div>
     );

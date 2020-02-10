@@ -6,10 +6,12 @@ export default {
         name: 'Information',
         href: '/booking',
       },
+      /* Electric cars are being discontinued for the time being
       {
         name: 'Chargers',
         href: '/chargers',
       },
+      */
       {
         name: 'Registration',
         href: '/registration',
