@@ -128,7 +128,7 @@ export const fetchUserInfo = () => async (dispatch) => {
           : reject('This browser does not suppor geolocation');
       });
       user.currentLocation = location;
-      await dispatch(fetchChargers(location.coords));
+      //await dispatch(fetchChargers(location.coords));
     } catch (e) {
       await dispatch(showSnackbar(e.message, 'error'));
     }

@@ -5,6 +5,7 @@ import Dashboard from '../Dashboard';
 import Thanks from '../Thanks';
 import Doc from '../Doc';
 import Chargers from '../Chargers';
+import Contact from '../Contact';
 import Booking from '../Booking';
 import BookingPayments from '../Booking/BookingPayments';
 import Cards from '../Cards';
@@ -61,12 +62,15 @@ export default [
     component: () => <Doc type={'inspection'} />,
     requireAuth: true,
   },
+  /* Chargers are being commented out to potentially be added back in later, but for now
+   * we are discontinuing electric cars
   {
     name: 'Chargers',
     path: '/chargers',
     component: Chargers,
     requireAuth: true,
   },
+  */
   /* The route below is needed to be added later, but the initial version of
    * this app will not have a list of all the payments. It will only initially 
    * have a list of payments from the current booking
@@ -99,6 +103,12 @@ export default [
     name: 'Update License',
     path: '/license',
     component: License,
+    requireAuth: true,
+  },
+  {
+    name: 'Contact Us',
+    path: '/contact',
+    component: Contact,
     requireAuth: true,
   },
   // This must remain the last in this list

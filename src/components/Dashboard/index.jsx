@@ -1,6 +1,6 @@
 import React from 'react';
 import CarInfo from './CarInfo';
-import ChargerInfo from './ChargerInfo';
+//import ChargerInfo from './ChargerInfo';
 import PaymentsPreview from './PaymentsPreview';
 
 function Dashboard() {
@@ -8,7 +8,7 @@ function Dashboard() {
     <div className="container">
       <h1>Dashboard</h1>
       <div className="row d-flex justify-content-around">
-        <ChargerInfo />
+        {/*<ChargerInfo />*/}
         <PaymentsPreview />
         <CarInfo />
       </div>

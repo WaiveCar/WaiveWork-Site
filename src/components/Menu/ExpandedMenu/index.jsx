@@ -24,14 +24,18 @@ function ExpandedMenu({ hideMenu, menuLinks, toggleItem, logout, loading }) {
           return (
             <div key={i}>
               {item.href ? (
-                <Link
-                  to={item.href}
-                  onClick={() => {
-                    toggleItem(name), hideMenu();
-                  }}
-                >
-                  {name}
-                </Link>
+                <div className="menu-title">
+                  <ChevronRight
+                    className={`menu-chevron ${item.expanded ? 'rotated' : ''}`}
+                  />
+                  <Link
+                    className="menu-link"
+                    to={item.href}
+                    onClick={() => hideMenu()}
+                  >
+                    {name}
+                  </Link>
+                </div>
               ) : (
                 <div onClick={() => toggleItem(name)} key={i}>
                   <div className="menu-title">
