@@ -9,7 +9,8 @@ function RequireAuth(props) {
   if (loggedIn) {
     return <Route path={path} component={component} />;
   } else {
-    window.location.href = 'https://waivework.com/welcome';
+    window.location.href = '/welcome';
+    return null;
   }
 }
 
