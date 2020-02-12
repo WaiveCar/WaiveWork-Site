@@ -35,15 +35,7 @@ function Form(props) {
         e.preventDefault();
         if (formRef.current.checkValidity() === false) {
           e.stopPropagation();
-        }
-        formRef.current.classList.add('was-validated');
-        if (missing.length) {
-          showSnackbar(
-            `Please add the following items before continuing: ${missing.join(
-              ', ',
-            )}.`,
-            'error',
-          );
+          formRef.current.classList.add('was-validated');
         } else {
           await onSubmit(currentForm);
           clearOnSubmit && clearForm(formName);
