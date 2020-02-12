@@ -37,15 +37,35 @@
   fill: green;
 }
 
+.valid-feedback,
 .invalid-feedback {
   top: 0 !important;
   font-size: 10px !important;
   padding: 0 0.75rem;
   height: 20px;
   position: absolute;
+}
+
+.invalid-feedback {
   color: #db353e !important;
 }
 
 .was-validated .form-control:invalid {
   border-color: red !important;
+}
+
+.input-focus {
+  color: #30374b !important;
+  padding-top: 1.2rem !important;
+}
+
+.form-control {
+  font-size: 16px;
+  color: #a9b1ba;
+  border-color: #a9b1ba;
+}
+
+.form-control:focus {
+  border: solid 1px #30374b !important;
+  box-shadow: none !important;
 }

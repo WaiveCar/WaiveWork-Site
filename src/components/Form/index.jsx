@@ -36,6 +36,9 @@ function Form(props) {
         if (formRef.current.checkValidity() === false) {
           e.stopPropagation();
           formRef.current.classList.add('was-validated');
+          formRef.current
+            .querySelectorAll('input')
+            .forEach((one) => one.classList.add('input-focus'));
         } else {
           await onSubmit(currentForm);
           clearOnSubmit && clearForm(formName);
@@ -71,6 +74,11 @@ function Form(props) {
                   <div className={`col-${field.width ? field.width : 8}`}>
                     <input
                       id={field.label && field.formName}
+                      onInput={(e) =>
+                        e.target.value
+                          ? e.target.classList.add('input-focus')
+                          : e.target.classList.remove('input-focus')
+                      }
                       className={'form-control'}
                       value={currentForm[field.formField]}
                       placeholder={!field.label ? field.name : ''}
@@ -81,8 +89,9 @@ function Form(props) {
                       required={!field.optional}
                     />
                     <div className="invalid-feedback">
-                      Please provide a {field.name}.
+                      Please provide your {field.name}.
                     </div>
+                    <div className="valid-feedback">{field.name}</div>
                   </div>
                 </div>
               </div>
