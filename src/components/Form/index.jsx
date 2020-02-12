@@ -55,7 +55,7 @@ function Form(props) {
           {fields.map((field, i) => {
             return field.type !== 'radio' ? (
               <div className="input-row form-group" key={i}>
-                <div className={'d-flex justify-content-center row'}>
+                <div className={'d-flex justify-content-center row form-row'}>
                   {field.label ? (
                     <label
                       className={`col-sm-${
@@ -71,7 +71,7 @@ function Form(props) {
                   <div className={`col-${field.width ? field.width : 8}`}>
                     <input
                       id={field.label && field.formName}
-                      className={'field'}
+                      className={'form-control'}
                       value={currentForm[field.formField]}
                       placeholder={!field.label ? field.name : ''}
                       type={field.type}

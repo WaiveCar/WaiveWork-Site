@@ -36,3 +36,16 @@
   position: absolute;
   fill: green;
 }
+
+.invalid-feedback {
+  top: 0 !important;
+  font-size: 10px !important;
+  padding: 0 0.75rem;
+  height: 20px;
+  position: absolute;
+  color: #db353e !important;
+}
+
+.was-validated .form-control:invalid {
+  border-color: red !important;
+}
