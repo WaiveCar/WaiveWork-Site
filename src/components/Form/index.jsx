@@ -27,7 +27,23 @@ function Form(props) {
     .map((item) => !item.optional && !currentForm[item.formField] && item.name)
     .filter((item) => item);
   return (
-    <div className="form-holder mt-4">
+    <form
+      onSubmit={async (e) => {
+        e.preventDefault();
+        if (missing.length) {
+          showSnackbar(
+            `Please add the following items before continuing: ${missing.join(
+              ', ',
+            )}.`,
+            'error',
+          );
+        } else {
+          await onSubmit(currentForm);
+          clearOnSubmit && clearForm(formName);
+        }
+      }}
+      className="form-holder mt-4"
+    >
       <div className="d-flex justify-content-center">
         {title ? <h5 className="text-center ml-4 mr-4">{title}</h5> : <span />}
       </div>
@@ -112,23 +128,7 @@ function Form(props) {
             <div />
           )}
           {onSubmit ? (
-            <button
-              type="button"
-              className="btn btn-outline-primary"
-              onClick={async () => {
-                if (missing.length) {
-                  showSnackbar(
-                    `Please add the following items before continuing: ${missing.join(
-                      ', ',
-                    )}.`,
-                    'error',
-                  );
-                } else {
-                  await onSubmit(currentForm);
-                  clearOnSubmit && clearForm(formName);
-                }
-              }}
-            >
+            <button type="submit" className="btn btn-outline-primary">
               {submitName}
             </button>
           ) : (
@@ -136,7 +136,7 @@ function Form(props) {
           )}
         </div>
       </div>
-    </div>
+    </form>
   );
 }
 
