@@ -26,10 +26,17 @@ function Form(props) {
   let missing = fields
     .map((item) => !item.optional && !currentForm[item.formField] && item.name)
     .filter((item) => item);
+  let formRef = React.createRef();
   return (
     <form
+      className={'needs-validation'}
+      noValidate
       onSubmit={async (e) => {
         e.preventDefault();
+        if (formRef.current.checkValidity() === false) {
+          e.stopPropagation();
+        }
+        formRef.current.classList.add('was-validated');
         if (missing.length) {
           showSnackbar(
             `Please add the following items before continuing: ${missing.join(
@@ -42,6 +49,7 @@ function Form(props) {
           clearOnSubmit && clearForm(formName);
         }
       }}
+      ref={formRef}
       className="form-holder mt-4"
     >
       <div className="d-flex justify-content-center">
@@ -78,7 +86,11 @@ function Form(props) {
                       onChange={(e) =>
                         updateForm(formName, field.formField, e.target.value)
                       }
+                      required={!field.optional}
                     />
+                    <div className="invalid-feedback">
+                      Please provide a {field.name}.
+                    </div>
                   </div>
                 </div>
               </div>

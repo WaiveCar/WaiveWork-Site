@@ -17,15 +17,14 @@ export default [
       {
         name: 'email address',
         formField: 'email',
-        type: 'text',
+        type: 'email',
         width: 12,
       },
       {
-        name: 'what neighborhood will you be driving in?',
+        name: 'what zip code will you be driving in?',
         formField: 'placeName',
         type: 'text',
         width: 12,
-        optional: true,
       },
       {
         name: 'phone number',
@@ -67,7 +66,7 @@ export default [
       {
         name: 'zip code',
         formField: 'zip',
-        type: 'number',
+        type: 'text',
         width: 12,
       },
     ],
