@@ -38,7 +38,9 @@ function Signup({
       } else {
         one.classList.add('input-focus');
         // All values on a previously completed page should be filled in correctly, so no need to do this to both siblings
-        one.nextSibling.nextSibling.classList.add('display-block');
+        if (one.nextSibling.nextSibling) {
+          one.nextSibling.nextSibling.classList.add('display-block');
+        }
       }
     });
   }
