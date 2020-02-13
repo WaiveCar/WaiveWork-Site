@@ -78,11 +78,15 @@ function Form(props) {
                         e.target.classList.add('input-focus');
                       }
                       if (e.target.checkValidity()) {
+                        e.target.parentNode.classList.add('was-validated');
+                        e.target.classList.add('is-valid');
                         e.target.nextSibling.classList.remove('display-block');
                         e.target.nextSibling.nextSibling.classList.add(
                           'display-block',
                         );
                       } else {
+                        e.target.classList.remove('is-valid');
+                        e.target.parentNode.classList.add('was-validated');
                         e.target.nextSibling.classList.add('display-block');
                         e.target.nextSibling.nextSibling.classList.remove(
                           'display-block',

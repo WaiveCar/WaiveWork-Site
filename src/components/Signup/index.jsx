@@ -24,12 +24,14 @@ function Signup({
   const altAction =
     selectedSignupPage !== 0 &&
     changeSignupPage.bind(null, selectedSignupPage - 1);
-  let ref = React.createRef();
+  const ref = React.createRef();
   function handlePageChange() {
     let form = ref.current.firstChild;
     form.classList.remove('was-validated');
     form.querySelectorAll('input').forEach((one) => {
       if (!one.value) {
+        one.classList.remove('is-valid');
+        one.parentNode.classList.remove('was-validated');
         one.classList.remove('input-focus');
         one.nextSibling.classList.remove('display-block');
         one.nextSibling.nextSibling.classList.remove('display-block');
@@ -40,7 +42,7 @@ function Signup({
       }
     });
   }
-  let [page, setPage] = useState(0);
+  const [page, setPage] = useState(0);
   useEffect(() => {
     if (selectedSignupPage !== page) {
       handlePageChange();
