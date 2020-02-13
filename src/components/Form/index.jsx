@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Parser from 'html-react-parser';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { updateForm, clearForm } from '../../store/actions/formActions';
+import { handlePageChange } from '../../store/actions/formActions';
 import { showSnackbar } from '../../store/actions/snackbarActions';
 import './form.scss';
 
@@ -21,12 +22,20 @@ function Form(props) {
     body,
     clearOnSubmit,
     clearForm,
+    handlePageChange,
   } = props;
   const currentForm = props[formName];
   let missing = fields
     .map((item) => !item.optional && !currentForm[item.formField] && item.name)
     .filter((item) => item);
-  let formRef = React.createRef();
+  const formRef = React.createRef();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    if (!mounted) {
+      setMounted(true);
+      handlePageChange(formRef.current);
+    }
+  });
   return (
     <form
       className={'needs-validation'}
@@ -179,7 +188,10 @@ function mapStateToProps({ userReducer, paymentReducer, formReducer }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ updateForm, showSnackbar, clearForm }, dispatch);
+  return bindActionCreators(
+    { updateForm, showSnackbar, clearForm, handlePageChange },
+    dispatch,
+  );
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Form);

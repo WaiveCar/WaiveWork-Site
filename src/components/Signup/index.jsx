@@ -6,6 +6,7 @@ import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { changeSignupPage, signup } from '../../store/actions/userActions';
+import { handlePageChange } from '../../store/actions/formActions';
 import './signup.scss';
 
 function Signup({
@@ -16,6 +17,7 @@ function Signup({
   signup,
   authForm,
   history,
+  handlePageChange,
 }) {
   const onSubmit =
     selectedSignupPage !== signupFormPages.length - 1
@@ -25,29 +27,10 @@ function Signup({
     selectedSignupPage !== 0 &&
     changeSignupPage.bind(null, selectedSignupPage - 1);
   const ref = React.createRef();
-  function handlePageChange() {
-    let form = ref.current.firstChild;
-    form.classList.remove('was-validated');
-    form.querySelectorAll('input').forEach((one) => {
-      if (!one.value) {
-        one.classList.remove('is-valid');
-        one.parentNode.classList.remove('was-validated');
-        one.classList.remove('input-focus');
-        one.nextSibling.classList.remove('display-block');
-        one.nextSibling.nextSibling.classList.remove('display-block');
-      } else {
-        one.classList.add('input-focus');
-        // All values on a previously completed page should be filled in correctly, so no need to do this to both siblings
-        if (one.nextSibling.nextSibling) {
-          one.nextSibling.nextSibling.classList.add('display-block');
-        }
-      }
-    });
-  }
   const [page, setPage] = useState(0);
   useEffect(() => {
     if (selectedSignupPage !== page) {
-      handlePageChange();
+      handlePageChange(ref.current.firstChild);
       setPage(selectedSignupPage);
     }
   });
@@ -67,7 +50,11 @@ function Signup({
           clearOnSubmit={selectedSignupPage === signupFormPages.length - 1}
         />
         <div className="text-center mt-4">
-          <Link to={'/login'} className="text-center">
+          <Link
+            to={'/login'}
+            onClick={() => changeSignupPage(0)}
+            className="text-center"
+          >
             Already have an account? Click here to login.
           </Link>
         </div>
@@ -86,7 +73,10 @@ function mapStateToProps({ userReducer, formReducer }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ changeSignupPage, signup }, dispatch);
+  return bindActionCreators(
+    { changeSignupPage, signup, handlePageChange },
+    dispatch,
+  );
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Signup));
