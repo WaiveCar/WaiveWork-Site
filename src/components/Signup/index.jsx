@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Form from '../Form';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
@@ -24,9 +24,32 @@ function Signup({
   const altAction =
     selectedSignupPage !== 0 &&
     changeSignupPage.bind(null, selectedSignupPage - 1);
+  let ref = React.createRef();
+  function handlePageChange() {
+    let form = ref.current.firstChild;
+    form.classList.remove('was-validated');
+    form.querySelectorAll('input').forEach((one) => {
+      if (!one.value) {
+        one.classList.remove('input-focus');
+        one.nextSibling.classList.remove('display-block');
+        one.nextSibling.nextSibling.classList.remove('display-block');
+      } else {
+        one.classList.add('input-focus');
+        // All values on a previously completed page should be filled in correctly, so no need to do this to both siblings
+        one.nextSibling.nextSibling.classList.add('display-block');
+      }
+    });
+  }
+  let [page, setPage] = useState(0);
+  useEffect(() => {
+    if (selectedSignupPage !== page) {
+      handlePageChange();
+      setPage(selectedSignupPage);
+    }
+  });
   return !loggedIn ? (
     <div className="container">
-      <div className="signup">
+      <div className="signup" ref={ref}>
         <Form
           fields={signupFormPages[selectedSignupPage].fields}
           title={signupFormPages[selectedSignupPage].title}

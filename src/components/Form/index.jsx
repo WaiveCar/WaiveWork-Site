@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Parser from 'html-react-parser';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -71,14 +71,27 @@ function Form(props) {
                   ) : (
                     <span />
                   )}
-                  <div className={`col-${field.width ? field.width : 8}`}>
+                  <div
+                    className={`col-${field.width ? field.width : 8}`}
+                    onInput={(e) => {
+                      if (e.target.value) {
+                        e.target.classList.add('input-focus');
+                      }
+                      if (e.target.checkValidity()) {
+                        e.target.nextSibling.classList.remove('display-block');
+                        e.target.nextSibling.nextSibling.classList.add(
+                          'display-block',
+                        );
+                      } else {
+                        e.target.nextSibling.classList.add('display-block');
+                        e.target.nextSibling.nextSibling.classList.remove(
+                          'display-block',
+                        );
+                      }
+                    }}
+                  >
                     <input
                       id={field.label && field.formName}
-                      onInput={(e) =>
-                        e.target.value
-                          ? e.target.classList.add('input-focus')
-                          : e.target.classList.remove('input-focus')
-                      }
                       className={'form-control'}
                       value={currentForm[field.formField]}
                       placeholder={!field.label ? field.name : ''}
