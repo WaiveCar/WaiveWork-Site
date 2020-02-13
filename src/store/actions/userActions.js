@@ -79,6 +79,10 @@ export const signup = (form, history) => async (dispatch) => {
   try {
     let response = await axios.post('/waitlist/add', form);
     history.push('/thanks');
+    await dispatch({
+      type: 'CHANGE_SIGNUP_PAGE',
+      payload: { selectedSignupPage: 0 },
+    });
   } catch (e) {
     await dispatch(
       showSnackbar(e.response ? e.response.data.message : e, 'error'),
