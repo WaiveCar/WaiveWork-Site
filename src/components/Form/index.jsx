@@ -45,9 +45,10 @@ function Form(props) {
         if (formRef.current.checkValidity() === false) {
           e.stopPropagation();
           formRef.current.classList.add('was-validated');
-          formRef.current
-            .querySelectorAll('input')
-            .forEach((one) => one.classList.add('input-focus'));
+          formRef.current.querySelectorAll('input').forEach((one) => {
+            one.classList.add('input-focus');
+            one.nextSibling.classList.remove('display-block');
+          });
         } else {
           await onSubmit(currentForm);
           clearOnSubmit && clearForm(formName);

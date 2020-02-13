@@ -17,9 +17,10 @@ export const handlePageChange = (form) => (dispatch) => {
       one.nextSibling.nextSibling.classList.remove('display-block');
     } else {
       one.classList.add('input-focus');
-      // All values on a previously completed page should be filled in correctly, so no need to do this to both siblings
-      if (one.nextSibling.nextSibling) {
+      if (one.checkValidity() && one.nextSibling.nextSibling) {
         one.nextSibling.nextSibling.classList.add('display-block');
+      } else {
+        one.nextSibling.classList.add('display-block');
       }
     }
   });

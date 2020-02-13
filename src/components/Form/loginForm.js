@@ -5,7 +5,7 @@ export default [
   {
     name: 'email',
     formField: 'email',
-    type: 'text',
+    type: 'email',
     width: 12,
     svg: Envelope,
   },
