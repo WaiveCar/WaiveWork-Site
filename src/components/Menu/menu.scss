@@ -1,16 +1,14 @@
 @import '../../bootstrap/variables.scss';
 
 .top-bar {
-  border-top: 2px solid $primary;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 2.7rem;
-  background-color: $secondary;
+  height: 80px;
+  background-image: linear-gradient(93deg, #3a5374, #262d42 100%);
   z-index: 900;
 }
 
@@ -32,16 +30,19 @@
   fill: $light;
 }
 
-.logo-link {
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  position: absolute;
+.top-bar-left {
+  font-family: $muli;
+  font-size: 32px;
+  color: $white;
 }
 
-.top-logo {
-  width: 8rem;
-  max-height: 2.7rem;
+.top-bar-left,
+.top-bar-right {
+  padding: 0 30px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 @media (max-width: 768px) {

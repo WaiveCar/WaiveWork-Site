@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { showMenu, hideMenu } from '../../store/actions/menuActions';
 import Bars from '../../svg/bars.svg';
-import Logo from '../../svg/waive-work-logo-white.svg';
+import Logo from '../../svg/logo.svg';
 import ExpandedMenu from './ExpandedMenu';
 import Loading from '../Loading';
 import './menu.scss';
@@ -14,15 +14,17 @@ function Menu({ loggedIn, showMenu, menuVisible, authChecked, loading }) {
     <div>
       {menuVisible ? <ExpandedMenu /> : null}
       <div className="top-bar">
-        <Link to={'/dashboard'} className="logo-link">
-          <Logo className="top-logo" />
-        </Link>
+        <div className="top-bar-left">
+          <Link to={'/dashboard'} className="logo-link">
+            <Logo className="top-logo" />
+          </Link>
+        </div>
         {loggedIn ? (
           <div className="menu-button" onClick={() => showMenu()}>
             <Bars className="menu-svg" />
           </div>
         ) : (
-          <div />
+          <div className="top-bar-right">Top Right</div>
         )}
       </div>
       {loading ? <Loading /> : null}
