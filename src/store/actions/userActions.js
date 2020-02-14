@@ -51,6 +51,8 @@ export const login = (email, password) => async (dispatch) => {
     await dispatch(
       showSnackbar(e.response ? e.response.data.message : e, 'error'),
     );
+    await dispatch(toggleLoading());
+    throw e;
   }
   return dispatch(toggleLoading());
 };

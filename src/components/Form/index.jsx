@@ -50,8 +50,17 @@ function Form(props) {
             one.nextSibling.classList.remove('display-block');
           });
         } else {
-          await onSubmit(currentForm);
-          clearOnSubmit && clearForm(formName);
+          formRef.current.classList.add('was-validated');
+          formRef.current.querySelectorAll('input').forEach((one) => {
+            one.classList.add('input-focus');
+            one.nextSibling.classList.remove('display-block');
+          });
+          try {
+            await onSubmit(currentForm);
+            clearOnSubmit && clearForm(formName);
+          } catch (e) {
+            console.log('err', e);
+          }
         }
       }}
       ref={formRef}

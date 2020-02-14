@@ -14,18 +14,20 @@ function Menu({ loggedIn, showMenu, menuVisible, authChecked, loading }) {
     <div>
       {menuVisible ? <ExpandedMenu /> : null}
       <div className="top-bar">
-        <div className="top-bar-left">
-          <Link to={'/dashboard'} className="logo-link">
-            <Logo className="top-logo" />
-          </Link>
-        </div>
-        {loggedIn ? (
-          <div className="menu-button" onClick={() => showMenu()}>
-            <Bars className="menu-svg" />
+        <div className="inner-top">
+          <div className="top-bar-left">
+            <Link to={'/dashboard'} className="logo-link">
+              <Logo className="top-logo" />
+            </Link>
           </div>
-        ) : (
-          <div className="top-bar-right">Top Right</div>
-        )}
+          {loggedIn ? (
+            <div className="menu-button" onClick={() => showMenu()}>
+              <Bars className="menu-svg" />
+            </div>
+          ) : (
+            <div className="top-bar-right">Top Right</div>
+          )}
+        </div>
       </div>
       {loading ? <Loading /> : null}
     </div>

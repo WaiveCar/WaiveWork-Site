@@ -1,9 +1,9 @@
 @import 'variables';
 
 #app {
-  margin-top: 4rem;
+  margin-top: 7rem;
   margin-bottom: 2.5rem;
-  min-height: calc(100vh - 6.5rem);
+  min-height: calc(100vh - 9.5rem);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -64,4 +64,5 @@
 
 body {
   background-color: $bg !important;
+  font-family: $poppins;
 }
