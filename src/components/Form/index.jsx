@@ -50,7 +50,7 @@ function Form(props) {
             one.nextSibling.classList.remove('display-block');
           });
         } else {
-          formRef.current.classList.add('was-validated');
+          //formRef.current.classList.add('was-validated');
           formRef.current.querySelectorAll('input').forEach((one) => {
             one.classList.add('input-focus');
             one.nextSibling.classList.remove('display-block');

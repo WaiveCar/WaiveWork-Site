@@ -26,7 +26,7 @@ function Menu({
           <div className="top-bar-left">
             {!loggedIn ? (
               <Link to={'/dashboard'} className="logo-link">
-                <Logo className="top-logo" viewBox={'0 0 100% 100%'} />
+                <Logo className="top-logo" />
               </Link>
             ) : (
               <div onClick={() => showMenu()}>

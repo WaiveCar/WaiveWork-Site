@@ -33,7 +33,7 @@ export default [
     title: 'What is the address where the car will be stored?',
     fields: [
       {
-        name: 'Address Line 1',
+        name: 'Address where the car will be stored?',
         formField: 'street1',
         type: 'text',
         width: 12,

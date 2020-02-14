@@ -9,13 +9,12 @@ export const clearForm = (formName) => (dispatch) => {
 export const handlePageChange = (form) => (dispatch) => {
   form.classList.remove('was-validated');
   form.querySelectorAll('input').forEach((one) => {
-    if (!one.value) {
-      one.classList.remove('is-valid');
-      one.parentNode.classList.remove('was-validated');
-      one.classList.remove('input-focus');
-      one.nextSibling.classList.remove('display-block');
-      one.nextSibling.nextSibling.classList.remove('display-block');
-    } else {
+    one.classList.remove('is-valid');
+    one.parentNode.classList.remove('was-validated');
+    one.classList.remove('input-focus');
+    one.nextSibling.classList.remove('display-block');
+    one.nextSibling.nextSibling.classList.remove('display-block');
+    if (one.value) {
       one.classList.add('input-focus');
       if (one.checkValidity() && one.nextSibling.nextSibling) {
         one.nextSibling.nextSibling.classList.add('display-block');
