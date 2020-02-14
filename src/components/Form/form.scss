@@ -1,3 +1,4 @@
+@import '../../bootstrap/variables.scss';
 .form-holder {
   height: 100%;
 }
@@ -7,10 +8,27 @@
   width: 70%;
 }
 
+.button-holder {
+  font-family: $muli;
+}
+
+.form-title {
+  font-size: 28px;
+  font-family: $poppins;
+  color: $blue-text;
+  width: 26% !important;
+}
+
 @media (min-width: 750px) {
   .inner-form,
   .button-holder {
     width: 30%;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-title {
+    width: 80% !important;
   }
 }
 
@@ -24,7 +42,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 0.75rem 0;
+  margin: 0.35rem 0;
 }
 
 .input-icon {

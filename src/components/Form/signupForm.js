@@ -1,6 +1,6 @@
 export default [
   {
-    title: 'First, please tell us a bit more about yourself',
+    title: 'Start Driving in a Few Easy Steps.',
     fields: [
       {
         name: 'First Name',
@@ -27,10 +27,10 @@ export default [
         width: 12,
       },
     ],
-    submitName: 'next',
+    submitName: 'NEXT',
   },
   {
-    title: 'What is the address where the car will be stored?',
+    title: 'Start Driving in a Few Easy Steps.',
     fields: [
       {
         name: 'Address where the car will be stored?',
@@ -59,53 +59,53 @@ export default [
           width: 8,
         },
         {
-          name: 'Zip Code',
+          name: 'Zip',
           formField: 'zip',
           type: 'text',
           width: 4,
         },
       ],
     ],
-    submitName: 'next',
-    altActionName: 'back',
+    submitName: 'NEXT',
+    altActionName: 'BACK',
   },
   {
-    title: 'What is your driver’s license information?',
+    title: 'Start Driving in a Few Easy Steps.',
     fields: [
       {
-        name: 'License Number',
+        name: "Driver's License Number",
         formField: 'number',
         type: 'text',
         width: 12,
       },
       {
-        name: 'License State',
+        name: 'Issued State',
         formField: 'licenseState',
         type: 'text',
         width: 12,
       },
       {
-        name: 'Birthday',
-        label: 'birthday',
-        formField: 'birthDate',
-        type: 'date',
-        labelWidth: 4,
-        width: 8,
-      },
-      {
-        name: 'License Expiration',
+        name: 'Expiration Date',
         label: 'expiration',
         formField: 'expiration',
         type: 'date',
         labelWidth: 4,
         width: 8,
       },
+      {
+        name: 'Date of Birth',
+        label: 'birthday',
+        formField: 'birthDate',
+        type: 'date',
+        labelWidth: 4,
+        width: 8,
+      },
     ],
-    altActionName: 'back',
-    submitName: 'next',
+    altActionName: 'BACK',
+    submitName: 'NEXT',
   },
   {
-    title: 'Just a couple more questions before we are done.',
+    title: 'Start Driving in a Few Easy Steps.',
     fields: [
       {
         name: 'Zip code will you be driving in?',
@@ -121,7 +121,7 @@ export default [
         width: 12,
       },
     ],
-    altActionName: 'back',
-    submitName: 'submit',
+    altActionName: 'BACK',
+    submitName: 'SUBMIT',
   },
 ];

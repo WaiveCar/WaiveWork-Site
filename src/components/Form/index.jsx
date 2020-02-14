@@ -64,8 +64,12 @@ function Form(props) {
       ref={formRef}
       className="form-holder mt-4"
     >
-      <div className="d-flex justify-content-center">
-        {title ? <h5 className="text-center ml-4 mr-4">{title}</h5> : <span />}
+      <div className="d-flex justify-content-center row">
+        {title ? (
+          <h4 className="text-center ml-4 mr-4 form-title">{title}</h4>
+        ) : (
+          <span />
+        )}
       </div>
       {body && (
         <div className="d-flex justify-content-center">{Parser(body)}</div>
@@ -74,7 +78,7 @@ function Form(props) {
         <div className="inner-form">
           {fields.map((field, i) => {
             return field.type !== 'radio' ? (
-              <div className="input-row form-group" key={i}>
+              <div className="input-row" key={i}>
                 <div className={'d-flex justify-content-center row form-row'}>
                   {field.label ? (
                     <label
@@ -143,11 +147,11 @@ function Form(props) {
         </div>
       </div>
       <div className="d-flex justify-content-center">
-        <div className="space-between button-holder mt-2">
+        <div className="space-between button-holder mt-3">
           {altAction ? (
             <button
               type="button"
-              className="btn btn-primary col-6"
+              className="btn btn-warning col-6 mr-2"
               onClick={() => altAction()}
             >
               {altActionName}
@@ -158,7 +162,7 @@ function Form(props) {
           {onSubmit ? (
             <button
               type="submit"
-              className={`btn btn-primary col-${altAction ? 6 : 12}`}
+              className={`btn btn-primary col-${altAction ? '6 ml-2' : 12}`}
             >
               {submitName}
             </button>
