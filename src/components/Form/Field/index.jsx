@@ -21,7 +21,7 @@ function Field({ field, currentForm, updateForm, formName }) {
         }
       }}
     >
-      {field.type === 'text' ? (
+      {field.type !== 'date' ? (
         <input
           id={field.label && field.formName}
           className={'form-control'}
