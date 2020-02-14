@@ -96,7 +96,15 @@ function Form(props) {
                       formName={formName}
                     />
                   ) : (
-                    <div />
+                    field.map((each, i) => (
+                      <Field
+                        key={i}
+                        field={each}
+                        currentForm={currentForm}
+                        updateForm={updateForm}
+                        formName={formName}
+                      />
+                    ))
                   )}
                 </div>
               </div>
