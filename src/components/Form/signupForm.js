@@ -51,18 +51,20 @@ export default [
         type: 'text',
         width: 12,
       },
-      {
-        name: 'State',
-        formField: 'state',
-        type: 'text',
-        width: 12,
-      },
-      {
-        name: 'Zip Code',
-        formField: 'zip',
-        type: 'text',
-        width: 12,
-      },
+      [
+        {
+          name: 'State',
+          formField: 'state',
+          type: 'text',
+          width: 9,
+        },
+        {
+          name: 'Zip Code',
+          formField: 'zip',
+          type: 'text',
+          width: 3,
+        },
+      ],
     ],
     submitName: 'next',
     altActionName: 'back',

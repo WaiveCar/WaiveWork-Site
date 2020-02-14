@@ -88,45 +88,16 @@ function Form(props) {
                   ) : (
                     <span />
                   )}
-                  <div
-                    className={`col-${field.width ? field.width : 8}`}
-                    onInput={(e) => {
-                      if (e.target.value) {
-                        e.target.classList.add('input-focus');
-                      }
-                      if (e.target.checkValidity()) {
-                        e.target.parentNode.classList.add('was-validated');
-                        e.target.classList.add('is-valid');
-                        e.target.nextSibling.classList.remove('display-block');
-                        e.target.nextSibling.nextSibling.classList.add(
-                          'display-block',
-                        );
-                      } else {
-                        e.target.classList.remove('is-valid');
-                        e.target.parentNode.classList.add('was-validated');
-                        e.target.nextSibling.classList.add('display-block');
-                        e.target.nextSibling.nextSibling.classList.remove(
-                          'display-block',
-                        );
-                      }
-                    }}
-                  >
-                    <input
-                      id={field.label && field.formName}
-                      className={'form-control'}
-                      value={currentForm[field.formField]}
-                      placeholder={!field.label ? field.name : ''}
-                      type={field.type}
-                      onChange={(e) =>
-                        updateForm(formName, field.formField, e.target.value)
-                      }
-                      required={!field.optional}
+                  {!Array.isArray(field) ? (
+                    <Field
+                      field={field}
+                      currentForm={currentForm}
+                      updateForm={updateForm}
+                      formName={formName}
                     />
-                    <div className="invalid-feedback">
-                      Please provide a valid {field.name}.
-                    </div>
-                    <div className="valid-feedback">{field.name}</div>
-                  </div>
+                  ) : (
+                    <div />
+                  )}
                 </div>
               </div>
             ) : (
@@ -168,7 +139,7 @@ function Form(props) {
           {altAction ? (
             <button
               type="button"
-              className="btn btn-outline-primary"
+              className="btn btn-primary col-6"
               onClick={() => altAction()}
             >
               {altActionName}
@@ -177,7 +148,10 @@ function Form(props) {
             <div />
           )}
           {onSubmit ? (
-            <button type="submit" className="btn btn-outline-primary">
+            <button
+              type="submit"
+              className={`btn btn-primary col-${altAction ? 6 : 12}`}
+            >
               {submitName}
             </button>
           ) : (
@@ -186,6 +160,44 @@ function Form(props) {
         </div>
       </div>
     </form>
+  );
+}
+
+function Field({ field, currentForm, updateForm, formName }) {
+  return (
+    <div
+      className={`col-${field.width ? field.width : 8}`}
+      onInput={(e) => {
+        if (e.target.value) {
+          e.target.classList.add('input-focus');
+        }
+        if (e.target.checkValidity()) {
+          e.target.parentNode.classList.add('was-validated');
+          e.target.classList.add('is-valid');
+          e.target.nextSibling.classList.remove('display-block');
+          e.target.nextSibling.nextSibling.classList.add('display-block');
+        } else {
+          e.target.classList.remove('is-valid');
+          e.target.parentNode.classList.add('was-validated');
+          e.target.nextSibling.classList.add('display-block');
+          e.target.nextSibling.nextSibling.classList.remove('display-block');
+        }
+      }}
+    >
+      <input
+        id={field.label && field.formName}
+        className={'form-control'}
+        value={currentForm[field.formField]}
+        placeholder={!field.label ? field.name : ''}
+        type={field.type}
+        onChange={(e) => updateForm(formName, field.formField, e.target.value)}
+        required={!field.optional}
+      />
+      <div className="invalid-feedback">
+        Please provide a valid {field.name}.
+      </div>
+      <div className="valid-feedback">{field.name}</div>
+    </div>
   );
 }
 
