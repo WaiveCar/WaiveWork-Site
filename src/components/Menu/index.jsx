@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -9,8 +10,15 @@ import ExpandedMenu from './ExpandedMenu';
 import Loading from '../Loading';
 import './menu.scss';
 
-function Menu({ loggedIn, showMenu, menuVisible, authChecked, loading }) {
-  let path = window.location.pathname;
+function Menu({
+  loggedIn,
+  showMenu,
+  menuVisible,
+  authChecked,
+  loading,
+  history,
+}) {
+  console.log(history);
   return (
     <div>
       {menuVisible ? <ExpandedMenu /> : null}
@@ -31,7 +39,7 @@ function Menu({ loggedIn, showMenu, menuVisible, authChecked, loading }) {
             <div className=""></div>
           ) : (
             <div className="top-bar-right">
-              {path.includes('signup') ? (
+              {history.location.pathname.includes('signup') ? (
                 <div>
                   Already have an account? <Link to={'/login'}>login</Link>
                 </div>
@@ -60,4 +68,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ showMenu, hideMenu }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Menu);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Menu));
