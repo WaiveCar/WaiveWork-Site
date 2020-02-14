@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Field from './Field';
 import Parser from 'html-react-parser';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -147,11 +148,11 @@ function Form(props) {
         </div>
       </div>
       <div className="d-flex justify-content-center">
-        <div className="space-between button-holder mt-3">
+        <div className="d-flex space-between button-holder mt-3">
           {altAction ? (
             <button
               type="button"
-              className="btn btn-warning col-6 mr-2"
+              className="btn btn-warning btn-half"
               onClick={() => altAction()}
             >
               {altActionName}
@@ -162,7 +163,9 @@ function Form(props) {
           {onSubmit ? (
             <button
               type="submit"
-              className={`btn btn-primary col-${altAction ? '6 ml-2' : 12}`}
+              className={`btn btn-primary ${
+                altAction ? 'btn-half' : 'btn-full'
+              }`}
             >
               {submitName}
             </button>
@@ -172,44 +175,6 @@ function Form(props) {
         </div>
       </div>
     </form>
-  );
-}
-
-function Field({ field, currentForm, updateForm, formName }) {
-  return (
-    <div
-      className={`col-${field.width ? field.width : 8}`}
-      onInput={(e) => {
-        if (e.target.value) {
-          e.target.classList.add('input-focus');
-        }
-        if (e.target.checkValidity()) {
-          e.target.parentNode.classList.add('was-validated');
-          e.target.classList.add('is-valid');
-          e.target.nextSibling.classList.remove('display-block');
-          e.target.nextSibling.nextSibling.classList.add('display-block');
-        } else {
-          e.target.classList.remove('is-valid');
-          e.target.parentNode.classList.add('was-validated');
-          e.target.nextSibling.classList.add('display-block');
-          e.target.nextSibling.nextSibling.classList.remove('display-block');
-        }
-      }}
-    >
-      <input
-        id={field.label && field.formName}
-        className={'form-control'}
-        value={currentForm[field.formField]}
-        placeholder={!field.label ? field.name : ''}
-        type={field.type}
-        onChange={(e) => updateForm(formName, field.formField, e.target.value)}
-        required={!field.optional}
-      />
-      <div className="invalid-feedback">
-        Please provide a valid {field.name}.
-      </div>
-      <div className="valid-feedback">{field.name}</div>
-    </div>
   );
 }
 
