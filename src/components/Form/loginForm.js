@@ -3,14 +3,14 @@ import Key from '../../svg/key.svg';
 
 export default [
   {
-    name: 'email',
+    name: 'Email',
     formField: 'email',
     type: 'email',
     width: 12,
     svg: Envelope,
   },
   {
-    name: 'password',
+    name: 'Password',
     formField: 'password',
     type: 'password',
     width: 12,

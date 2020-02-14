@@ -23,11 +23,7 @@ function Login(props) {
             formWidth={'60%'}
             clearOnSubmit
           />
-          <div className="text-center mt-4">
-            <Link to={'/signup'} className="text-center">
-              Haven't signed up yet? Click here to sign up.
-            </Link>
-          </div>
+          <div className="text-center mt-4"></div>
         </div>
       ) : (
         <Redirect to={'/dashboard'} />

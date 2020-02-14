@@ -58,9 +58,7 @@ function Form(props) {
           try {
             await onSubmit(currentForm);
             clearOnSubmit && clearForm(formName);
-          } catch (e) {
-            console.log('err', e);
-          }
+          } catch (e) {}
         }
       }}
       ref={formRef}
@@ -125,7 +123,7 @@ function Form(props) {
                       required={!field.optional}
                     />
                     <div className="invalid-feedback">
-                      Please provide your {field.name}.
+                      Please provide a valid {field.name}.
                     </div>
                     <div className="valid-feedback">{field.name}</div>
                   </div>

@@ -10,22 +10,37 @@ import Loading from '../Loading';
 import './menu.scss';
 
 function Menu({ loggedIn, showMenu, menuVisible, authChecked, loading }) {
+  let path = window.location.pathname;
   return (
     <div>
       {menuVisible ? <ExpandedMenu /> : null}
       <div className="top-bar">
         <div className="inner-top">
           <div className="top-bar-left">
-            <Link to={'/dashboard'} className="logo-link">
-              <Logo className="top-logo" />
-            </Link>
+            {!loggedIn ? (
+              <Link to={'/dashboard'} className="logo-link">
+                <Logo className="top-logo" />
+              </Link>
+            ) : (
+              <div onClick={() => showMenu()}>
+                <Logo className="top-logo" />
+              </div>
+            )}
           </div>
           {loggedIn ? (
-            <div className="menu-button" onClick={() => showMenu()}>
-              <Bars className="menu-svg" />
-            </div>
+            <div className=""></div>
           ) : (
-            <div className="top-bar-right">Top Right</div>
+            <div className="top-bar-right">
+              {path.includes('signup') ? (
+                <div>
+                  Already have an account? <Link to={'/login'}>login</Link>
+                </div>
+              ) : (
+                <div>
+                  Don't have an account yet? <Link to={'/signup'}>signup</Link>
+                </div>
+              )}
+            </div>
           )}
         </div>
       </div>

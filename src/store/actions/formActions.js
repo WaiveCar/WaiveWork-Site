@@ -7,7 +7,6 @@ export const clearForm = (formName) => (dispatch) => {
 };
 
 export const handlePageChange = (form) => (dispatch) => {
-  console.log(form);
   form.classList.remove('was-validated');
   form.querySelectorAll('input').forEach((one) => {
     if (!one.value) {

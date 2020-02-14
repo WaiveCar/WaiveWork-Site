@@ -49,15 +49,7 @@ function Signup({
           formWidth={'60%'}
           clearOnSubmit={selectedSignupPage === signupFormPages.length - 1}
         />
-        <div className="text-center mt-4">
-          <Link
-            to={'/login'}
-            onClick={() => changeSignupPage(0)}
-            className="text-center"
-          >
-            Already have an account? Click here to login.
-          </Link>
-        </div>
+        <div className="text-center mt-4"></div>
       </div>
     </div>
   ) : (
