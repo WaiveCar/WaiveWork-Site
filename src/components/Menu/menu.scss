@@ -20,7 +20,6 @@
   justify-content: space-between;
   font-family: $muli;
   padding: 0 30px;
-  max-width: 1440px;
 }
 
 .menu-button {
@@ -48,9 +47,15 @@
 }
 
 .top-bar-right {
-  padding-top: 11px;
+  padding-top: 16px;
   font-size: 18px;
   color: $white;
+  .btn {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    border-width: 1.5px;
+    margin-left: 2rem;
+  }
 }
 
 .top-bar-left,
@@ -61,9 +66,27 @@
   justify-content: center;
 }
 
+.top-text {
+  display: inline-block;
+}
+
 @media (max-width: 768px) {
   .top-bar {
-    height: 3.6rem;
+    .top-bar-left {
+      overflow: hidden;
+      width: 75px;
+      svg {
+        width: 100%;
+      }
+    }
+    .top-bar-right {
+      font-size: 12px;
+      .btn {
+      }
+      .top-text {
+        display: none;
+      }
+    }
   }
   .menu-button {
     width: 2.7rem;

@@ -18,7 +18,6 @@ function Menu({
   loading,
   history,
 }) {
-  console.log(history);
   return (
     <div>
       {menuVisible ? <ExpandedMenu /> : null}
@@ -27,7 +26,7 @@ function Menu({
           <div className="top-bar-left">
             {!loggedIn ? (
               <Link to={'/dashboard'} className="logo-link">
-                <Logo className="top-logo" />
+                <Logo className="top-logo" viewBox={'0 0 100% 100%'} />
               </Link>
             ) : (
               <div onClick={() => showMenu()}>
@@ -41,11 +40,17 @@ function Menu({
             <div className="top-bar-right">
               {history.location.pathname.includes('signup') ? (
                 <div>
-                  Already have an account? <Link to={'/login'}>login</Link>
+                  <div className="top-text">Already have an account? </div>
+                  <Link className="btn btn-outline-info" to={'/login'}>
+                    LOGIN
+                  </Link>
                 </div>
               ) : (
                 <div>
-                  Don't have an account yet? <Link to={'/signup'}>signup</Link>
+                  <div className="top-text">Don't have an account yet? </div>
+                  <Link className="btn btn-outline-info" to={'/signup'}>
+                    SIGNUP
+                  </Link>
                 </div>
               )}
             </div>
