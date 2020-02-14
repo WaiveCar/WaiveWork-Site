@@ -3,6 +3,37 @@ export default [
     title: 'Start Driving in a Few Easy Steps.',
     fields: [
       {
+        name: "Driver's License Number",
+        formField: 'number',
+        type: 'text',
+        width: 12,
+      },
+      {
+        name: 'Issued State',
+        formField: 'licenseState',
+        type: 'text',
+        width: 12,
+      },
+      {
+        name: 'Expiration Date',
+        formField: 'expiration',
+        type: 'date',
+        width: 12,
+      },
+      {
+        name: 'Date of Birth',
+        formField: 'birthDate',
+        type: 'date',
+        width: 12,
+      },
+    ],
+    altActionName: 'BACK',
+    submitName: 'NEXT',
+  },
+  {
+    title: 'Start Driving in a Few Easy Steps.',
+    fields: [
+      {
         name: 'First Name',
         formField: 'firstName',
         type: 'text',
@@ -68,37 +99,6 @@ export default [
     ],
     submitName: 'NEXT',
     altActionName: 'BACK',
-  },
-  {
-    title: 'Start Driving in a Few Easy Steps.',
-    fields: [
-      {
-        name: "Driver's License Number",
-        formField: 'number',
-        type: 'text',
-        width: 12,
-      },
-      {
-        name: 'Issued State',
-        formField: 'licenseState',
-        type: 'text',
-        width: 12,
-      },
-      {
-        name: 'Expiration Date',
-        formField: 'expiration',
-        type: 'date',
-        width: 12,
-      },
-      {
-        name: 'Date of Birth',
-        formField: 'birthDate',
-        type: 'date',
-        width: 12,
-      },
-    ],
-    altActionName: 'BACK',
-    submitName: 'NEXT',
   },
   {
     title: 'Start Driving in a Few Easy Steps.',

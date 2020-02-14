@@ -21,15 +21,31 @@ function Field({ field, currentForm, updateForm, formName }) {
         }
       }}
     >
-      <input
-        id={field.label && field.formName}
-        className={'form-control'}
-        value={currentForm[field.formField]}
-        placeholder={!field.label ? field.name : ''}
-        type={field.type}
-        onChange={(e) => updateForm(formName, field.formField, e.target.value)}
-        required={!field.optional}
-      />
+      {field.type === 'text' ? (
+        <input
+          id={field.label && field.formName}
+          className={'form-control'}
+          value={currentForm[field.formField]}
+          placeholder={!field.label ? field.name : ''}
+          type={field.type}
+          onChange={(e) =>
+            updateForm(formName, field.formField, e.target.value)
+          }
+          required={!field.optional}
+        />
+      ) : (
+        <input
+          className={'form-control'}
+          value={currentForm[field.formField]}
+          placeholder={!field.label ? field.name : ''}
+          type={'text'}
+          onChange={(e) =>
+            updateForm(formName, field.formField, e.target.value)
+          }
+          onFocus={(e) => (e.target.type = 'date')}
+          required={!field.optional}
+        />
+      )}
       <div className="invalid-feedback">Please provide your {field.name}.</div>
       <div className="valid-feedback">{field.name}</div>
     </div>
