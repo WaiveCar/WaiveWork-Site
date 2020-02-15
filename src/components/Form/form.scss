@@ -3,11 +3,13 @@
   height: 100%;
 }
 
-.inner-form,
 .button-holder {
-  width: 70%;
+  width: 90%;
 }
 
+.inner-form {
+  width: 90%;
+}
 .button-holder {
   font-family: $muli;
   .btn {

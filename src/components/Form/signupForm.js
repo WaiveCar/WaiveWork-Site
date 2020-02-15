@@ -33,7 +33,7 @@ export default [
     title: 'Start Driving in a Few Easy Steps.',
     fields: [
       {
-        name: 'Address where the car will be stored?',
+        name: 'Address where your car is stored?',
         formField: 'street1',
         type: 'text',
         width: 12,

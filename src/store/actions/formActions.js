@@ -12,14 +12,24 @@ export const handlePageChange = (form) => (dispatch) => {
     one.classList.remove('is-valid');
     one.parentNode.classList.remove('was-validated');
     one.classList.remove('input-focus');
-    one.nextSibling.classList.remove('display-block');
-    one.nextSibling.nextSibling.classList.remove('display-block');
+    if (one.nextSibling && one.nextSibling.nodeType !== 3) {
+      one.nextSibling.classList.remove('display-block');
+    }
+    if (
+      one.nextSibling &&
+      one.nextSibling.nextSibling &&
+      one.nextSibling.nextSibling.nodeType !== 3
+    ) {
+      one.nextSibling.nextSibling.classList.remove('display-block');
+    }
     if (one.value) {
       one.classList.add('input-focus');
       if (one.checkValidity() && one.nextSibling.nextSibling) {
         one.nextSibling.nextSibling.classList.add('display-block');
       } else {
-        one.nextSibling.classList.add('display-block');
+        if (one.nextSibling && one.nextSibling.nodeType !== 3) {
+          one.nextSibling.classList.add('display-block');
+        }
       }
     }
   });
