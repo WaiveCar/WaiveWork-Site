@@ -79,9 +79,9 @@
   border-color: red !important;
 }
 
-.input-focus {
+.form-row .input-focus {
   color: #30374b !important;
-  padding-top: 1.2rem !important;
+  padding-top: 1.5rem !important;
 }
 
 .display-block {
@@ -93,6 +93,10 @@
   color: #a9b1ba;
   border-color: #a9b1ba;
   transition: none !important;
+  padding-top: 0.7rem !important;
+  padding-bottom: 0.7rem !important;
+  font-family: $roboto;
+  font-size: 16px;
 }
 
 .form-control:not(:focus) {
