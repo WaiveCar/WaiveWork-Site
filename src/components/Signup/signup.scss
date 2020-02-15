@@ -1,3 +1,16 @@
+@import '../../bootstrap/variables.scss';
 .signup {
-  height: 60vh;
+}
+
+.disclaimer {
+  width: 31%;
+  font-family: $roboto;
+  font-size: 14px;
+  color: $blue-text;
+}
+
+@media (max-width: 768px) {
+  .disclaimer {
+    width: 80%;
+  }
 }

@@ -49,7 +49,13 @@ function Signup({
           formWidth={'60%'}
           clearOnSubmit={selectedSignupPage === signupFormPages.length - 1}
         />
-        <div className="text-center mt-4"></div>
+        <div className="container d-flex justify-content-center mt-3">
+          <div className="disclaimer text-center">
+            We do not sell or rent your information. We may disclose it to other
+            tursted partners for the purposes of providing you with the Car
+            Insurance Services.
+          </div>
+        </div>
       </div>
     </div>
   ) : (
