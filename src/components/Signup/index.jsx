@@ -42,6 +42,19 @@ function Signup({
           title={signupFormPages[selectedSignupPage].title}
           body={signupFormPages[selectedSignupPage].body}
           formName={'authForm'}
+          progress={() => {
+            return (
+              <div className="progress">
+                {new Array(signupFormPages.length).fill().map((_, idx) => (
+                  <div
+                    key={idx}
+                    style={{ width: `${(1 / signupFormPages.length) * 100}%` }}
+                    className={idx <= selectedSignupPage ? 'filled' : 'empty'}
+                  />
+                ))}
+              </div>
+            );
+          }}
           onSubmit={(form) => onSubmit(authForm, history)}
           altAction={altAction ? () => altAction() : null}
           submitName={signupFormPages[selectedSignupPage].submitName}

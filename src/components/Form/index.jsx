@@ -24,6 +24,7 @@ function Form(props) {
     clearOnSubmit,
     clearForm,
     handlePageChange,
+    progress,
   } = props;
   const currentForm = props[formName];
   let missing = fields
@@ -53,7 +54,6 @@ function Form(props) {
             }
           });
         } else {
-          //formRef.current.classList.add('was-validated');
           formRef.current.querySelectorAll('input').forEach((one) => {
             one.classList.add('input-focus');
             if (one.nextSibling && one.nextSibling.classList) {
@@ -76,6 +76,7 @@ function Form(props) {
           <span />
         )}
       </div>
+      {progress && progress()}
       {body && (
         <div className="d-flex justify-content-center">{Parser(body)}</div>
       )}
