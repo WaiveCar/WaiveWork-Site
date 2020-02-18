@@ -3,6 +3,10 @@
   height: 100%;
 }
 
+form {
+  color: $warning;
+}
+
 .button-holder {
   width: 90%;
 }
@@ -107,4 +111,10 @@
 
 .form-control:focus {
   box-shadow: none !important;
+}
+
+.radio-holder {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
 }
