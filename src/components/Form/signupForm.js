@@ -104,16 +104,19 @@ export default [
     title: 'Start Driving in a Few Easy Steps.',
     fields: [
       {
-        name: 'Zip code will you be driving in?',
-        formField: 'placeName',
-        type: 'text',
-        width: 12,
-      },
-      {
         name: 'for rideshare',
         formField: 'rideshare',
         type: 'radio',
         label: 'Will you be driving for rideshare services?',
+        default: 'yes',
+        width: 12,
+      },
+      {
+        label: 'If yes, which area will you be driving in',
+        labelWidth: 12,
+        name: 'Area Zip Code?',
+        formField: 'placeName',
+        type: 'text',
         width: 12,
       },
     ],
