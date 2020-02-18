@@ -1,7 +1,6 @@
 import React from 'react';
 
 function Field({ field, currentForm, updateForm, formName }) {
-  console.log(field);
   return (
     <div
       className={`col-${field.width ? field.width : 8}`}

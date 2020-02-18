@@ -120,31 +120,31 @@ function Form(props) {
               </div>
             ) : (
               <div key={i}>
-                <div className="d-flex justify-content-md-center mt-4">
-                  {field.label}
-                </div>
-                <div className="space-evenly mt-2">
-                  <label>
-                    <input
-                      type={'radio'}
-                      value={'true'}
-                      checked={currentForm[field.formField] === 'true'}
-                      onChange={(e) =>
-                        updateForm(formName, field.formField, e.target.value)
-                      }
-                    />
-                    Yes
+                <div className="mt-4">{field.label}</div>
+                <div className="mt-2 radio-holder">
+                  <input
+                    type={'radio'}
+                    value={'true'}
+                    id={`${field.formField}-yes`}
+                    checked={currentForm.default === 'yes'}
+                    onChange={(e) =>
+                      updateForm(formName, field.formField, e.target.value)
+                    }
+                  />
+                  <label htmlFor={`${field.formField}-yes`}>
+                    <span className="ml-2">Yes</span>
                   </label>
-                  <label>
-                    <input
-                      type={'radio'}
-                      value={'false'}
-                      checked={currentForm[field.formField] === 'false'}
-                      onChange={(e) =>
-                        updateForm(formName, field.formField, e.target.value)
-                      }
-                    />
-                    No
+                  <input
+                    type={'radio'}
+                    value={'false'}
+                    id={`${field.formField}-no`}
+                    checked={currentForm.default !== 'yes'}
+                    onChange={(e) =>
+                      updateForm(formName, field.formField, e.target.value)
+                    }
+                  />
+                  <label htmlFor={`${field.formField}-no`}>
+                    <span className="ml-2">No</span>
                   </label>
                 </div>
               </div>
