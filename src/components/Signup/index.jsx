@@ -44,14 +44,22 @@ function Signup({
           formName={'authForm'}
           progress={() => {
             return (
-              <div className="progress">
-                {new Array(signupFormPages.length).fill().map((_, idx) => (
-                  <div
-                    key={idx}
-                    style={{ width: `${(1 / signupFormPages.length) * 100}%` }}
-                    className={idx <= selectedSignupPage ? 'filled' : 'empty'}
-                  />
-                ))}
+              <div className="d-flex justify-content-center">
+                <div className="prog-bar mt-3 mb-4">
+                  {new Array(signupFormPages.length + 1)
+                    .fill()
+                    .map((_, idx) => (
+                      <div
+                        key={idx}
+                        style={{
+                          width: `${(1 / (signupFormPages.length + 1)) * 100}%`,
+                        }}
+                        className={
+                          idx <= selectedSignupPage ? 'filled' : 'empty'
+                        }
+                      />
+                    ))}
+                </div>
               </div>
             );
           }}

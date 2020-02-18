@@ -15,10 +15,24 @@
   }
 }
 
-.progress {
-  height: 7px;
-  .filled {
+.prog-bar {
+  height: 3px;
+  width: 21%;
+  display: flex;
+  .filled,
+  .empty {
     height: 100%;
+  }
+  .filled {
     background-color: $primary;
+  }
+  .empty {
+    background-color: $warning;
+  }
+}
+
+@media (max-width: 768px) {
+  .prog-bar {
+    width: 80%;
   }
 }
