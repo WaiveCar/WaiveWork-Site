@@ -90,7 +90,7 @@ function Form(props) {
                     <label
                       className={`col-sm-${
                         field.labelWidth ? field.labelWidth : 6
-                      } col-form-label text-center`}
+                      } col-form-label`}
                       htmlFor={field.formName}
                     >
                       {field.label}

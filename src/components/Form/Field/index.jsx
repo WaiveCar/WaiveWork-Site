@@ -1,6 +1,7 @@
 import React from 'react';
 
 function Field({ field, currentForm, updateForm, formName }) {
+  console.log(field);
   return (
     <div
       className={`col-${field.width ? field.width : 8}`}
@@ -26,7 +27,7 @@ function Field({ field, currentForm, updateForm, formName }) {
           id={field.label && field.formName}
           className={'form-control'}
           value={currentForm[field.formField]}
-          placeholder={!field.label ? field.name : ''}
+          placeholder={field.name}
           type={field.type}
           onChange={(e) =>
             updateForm(formName, field.formField, e.target.value)
@@ -37,7 +38,7 @@ function Field({ field, currentForm, updateForm, formName }) {
         <input
           className={'form-control'}
           value={currentForm[field.formField]}
-          placeholder={!field.label ? field.name : ''}
+          placeholder={field.name}
           type={'text'}
           onChange={(e) =>
             updateForm(formName, field.formField, e.target.value)
