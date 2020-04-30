@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import ChevronRight from '../../../svg/chevron-right.svg';
 import ChevronLeft from '../../../svg/chevron-left.svg';
 import SignOut from '../../../svg/sign-out-alt.svg';
-import Logo from '../../../svg/logo-waivecar.svg';
+import Logo from '../../../svg/logo.svg';
 import './expandedMenu.scss';
 
 function ExpandedMenu({ hideMenu, menuLinks, toggleItem, logout, loading }) {
