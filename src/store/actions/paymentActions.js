@@ -21,6 +21,19 @@ export const groupCurrentBookingPayments = (payments) => async (dispatch) => {
       table[payment.id].push(payment);
     }
   }
+  for (let key in table) {
+    table[key].sort((a, b) => {
+      if (a.status !== b.status) {
+        if (a.status === 'paid') {
+          return 1;
+        } else {
+          return -1;
+        }
+      } else {
+        return 0;
+      }
+    });
+  }
   let paymentArray = Object.values(table)
     .map((paymentGroup) => paymentGroup)
     .reverse();
