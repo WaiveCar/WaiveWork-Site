@@ -37,10 +37,17 @@ function userReducer(state = initialState, action) {
         user: payload.user,
       };
     case 'UPDATE_INSURANCE':
-      return {
-        ...state,
-        insuranceFile: payload.insuranceFiles[0],
-      };
+      if (payload.insuranceFiles.length) {
+        return {
+          ...state,
+          insuranceFile: payload.insuranceFiles[0],
+        };
+      } else {
+        return {
+          ...state,
+          insuranceFiles: payload.insuranceFiles,
+        };
+      }
     case 'TOGGLE_USER_RESOURCES_LOADED':
       return {
         ...state,

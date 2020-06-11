@@ -144,13 +144,27 @@ export const fetchUserInfo = () => async (dispatch) => {
       await dispatch(fetchBookingInfo(user));
     }
     // This step must be below the others because if the file is not there, a 404 is thrown
-    let insuranceResponse = await axios.get(
-      `/files?userId=${user.id}&collectionId=insurance&limit=1`,
-    );
-    await dispatch({
-      type: 'UPDATE_INSURANCE',
-      payload: { insuranceFiles: insuranceResponse.data },
-    });
+    if (!user.organizations.length) {
+      let insuranceResponse = await axios.get(
+        `/files?userId=${user.id}&collectionId=insurance&limit=1`,
+      );
+      await dispatch({
+        type: 'UPDATE_INSURANCE',
+        payload: { insuranceFiles: insuranceResponse.data },
+      });
+    } else {
+      let allInsurance = {};
+      for (let orgUser of user.organizations) {
+        let { data } = await axios.get(
+          `/files?organizationId=${orgUser.organizationId}&collectionId=insurance`,
+        );
+        allInsurance[orgUser.organization.name] = data;
+      }
+      await dispatch({
+        type: 'UPDATE_INSURANCE',
+        payload: { insuranceFiles: allInsurance },
+      });
+    }
     let licenseResponse = await axios.get(`/licenses?userId=${user.id}`);
     if (licenseResponse.data[0]) {
       Object.keys(licenseFormFields).forEach(async (field) => {
