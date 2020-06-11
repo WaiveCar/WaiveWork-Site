@@ -14,7 +14,7 @@ function Doc(props) {
         {user.organizations.map((orgUser, i) => (
           <div key={i}>
             <h1>{orgUser.organization.name}</h1>
-            <table>
+            <table className="table">
               <thead>
                 <tr>
                   <th>Expiration</th>
@@ -42,9 +42,7 @@ function Doc(props) {
                   )
                 ) : (
                   <tr>
-                    <td colSpan="3" className="d-flex justify-content-center">
-                      No {type} uploaded
-                    </td>
+                    <td>No {type} uploaded</td>
                   </tr>
                 )}
               </tbody>
