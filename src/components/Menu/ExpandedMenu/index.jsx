@@ -35,7 +35,6 @@ function ExpandedMenu({
     let sections = orgUser.organization.sections
       ? JSON.parse(orgUser.organization.sections)
       : defaultOrgItems;
-    console.log(sections);
     Object.keys(sections).forEach((key) => {
       if (sections[key]) {
         sectionsToShow.add(key);
@@ -54,7 +53,6 @@ function ExpandedMenu({
         }
       })
     : Object.keys(menuLinks);
-  console.log(menuLinks);
   return (
     <div className="outer-menu" onClick={() => hideMenu()}>
       <div className="inner-menu" onClick={(e) => e.stopPropagation()}>
@@ -135,7 +133,6 @@ function ExpandedMenu({
 }
 
 function mapStateToProps({ menuReducer, userReducer }) {
-  console.log(userReducer);
   return {
     ...menuReducer,
     ...userReducer,
