@@ -158,7 +158,7 @@ export const fetchUserInfo = () => async (dispatch) => {
         let { data } = await axios.get(
           `/files?organizationId=${orgUser.organizationId}&collectionId=insurance`,
         );
-        allInsurance[orgUser.organization.name] = data;
+        allInsurance[orgUser.organization.name] = data.reverse();
       }
       await dispatch({
         type: 'UPDATE_INSURANCE',

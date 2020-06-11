@@ -5,8 +5,55 @@ import moment from 'moment';
 import './doc.scss';
 
 function Doc(props) {
-  const { type, userResourcesLoaded, currentBooking } = props;
+  const { type, userResourcesLoaded, currentBooking, user } = props;
   const currentFile = props[`${type}File`];
+  const organizationFiles = props[`${type}Files`];
+  if (user.organizations) {
+    return (
+      <div className="container">
+        {user.organizations.map((orgUser, i) => (
+          <div key={i}>
+            <h1>{orgUser.organization.name}</h1>
+            <table>
+              <thead>
+                <tr>
+                  <th>Expiration</th>
+                  <th>Added</th>
+                  <th>Show</th>
+                </tr>
+              </thead>
+              <tbody>
+                {organizationFiles[orgUser.organization.name].length ? (
+                  organizationFiles[orgUser.organization.name].map(
+                    (file, i) => (
+                      <tr key={i}>
+                        <td>{moment(file.comment).format('MM/DD/YYYY')}</td>
+                        <td>{moment(file.createdAt).format('MM/DD/YYYY')}</td>
+                        <td>
+                          <a
+                            href={`https://waivecar-prod.s3.amazonaws.com/${file.path}`}
+                            target="_blank"
+                          >
+                            here
+                          </a>
+                        </td>
+                      </tr>
+                    ),
+                  )
+                ) : (
+                  <tr>
+                    <td colSpan="3" className="d-flex justify-content-center">
+                      No {type} uploaded
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        ))}
+      </div>
+    );
+  }
   return (
     <div className="container">
       {currentFile ? (
