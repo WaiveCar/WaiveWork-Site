@@ -7,8 +7,8 @@ import './doc.scss';
 function Doc(props) {
   const { type, userResourcesLoaded, currentBooking, user } = props;
   const currentFile = props[`${type}File`];
-  const organizationFiles = props[`${type}Files`];
-  if (user.organizations) {
+  const organizationFiles = props[`${type}Files`] && props[`${type}Files`];
+  if (user.organizations && organizationFiles) {
     return (
       <div className="container">
         {user.organizations.map((orgUser, i) => (
