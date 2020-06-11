@@ -4,9 +4,22 @@ import MiniDoc from '../MiniDoc';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { carCommand } from '../../../store/actions/carActions';
+import moment from 'moment';
 import './carInfo.scss';
 
-function CarInfo({ car, carCommand, registrationFile, insuranceFile }) {
+function CarInfo({
+  car,
+  carCommand,
+  registrationFile,
+  insuranceFile,
+  insuranceFiles,
+  user,
+}) {
+  let carOrg = user.organizations.find(
+    (org) => car.organizationId === org.organizationId,
+  );
+  let carInsurance = insuranceFiles[carOrg.organization.name];
+  console.log(carInsurance);
   return car ? (
     <div className="card booking-card mt-4">
       <div className="card-body">
@@ -30,15 +43,59 @@ function CarInfo({ car, carCommand, registrationFile, insuranceFile }) {
           </div>
         </div>
         <Link to={'/registration'}>
-          <h5 className="mt-4">Registration</h5>
-          <div className="d-flex justify-content-center">
-            <MiniDoc file={registrationFile} />
+          <div>
+            <h5 className="mt-4">Registration</h5>
+            <div className="d-flex justify-content-center">
+              <MiniDoc file={registrationFile} />
+            </div>
           </div>
         </Link>
-        <Link to={'/insurance'}>
-          <h5 className="mt-4">Proof of Insurance</h5>
-          <MiniDoc file={insuranceFile} />
-        </Link>
+        {!car.organizationId ? (
+          <Link to={'/insurance'}>
+            <h5 className="mt-4">Proof of Insurance</h5>
+            <h5 className="mt-4">Proof of Insurance</h5>
+            <div className="d-flex justify-content-center">
+              <MiniDoc file={insuranceFile} />
+            </div>
+          </Link>
+        ) : (
+          <div>
+            <Link to={'/insurance'}>
+              <h5 className="mt-4">Proof of Insurance</h5>
+            </Link>
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Expiration</th>
+                  <th>Added</th>
+                  <th>Show</th>
+                </tr>
+              </thead>
+              <tbody>
+                {carInsurance.length ? (
+                  carInsurance.map((file, i) => (
+                    <tr key={i}>
+                      <td>{moment(file.comment).format('MM/DD/YYYY')}</td>
+                      <td>{moment(file.createdAt).format('MM/DD/YYYY')}</td>
+                      <td>
+                        <a
+                          href={`https://waivecar-prod.s3.amazonaws.com/${file.path}`}
+                          target="_blank"
+                        >
+                          here
+                        </a>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td>No {type} uploaded</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </div>
   ) : (
