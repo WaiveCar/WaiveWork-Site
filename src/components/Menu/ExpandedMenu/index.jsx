@@ -10,7 +10,46 @@ import SignOut from '../../../svg/sign-out-alt.svg';
 import Logo from '../../../svg/logo.svg';
 import './expandedMenu.scss';
 
-function ExpandedMenu({ hideMenu, menuLinks, toggleItem, logout, loading }) {
+let defaultOrgItems = {
+  'Current Booking': true,
+  Account: true,
+  Information: true,
+  Insurance: true,
+  Registration: true,
+  'Personal Info': true,
+  'My License': true,
+  'Change Password': true,
+  Contact: true,
+};
+
+function ExpandedMenu({
+  hideMenu,
+  menuLinks,
+  toggleItem,
+  logout,
+  loading,
+  user,
+}) {
+  let sectionsToShow = new Set();
+  user.organizations.forEach((orgUser) => {
+    let sections = orgUser.organization.sections
+      ? JSON.parse(orgUser.organization.sections)
+      : defaultOrgItems;
+    Object.keys(sections).forEach((key) => sectionsToShow.add(key));
+  });
+  let filteredLinks = user.organizations
+    ? Object.keys(menuLinks).filter((each) => {
+        if (sectionsToShow.has(each)) {
+          if (menuLinks[each].children) {
+            menuLinks[each].children = menuLinks[each].children.filter((item) =>
+              sectionsToShow.has(item.name),
+            );
+          }
+          return true;
+        }
+      })
+    : Object.keys(menuLinks);
+  console.log(menuLinks);
   return (
     <div className="outer-menu" onClick={() => hideMenu()}>
       <div className="inner-menu" onClick={(e) => e.stopPropagation()}>
@@ -19,7 +58,7 @@ function ExpandedMenu({ hideMenu, menuLinks, toggleItem, logout, loading }) {
             <Logo className="menu-logo" />
           </Link>
         </div>
-        {Object.keys(menuLinks).map((name, i) => {
+        {filteredLinks.map((name, i) => {
           let item = menuLinks[name];
           return (
             <div key={i}>
@@ -90,9 +129,11 @@ function ExpandedMenu({ hideMenu, menuLinks, toggleItem, logout, loading }) {
   );
 }
 
-function mapStateToProps({ menuReducer }) {
+function mapStateToProps({ menuReducer, userReducer }) {
+  console.log(userReducer);
   return {
     ...menuReducer,
+    ...userReducer,
   };
 }
 
