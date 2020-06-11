@@ -35,7 +35,12 @@ function ExpandedMenu({
     let sections = orgUser.organization.sections
       ? JSON.parse(orgUser.organization.sections)
       : defaultOrgItems;
-    Object.keys(sections).forEach((key) => sectionsToShow.add(key));
+    console.log(sections);
+    Object.keys(sections).forEach((key) => {
+      if (sections[key]) {
+        sectionsToShow.add(key);
+      }
+    });
   });
   let filteredLinks = user.organizations
     ? Object.keys(menuLinks).filter((each) => {
