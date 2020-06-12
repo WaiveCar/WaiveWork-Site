@@ -11,44 +11,49 @@ function Doc(props) {
   if (user.organizations && organizationFiles) {
     return (
       <div className="container">
-        {user.organizations.map((orgUser, i) => (
-          <div key={i}>
-            <h1>{orgUser.organization.name}</h1>
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>Expiration</th>
-                  <th>Added</th>
-                  <th>Show</th>
-                </tr>
-              </thead>
-              <tbody>
-                {organizationFiles[orgUser.organization.name].length ? (
-                  organizationFiles[orgUser.organization.name].map(
-                    (file, i) => (
-                      <tr key={i}>
-                        <td>{moment(file.comment).format('MM/DD/YYYY')}</td>
-                        <td>{moment(file.createdAt).format('MM/DD/YYYY')}</td>
-                        <td>
-                          <a
-                            href={`https://waivecar-prod.s3.amazonaws.com/${file.path}`}
-                            target="_blank"
-                          >
-                            here
-                          </a>
-                        </td>
+        {user.organizations.map(
+          (orgUser, i) =>
+            JSON.parse(orgUser.organization.sections)[`${type}Files`] && (
+              <div key={i}>
+                <h1>{orgUser.organization.name}</h1>
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th>Expiration</th>
+                      <th>Added</th>
+                      <th>Show</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {organizationFiles[orgUser.organization.name].length ? (
+                      organizationFiles[orgUser.organization.name].map(
+                        (file, i) => (
+                          <tr key={i}>
+                            <td>{moment(file.comment).format('MM/DD/YYYY')}</td>
+                            <td>
+                              {moment(file.createdAt).format('MM/DD/YYYY')}
+                            </td>
+                            <td>
+                              <a
+                                href={`https://waivecar-prod.s3.amazonaws.com/${file.path}`}
+                                target="_blank"
+                              >
+                                here
+                              </a>
+                            </td>
+                          </tr>
+                        ),
+                      )
+                    ) : (
+                      <tr>
+                        <td>No {type} uploaded</td>
                       </tr>
-                    ),
-                  )
-                ) : (
-                  <tr>
-                    <td>No {type} uploaded</td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
-        ))}
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            ),
+        )}
       </div>
     );
   }

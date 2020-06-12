@@ -20,6 +20,7 @@ let defaultOrgItems = {
   'My License': true,
   'Change Password': true,
   Contact: true,
+  insuranceFiles: true,
 };
 
 function ExpandedMenu({

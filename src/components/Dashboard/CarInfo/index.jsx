@@ -19,7 +19,6 @@ function CarInfo({
     (org) => car.organizationId === org.organizationId,
   );
   let carInsurance = insuranceFiles[carOrg.organization.name];
-  console.log(carInsurance);
   return car ? (
     <div className="card booking-card mt-4">
       <div className="card-body">
