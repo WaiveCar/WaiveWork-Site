@@ -86,3 +86,5 @@ export const fetchBookingInfo = (user) => async (dispatch) => {
 export const updateBooking = (booking) => (dispatch) => {
   return dispatch({ type: 'UPDATE_BOOKING', payload: { booking } });
 };
+
+export const createBooking = (carId) => (dispatch) => {};
