@@ -2,6 +2,7 @@ import axios from 'axios';
 import moment from 'moment';
 import { updateCar, getCarHistory } from './carActions';
 import { groupCurrentBookingPayments } from './paymentActions';
+import { showSnackbar } from './snackbarActions';
 import { toggleLoading } from './menuActions';
 
 export const getBookingStats = (booking, carHistory) => (dispatch) => {
@@ -89,17 +90,23 @@ export const updateBooking = (booking) => (dispatch) => {
 };
 
 export const createBooking = (carId, user) => async (dispatch) => {
-  await dispatch(toggleLoading());
-  let { data } = await axios.post('/bookings', {
-    source: 'web',
-    userId: user.id,
-    carId,
-    isWaivework: true,
-    skipChecklist: true,
-    skipPayment: true,
-  });
-  let bookingReady = await axios.put(`/bookings/${data.id}/ready`, {});
-  console.log(bookingReady);
-  dispatch(updateBooking(bookingReady.data));
+  try {
+    await dispatch(toggleLoading());
+    let { data } = await axios.post('/bookings', {
+      source: 'web',
+      userId: user.id,
+      carId,
+      isWaivework: true,
+      skipChecklist: true,
+      skipPayment: true,
+    });
+    let bookingReady = await axios.put(`/bookings/${data.id}/ready`, {});
+    console.log(bookingReady);
+    dispatch(updateBooking(bookingReady.data));
+  } catch (e) {
+    await dispatch(
+      showSnackbar(e.response ? e.response.data.message : e, 'error'),
+    );
+  }
   await dispatch(toggleLoading());
 };
