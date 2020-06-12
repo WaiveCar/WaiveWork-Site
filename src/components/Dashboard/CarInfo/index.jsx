@@ -17,12 +17,7 @@ function CarInfo({
   user,
 }) {
   if (!car) {
-    return (
-      <div className="card-body">
-        <h5 className="card-title">Book A Car:</h5>
-        <div className="row d-flex justify-content-center"></div>
-      </div>
-    );
+    return <BookCars />;
   }
   let carOrg = user.organizations.find(
     (org) => car.organizationId === org.organizationId,

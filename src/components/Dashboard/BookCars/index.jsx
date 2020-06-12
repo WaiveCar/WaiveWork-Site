@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 function BookCars({ user }) {
+  let [searchText, setText] = useState('');
   return (
     <div className="card-body">
       <h5 className="card-title">Book A Car:</h5>
-      <div className="row d-flex justify-content-center"></div>
+      <div>
+        <input type="text" onChange={(e) => setText(e.target.value)} />
+      </div>
     </div>
   );
 }
