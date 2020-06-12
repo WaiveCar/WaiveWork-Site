@@ -40,9 +40,9 @@ export const carSearch = (searchText, user) => async (dispatch) => {
     let response = await axios.get(
       `/cars/search/?search=${searchText}${
         user.organizations.length
-          ? `&organizationIds=${user.organizations
+          ? `&organizationIds=[${user.organizations
               .map((orgUser) => orgUser.organizationId)
-              .join(',')}`
+              .join(',')}]`
           : ''
       }`,
     );
