@@ -2,6 +2,7 @@ import axios from 'axios';
 import moment from 'moment';
 import { updateCar, getCarHistory } from './carActions';
 import { groupCurrentBookingPayments } from './paymentActions';
+import { toggleLoading } from './menuActions';
 
 export const getBookingStats = (booking, carHistory) => (dispatch) => {
   let startDate = moment(booking.createdAt).format('MM/DD/YYYY');
@@ -87,4 +88,18 @@ export const updateBooking = (booking) => (dispatch) => {
   return dispatch({ type: 'UPDATE_BOOKING', payload: { booking } });
 };
 
-export const createBooking = (carId) => (dispatch) => {};
+export const createBooking = (carId, user) => async (dispatch) => {
+  await dispatch(toggleLoading());
+  let { data } = await axios.post('/bookings', {
+    source: 'web',
+    userId: user.id,
+    carId,
+    isWaivework: true,
+    skipChecklist: true,
+    skipPayment: true,
+  });
+  let bookingReady = await axios.put(`/bookings/${data.id}/ready`, {});
+  console.log(bookingReady);
+  dispatch(updateBooking(bookingReady.data));
+  await dispatch(toggleLoading());
+};

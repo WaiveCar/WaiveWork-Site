@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { carSearch } from '../../../store/actions/carActions';
 import { createBooking } from '../../../store/actions/bookingActions';
 
-function BookCars({ user, carSearch, searchResults }) {
+function BookCars({ user, carSearch, searchResults, createBooking }) {
   let [searchText, setText] = useState('');
   return (
     <div className="card-body">
@@ -19,7 +19,15 @@ function BookCars({ user, carSearch, searchResults }) {
         </button>
       </div>
       {searchResults.map((each, i) => (
-        <div key={i}>{each.license}</div>
+        <div key={i} className="d-flex justify-content-between">
+          <div>{each.license}</div>
+          <button
+            className="btn btn-primary"
+            onClick={() => createBooking(each.id, user)}
+          >
+            Book
+          </button>
+        </div>
       ))}
     </div>
   );
