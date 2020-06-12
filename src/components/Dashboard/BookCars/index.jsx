@@ -14,9 +14,10 @@ function BookCars({ user }) {
   );
 }
 
-function mapStateToProps({ carReducer, userReducer }) {
+function mapStateToProps({ carReducer, bookingReducer, userReducer }) {
   return {
     ...carReducer,
+    ...bookingReducer,
     ...userReducer,
   };
 }

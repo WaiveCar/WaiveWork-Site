@@ -33,3 +33,27 @@ export const carCommand = (carId, command) => async (dispatch) => {
   }
   return dispatch(toggleLoading());
 };
+
+export const carSearch = (searchText, user) => async (dispatch) => {
+  await dispatch(toggleLoading());
+  try {
+    let response = await axios.get(
+      `/cars/search/?search=${searchText}${
+        user.organizations.length
+          ? `&organizationIds=${user.organizations
+              .map((orgUser) => orgUser.organizationId)
+              .join(',')}`
+          : ''
+      }`,
+    );
+    await dispatch({
+      type: 'UPDATE_SEARCH',
+      payload: { results: response.data },
+    });
+  } catch (e) {
+    await dispatch(
+      showSnackbar(e.response ? e.response.data.message : e, 'error'),
+    );
+  }
+  return dispatch(toggleLoading());
+};
