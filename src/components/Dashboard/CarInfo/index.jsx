@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import MiniDoc from '../MiniDoc';
+import BookCars from '../BookCars';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { carCommand } from '../../../store/actions/carActions';
@@ -15,6 +16,14 @@ function CarInfo({
   insuranceFiles,
   user,
 }) {
+  if (!car) {
+    return (
+      <div className="card-body">
+        <h5 className="card-title">Book A Car:</h5>
+        <div className="row d-flex justify-content-center"></div>
+      </div>
+    );
+  }
   let carOrg = user.organizations.find(
     (org) => car.organizationId === org.organizationId,
   );

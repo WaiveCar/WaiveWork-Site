@@ -138,9 +138,13 @@ function Booking({
   } else {
     return (
       <div className="container">
-        <div className="text-center">
-          <h5>You are not currently in a WaiveWork booking</h5>
-        </div>
+        {!user.organizations.length ? (
+          <div className="text-center">
+            <h5>You are not currently in a WaiveWork booking</h5>
+          </div>
+        ) : (
+          <div>Book Cars Here</div>
+        )}
       </div>
     );
   }
