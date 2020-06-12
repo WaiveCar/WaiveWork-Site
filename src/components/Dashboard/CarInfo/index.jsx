@@ -58,42 +58,44 @@ function CarInfo({
             </div>
           </Link>
         ) : (
-          <div>
-            <Link to={'/insurance'}>
-              <h5 className="mt-4">Proof of Insurance</h5>
-            </Link>
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>Expiration</th>
-                  <th>Added</th>
-                  <th>Show</th>
-                </tr>
-              </thead>
-              <tbody>
-                {carInsurance.length ? (
-                  carInsurance.map((file, i) => (
-                    <tr key={i}>
-                      <td>{moment(file.comment).format('MM/DD/YYYY')}</td>
-                      <td>{moment(file.createdAt).format('MM/DD/YYYY')}</td>
-                      <td>
-                        <a
-                          href={`https://waivecar-prod.s3.amazonaws.com/${file.path}`}
-                          target="_blank"
-                        >
-                          here
-                        </a>
-                      </td>
-                    </tr>
-                  ))
-                ) : (
+          JSON.parse(carOrg.organization.sections).insuranceFiles && (
+            <div>
+              <Link to={'/insurance'}>
+                <h5 className="mt-4">Proof of Insurance</h5>
+              </Link>
+              <table className="table">
+                <thead>
                   <tr>
-                    <td>No {type} uploaded</td>
+                    <th>Expiration</th>
+                    <th>Added</th>
+                    <th>Show</th>
                   </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {carInsurance.length ? (
+                    carInsurance.map((file, i) => (
+                      <tr key={i}>
+                        <td>{moment(file.comment).format('MM/DD/YYYY')}</td>
+                        <td>{moment(file.createdAt).format('MM/DD/YYYY')}</td>
+                        <td>
+                          <a
+                            href={`https://waivecar-prod.s3.amazonaws.com/${file.path}`}
+                            target="_blank"
+                          >
+                            here
+                          </a>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td>No {type} uploaded</td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          )
         )}
       </div>
     </div>
