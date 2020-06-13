@@ -93,7 +93,7 @@ function CarInfo({
                     ))
                   ) : (
                     <tr>
-                      <td>No {type} uploaded</td>
+                      <td>Not uploaded</td>
                     </tr>
                   )}
                 </tbody>

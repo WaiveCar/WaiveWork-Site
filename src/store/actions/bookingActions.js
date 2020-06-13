@@ -102,7 +102,9 @@ export const createBooking = (carId, user) => async (dispatch) => {
     });
     let bookingReady = await axios.put(`/bookings/${data.id}/ready`, {});
     console.log(bookingReady);
-    dispatch(updateBooking(bookingReady.data));
+    let updated = await axios.get(`/bookings/${data.id}`);
+    await dispatch(updateBooking(updated.data));
+    await dispatch(updateCar(updated.data.car));
   } catch (e) {
     await dispatch(
       showSnackbar(e.response ? e.response.data.message : e, 'error'),
