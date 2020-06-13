@@ -4,15 +4,19 @@ import { updateCar, getCarHistory } from './carActions';
 import { groupCurrentBookingPayments } from './paymentActions';
 import { showSnackbar } from './snackbarActions';
 import { toggleLoading } from './menuActions';
+import { fetchUserInfo } from './userActions';
 
 export const getBookingStats = (booking, carHistory) => (dispatch) => {
   let startDate = moment(booking.createdAt).format('MM/DD/YYYY');
   let dayOfBooking = moment().diff(moment(booking.createdAt), 'days') + 1;
-  let totalMiles = (
-    (Number(carHistory[carHistory.length - 1].data) -
-      Number(carHistory[0].data)) *
-    0.621371
-  ).toFixed(2);
+  let totalMiles =
+    carHistory.length > 1
+      ? (
+          (Number(carHistory[carHistory.length - 1].data) -
+            Number(carHistory[0].data)) *
+          0.621371
+        ).toFixed(2)
+      : 0;
   let last30Days = carHistory[carHistory.length - 31]
     ? (
         ((Number(carHistory[carHistory.length - 1].data) -
@@ -60,9 +64,11 @@ export const fetchBookingInfo = (user) => async (dispatch) => {
     await dispatch(updateBooking(currentBooking));
     await dispatch(updateCar(car));
     await dispatch(getCarHistory(car.id, currentBooking));
-    await dispatch(
-      groupCurrentBookingPayments(bookingResponse.data[0].payments),
-    );
+    if (bookingResponse.data) {
+      await dispatch(
+        groupCurrentBookingPayments(bookingResponse.data[0].payments),
+      );
+    }
     // Keep the request of these two types of requests at the bottom of this function so the at previous parts don't fail
     if (car && car.registrationFileId) {
       let registrationResponse = await axios.get(
@@ -101,10 +107,8 @@ export const createBooking = (carId, user) => async (dispatch) => {
       skipPayment: true,
     });
     let bookingReady = await axios.put(`/bookings/${data.id}/ready`, {});
-    console.log(bookingReady);
     let updated = await axios.get(`/bookings/${data.id}`);
-    await dispatch(updateBooking(updated.data));
-    await dispatch(updateCar(updated.data.car));
+    await dispatch(fetchBookingInfo(user));
   } catch (e) {
     await dispatch(
       showSnackbar(e.response ? e.response.data.message : e, 'error'),
