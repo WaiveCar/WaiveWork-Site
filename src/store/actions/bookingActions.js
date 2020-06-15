@@ -116,3 +116,16 @@ export const createBooking = (carId, user) => async (dispatch) => {
   }
   await dispatch(toggleLoading());
 };
+
+export const endBooking = (bookingId = async (dispatch) => {
+  try {
+    await dispatch(toggleLoading());
+    let { data } = await axios.post(`/cars/${carId}/instaend`, {});
+    await dispatch(fetchBookingInfo(user));
+  } catch (e) {
+    await dispatch(
+      showSnackbar(e.response ? e.response.data.message : e, 'error'),
+    );
+  }
+  await dispatch(toggleLoading());
+});
