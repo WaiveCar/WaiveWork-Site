@@ -5,6 +5,7 @@ import BookCars from '../BookCars';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { carCommand } from '../../../store/actions/carActions';
+import { endBooking } from '../../../store/actions/bookingActions';
 import moment from 'moment';
 import './carInfo.scss';
 
@@ -15,8 +16,9 @@ function CarInfo({
   insuranceFile,
   insuranceFiles,
   user,
+  endBooking,
 }) {
-  if (!car) {
+  if (!car && user.organizations.length) {
     return <BookCars />;
   }
   let carOrg = user.organizations.find(
@@ -53,9 +55,16 @@ function CarInfo({
             </div>
           </div>
         </Link>
+        {car.organizationId && (
+          <button
+            className="btn btn-primary"
+            onClick={() => endBooking(car.id)}
+          >
+            End Booking
+          </button>
+        )}
         {!car.organizationId ? (
           <Link to={'/insurance'}>
-            <h5 className="mt-4">Proof of Insurance</h5>
             <h5 className="mt-4">Proof of Insurance</h5>
             <div className="d-flex justify-content-center">
               <MiniDoc file={insuranceFile} />
@@ -93,7 +102,7 @@ function CarInfo({
                     ))
                   ) : (
                     <tr>
-                      <td>Not uploaded</td>
+                      <td>NoT uploaded</td>
                     </tr>
                   )}
                 </tbody>
@@ -123,7 +132,7 @@ function mapStateToProps({ carReducer, userReducer }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ carCommand }, dispatch);
+  return bindActionCreators({ carCommand, endBooking }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CarInfo);

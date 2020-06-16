@@ -117,7 +117,7 @@ export const createBooking = (carId, user) => async (dispatch) => {
   await dispatch(toggleLoading());
 };
 
-export const endBooking = (bookingId = async (dispatch) => {
+export const endBooking = (carId) => async (dispatch) => {
   try {
     await dispatch(toggleLoading());
     let { data } = await axios.post(`/cars/${carId}/instaend`, {});
@@ -128,4 +128,4 @@ export const endBooking = (bookingId = async (dispatch) => {
     );
   }
   await dispatch(toggleLoading());
-});
+};
