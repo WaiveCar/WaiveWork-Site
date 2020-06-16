@@ -117,11 +117,12 @@ export const createBooking = (carId, user) => async (dispatch) => {
   await dispatch(toggleLoading());
 };
 
-export const endBooking = (carId) => async (dispatch) => {
+export const endBooking = (carId, user) => async (dispatch) => {
   try {
     await dispatch(toggleLoading());
-    let { data } = await axios.post(`/cars/${carId}/instaend`, {});
+    let { data } = await axios.put(`/cars/${carId}/instaend`, {});
     await dispatch(fetchBookingInfo(user));
+    await dispatch(updateCar(null));
   } catch (e) {
     await dispatch(
       showSnackbar(e.response ? e.response.data.message : e, 'error'),
