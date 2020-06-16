@@ -47,6 +47,18 @@ function CarInfo({
             </button>
           </div>
         </div>
+        {car.organizationId && (
+          <div className="d-flex justify-content-center mt-2">
+            <div className="btn-group" role="group">
+              <button
+                className="btn btn-primary"
+                onClick={() => endBooking(car.id)}
+              >
+                End Booking
+              </button>
+            </div>
+          </div>
+        )}
         <Link to={'/registration'}>
           <div>
             <h5 className="mt-4">Registration</h5>
@@ -55,14 +67,6 @@ function CarInfo({
             </div>
           </div>
         </Link>
-        {car.organizationId && (
-          <button
-            className="btn btn-primary"
-            onClick={() => endBooking(car.id)}
-          >
-            End Booking
-          </button>
-        )}
         {!car.organizationId ? (
           <Link to={'/insurance'}>
             <h5 className="mt-4">Proof of Insurance</h5>

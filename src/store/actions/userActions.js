@@ -97,8 +97,9 @@ export const updateUser = (user, form) => async (dispatch) => {
   await dispatch(toggleLoading());
   if (form) {
     try {
-      let { data } = await axios.put(`/users/${user.id}`, form);
-      user = data;
+      await axios.put(`/users/${user.id}`, form);
+      let userRes = await axios.get('/users/me');
+      user = userRes.data;
       await dispatch(
         showSnackbar(
           'Your information has been successfully updated.',
