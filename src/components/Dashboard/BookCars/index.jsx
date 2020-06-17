@@ -39,7 +39,7 @@ function BookCars({
                   e.preventDefault();
                   carSearch(searchText, user);
                 }}
-                className="btn btn-primary search-btn col-2"
+                className="btn btn-primary search-btn"
               >
                 Search
               </button>
@@ -51,7 +51,7 @@ function BookCars({
               <div key={i} className="row search-result">
                 <div className="col-9">{each.license}</div>
                 <button
-                  className="btn btn-primary search-btn col-2"
+                  className="btn btn-primary search-btn"
                   onClick={(e) => createBooking(each.id, user)}
                 >
                   Book
@@ -70,7 +70,7 @@ function BookCars({
               onClick={() => {
                 carSearch(searchText, user, true, offset);
               }}
-              className="btn btn-primary search-btn col-2"
+              className="btn btn-primary search-btn"
             >
               More
             </button>
