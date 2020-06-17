@@ -59,3 +59,10 @@ export const carSearch = (searchText, user, more = false, offset = 0) => async (
   }
   return dispatch(toggleLoading());
 };
+
+export const clearSearch = (dispatch) => async () => {
+  await dispatch({
+    type: 'UPDATE_SEARCH',
+    payload: { results: [], more: false, searchComplete: false },
+  });
+};

@@ -1,5 +1,5 @@
 export default {
-  'Current Booking': {
+  Bookings: {
     expanded: false,
     children: [
       {

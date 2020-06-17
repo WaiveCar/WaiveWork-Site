@@ -6,6 +6,7 @@ import { showSnackbar } from './snackbarActions';
 import { toggleLoading } from './menuActions';
 import { fetchUserInfo } from './userActions';
 import { showModal } from './modalActions';
+import { clearSearch } from './carActions';
 
 export const getBookingStats = (booking, carHistory) => (dispatch) => {
   let startDate = moment(booking.createdAt).format('MM/DD/YYYY');
@@ -135,10 +136,7 @@ export const endBooking = (carId, user) => async (dispatch) => {
           showSnackbar(e.response ? e.response.data.message : e, 'error'),
         );
       }
-      await dispatch({
-        type: 'UPDATE_SEARCH',
-        payload: { results: [], more: false, searchComplete: false },
-      });
+      await dispatch(clearSearch());
       await dispatch(toggleLoading());
     }),
   );
