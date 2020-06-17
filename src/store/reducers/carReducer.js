@@ -4,6 +4,7 @@ const initialState = {
   inspectionFile: null,
   carHistory: [],
   searchResults: [],
+  searchComplete: false,
 };
 
 function carReducer(state = initialState, action) {
@@ -18,6 +19,7 @@ function carReducer(state = initialState, action) {
       return {
         ...state,
         searchResults: payload.results,
+        searchComplete: true,
       };
     case 'UPDATE_REGISTRATION':
       return {

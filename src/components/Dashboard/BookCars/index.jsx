@@ -5,7 +5,13 @@ import { carSearch } from '../../../store/actions/carActions';
 import { createBooking } from '../../../store/actions/bookingActions';
 import './bookCars.scss';
 
-function BookCars({ user, carSearch, searchResults, createBooking }) {
+function BookCars({
+  user,
+  carSearch,
+  searchResults,
+  createBooking,
+  searchComplete,
+}) {
   let [searchText, setText] = useState('');
   return (
     <div className="card booking-card book-cars">
@@ -18,31 +24,37 @@ function BookCars({ user, carSearch, searchResults, createBooking }) {
                 type="text"
                 className="col-9 form-control"
                 onChange={(e) => setText(e.target.value)}
+                placeHolder="Car Name or Number"
               />
               <button
-                className="col-3"
                 onClick={(e) => {
                   e.preventDefault();
                   carSearch(searchText, user);
                 }}
-                className="btn btn-primary"
+                className="btn btn-primary search-btn col-2"
               >
                 Search
               </button>
             </div>
           </div>
         </form>
-        {searchResults.map((each, i) => (
-          <div key={i} className="d-flex justify-content-between">
-            <div>{each.license}</div>
-            <button
-              className="btn btn-primary"
-              onClick={(e) => createBooking(each.id, user)}
-            >
-              Book
-            </button>
-          </div>
-        ))}
+        {searchResults.length
+          ? searchResults.map((each, i) => (
+              <div key={i} className="row">
+                <div className="col-9">{each.license}</div>
+                <button
+                  className="btn btn-primary search-btn col-2"
+                  onClick={(e) => createBooking(each.id, user)}
+                >
+                  Book
+                </button>
+              </div>
+            ))
+          : searchComplete && (
+              <div className="row">
+                <div className="col-12 text-center">No Cars Found</div>
+              </div>
+            )}
       </div>
     </div>
   );
