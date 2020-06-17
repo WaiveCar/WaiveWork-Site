@@ -40,7 +40,7 @@ function BookCars({
         </form>
         {searchResults.length
           ? searchResults.map((each, i) => (
-              <div key={i} className="row">
+              <div key={i} className="row search-result">
                 <div className="col-9">{each.license}</div>
                 <button
                   className="btn btn-primary search-btn col-2"
