@@ -17,7 +17,6 @@ function BookCars({
 }) {
   useEffect(() => {
     return () => {
-      console.log('%cUnmount', 'color: red;');
       clearSearch();
     };
   }, []);

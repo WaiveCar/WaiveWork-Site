@@ -12,6 +12,7 @@ import Cards from '../Cards';
 import Personal from '../Personal';
 import ChangePassword from '../ChangePassword';
 import License from '../License';
+import Wizard from '../Wizard';
 
 export default [
   {
@@ -109,6 +110,12 @@ export default [
     name: 'Contact Us',
     path: '/contact',
     component: Contact,
+    requireAuth: true,
+  },
+  {
+    name: 'Wizard',
+    path: '/wizard',
+    component: Wizard,
     requireAuth: true,
   },
   // This must remain the last in this list
