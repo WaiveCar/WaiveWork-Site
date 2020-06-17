@@ -50,7 +50,7 @@ export const carSearch = (searchText, user, more = false, offset = 0) => async (
     );
     await dispatch({
       type: 'UPDATE_SEARCH',
-      payload: { results: response.data, more },
+      payload: { results: response.data, more, searchComplete: true },
     });
   } catch (e) {
     await dispatch(
