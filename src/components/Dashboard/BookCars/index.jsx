@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { carSearch } from '../../../store/actions/carActions';
+import { carSearch, clearSearch } from '../../../store/actions/carActions';
 import { createBooking } from '../../../store/actions/bookingActions';
 import './bookCars.scss';
 
@@ -13,7 +13,14 @@ function BookCars({
   searchComplete,
   offset,
   more,
+  clearSearch,
 }) {
+  useEffect(() => {
+    return () => {
+      console.log('%cUnmount', 'color: red;');
+      clearSearch();
+    };
+  }, []);
   let [searchText, setText] = useState('');
   return (
     <div className="card booking-card book-cars">
@@ -86,7 +93,10 @@ function mapStateToProps({ carReducer, bookingReducer, userReducer }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ carSearch, createBooking }, dispatch);
+  return bindActionCreators(
+    { carSearch, createBooking, clearSearch },
+    dispatch,
+  );
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookCars);

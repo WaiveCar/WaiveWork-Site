@@ -11,7 +11,7 @@ import Logo from '../../../svg/logo.svg';
 import './expandedMenu.scss';
 
 let defaultOrgItems = {
-  'Current Booking': true,
+  Bookings: true,
   Account: true,
   Information: true,
   Insurance: true,
