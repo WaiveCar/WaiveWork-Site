@@ -23,9 +23,9 @@ function carReducer(state = initialState, action) {
       return {
         ...state,
         searchResults: more ? [...searchResults, ...results] : payload.results,
-        more: results.length && true,
+        more: results.length === 10 && true,
         searchComplete: true,
-        offset: state.offset + 10,
+        offset: more ? state.offset + 10 : 10,
         searchComplete: searchComplete && true,
       };
     case 'UPDATE_REGISTRATION':

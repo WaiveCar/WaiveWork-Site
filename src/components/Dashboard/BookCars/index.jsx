@@ -52,7 +52,8 @@ function BookCars({
                 </button>
               </div>
             ))
-          : searchComplete && (
+          : searchComplete &&
+            !searchResults.length && (
               <div className="row">
                 <div className="col-12 text-center">No Matches Found</div>
               </div>
