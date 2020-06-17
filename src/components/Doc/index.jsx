@@ -106,7 +106,7 @@ function Doc(props) {
             type === 'insurance') ? (
             <h5>Insurance card file not uploaded</h5>
           ) : (
-            <h5>You are not currently in a WaiveWork booking</h5>
+            <h5>You are not currently in a booking</h5>
           )}
         </div>
       )}

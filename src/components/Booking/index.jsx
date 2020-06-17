@@ -7,6 +7,8 @@ import {
   retryPayment,
 } from '../../store/actions/paymentActions';
 import BookingPayments from './BookingPayments';
+import BookCars from '../Dashboard/BookCars';
+import { endBooking } from '../../store/actions/bookingActions';
 import moment from 'moment';
 import './booking.scss';
 
@@ -20,12 +22,19 @@ function Booking({
   retryablePayments,
   carCommand,
   user,
+  endBooking,
 }) {
-  if (car && currentBooking && currentBooking.waiveworkPayment) {
-    let nextPaymentDate = moment
-      .utc(currentBooking.waiveworkPayment.date)
-      .format('MM/DD/YYYY');
+  if (
+    (currentBooking && currentBooking.waiveworkPayment) ||
+    (user.organizations.length && car)
+  ) {
+    let nextPaymentDate =
+      currentBooking &&
+      currentBooking.waiveworkPayment &&
+      moment.utc(currentBooking.waiveworkPayment.date).format('MM/DD/YYYY');
     let nextPaymentFromNow =
+      currentBooking &&
+      currentBooking.waiveworkPayment &&
       moment(currentBooking.waiveworkPayment.date).diff(
         moment(moment().format('YYYY-MM-DD')),
         'days',
@@ -40,75 +49,92 @@ function Booking({
               : ''}
           </div>
         </h1>
-        {currentBooking && currentBooking.waiveworkPayment && (
-          <div className="row d-flex justify-content-around">
-            <div className="card booking-card mt-4">
-              <div className="card-body">
-                <h5 className="card-title">Important Info</h5>
-                <ul className="list-group list-group-flush booking-info mt-4">
-                  <li className="list-group-item">
-                    Start Date: {currentBooking.stats.startDate}(
-                    {currentBooking.stats.dayOfBooking} Days Ago)
-                  </li>
-                  <li className="list-group-item">
-                    Next Payment Date: {nextPaymentDate} ({nextPaymentFromNow}{' '}
-                    Days From Now)
-                  </li>
-                  <li className="list-group-item">
-                    Total Miles Driven: {currentBooking.stats.totalMiles}
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="card booking-card mt-4">
-              <div className="card-body">
-                <h5 className="card-title">Car Controls</h5>
-                <div className="row d-flex justify-content-center">
-                  <div className="btn-group" role="group">
-                    <button
-                      type="button"
-                      className="btn btn-secondary"
-                      onClick={() => carCommand(car.id, 'lock')}
-                    >
-                      Lock
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-secondary"
-                      onClick={() => carCommand(car.id, 'unlock')}
-                    >
-                      Unlock
-                    </button>
-                  </div>
-                </div>
-                {!retryablePayments.length ? (
-                  <div>
-                    <h5 className="card-title mt-4">Advance Payments</h5>
-                    <div className="text-center pl-4 pr-4 mt-4 booking-info">
-                      Did you know that you can make your weekly payments in
-                      advance?
+        {currentBooking &&
+          (currentBooking.waiveworkPayment || user.organizations.length) && (
+            <div className="row d-flex justify-content-around">
+              <div className="card booking-card mt-4">
+                <div className="card-body">
+                  <h5 className="card-title">Booking Info</h5>
+                  <ul className="list-group list-group-flush booking-info mt-4">
+                    <li className="list-group-item">
+                      Start Date: {currentBooking.stats.startDate}(
+                      {currentBooking.stats.dayOfBooking} Days Ago)
+                    </li>
+                    {currentBooking.waiveworkPayment && (
+                      <li className="list-group-item">
+                        Next Payment Date: {nextPaymentDate} (
+                        {nextPaymentFromNow} Days From Now)
+                      </li>
+                    )}
+                    {currentBooking.waiveworkPayment && (
+                      <li className="list-group-item">
+                        Total Miles Driven: {currentBooking.stats.totalMiles}
+                      </li>
+                    )}
+                  </ul>
+                  {car.organizationId && (
+                    <div className="d-flex justify-content-center mt-2">
+                      <div className="btn-group" role="group">
+                        <button
+                          className="btn btn-primary"
+                          onClick={() => endBooking(car.id)}
+                        >
+                          End Booking
+                        </button>
+                      </div>
                     </div>
-                    <div className="d-flex justify-content-center mt-4">
+                  )}
+                </div>
+              </div>
+              <div className="card booking-card mt-4">
+                <div className="card-body">
+                  <h5 className="card-title">Car Controls</h5>
+                  <div className="row d-flex justify-content-center">
+                    <div className="btn-group" role="group">
                       <button
-                        className="btn btn-outline-primary"
-                        onClick={() =>
-                          advancePayment(
-                            currentBooking,
-                            currentBookingPayments,
-                            retryablePayments,
-                            user,
-                          )
-                        }
+                        type="button"
+                        className="btn btn-secondary"
+                        onClick={() => carCommand(car.id, 'lock')}
                       >
-                        Advance Payment
+                        Lock
+                      </button>
+                      <button
+                        type="button"
+                        className="btn btn-secondary"
+                        onClick={() => carCommand(car.id, 'unlock')}
+                      >
+                        Unlock
                       </button>
                     </div>
                   </div>
-                ) : null}
+                  {!retryablePayments.length && !user.organizations.length ? (
+                    <div>
+                      <h5 className="card-title mt-4">Advance Payments</h5>
+                      <div className="text-center pl-4 pr-4 mt-4 booking-info">
+                        Did you know that you can make your weekly payments in
+                        advance?
+                      </div>
+                      <div className="d-flex justify-content-center mt-4">
+                        <button
+                          className="btn btn-outline-primary"
+                          onClick={() =>
+                            advancePayment(
+                              currentBooking,
+                              currentBookingPayments,
+                              retryablePayments,
+                              user,
+                            )
+                          }
+                        >
+                          Advance Payment
+                        </button>
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
         <div className="row"></div>
         {carHistory && carHistory.length > 1 && (
           <div className="mt-4">
@@ -131,7 +157,7 @@ function Booking({
             </table>
           </div>
         )}
-        <BookingPayments />
+        {!user.organizations.length ? <BookingPayments /> : ''}
       </div>
     );
   } else {
@@ -142,7 +168,9 @@ function Booking({
             <h5>You are not currently in a WaiveWork booking</h5>
           </div>
         ) : (
-          <div>Book Cars Here</div>
+          <div className="d-flex justify-content-center">
+            <BookCars />
+          </div>
         )}
       </div>
     );
@@ -164,7 +192,10 @@ function mapStateToProps({
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ carCommand, advancePayment }, dispatch);
+  return bindActionCreators(
+    { carCommand, advancePayment, endBooking },
+    dispatch,
+  );
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Booking);
