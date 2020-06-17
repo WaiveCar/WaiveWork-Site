@@ -11,6 +11,8 @@ function BookCars({
   searchResults,
   createBooking,
   searchComplete,
+  offset,
+  more,
 }) {
   let [searchText, setText] = useState('');
   return (
@@ -24,7 +26,7 @@ function BookCars({
                 type="text"
                 className="col-9 form-control"
                 onChange={(e) => setText(e.target.value)}
-                placeHolder="Car Name or Number"
+                placeholder="Car Name or Number"
               />
               <button
                 onClick={(e) => {
@@ -52,9 +54,23 @@ function BookCars({
             ))
           : searchComplete && (
               <div className="row">
-                <div className="col-12 text-center">No Cars Found</div>
+                <div className="col-12 text-center">No Matches Found</div>
               </div>
             )}
+        {more ? (
+          <div className="d-flex justify-content-center">
+            <button
+              onClick={() => {
+                carSearch(searchText, user, true, offset);
+              }}
+              className="btn btn-primary search-btn col-2"
+            >
+              More
+            </button>
+          </div>
+        ) : (
+          ''
+        )}
       </div>
     </div>
   );

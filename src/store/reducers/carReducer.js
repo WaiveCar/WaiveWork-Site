@@ -5,6 +5,8 @@ const initialState = {
   carHistory: [],
   searchResults: [],
   searchComplete: false,
+  more: false,
+  offset: 0,
 };
 
 function carReducer(state = initialState, action) {
@@ -16,10 +18,15 @@ function carReducer(state = initialState, action) {
         car: payload.car,
       };
     case 'UPDATE_SEARCH':
+      const { results, more, searchComplete } = payload;
+      const { searchResults } = state;
       return {
         ...state,
-        searchResults: payload.results,
+        searchResults: more ? [...searchResults, ...results] : payload.results,
+        more: results.length && true,
         searchComplete: true,
+        offset: state.offset + 10,
+        searchComplete: searchComplete && true,
       };
     case 'UPDATE_REGISTRATION':
       return {

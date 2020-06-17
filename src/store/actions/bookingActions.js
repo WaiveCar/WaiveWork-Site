@@ -135,6 +135,10 @@ export const endBooking = (carId, user) => async (dispatch) => {
           showSnackbar(e.response ? e.response.data.message : e, 'error'),
         );
       }
+      await dispatch({
+        type: 'UPDATE_SEARCH',
+        payload: { results: [], more: false, searchComplete: false },
+      });
       await dispatch(toggleLoading());
     }),
   );

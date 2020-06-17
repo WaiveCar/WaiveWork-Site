@@ -34,11 +34,13 @@ export const carCommand = (carId, command) => async (dispatch) => {
   return dispatch(toggleLoading());
 };
 
-export const carSearch = (searchText, user) => async (dispatch) => {
+export const carSearch = (searchText, user, more = false, offset = 0) => async (
+  dispatch,
+) => {
   await dispatch(toggleLoading());
   try {
     let response = await axios.get(
-      `/cars/search/?search=${searchText}${
+      `/cars/search/?search=${searchText}&limit=10&offset=${offset}${
         user.organizations.length
           ? `&organizationIds=[${user.organizations
               .map((orgUser) => orgUser.organizationId)
@@ -48,7 +50,7 @@ export const carSearch = (searchText, user) => async (dispatch) => {
     );
     await dispatch({
       type: 'UPDATE_SEARCH',
-      payload: { results: response.data },
+      payload: { results: response.data, more },
     });
   } catch (e) {
     await dispatch(
