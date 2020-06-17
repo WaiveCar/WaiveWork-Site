@@ -5,6 +5,7 @@ import { groupCurrentBookingPayments } from './paymentActions';
 import { showSnackbar } from './snackbarActions';
 import { toggleLoading } from './menuActions';
 import { fetchUserInfo } from './userActions';
+import { showModal } from './modalActions';
 
 export const getBookingStats = (booking, carHistory) => (dispatch) => {
   let startDate = moment(booking.createdAt).format('MM/DD/YYYY');
@@ -96,37 +97,45 @@ export const updateBooking = (booking) => (dispatch) => {
 };
 
 export const createBooking = (carId, user) => async (dispatch) => {
-  try {
-    await dispatch(toggleLoading());
-    let { data } = await axios.post('/bookings', {
-      source: 'web',
-      userId: user.id,
-      carId,
-      isWaivework: true,
-      skipChecklist: true,
-      skipPayment: true,
-    });
-    let bookingReady = await axios.put(`/bookings/${data.id}/ready`, {});
-    let updated = await axios.get(`/bookings/${data.id}`);
-    await dispatch(fetchBookingInfo(user));
-  } catch (e) {
-    await dispatch(
-      showSnackbar(e.response ? e.response.data.message : e, 'error'),
-    );
-  }
-  await dispatch(toggleLoading());
+  dispatch(
+    showModal('Are you sure you want to create a booking?', async () => {
+      try {
+        await dispatch(toggleLoading());
+        let { data } = await axios.post('/bookings', {
+          source: 'web',
+          userId: user.id,
+          carId,
+          isWaivework: true,
+          skipChecklist: true,
+          skipPayment: true,
+        });
+        let bookingReady = await axios.put(`/bookings/${data.id}/ready`, {});
+        let updated = await axios.get(`/bookings/${data.id}`);
+        await dispatch(fetchBookingInfo(user));
+      } catch (e) {
+        await dispatch(
+          showSnackbar(e.response ? e.response.data.message : e, 'error'),
+        );
+      }
+      await dispatch(toggleLoading());
+    }),
+  );
 };
 
 export const endBooking = (carId, user) => async (dispatch) => {
-  try {
-    await dispatch(toggleLoading());
-    let { data } = await axios.put(`/cars/${carId}/instaend`, {});
-    await dispatch(fetchBookingInfo(user));
-    await dispatch(updateCar(null));
-  } catch (e) {
-    await dispatch(
-      showSnackbar(e.response ? e.response.data.message : e, 'error'),
-    );
-  }
-  await dispatch(toggleLoading());
+  dispatch(
+    showModal('Are you sure you want to end your booking?', async () => {
+      try {
+        await dispatch(toggleLoading());
+        let { data } = await axios.put(`/cars/${carId}/instaend`, {});
+        await dispatch(fetchBookingInfo(user));
+        await dispatch(updateCar(null));
+      } catch (e) {
+        await dispatch(
+          showSnackbar(e.response ? e.response.data.message : e, 'error'),
+        );
+      }
+      await dispatch(toggleLoading());
+    }),
+  );
 };
