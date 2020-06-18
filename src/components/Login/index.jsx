@@ -9,7 +9,8 @@ import Envelope from '../../svg/envelope.svg';
 import Key from '../../svg/key.svg';
 
 function Login(props) {
-  const { login, loggedIn, loginFormFields } = props;
+  const { login, loggedIn, loginFormFields, location, history } = props;
+  const params = new URL(document.location).searchParams;
   return (
     <div>
       {!loggedIn ? (
@@ -26,7 +27,7 @@ function Login(props) {
           <div className="text-center mt-4"></div>
         </div>
       ) : (
-        <Redirect to={'/dashboard'} />
+        <Redirect to={params.get('new') ? '/wizard' : '/dashboard'} />
       )}
     </div>
   );
