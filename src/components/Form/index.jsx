@@ -40,7 +40,6 @@ function Form(props) {
   });
   return (
     <form
-      className={'needs-validation'}
       noValidate
       onSubmit={async (e) => {
         e.preventDefault();
@@ -67,7 +66,7 @@ function Form(props) {
         }
       }}
       ref={formRef}
-      className="form-holder mt-4"
+      className="form-holder mt-4 needs-validation"
     >
       <div className="d-flex justify-content-center row">
         {title ? (

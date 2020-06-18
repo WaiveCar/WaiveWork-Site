@@ -228,8 +228,10 @@ export const getSigninOrg = (organizationName) => async (dispatch) => {
   const { data } = await axios.get(
     `/organizations?name=${organizationName}&includeImage=true`,
   );
-  await dispatch({
-    type: 'UPDATE_SIGNIN_ORG',
-    payload: { signinOrganization: data[0] },
-  });
+  if (data[0]) {
+    await dispatch({
+      type: 'UPDATE_SIGNIN_ORG',
+      payload: { signinOrganization: data[0] },
+    });
+  }
 };

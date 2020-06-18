@@ -17,6 +17,7 @@ function Login(props) {
     history,
     match,
     getSigninOrg,
+    signinOrganization,
   } = props;
   const query = new URL(document.location).searchParams;
   const { organizationName } = match.params;
@@ -29,6 +30,16 @@ function Login(props) {
     <div>
       {!loggedIn ? (
         <div className="container">
+          {signinOrganization && signinOrganization.logo && (
+            <div className="form-holder mt-4">
+              <div className="d-flex justify-content-center row">
+                <img
+                  className="col-3"
+                  src={`http://waivecar-prod.s3.amazonaws.com/${signinOrganization.logo.path}`}
+                />
+              </div>
+            </div>
+          )}
           <Form
             fields={loginFormFields}
             title={'Login'}
