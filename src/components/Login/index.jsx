@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
-import { login } from '../../store/actions/userActions';
+import { login, getSigninOrg } from '../../store/actions/userActions';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import Form from '../Form';
@@ -9,8 +9,22 @@ import Envelope from '../../svg/envelope.svg';
 import Key from '../../svg/key.svg';
 
 function Login(props) {
-  const { login, loggedIn, loginFormFields, location, history } = props;
-  const params = new URL(document.location).searchParams;
+  const {
+    login,
+    loggedIn,
+    loginFormFields,
+    location,
+    history,
+    match,
+    getSigninOrg,
+  } = props;
+  const query = new URL(document.location).searchParams;
+  const { organizationName } = match.params;
+  useEffect(() => {
+    if (organizationName) {
+      getSigninOrg(organizationName);
+    }
+  }, []);
   return (
     <div>
       {!loggedIn ? (
@@ -27,7 +41,7 @@ function Login(props) {
           <div className="text-center mt-4"></div>
         </div>
       ) : (
-        <Redirect to={params.get('new') ? '/wizard' : '/dashboard'} />
+        <Redirect to={query.get('new') ? '/wizard' : '/dashboard'} />
       )}
     </div>
   );
@@ -41,7 +55,7 @@ function mapStateToProps({ userReducer, formReducer }) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ login }, dispatch);
+  return bindActionCreators({ login, getSigninOrg }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

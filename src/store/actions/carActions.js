@@ -61,7 +61,6 @@ export const carSearch = (searchText, user, more = false, offset = 0) => async (
 };
 
 export const clearSearch = () => async (dispatch) => {
-  console.log('clearing');
   await dispatch({
     type: 'UPDATE_SEARCH',
     payload: { results: [], more: false, searchComplete: false },

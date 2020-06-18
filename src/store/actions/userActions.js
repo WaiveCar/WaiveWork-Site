@@ -230,6 +230,6 @@ export const getSigninOrg = (organizationName) => async (dispatch) => {
   );
   await dispatch({
     type: 'UPDATE_SIGNIN_ORG',
-    data: { signinOrganization: data },
+    payload: { signinOrganization: data[0] },
   });
 };

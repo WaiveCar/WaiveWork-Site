@@ -9,6 +9,7 @@ const config = {
   entry: __dirname + '/src/index.js',
   output: {
     path: __dirname + '/static',
+    publicPath: '/',
     filename: 'bundle.js',
   },
   module: {

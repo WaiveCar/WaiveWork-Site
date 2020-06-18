@@ -17,14 +17,14 @@ import Wizard from '../Wizard';
 export default [
   {
     name: 'Login',
-    path: '/login',
+    path: '/login/:organizationName',
     component: Login,
     requireAuth: false,
   },
   {
     name: 'Login',
-    path: '/login/:organizationName',
-    component: Organization,
+    path: '/login',
+    component: Login,
     requireAuth: false,
   },
   {
