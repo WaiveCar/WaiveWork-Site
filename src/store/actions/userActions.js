@@ -223,3 +223,13 @@ export const updateLicense = (license, form) => async (dispatch) => {
     ),
   );
 };
+
+export const getSigninOrg = (organizationName) => async (dispatch) => {
+  const { data } = await axios.get(
+    `/organizations?name=${organizationName}&includeImage=true`,
+  );
+  await dispatch({
+    type: 'UPDATE_SIGNIN_ORG',
+    data: { signinOrganization: data },
+  });
+};

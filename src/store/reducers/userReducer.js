@@ -6,6 +6,7 @@ const initialState = {
   user: null,
   insuranceFile: null,
   license: null,
+  signinOrganization: null,
 };
 
 function userReducer(state = initialState, action) {
@@ -57,6 +58,11 @@ function userReducer(state = initialState, action) {
       return {
         ...state,
         license: payload.license,
+      };
+    case 'UPDATE_SIGNIN_ORG':
+      return {
+        ...state,
+        signinOrganization: payload.signinOrganization,
       };
     default:
       return state;

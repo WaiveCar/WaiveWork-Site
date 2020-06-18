@@ -22,6 +22,12 @@ export default [
     requireAuth: false,
   },
   {
+    name: 'Login',
+    path: '/login/:organizationName',
+    component: Organization,
+    requireAuth: false,
+  },
+  {
     name: 'Singup',
     path: '/signup',
     component: Signup,
