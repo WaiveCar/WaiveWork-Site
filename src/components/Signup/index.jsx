@@ -68,7 +68,6 @@ function Signup({
           submitName={signupFormPages[selectedSignupPage].submitName}
           altActionName={signupFormPages[selectedSignupPage].altActionName}
           formWidth={'60%'}
-          clearOnSubmit={selectedSignupPage === signupFormPages.length - 1}
         />
         <div className="container d-flex justify-content-center mt-3">
           <div className="disclaimer text-center">
